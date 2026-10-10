@@ -1,0 +1,149 @@
+/* CSS Custom Properties & Design Tokens */
+:root {
+    --bg-night: #030712;
+    --bg-mid: #071827;
+    --bg-deep: #0b2136;
+    --text-main: #f3f8ff;
+    --text-soft: #c4e4fa;
+    --brand-blue: #0ea5e9;
+    --brand-light: #38bdf8;
+    --nav-bg: rgba(3, 13, 30, 0.72);
+    --nav-border: rgba(56, 189, 248, 0.32);
+    --nav-glass-streak: linear-gradient(115deg, rgba(255, 255, 255, 0.26) 0%, rgba(255, 255, 255, 0.08) 38%, rgba(255, 255, 255, 0.02) 62%, rgba(255, 255, 255, 0.16) 100%);
+    --nav-shell-shadow: 0 14px 42px rgba(1, 18, 22, 0.45);
+    --nav-shell-inner: inset 0 1px 0 rgba(255, 255, 255, 0.24), inset 0 -1px 0 rgba(2, 28, 35, 0.45);
+    --nav-link: #d9f0ff;
+    --nav-link-hover: #ffffff;
+    --nav-pill-bg: linear-gradient(160deg, rgba(37, 99, 235, 0.66), rgba(8, 47, 73, 0.84));
+    --nav-pill-border: rgba(56, 189, 248, 0.38);
+    --nav-pill-shadow: 0 12px 24px rgba(1, 8, 22, 0.56);
+    --nav-pill-glow: rgba(56, 189, 248, 0.42);
+
+    /* Floating Capsule Navbar Design Tokens */
+    --capsule-bg: rgba(15, 23, 42, 0.62);
+    --capsule-border: rgba(255, 255, 255, 0.18);
+    --capsule-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+    --capsule-link: rgba(241, 245, 249, 0.75);
+    --capsule-link-hover: #ffffff;
+    --capsule-link-active-bg: rgba(255, 255, 255, 0.2);
+    --capsule-link-active-text: #ffffff;
+    --capsule-link-active-shadow: 0 2px 8px rgba(0, 0, 0, 0.22);
+    --capsule-cta-bg: #ffffff;
+    --capsule-cta-text: #090d16;
+    --capsule-cta-hover: #f1f5f9;
+    --capsule-cta-shadow: 0 4px 18px rgba(255, 255, 255, 0.14), 0 2px 6px rgba(0, 0, 0, 0.25);
+    --capsule-circle-bg: #ffffff;
+    --capsule-circle-text: #090d16;
+    --capsule-badge-bg: #090d16;
+    --capsule-badge-border: rgba(255, 255, 255, 0.22);
+    --capsule-badge-color: #38bdf8;
+
+    --theme-btn-bg: rgba(8, 47, 73, 0.65);
+    --theme-btn-border: rgba(56, 189, 248, 0.48);
+    --theme-btn-text: #e0f2fe;
+    --menu-line: #dbeafe;
+    --mobile-menu-bg: rgba(3, 13, 30, 0.96);
+    --mobile-menu-border: rgba(56, 189, 248, 0.46);
+    --mobile-menu-shadow: rgba(1, 8, 22, 0.6);
+    --button-a: #0ea5e9;
+    --button-b: #2563eb;
+    --bg-radial-a: rgba(14, 165, 233, 0.22);
+    --bg-radial-b: rgba(37, 99, 235, 0.14);
+    --hero-role-shadow: rgba(14, 165, 233, 0.42);
+    --cursor-color: #38bdf8;
+    --hero-surface: linear-gradient(90deg, rgba(3, 7, 18, 0.76) 0%, rgba(3, 7, 18, 0.56) 56%, rgba(3, 7, 18, 0.16) 100%);
+    --hero-avatar-glow: rgba(6, 182, 212, 0.38);
+    --hero-avatar-ring: rgba(45, 212, 191, 0.65);
+    --hero-avatar-orbit: rgba(34, 211, 238, 0.7);
+    --hero-avatar-core-border: rgba(94, 234, 212, 0.8);
+    --hero-avatar-core-shadow: rgba(13, 148, 136, 0.5);
+    --canvas-line: 20, 184, 166;
+    --canvas-pointer: 34, 211, 238;
+    --canvas-node: 204, 251, 241;
+    --canvas-node-alpha: 0.75;
+    --fs-brand: clamp(1.08rem, 1.4vw, 1.42rem);
+    --fs-nav: clamp(0.92rem, 1.02vw, 1.02rem);
+    --fs-hero-title: clamp(2rem, 5vw, 4rem);
+    --fs-hero-role: clamp(1.28rem, 2.15vw, 1.95rem);
+    --fs-hero-copy: clamp(.5rem, 1.1vw, 1.1rem);
+    --fs-hero-btn: clamp(0.96rem, 1.1vw, 1.06rem);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+img,
+video {
+    max-width: 100%;
+    height: auto;
+}
+
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    font-family: "Poppins", "Segoe UI", sans-serif;
+    line-height: 1.6;
+    background:
+        radial-gradient(circle at 82% 24%, var(--bg-radial-a), transparent 30%),
+        radial-gradient(circle at 17% 92%, var(--bg-radial-b), transparent 28%),
+        linear-gradient(135deg, var(--bg-night) 0%, var(--bg-mid) 44%, var(--bg-deep) 100%);
+    color: var(--text-main);
+    overflow-x: hidden;
+    position: relative;
+}
+
+body.light-mode {
+    --bg-night: #f0fdfa;
+    --bg-mid: #e6f9f5;
+    --bg-deep: #dcf4ee;
+    --text-main: #042f2e;
+    --text-soft: #115e59;
+    --brand-blue: #0d9488;
+    --brand-light: #0f766e;
+    --nav-bg: rgba(240, 253, 250, 0.92);
+    --nav-border: rgba(45, 212, 191, 0.38);
+    --nav-glass-streak: linear-gradient(115deg, rgba(255, 255, 255, 0.42) 0%, rgba(255, 255, 255, 0.2) 42%, rgba(255, 255, 255, 0.05) 68%, rgba(255, 255, 255, 0.26) 100%);
+    --nav-shell-shadow: 0 10px 20px rgba(13, 148, 136, 0.12);
+    --nav-shell-inner: inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 -1px 0 rgba(45, 212, 191, 0.18);
+    --nav-link: #0f766e;
+    --nav-link-hover: #042f2e;
+    --nav-pill-bg: linear-gradient(160deg, rgba(204, 251, 241, 0.9), rgba(153, 246, 228, 0.85));
+    --nav-pill-border: rgba(45, 212, 191, 0.4);
+    --nav-pill-shadow: 0 6px 12px rgba(13, 148, 136, 0.12);
+    --nav-pill-glow: rgba(45, 212, 191, 0.2);
+
+    /* Floating Capsule Navbar Tokens (Light Mode - Reference Match) */
+    --capsule-bg: rgba(255, 255, 255, 0.76);
+    --capsule-border: rgba(0, 0, 0, 0.1);
+    --capsule-shadow: 0 4px 20px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    --capsule-link: #52525b;
+    --capsule-link-hover: #18181b;
+    --capsule-link-active-bg: #e2ded9;
+    --capsule-link-active-text: #18181b;
+    --capsule-link-active-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --capsule-cta-bg: #ffffff;
+    --capsule-cta-text: #18181b;
+    --capsule-cta-hover: #f4f4f5;
+    --capsule-cta-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    --capsule-circle-bg: #ffffff;
+    --capsule-circle-text: #18181b;
+    --capsule-badge-bg: #18181b;
+    --capsule-badge-border: rgba(0, 0, 0, 0.15);
+    --capsule-badge-color: #ffffff;
+
+    --theme-btn-bg: rgba(204, 251, 241, 0.88);
+    --theme-btn-border: rgba(45, 212, 191, 0.45);
+    --theme-btn-text: #0f766e;
+    --menu-line: #0f766e;
+    --mobile-menu-bg: rgba(240, 253, 250, 0.96);
+    --mobile-menu-border: rgba(45, 212, 191, 0.35);
+    --mobile-menu-shadow: rgba(13, 148, 136, 0.12);
+    --button-a: #0d9488;
+    --button-b: #0891b2;
+    --bg-radial-a: rgba(20, 184, 166, 0.18);

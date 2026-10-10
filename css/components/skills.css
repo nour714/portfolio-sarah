@@ -1,0 +1,341 @@
+/* Skills Categories, Chips & Notes */
+.skills {
+    padding: 12px clamp(18px, 6vw, 60px) 110px;
+}
+
+.skills-shell {
+    position: relative;
+}
+
+.skills-shell::before {
+    content: "";
+    position: absolute;
+    inset: 28px 0 auto;
+    height: 340px;
+    border-radius: 22px;
+    background:
+        radial-gradient(circle at 88% 14%, rgba(6, 182, 212, 0.16), transparent 46%),
+        radial-gradient(circle at 16% 84%, rgba(20, 184, 166, 0.12), transparent 52%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.skills-headline {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 430px);
+    gap: 18px;
+    align-items: end;
+}
+
+.skills-title-wrap h2 {
+    font-size: clamp(1.32rem, 2.45vw, 2.1rem);
+    line-height: 1.16;
+    letter-spacing: -0.3px;
+    max-width: 25ch;
+}
+
+.skills-copy {
+    margin-top: 10px;
+    color: var(--text-soft);
+    font-size: clamp(0.95rem, 1.03vw, 1.02rem);
+    line-height: 1.66;
+    max-width: 63ch;
+}
+
+.skills-metrics {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.skills-metric {
+    border: 1px solid rgba(45, 212, 191, 0.3);
+    border-radius: 14px;
+    padding: 10px 12px;
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03) 54%, rgba(2, 26, 32, 0.55));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.skills-metric dt {
+    font-size: 0.67rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--text-soft);
+}
+
+.skills-metric dd {
+    margin-top: 2px;
+    font-size: clamp(0.95rem, 1.35vw, 1.18rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text-main);
+}
+
+.skills-board {
+    position: relative;
+    z-index: 1;
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    perspective: 1200px;
+}
+
+.skill-group {
+    --skill-accent: 20, 184, 166;
+    position: relative;
+    border: 1px solid rgba(var(--skill-accent), 0.36);
+    border-radius: 18px;
+    padding: 14px;
+    background:
+        radial-gradient(circle at 88% 10%, rgba(var(--skill-accent), 0.16), transparent 46%),
+        linear-gradient(146deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.03) 56%, rgba(3, 28, 35, 0.65));
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.14),
+        0 12px 28px rgba(1, 18, 22, 0.25);
+    overflow: hidden;
+    transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease;
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.skill-group:hover,
+.skill-group:focus-within {
+    transform: translateY(-6px) rotateX(2.5deg) rotateY(-2deg);
+    border-color: rgba(var(--skill-accent), 0.56);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.16),
+        0 20px 42px rgba(4, 13, 43, 0.34);
+}
+
+.skill-group::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    pointer-events: none;
+}
+
+.skill-group-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.skill-group h3 {
+    font-size: 1rem;
+    line-height: 1.24;
+    letter-spacing: -0.12px;
+}
+
+.skill-group-label {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 9px;
+    border-radius: 999px;
+    border: 1px solid rgba(var(--skill-accent), 0.42);
+    background: rgba(var(--skill-accent), 0.18);
+    color: rgba(233, 241, 255, 0.92);
+    font-size: 0.64rem;
+    font-weight: 700;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.skill-tags {
+    list-style: none;
+    margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.skill-tags li {
+    border: 1px solid rgba(var(--skill-accent), 0.45);
+    border-radius: 9px;
+    padding: 6px 9px;
+    font-size: 0.79rem;
+    font-weight: 500;
+    line-height: 1.24;
+    color: var(--text-main);
+    background: rgba(var(--skill-accent), 0.12);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.skill-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    will-change: transform;
+}
+
+.skill-chip:hover {
+    transform: translateY(-3px);
+    border-color: rgba(var(--skill-accent), 0.72);
+    background: rgba(var(--skill-accent), 0.22);
+    box-shadow: 0 8px 16px rgba(7, 20, 58, 0.28);
+}
+
+.skill-icon {
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    display: inline-grid;
+    place-items: center;
+    border: 1px solid rgba(var(--skill-accent), 0.52);
+    background: rgba(var(--skill-accent), 0.2);
+    font-size: 0.9rem;
+    line-height: 1;
+    flex-shrink: 0;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.skill-chip:hover .skill-icon {
+    transform: scale(1.06);
+    box-shadow: 0 0 0 2px rgba(var(--skill-accent), 0.2);
+}
+
+.skill-icon[class*="wordmark"] {
+    width: 26px;
+    border-radius: 8px;
+    font-size: 0.74rem;
+}
+
+.fallback-icon {
+    font-size: 0.48rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: rgba(234, 242, 255, 0.96);
+}
+
+.skill-chip > span:last-child {
+    white-space: nowrap;
+}
+
+.skills-note {
+    position: relative;
+    z-index: 1;
+    margin-top: 12px;
+    border: 1px solid rgba(126, 161, 246, 0.34);
+    border-radius: 14px;
+    padding: 10px 12px;
+    color: var(--text-soft);
+    font-size: 0.9rem;
+    line-height: 1.55;
+    background: rgba(8, 51, 60, 0.45);
+}
+
+.skills-note strong {
+    color: var(--text-main);
+}
+
+.skill-group:nth-child(1) {
+    --skill-accent: 6, 182, 212;
+}
+
+.skill-group:nth-child(2) {
+    --skill-accent: 20, 184, 166;
+}
+
+.skill-group:nth-child(3) {
+    --skill-accent: 45, 212, 191;
+}
+
+.skill-group:nth-child(4) {
+    --skill-accent: 14, 165, 233;
+}
+
+.skill-group:nth-child(5) {
+    --skill-accent: 52, 211, 153;
+}
+
+.skill-group:nth-child(6) {
+    --skill-accent: 34, 211, 238;
+}
+
+.skill-group:nth-child(7) {
+    --skill-accent: 13, 148, 136;
+}
+
+.skill-group:nth-child(8) {
+    --skill-accent: 56, 189, 248;
+}
+
+body.light-mode .skills-shell::before {
+    background:
+        radial-gradient(circle at 88% 14%, rgba(45, 212, 191, 0.2), transparent 46%),
+        radial-gradient(circle at 16% 84%, rgba(20, 184, 166, 0.16), transparent 52%);
+}
+
+body.light-mode .skills-metric {
+    border-color: rgba(45, 212, 191, 0.35);
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(240, 253, 250, 0.72) 54%, rgba(204, 251, 241, 0.75));
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.84),
+        0 8px 18px rgba(13, 148, 136, 0.1);
+}
+
+body.light-mode .skills-metric dt {
+    color: #115e59;
+}
+
+body.light-mode .skill-group {
+    background:
+        radial-gradient(circle at 88% 10%, rgba(var(--skill-accent), 0.2), transparent 46%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.85), rgba(240, 253, 250, 0.7) 52%, rgba(204, 251, 241, 0.75));
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.85),
+        0 9px 18px rgba(13, 148, 136, 0.1);
+}
+
+body.light-mode .skill-group:hover,
+body.light-mode .skill-group:focus-within {
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.9),
+        0 16px 30px rgba(13, 148, 136, 0.2);
+}
+
+body.light-mode .skill-group-label {
+    color: #042f2e;
+    background: rgba(var(--skill-accent), 0.24);
+}
+
+body.light-mode .skill-tags li {
+    color: #042f2e;
+    border-color: rgba(var(--skill-accent), 0.52);
+    background: rgba(var(--skill-accent), 0.18);
+}
+
+body.light-mode .skill-chip:hover {
+    border-color: rgba(var(--skill-accent), 0.76);
+    background: rgba(var(--skill-accent), 0.26);
+    box-shadow: 0 7px 14px rgba(13, 148, 136, 0.16);
+}
+
+body.light-mode .skill-icon {
+    border-color: rgba(var(--skill-accent), 0.62);
+    background: rgba(var(--skill-accent), 0.26);
+}
+
+body.light-mode .fallback-icon {
+    color: #042f2e;
+}
+
+body.light-mode .skills-note {
+    border-color: rgba(124, 145, 176, 0.4);
+    color: #35506f;
+    background: rgba(224, 235, 248, 0.84);
+}
+

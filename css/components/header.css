@@ -1,0 +1,546 @@
+/* ==========================================================================
+   Site Header & Floating Capsule Navigation (Luxury Tech / Reference Style)
+   ========================================================================== */
+
+.site-header {
+    position: fixed;
+    inset: 16px 0 auto;
+    display: flex;
+    justify-content: center;
+    padding: 0 clamp(16px, 3.5vw, 40px);
+    animation: navDrop 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 50;
+    pointer-events: none;
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+main {
+    position: relative;
+    z-index: 2;
+}
+
+/* Nav Shell - Flex container aligning Brand (left), Capsule (center), and Actions (right) */
+.nav-shell {
+    width: min(1360px, 100%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    position: relative;
+    pointer-events: auto;
+    padding: 0;
+}
+
+/* --------------------------------------------------------------------------
+   1. Brand / Logo (Left)
+   -------------------------------------------------------------------------- */
+.brand {
+    text-decoration: none;
+    color: var(--text-main);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+    z-index: 2;
+    transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.brand:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+}
+
+.brand-badge {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--capsule-badge-bg);
+    border: 1px solid var(--capsule-badge-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--capsule-badge-color);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    flex-shrink: 0;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.brand:hover .brand-badge {
+    transform: scale(1.06);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+.brand-badge-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.brand-title {
+    font-family: "Space Grotesk", "Poppins", sans-serif;
+    font-size: clamp(0.92rem, 1.1vw, 1.05rem);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-main);
+    white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   2. Center Floating Capsule Navigation (Center)
+   -------------------------------------------------------------------------- */
+.nav-center-capsule {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
+    z-index: 10;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 5px 6px;
+    border-radius: 9999px;
+    background: var(--capsule-bg);
+    border: 1px solid var(--capsule-border);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    backdrop-filter: blur(24px) saturate(160%);
+    box-shadow: var(--capsule-shadow);
+    margin: 0;
+}
+
+.nav-list li {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-list a {
+    text-decoration: none;
+    font-family: "Space Grotesk", "Poppins", sans-serif;
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--capsule-link);
+    padding: 8px 18px;
+    border-radius: 9999px;
+    transition: color 0.22s ease, background-color 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    line-height: 1.2;
+    position: relative;
+}
+
+.nav-list a:hover {
+    color: var(--capsule-link-hover);
+    background: var(--capsule-link-hover-bg);
+    transform: translateY(-1px);
+}
+
+/* Active Nav Pill - Matches 'FEATURES' filled pill in reference photo */
+.nav-list a.is-active {
+    color: var(--capsule-link-active-text);
+    background: var(--capsule-link-active-bg);
+    font-weight: 700;
+    box-shadow: var(--capsule-link-active-shadow);
+    transform: translateY(0);
+}
+
+.nav-list a:focus-visible {
+    outline: 2px solid var(--capsule-badge-color);
+    outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Desktop Dynamic Capsule Hover Expansion:
+   - Default (unhovered): Shrinks to show only the current active section pill (e.g. HOME).
+   - On Hover / Focus: Smoothly expands to show all sections across the capsule.
+   -------------------------------------------------------------------------- */
+@media (min-width: 1025px) {
+    .nav-center-capsule {
+        cursor: pointer;
+        padding: 6px 0;
+    }
+
+    /* Invisible hover buffer cushion to prevent accidental collapse when mouse moves */
+    .nav-center-capsule::before {
+        content: "";
+        position: absolute;
+        inset: -10px -14px;
+        z-index: -1;
+    }
+
+    .nav-list {
+        gap: 0;
+        overflow: hidden;
+        transition: gap 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+                    box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                    border-color 0.25s ease;
+    }
+
+    .nav-list li {
+        min-width: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        will-change: max-width, opacity, transform;
+        transition: max-width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                    opacity 0.26s cubic-bezier(0.16, 1, 0.3, 1),
+                    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Inactive items: collapsed to 0 width & transparent */
+    .nav-list li:not(.is-active-item):not(:has(> a.is-active)) {
+        max-width: 0;
+        opacity: 0;
+        pointer-events: none;
+        transform: scale(0.9);
+    }
+
+    /* Active item: fully visible */
+    .nav-list li.is-active-item,
+    .nav-list li:has(> a.is-active) {
+        max-width: 190px;
+        opacity: 1;
+        pointer-events: auto;
+        transform: scale(1);
+    }
+
+    /* Fallback if no item has active class */
+    .nav-list:not(:has(.is-active-item)):not(:has(.is-active)) li:first-child {
+        max-width: 190px;
+        opacity: 1;
+        pointer-events: auto;
+        transform: scale(1);
+    }
+
+    /* Hover / Focus state: expand all links smoothly */
+    .nav-center-capsule:hover .nav-list,
+    .nav-center-capsule:focus-within .nav-list {
+        gap: 4px;
+        box-shadow: var(--capsule-shadow), 0 10px 34px rgba(0, 0, 0, 0.35);
+        border-color: rgba(255, 255, 255, 0.24);
+    }
+
+    .nav-center-capsule:hover .nav-list li,
+    .nav-center-capsule:focus-within .nav-list li {
+        max-width: 160px;
+        opacity: 1;
+        pointer-events: auto;
+        transform: scale(1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .nav-list,
+    .nav-list li {
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   3. Action Controls & CTAs (Right)
+   -------------------------------------------------------------------------- */
+.nav-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+    pointer-events: auto;
+    z-index: 2;
+    flex-shrink: 0;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    border: 1px solid var(--theme-btn-border);
+    background: var(--theme-btn-bg);
+    color: var(--theme-btn-text);
+    border-radius: 9999px;
+    padding: 10px 18px;
+    font-family: "Space Grotesk", "Poppins", sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1;
+    cursor: pointer;
+    transition: transform 0.22s ease, background-color 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 68px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.theme-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+}
+
+/* Circular Action Button with ↗ Arrow (Exact match to circular button in reference) */
+.nav-action-circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--capsule-circle-bg);
+    color: var(--capsule-circle-text);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: var(--capsule-cta-shadow);
+    transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, background-color 0.22s ease;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    flex-shrink: 0;
+}
+
+.nav-action-circle svg {
+    width: 17px;
+    height: 17px;
+    stroke: currentColor;
+    transition: transform 0.22s ease;
+}
+
+.nav-action-circle:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.22);
+}
+
+.nav-action-circle:hover svg {
+    transform: translate(1px, -1px);
+}
+
+/* High-Contrast Pill CTA (Exact match to 'CONTACT US' in reference) */
+.nav-cta-btn {
+    height: 44px;
+    padding: 0 24px;
+    border-radius: 9999px;
+    background: var(--capsule-cta-bg);
+    color: var(--capsule-cta-text);
+    font-family: "Space Grotesk", "Poppins", sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--capsule-cta-shadow);
+    transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, background-color 0.22s ease;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    white-space: nowrap;
+}
+
+.nav-cta-btn:hover {
+    transform: translateY(-2px);
+    background: var(--capsule-cta-hover);
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.22);
+}
+
+/* Mobile Menu Hamburger Toggle */
+.menu-toggle {
+    display: none;
+    border: 1px solid var(--capsule-border);
+    background: var(--capsule-bg);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    place-content: center;
+    gap: 5px;
+    cursor: pointer;
+    box-shadow: var(--capsule-shadow);
+    transition: transform 0.22s ease;
+}
+
+.menu-toggle:hover {
+    transform: scale(1.05);
+}
+
+.menu-toggle span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--menu-line);
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* --------------------------------------------------------------------------
+   4. Responsive Breakpoints
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+    .site-header {
+        inset: 12px 0 auto;
+        padding: 0 16px;
+    }
+
+    .nav-shell {
+        position: relative;
+    }
+
+    /* Move capsule out of absolute center on mobile */
+    .nav-center-capsule {
+        position: static;
+        transform: none;
+        width: 0;
+        height: 0;
+    }
+
+    .menu-toggle {
+        display: inline-grid;
+    }
+
+    /* Mobile Menu Drawer */
+    .nav-list {
+        position: absolute;
+        top: calc(100% + 14px);
+        left: 0;
+        width: 100%;
+        border-radius: 22px;
+        background: var(--mobile-menu-bg);
+        border: 1px solid var(--mobile-menu-border);
+        box-shadow: 0 16px 36px var(--mobile-menu-shadow);
+        padding: 16px;
+        gap: 6px;
+        flex-direction: column;
+        align-items: stretch;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-10px);
+        transition: opacity 0.24s cubic-bezier(0.16, 1, 0.3, 1), transform 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+        max-height: min(72vh, 460px);
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        -webkit-backdrop-filter: blur(24px);
+        backdrop-filter: blur(24px);
+        z-index: 60;
+    }
+
+    .nav-list.open {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    .nav-list a {
+        width: 100%;
+        padding: 12px 18px;
+        font-size: 0.88rem;
+        justify-content: flex-start;
+        border-radius: 14px;
+    }
+
+    .nav-mobile-contact {
+        display: flex;
+    }
+
+    .nav-actions {
+        gap: 8px;
+    }
+
+    .theme-toggle {
+        min-width: 60px;
+        padding: 8px 14px;
+        font-size: 0.74rem;
+    }
+
+    .nav-action-circle {
+        width: 40px;
+        height: 40px;
+    }
+
+    .nav-cta-btn {
+        height: 40px;
+        padding: 0 18px;
+        font-size: 0.76rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .site-header {
+        padding: 0 12px;
+    }
+
+    .brand-title {
+        font-size: 0.9rem;
+        letter-spacing: 0.08em;
+    }
+
+    .brand-badge {
+        width: 36px;
+        height: 36px;
+    }
+
+    .brand-badge-icon {
+        width: 17px;
+        height: 17px;
+    }
+}
+
+@media (max-width: 600px) {
+    .site-header {
+        inset: 10px 0 auto;
+        padding: 0 10px;
+    }
+
+    .nav-cta-btn {
+        display: none; /* Contact is directly accessible in the mobile menu */
+    }
+
+    .theme-toggle {
+        min-width: 54px;
+        padding: 7px 12px;
+        font-size: 0.72rem;
+    }
+
+    .brand-title {
+        font-size: 0.84rem;
+        letter-spacing: 0.06em;
+    }
+}
+
+@media (max-width: 400px) {
+    .nav-action-circle {
+        display: none;
+    }
+
+    .brand {
+        gap: 8px;
+    }
+
+    .brand-badge {
+        width: 34px;
+        height: 34px;
+    }
+
+    .brand-title {
+        font-size: 0.8rem;
+        letter-spacing: 0.04em;
+    }
+}

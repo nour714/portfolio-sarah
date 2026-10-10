@@ -1,0 +1,18 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Portfolio content — public read, authenticated write
+    match /portfolio/content {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+    // Contact messages — anyone can create (submit form),
+    // but only authenticated admin can read/update/delete
+    match /messages/{messageId} {
+      allow create: if true;
+      allow read, update, delete: if request.auth != null;
+    }
+  }
+}
