@@ -1,0 +1,31 @@
+/**
+ * Portfolio Stylesheet - Clean Architecture Master
+ * 
+ * Architecture Layers:
+ * 1. Base: CSS Custom Properties, Global Reset, Typography
+ * 2. Components: Modular UI component stylesheets
+ * 3. Features: Dynamic canvas, custom cursor, scroll effects & intro splash
+ * 4. Admin: Studio & CMS dashboard styles
+ */
+
+/* 1. Base Layer */
+@import url("css/base/variables.css");
+@import url("css/base/reset.css");
+
+/* 2. Components Layer */
+@import url("css/components/header.css");
+@import url("css/components/hero.css");
+@import url("css/components/about.css");
+@import url("css/components/skills.css");
+@import url("css/components/projects.css");
+@import url("css/components/experience.css");
+@import url("css/components/contact.css");
+@import url("css/components/modal.css");
+@import url("css/components/toast.css");
+
+/* 3. Features & Animations Layer */
+@import url("css/features/animations.css");
+@import url("css/features/intro.css");
+
+/* 4. Admin Feature Layer */
+@import url("css/admin/admin.css");
