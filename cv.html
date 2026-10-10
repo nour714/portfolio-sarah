@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Allaa Saboukh | CV</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            color-scheme: light;
+            --bg: #f0fdfa;
+            --panel: #ffffff;
+            --text: #042f2e;
+            --muted: #115e59;
+            --accent: #0d9488;
+            --accent-hover: #0f766e;
+            --border: #ccfbf1;
+            --shadow: 0 24px 60px rgba(13, 148, 136, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Poppins", system-ui, -apple-system, Segoe UI, sans-serif;
+            background:
+                radial-gradient(circle at top right, rgba(45, 212, 191, 0.15), transparent 54%),
+                radial-gradient(circle at bottom left, rgba(6, 182, 212, 0.18), transparent 48%),
+                var(--bg);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            padding: 2.2rem 1rem;
+        }
+
+        .cv-shell {
+            width: min(980px, 100%);
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .cv-head {
+            padding: 1.2rem 1.3rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.8rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(1.1rem, 2.3vw, 1.5rem);
+        }
+
+        .cv-actions {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            border: none;
+            border-radius: 10px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.58rem 1.05rem;
+            font-weight: 600;
+            font-size: 0.92rem;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+        }
+
+        .btn-secondary {
+            background: #ccfbf1;
+            color: #042f2e;
+        }
+
+        .btn-secondary:hover {
+            background: #99f6e4;
+        }
+
+        .cv-frame-wrap {
+            height: min(75vh, 920px);
+            background: #f0fdfa;
+        }
+
+        .cv-frame {
+            border: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .cv-foot {
+            padding: 0.8rem 1.2rem 1.1rem;
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body>
+    <div class="cv-shell">
+        <header class="cv-head">
+            <h1>My CV</h1>
+            <div class="cv-actions">
+                <a href="index.html" class="btn btn-secondary">Back To Home</a>
+                <a href="cv.pdf" download class="btn btn-primary">Download CV</a>
+            </div>
+        </header>
+
+        <div class="cv-frame-wrap">
+            <iframe class="cv-frame" src="cv.pdf" title="Allaa Saboukh CV">
+                Your browser does not support PDF preview.
+                <a href="cv.pdf" download>Download CV</a>.
+            </iframe>
+        </div>
+
+        <p class="cv-foot">If preview does not appear, use the Download CV button.</p>
+    </div>
+</body>
+</html>
