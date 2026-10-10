@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+const firebaseConfig = {
+    apiKey: "AIzaSyA2Y3RuOABffeNJmWfg_uBGqF3chsaTwfQ",
+    authDomain: "portfolio-9a88b.firebaseapp.com",
+    projectId: "portfolio-9a88b"
+};
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+getDoc(doc(db, "portfolio", "content")).then(snap => {
+    document.body.innerHTML = "<pre>" + (snap.exists() ? JSON.stringify(snap.data(), null, 2) : "NO DOCUMENT EXIST") + "</pre>";
+}).catch(err => {
+    document.body.innerHTML = "ERROR: " + err.message;
+});
+</script>
+</body>
+</html>
