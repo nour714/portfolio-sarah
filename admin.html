@@ -33,21 +33,36 @@
     <header class="site-header">
         <nav class="nav-shell" aria-label="Primary">
             <a href="#hero" class="brand">
-                <span class="brand-dot"></span>
-                Allaa Saboukh
+                <span class="brand-badge" aria-hidden="true">
+                    <svg class="brand-badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                        <polyline points="2 17 12 22 22 17"></polyline>
+                        <polyline points="2 12 12 17 22 12"></polyline>
+                    </svg>
+                </span>
+                <span class="brand-title">ALLAA SABOUKH</span>
             </a>
 
-            <ul class="nav-list" id="nav-list">
-                <li><a href="#hero">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+            <div class="nav-center-capsule">
+                <ul class="nav-list" id="nav-list">
+                    <li class="is-active-item"><a href="#hero" class="is-active">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
 
             <div class="nav-actions">
                 <button class="theme-toggle" type="button" aria-pressed="true" aria-label="Switch to dark mode">Dark</button>
+                <a href="cv.html" class="nav-action-circle" aria-label="View Resume" title="View Resume">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                        <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                </a>
+                <a href="#contact" class="nav-cta-btn">Contact Us</a>
                 <button class="menu-toggle" aria-expanded="false" aria-controls="nav-list" aria-label="Toggle navigation">
                     <span></span>
                     <span></span>
@@ -166,40 +181,6 @@
             <div class="section-shell about-shell">
                 <p class="section-kicker">About</p>
                 <div class="about-panel">
-                    <div class="about-content">
-                        <div class="about-topline">
-                            <span class="about-status">Open For Impactful AI Work</span>
-                            <span class="about-location">Egypt · Saudi Arabia · Remote</span>
-                        </div>
-
-                        <h2 id="about-title">
-                            I transform visual and medical data into high-stakes AI solutions.
-                        </h2>
-
-                        <p class="about-copy">
-                            I am Alaa Saboukh, a Bio AI Engineer and Data Specialist with 3+ years of experience delivering intelligent systems across the MENA region. My expertise, fortified by specialized training at the National Telecommunication Institute (NTI) through the DEYP initiative, spans Computer Vision, Medical AI, and Robotics. I build production-ready pipelines—from healthcare analytics to real-time industrial automation—bridging the gap between deep learning research and reliable deployments.
-                        </p>
-
-                        <div class="about-track" aria-label="Key highlights">
-                            <article class="about-node">
-                                <strong>3+</strong>
-                                <span>Years Experience</span>
-                            </article>
-                            <article class="about-node">
-                                <strong>20+</strong>
-                                <span>Production AI Builds</span>
-                            </article>
-                            <article class="about-node">
-                                <strong>Bio AI + Edge</strong>
-                                <span>Core Specialization</span>
-                            </article>
-                        </div>
-
-                        <p class="about-signature">
-                            Stack Signature: PyTorch, TensorFlow, YOLO, OpenVINO, FastAPI, Arduino, Docker.
-                        </p>
-                    </div>
-
                     <div class="about-visual" aria-hidden="true">
                         <div class="about-visual-backdrop"></div>
                         <div class="about-visual-glow"></div>
@@ -219,6 +200,27 @@
                             <span class="badge-dot"></span>
                             <span class="badge-text">Bio AI & Robotics</span>
                         </div>
+                    </div>
+
+                    <div class="about-content">
+                        <div class="about-topline">
+                            <span class="about-status">Open For Impactful AI Work</span>
+                            <span class="about-location">Egypt · Saudi Arabia · Remote</span>
+                        </div>
+
+                        <h2 id="about-title">
+                            I transform visual and medical data into high-stakes AI solutions.
+                        </h2>
+
+                        <p class="about-copy">
+                            I am Alaa Saboukh, a Bio AI Engineer and Data Specialist with 3+ years of experience delivering intelligent systems across the MENA region. My expertise, fortified by specialized training at the National Telecommunication Institute (NTI) through the DEYP initiative, spans Computer Vision, Medical AI, and Robotics. I build production-ready pipelines—from healthcare analytics to real-time industrial automation—bridging the gap between deep learning research and reliable deployments.
+                        </p>
+
+                        <div class="about-track" aria-label="Key highlights"></div>
+
+                        <p class="about-signature">
+                            Stack Signature: PyTorch, TensorFlow, YOLO, OpenVINO, FastAPI, Arduino, Docker.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -256,113 +258,7 @@
                     </dl>
                 </div>
 
-                <div class="skills-board" aria-label="CV Skills Categories">
-                    <article class="skill-group">
-                        <div class="skill-group-head">
-                            <h3>Programming Languages</h3>
-                            <span class="skill-group-label">Core</span>
-                        </div>
-                        <ul class="skill-tags">
-                            <li class="skill-chip"><i class="skill-icon devicon-python-plain colored" aria-hidden="true"></i><span>Python</span></li>
-                            <li class="skill-chip"><i class="skill-icon devicon-cplusplus-plain colored" aria-hidden="true"></i><span>C/C++</span></li>
-                            <li class="skill-chip"><i class="skill-icon devicon-javascript-plain colored" aria-hidden="true"></i><span>JavaScript</span></li>
-                        </ul>
-                    </article>
-
-                    <article class="skill-group">
-                        <div class="skill-group-head">
-                            <h3>Deep Learning Frameworks</h3>
-                            <span class="skill-group-label">Advanced</span>
-                        </div>
-                        <ul class="skill-tags">
-                            <li class="skill-chip"><i class="skill-icon devicon-pytorch-original colored" aria-hidden="true"></i><span>PyTorch</span></li>
-                            <li class="skill-chip"><i class="skill-icon devicon-tensorflow-original colored" aria-hidden="true"></i><span>TensorFlow</span></li>
-                            <li class="skill-chip"><i class="skill-icon devicon-keras-original colored" aria-hidden="true"></i><span>Keras</span></li>
-                            <li class="skill-chip"><span class="skill-icon fallback-icon" aria-hidden="true">FA</span><span>FastAI</span></li>
-                        </ul>
-                    </article>
-
-                    <article class="skill-group">
-                        <div class="skill-group-head">
-                            <h3>Computer Vision</h3>
-                            <span class="skill-group-label">Advanced</span>
-                        </div>
-                        <ul class="skill-tags">
-                            <li class="skill-chip"><i class="skill-icon devicon-opencv-plain colored" aria-hidden="true"></i><span>OpenCV</span></li>
-                            <li class="skill-chip"><span class="skill-icon fallback-icon" aria-hidden="true">YO</span><span>YOLOv5/v8</span></li>
-                            <li class="skill-chip"><span class="skill-icon fallback-icon" aria-hidden="true">MP</span><span>MediaPipe</span></li>
-                            <li class="skill-chip"><span class="skill-icon fallback-icon" aria-hidden="true">D2</span><span>Detectron2</span></li>
-                        </ul>
-                    </article>
-
-                    <article class="skill-group">
-                        <div class="skill-group-head">
-                            <h3>Data Science & ML</h3>
-                            <span class="skill-group-label">Strong</span>
-                        </div>
-                        <ul class="skill-tags">
-                            <li class="skill-chip"><i class="skill-icon devicon-scikitlearn-plain colored" aria-hidden="true"></i><span>Scikit-learn</span></li>
-                            <li class="skill-chip"><span class="skill-icon fallback-icon" aria-hidden="true">XG</span><span>XGBoost</span></li>
-                            <li class="skill-chip"><i class="skill-icon devicon-pandas-original colored" aria-hidden="true"></i><span>Pandas</span></li>
-                            <li class="skill-chip"><i class="skill-icon devicon-numpy-original colored" aria-hidden="true"></i><span>NumPy</span></li>
-                            <li class="skill-chip"><span class="skill-icon fallback-icon" aria-hidden="true">MP</span><span>Matplotlib</span></li>
-                            <li class="skill-chip"><span class="skill-icon fallback-icon" aria-hidden="true">SB</span><span>Seaborn</span></li>
-                        </ul>
-                    </article>
-
-                    <article class="skill-group">
-                        <div class="skill-group-head">
-                            <h3>Deployment & APIs</h3>
-                            <span class="skill-group-label">Production</span>
-                        </div>
-                        <ul class="skill-tags">
-                            <li class="skill-chip"><i class="skill-icon devicon-flask-original colored" aria-hidden="true"></i><span>Flask</span></li>
-                            <li class="skill-chip"><i class="skill-icon devicon-fastapi-plain colored" aria-hidden="true"></i><span>FastAPI</span></li>
-                            <li class="skill-chip"><i class="skill-icon devicon-streamlit-plain colored" aria-hidden="true"></i><span>Streamlit</span></li>
-                            <li class="skill-chip"><i class="skill-icon devicon-docker-plain colored" aria-hidden="true"></i><span>Docker</span></li>
-                        </ul>
-                    </article>
-
-                    <article class="skill-group">
-                        <div class="skill-group-head">
-                            <h3>Databases</h3>
-                            <span class="skill-group-label">Data Layer</span>
-                        </div>
-                        <ul class="skill-tags">
-                            <li class="skill-chip"><span class="skill-icon fallback-icon" aria-hidden="true">SQL</span><span>SQL</span></li>
-                            <li class="skill-chip"><i class="skill-icon devicon-mongodb-plain colored" aria-hidden="true"></i><span>MongoDB</span></li>
-                            <li class="skill-chip"><i class="skill-icon devicon-microsoftsqlserver-plain colored" aria-hidden="true"></i><span>Microsoft SQL Server</span></li>
-                        </ul>
-                    </article>
-
-                    <article class="skill-group">
-                        <div class="skill-group-head">
-                            <h3>Tools & Platforms</h3>
-                            <span class="skill-group-label">Workflow</span>
-                        </div>
-                        <ul class="skill-tags">
-                            <li class="skill-chip"><i class="skill-icon devicon-googlecolab-plain colored" aria-hidden="true"></i><span>Google Colab</span></li>
-                            <li class="skill-chip"><i class="skill-icon devicon-jupyter-plain colored" aria-hidden="true"></i><span>Jupyter</span></li>
-                            <li class="skill-chip"><i class="skill-icon devicon-git-plain colored" aria-hidden="true"></i><span>Git</span></li>
-                            <li class="skill-chip"><i class="skill-icon devicon-linux-plain colored" aria-hidden="true"></i><span>Linux</span></li>
-                            <li class="skill-chip"><i class="skill-icon devicon-amazonwebservices-plain-wordmark colored" aria-hidden="true"></i><span>AWS</span></li>
-                            <li class="skill-chip"><i class="skill-icon devicon-googlecloud-plain colored" aria-hidden="true"></i><span>Google Cloud</span></li>
-                        </ul>
-                    </article>
-
-                    <article class="skill-group">
-                        <div class="skill-group-head">
-                            <h3>Others</h3>
-                            <span class="skill-group-label">Optimization</span>
-                        </div>
-                        <ul class="skill-tags">
-                            <li class="skill-chip"><span class="skill-icon fallback-icon" aria-hidden="true">MO</span><span>Model Optimization</span></li>
-                            <li class="skill-chip"><span class="skill-icon fallback-icon" aria-hidden="true">ED</span><span>Edge Deployment</span></li>
-                            <li class="skill-chip"><span class="skill-icon fallback-icon" aria-hidden="true">DP</span><span>Data Preprocessing</span></li>
-                            <li class="skill-chip"><span class="skill-icon fallback-icon" aria-hidden="true">FE</span><span>Feature Engineering</span></li>
-                        </ul>
-                    </article>
-                </div>
+                <div class="skills-board" aria-label="CV Skills Categories"></div>
 
                 <p class="skills-note">
                     <strong>Focus:</strong> building efficient end-to-end AI pipelines with strong model quality,
@@ -388,260 +284,7 @@
                     <button type="button" class="project-filter" aria-pressed="false" data-filter="automation">Automation</button>
                 </div>
 
-                <div class="projects-grid" aria-label="Featured projects list">
-                    <!-- Project 1: Sugary AI: Diabetes Analysis -->
-                    <article class="project-card" data-category="ai">
-                        <div class="project-image-wrapper">
-                            <img
-                                src="images/sugary_project.png"
-                                alt="Sugary AI: Diabetes Analysis"
-                                class="project-image"
-                                loading="lazy"
-                                decoding="async"
-                            />
-                            <div class="project-overlay">
-                                <div class="overlay-actions">
-                                    <a 
-                                        href="https://github.com/Alaa-Saboukh02/Sugary_project" 
-                                        target="_blank" 
-                                        rel="noopener noreferrer" 
-                                        class="overlay-action-btn github-btn" 
-                                        aria-label="View on GitHub"
-                                    >
-                                        <i class="devicon-github-original" aria-hidden="true"></i>
-                                    </a>
-                                    <button 
-                                        type="button" 
-                                        class="overlay-action-btn share-btn" 
-                                        aria-label="Share project"
-                                        data-share-title="Sugary AI: Diabetes Analysis"
-                                        data-share-url="https://github.com/Alaa-Saboukh02/Sugary_project"
-                                    >
-                                        <svg viewBox="0 0 24 24" aria-hidden="true">
-                                            <circle cx="18" cy="5" r="3"></circle>
-                                            <circle cx="6" cy="12" r="3"></circle>
-                                            <circle cx="18" cy="19" r="3"></circle>
-                                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-                                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">Sugary AI: Diabetes Analysis</h3>
-                            <div class="project-meta">
-                                <span>HealthTech</span>
-                                <span>Analytics</span>
-                                <span>Prediction</span>
-                            </div>
-                            <p class="project-description">
-                                An end-to-end AI system for analyzing glucose levels and providing personalized health insights. Built to improve diabetic patient care.
-                            </p>
-                            <ul class="project-highlights">
-                                <li>Developed accurate prediction models using clinical datasets.</li>
-                                <li>Integrated intuitive visualization for health trends and monitoring.</li>
-                            </ul>
-                            <ul class="project-tech-tags">
-                                <li>Python</li>
-                                <li>TensorFlow</li>
-                                <li>Scikit-Learn</li>
-                            </ul>
-                            <button type="button" class="project-detail-btn"
-                                data-project="0" aria-label="View details for Sugary AI">View Details &rarr;</button>
-                        </div>
-                    </article>
-
-                    <!-- Project 2: AutoVision: Car Wash Detection -->
-                    <article class="project-card" data-category="ai automation">
-                        <div class="project-image-wrapper">
-                            <img
-                                src="images/car_wash.png"
-                                alt="AutoVision: Car Wash Detection"
-                                class="project-image"
-                                loading="lazy"
-                                decoding="async"
-                            />
-                            <div class="project-overlay">
-                                <div class="overlay-actions">
-                                    <a 
-                                        href="https://github.com/Alaa-Saboukh02/car_waching-models" 
-                                        target="_blank" 
-                                        rel="noopener noreferrer" 
-                                        class="overlay-action-btn github-btn" 
-                                        aria-label="View on GitHub"
-                                    >
-                                        <i class="devicon-github-original" aria-hidden="true"></i>
-                                    </a>
-                                    <button 
-                                        type="button" 
-                                        class="overlay-action-btn share-btn" 
-                                        aria-label="Share project"
-                                        data-share-title="AutoVision: Car Wash Detection"
-                                        data-share-url="https://github.com/Alaa-Saboukh02/car_waching-models"
-                                    >
-                                        <svg viewBox="0 0 24 24" aria-hidden="true">
-                                            <circle cx="18" cy="5" r="3"></circle>
-                                            <circle cx="6" cy="12" r="3"></circle>
-                                            <circle cx="18" cy="19" r="3"></circle>
-                                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-                                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">AutoVision: Car Wash Detection</h3>
-                            <div class="project-meta">
-                                <span>Computer Vision</span>
-                                <span>Object Detection</span>
-                                <span>Tracking</span>
-                            </div>
-                            <p class="project-description">
-                                Real-time computer vision model for identifying cars entering/ exiting car wash stations and tracking their status.
-                            </p>
-                            <ul class="project-highlights">
-                                <li>Implemented YOLO-based detection with 95% accuracy.</li>
-                                <li>Optimized for real-time inference on edge devices for surveillance.</li>
-                            </ul>
-                            <ul class="project-tech-tags">
-                                <li>YOLOv8</li>
-                                <li>OpenCV</li>
-                                <li>PyTorch</li>
-                            </ul>
-                            <button type="button" class="project-detail-btn"
-                                data-project="1" aria-label="View details for AutoVision">View Details &rarr;</button>
-                        </div>
-                    </article>
-
-                    <!-- Project 3: BikeStore Data Intelligence -->
-                    <article class="project-card" data-category="web automation">
-                        <div class="project-image-wrapper">
-                            <img
-                                src="images/bike_store.png"
-                                alt="BikeStore Data Intelligence"
-                                class="project-image"
-                                loading="lazy"
-                                decoding="async"
-                            />
-                            <div class="project-overlay">
-                                <div class="overlay-actions">
-                                    <a 
-                                        href="https://github.com/Alaa-Saboukh02/Bike_store.python" 
-                                        target="_blank" 
-                                        rel="noopener noreferrer" 
-                                        class="overlay-action-btn github-btn" 
-                                        aria-label="View on GitHub"
-                                    >
-                                        <i class="devicon-github-original" aria-hidden="true"></i>
-                                    </a>
-                                    <button 
-                                        type="button" 
-                                        class="overlay-action-btn share-btn" 
-                                        aria-label="Share project"
-                                        data-share-title="BikeStore Data Intelligence"
-                                        data-share-url="https://github.com/Alaa-Saboukh02/Bike_store.python"
-                                    >
-                                        <svg viewBox="0 0 24 24" aria-hidden="true">
-                                            <circle cx="18" cy="5" r="3"></circle>
-                                            <circle cx="6" cy="12" r="3"></circle>
-                                            <circle cx="18" cy="19" r="3"></circle>
-                                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-                                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">BikeStore Data Intelligence</h3>
-                            <div class="project-meta">
-                                <span>Data Analysis</span>
-                                <span>SQL</span>
-                                <span>Market Trends</span>
-                            </div>
-                            <p class="project-description">
-                                Analysis pipeline for bike retail, uncovering sales patterns and customer behavior through SQL and Python.
-                            </p>
-                            <ul class="project-highlights">
-                                <li>Transformed raw SQL data into actionable business intelligence.</li>
-                                <li>Created high-impact visualizations for store performance tracking.</li>
-                            </ul>
-                            <ul class="project-tech-tags">
-                                <li>SQL</li>
-                                <li>Pandas</li>
-                                <li>Matplotlib</li>
-                            </ul>
-                            <button type="button" class="project-detail-btn"
-                                data-project="2" aria-label="View details for BikeStore">View Details &rarr;</button>
-                        </div>
-                    </article>
-
-                    <!-- Project 4: InvoiceSense AI: NLP Classifier -->
-                    <article class="project-card" data-category="ai">
-                        <div class="project-image-wrapper">
-                            <img
-                                src="images/invoice_classifier.png"
-                                alt="InvoiceSense AI: NLP Classifier"
-                                class="project-image"
-                                loading="lazy"
-                                decoding="async"
-                            />
-                            <div class="project-overlay">
-                                <div class="overlay-actions">
-                                    <a 
-                                        href="https://github.com/Alaa-Saboukh02/AutoModelForSequenceClassification" 
-                                        target="_blank" 
-                                        rel="noopener noreferrer" 
-                                        class="overlay-action-btn github-btn" 
-                                        aria-label="View on GitHub"
-                                    >
-                                        <i class="devicon-github-original" aria-hidden="true"></i>
-                                    </a>
-                                    <button 
-                                        type="button" 
-                                        class="overlay-action-btn share-btn" 
-                                        aria-label="Share project"
-                                        data-share-title="InvoiceSense AI: NLP Classifier"
-                                        data-share-url="https://github.com/Alaa-Saboukh02/AutoModelForSequenceClassification"
-                                    >
-                                        <svg viewBox="0 0 24 24" aria-hidden="true">
-                                            <circle cx="18" cy="5" r="3"></circle>
-                                            <circle cx="6" cy="12" r="3"></circle>
-                                            <circle cx="18" cy="19" r="3"></circle>
-                                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-                                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">InvoiceSense AI: NLP Classifier</h3>
-                            <div class="project-meta">
-                                <span>NLP</span>
-                                <span>Transformers</span>
-                                <span>FinTech</span>
-                            </div>
-                            <p class="project-description">
-                                Deep learning tool designed to automatically categorize restaurant and store invoices using advanced NLP.
-                            </p>
-                            <ul class="project-highlights">
-                                <li>Leveraged Transformer models for high-precision text classification.</li>
-                                <li>Automated document sorting workflows for efficient finance management.</li>
-                            </ul>
-                            <ul class="project-tech-tags">
-                                <li>HuggingFace</li>
-                                <li>Python</li>
-                                <li>Deep Learning</li>
-                            </ul>
-                            <button type="button" class="project-detail-btn"
-                                data-project="3" aria-label="View details for InvoiceSense">View Details &rarr;</button>
-                        </div>
-                    </article>
-
-                </div>
+                <div class="projects-grid" aria-label="Featured projects list"></div>
             </div>
         </section>
         <section class="experience" id="experience" aria-labelledby="experience-title">
@@ -655,95 +298,10 @@
                             automation, and analytics.
                         </p>
                     </div>
-                    <div class="experience-metrics" aria-label="Experience highlights">
-                        <article class="experience-metric">
-                            <span>Delivery</span>
-                            <strong>20+ Builds</strong>
-                            <p>Production-ready AI pipelines shipped.</p>
-                        </article>
-                        <article class="experience-metric">
-                            <span>Focus</span>
-                            <strong>CV + AI</strong>
-                            <p>Detection, classification, tracking, OCR.</p>
-                        </article>
-                        <article class="experience-metric">
-                            <span>Deployment</span>
-                            <strong>Edge + Cloud</strong>
-                            <p>FastAPI, Docker, and optimized inference.</p>
-                        </article>
-                    </div>
+                    <div class="experience-metrics" aria-label="Experience highlights"></div>
                 </div>
 
-                <div class="experience-grid">
-                    <article class="experience-card">
-                        <div class="experience-role">
-                            <div>
-                                <h3>Bio AI & Machine Learning Engineer</h3>
-                                <p class="experience-org">Healthcare · BioTech Solutions</p>
-                            </div>
-                            <span class="experience-period">Core Specialty</span>
-                        </div>
-                        <p class="experience-summary">
-                            Lead developer of intelligent systems for medical analysis, including the specialized "Sugary App" for diabetes data intelligence.
-                        </p>
-                        <ul class="experience-points">
-                            <li>Architected deep learning pipelines for high-precision medical imaging and biostatistics.</li>
-                            <li>Engineered predictive models for healthcare monitoring with a focus on real-world reliability.</li>
-                            <li>Collaborated on regional AI initiatives across Egypt and Saudi Arabia.</li>
-                        </ul>
-                        <div class="experience-tags">
-                            <span>Deep Learning</span>
-                            <span>BioTech</span>
-                            <span>Medical AI</span>
-                        </div>
-                    </article>
-
-                    <article class="experience-card">
-                        <div class="experience-role">
-                            <div>
-                                <h3>Data Intelligence Specialist</h3>
-                                <p class="experience-org">NTI · Digital Egypt Pioneers</p>
-                            </div>
-                            <span class="experience-period">Professional Track</span>
-                        </div>
-                        <p class="experience-summary">
-                            Certified Specialist through the National Telecommunication Institute, focusing on advanced analytics and data-driven strategy.
-                        </p>
-                        <ul class="experience-points">
-                            <li>Built automated data mining and visualization layers for complex industrial datasets.</li>
-                            <li>Delivered KPI dashboards that translate model signals into strategic business outcomes.</li>
-                            <li>Optimized data pipelines for large-scale analytics and intelligence reporting.</li>
-                        </ul>
-                        <div class="experience-tags">
-                            <span>Data Analysis</span>
-                            <span>NTI Certified</span>
-                            <span>Business Intelligence</span>
-                        </div>
-                    </article>
-
-                    <article class="experience-card">
-                        <div class="experience-role">
-                            <div>
-                                <h3>Robotics & IoT Developer</h3>
-                                <p class="experience-org">Edge AI · Hardware Integration</p>
-                            </div>
-                            <span class="experience-period">Innovation Track</span>
-                        </div>
-                        <p class="experience-summary">
-                            Integrating AI models with embedded systems to build physical automation and smart robotic platforms.
-                        </p>
-                        <ul class="experience-points">
-                            <li>Designed Arduino-based control systems integrated with real-time vision algorithms.</li>
-                            <li>Developed Edge AI deployments for surveillance and automated industrial workflows.</li>
-                            <li>Spearheaded R&D projects bridging the gap between ML software and physical hardware.</li>
-                        </ul>
-                        <div class="experience-tags">
-                            <span>Robotics</span>
-                            <span>Arduino</span>
-                            <span>Edge Computing</span>
-                        </div>
-                    </article>
-                </div>
+                <div class="experience-grid"></div>
             </div>
         </section>
         <section class="contact" id="contact" aria-labelledby="contact-title">
@@ -1346,7 +904,7 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script type="module" src="js/admin.js"></script>
     <!-- <script type="module" src="firebase-integration.js"></script> -->
     <script>
         window.addEventListener(
