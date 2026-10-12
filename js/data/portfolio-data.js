@@ -243,6 +243,75 @@ export const portfolioData = {
         }
     ],
 
+    certificatesSection: {
+        kicker: "Certifications",
+        title: "Verified Certifications & Credentials",
+        copy: "Accredited training programs and professional certifications spanning technical disciplines, business ideation, and leadership skills."
+    },
+
+    certificates: [
+        {
+            id: "cert-1",
+            title: "Meta UX Design",
+            issuer: "Meta · Professional Certification",
+            category: "technical",
+            date: "2026",
+            image: "images/certificates/cert-meta.png",
+            badge: "Meta Certified",
+            description: "Principles of UX/UI Design, interactive prototyping, user research methodologies, and design systems certified by Meta & Coursera."
+        },
+        {
+            id: "cert-2",
+            title: "Digital Marketing",
+            issuer: "Creativa Training Certificate",
+            category: "technical",
+            date: "2026",
+            image: "images/certificates/cert-creativa.png",
+            badge: "Creativa Hub",
+            description: "Bootcamp certificate in Digital Marketing, client acquisition strategies, data-driven campaigns, and marketing analytics at Creativa Hub Damanhour."
+        },
+        {
+            id: "cert-3",
+            title: "Entrepreneurship & Soft Skills",
+            issuer: "Microsoft & Ministry of Youth Training",
+            category: "technical",
+            date: "2025 - 2026",
+            image: "images/certificates/cert-microsoft.png",
+            badge: "Microsoft Certified",
+            description: "Entrepreneurship ideation, business modeling, design thinking, and collaborative workforce skills certified by Microsoft and the Ministry of Youth & Sports."
+        },
+        {
+            id: "cert-4",
+            title: "Effective Communication Skills",
+            issuer: "Damanhour University · مهارات التواصل الفعال",
+            category: "soft-skills",
+            date: "2025",
+            image: "images/certificates/cert-communication.png",
+            badge: "Official Certificate",
+            description: "Specialized training workshop on effective communication, active listening, negotiation techniques, and public speaking at Damanhour University."
+        },
+        {
+            id: "cert-5",
+            title: "Time Management",
+            issuer: "Damanhour University · فن إدارة الوقت",
+            category: "soft-skills",
+            date: "2025",
+            image: "images/certificates/cert-time-mgmt.png",
+            badge: "Official Certificate",
+            description: "Practical strategies for productivity, priority matrix management, task delegation, and efficient workflow execution."
+        },
+        {
+            id: "cert-6",
+            title: "Teamwork Skills",
+            issuer: "Damanhour University · مهارات العمل ضمن فريق",
+            category: "soft-skills",
+            date: "2025",
+            image: "images/certificates/cert-teamwork.png",
+            badge: "Official Certificate",
+            description: "Interactive training on high-performance team dynamics, collaborative problem solving, leadership, and emotional intelligence."
+        }
+    ],
+
     experience: {
         title: "Professional Experience",
         copy: "3+ years delivering AI systems from data to deployment across computer vision, automation, and analytics.",
