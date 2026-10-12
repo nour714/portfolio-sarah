@@ -6,6 +6,7 @@
 import { getText, setText, findContactItemByLabel } from "./utils.js";
 import { resolveHeroRoles } from "../modules/hero.js";
 import { createProjectCard } from "../modules/projects.js";
+import { createCertificateCard } from "../modules/certificates.js";
 
 export const isPlainObject = (value) => Boolean(value && typeof value === "object" && !Array.isArray(value));
 
@@ -404,6 +405,24 @@ export const applyProjectsState = (projectsSection, projects) => {
     }
 };
 
+export const applyCertificatesState = (certificatesSection, certificates) => {
+    setText(document.querySelector("#certificates-title"), certificatesSection?.title || "");
+    setText(document.querySelector(".certificates-copy"), certificatesSection?.copy || "");
+
+    const grid = document.querySelector(".certificates-grid");
+    if (!grid) return;
+    if (Array.isArray(certificates) && certificates.length > 0) {
+        grid.innerHTML = "";
+        certificates.forEach((cert, index) => {
+            grid.appendChild(createCertificateCard(cert, index));
+        });
+    }
+
+    if (typeof window.__applyCertificateFilter === "function") {
+        window.__applyCertificateFilter();
+    }
+};
+
 export const applyExperienceState = (experience) => {
     setText(document.querySelector("#experience-title"), experience?.title || "");
     setText(document.querySelector(".experience-copy"), experience?.copy || "");
@@ -539,6 +558,7 @@ export const applyAdminState = (state) => {
     applyAboutState(state.about);
     applySkillsState(state.skills);
     applyProjectsState(state.projectsSection, state.projects);
+    applyCertificatesState(state.certificatesSection, state.certificates);
     applyExperienceState(state.experience);
     applyContactState(state.contact, state.social);
     applySocialState(state.social);
