@@ -49,6 +49,7 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#skills">Skills</a></li>
                     <li><a href="#projects">Projects</a></li>
+                    <li><a href="#certificates">Certificates</a></li>
                     <li><a href="#experience">Experience</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -56,13 +57,6 @@
 
             <div class="nav-actions">
                 <button class="theme-toggle" type="button" aria-pressed="true" aria-label="Switch to dark mode">Dark</button>
-                <a href="cv.html" class="nav-action-circle" aria-label="View Resume" title="View Resume">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <line x1="7" y1="17" x2="17" y2="7"></line>
-                        <polyline points="7 7 17 7 17 17"></polyline>
-                    </svg>
-                </a>
-                <a href="#contact" class="nav-cta-btn">Contact Us</a>
                 <button class="menu-toggle" aria-expanded="false" aria-controls="nav-list" aria-label="Toggle navigation">
                     <span></span>
                     <span></span>
@@ -287,6 +281,32 @@
                 <div class="projects-grid" aria-label="Featured projects list"></div>
             </div>
         </section>
+
+        <section class="certificates" id="certificates" aria-labelledby="certificates-title">
+            <div class="section-shell certificates-shell">
+                <p class="section-kicker">Certifications</p>
+                <div class="certificates-headline">
+                    <h2 id="certificates-title">Verified Certifications &amp; Credentials</h2>
+                    <span class="certificates-underline" aria-hidden="true"></span>
+                </div>
+                <p class="certificates-copy">
+                    Accredited training programs and professional certifications spanning technical disciplines,
+                    business ideation, and leadership skills.
+                </p>
+
+                <div class="certificates-filters" role="group" aria-label="Certificate categories">
+                    <button type="button" class="certificate-filter is-active" aria-pressed="true"
+                        data-filter="all">All</button>
+                    <button type="button" class="certificate-filter" aria-pressed="false"
+                        data-filter="technical">Technical &amp; Professional</button>
+                    <button type="button" class="certificate-filter" aria-pressed="false"
+                        data-filter="soft-skills">Soft Skills &amp; Leadership</button>
+                </div>
+
+                <div class="certificates-grid" aria-label="Certifications grid"></div>
+            </div>
+        </section>
+
         <section class="experience" id="experience" aria-labelledby="experience-title">
             <div class="section-shell experience-shell">
                 <p class="section-kicker">Experience</p>
