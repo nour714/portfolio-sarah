@@ -162,7 +162,6 @@
 }
 
 .contact-item:hover {
-    transform: translateY(-4px) rotateX(2deg) rotateY(-1.5deg);
     border-color: rgba(94, 234, 212, 0.6);
     box-shadow: 0 12px 22px rgba(1, 18, 22, 0.4);
 }
