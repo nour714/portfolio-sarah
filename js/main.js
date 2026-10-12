@@ -10,6 +10,7 @@ import { initThemeToggle } from "./modules/theme.js";
 import { initMenu } from "./modules/navigation.js";
 import { initHeroRoleTyping, initHeroAvatarFallback } from "./modules/hero.js";
 import { initProjectFilters, initProjectShare, initProjectModal } from "./modules/projects.js";
+import { initCertificateFilters, initCertificateModal } from "./modules/certificates.js";
 import {
     initScrollReveal,
     refreshScrollReveal,
@@ -34,6 +35,8 @@ const boot = () => {
     safelyInit(initHeroAvatarFallback);
     safelyInit(initProjectFilters);
     safelyInit(initProjectShare);
+    safelyInit(initCertificateFilters);
+    safelyInit(initCertificateModal);
     safelyInit(initScrollReveal);
     safelyInit(initConstellation);
     safelyInit(() => initPublicPortfolio(refreshScrollReveal));
