@@ -25,6 +25,7 @@
     --capsule-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.14);
     --capsule-link: rgba(241, 245, 249, 0.75);
     --capsule-link-hover: #ffffff;
+    --capsule-link-hover-bg: rgba(255, 255, 255, 0.1);
     --capsule-link-active-bg: rgba(255, 255, 255, 0.2);
     --capsule-link-active-text: #ffffff;
     --capsule-link-active-shadow: 0 2px 8px rgba(0, 0, 0, 0.22);
@@ -124,6 +125,7 @@ body.light-mode {
     --capsule-shadow: 0 4px 20px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9);
     --capsule-link: #52525b;
     --capsule-link-hover: #18181b;
+    --capsule-link-hover-bg: rgba(0, 0, 0, 0.06);
     --capsule-link-active-bg: #e2ded9;
     --capsule-link-active-text: #18181b;
     --capsule-link-active-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
