@@ -24,6 +24,7 @@ export const initScrollReveal = () => {
     collectRevealTargets(".skills-headline, .skills-board, .skills-note");
     collectRevealTargets(".projects-headline, .projects-copy, .projects-filters, .projects-grid");
     collectRevealTargets(".project-card");
+    collectRevealTargets(".certificates-headline, .certificates-copy, .certificates-filters, .certificate-card");
     collectRevealTargets(".experience-header, .experience-metrics, .experience-card");
     collectRevealTargets(".contact-header, .contact-panel, .contact-form, .contact-item");
 
