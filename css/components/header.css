@@ -171,22 +171,30 @@ main {
     .nav-center-capsule {
         cursor: pointer;
         padding: 6px 0;
+        transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .nav-center-capsule:hover,
+    .nav-center-capsule:focus-within,
+    .nav-center-capsule.is-expanded {
+        transform: translate(-50%, -50%) scale(1.018);
     }
 
     /* Invisible hover buffer cushion to prevent accidental collapse when mouse moves */
     .nav-center-capsule::before {
         content: "";
         position: absolute;
-        inset: -10px -14px;
+        inset: -16px -20px;
         z-index: -1;
     }
 
     .nav-list {
         gap: 0;
         overflow: hidden;
-        transition: gap 0.38s cubic-bezier(0.16, 1, 0.3, 1),
-                    box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-                    border-color 0.25s ease;
+        transition: gap 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+                    box-shadow 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+                    border-color 0.45s ease,
+                    background-color 0.45s ease;
     }
 
     .nav-list li {
@@ -194,50 +202,119 @@ main {
         overflow: hidden;
         white-space: nowrap;
         will-change: max-width, opacity, transform;
-        transition: max-width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                    opacity 0.26s cubic-bezier(0.16, 1, 0.3, 1),
-                    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        transition: max-width 0.52s cubic-bezier(0.16, 1, 0.3, 1),
+                    opacity 0.42s cubic-bezier(0.16, 1, 0.3, 1),
+                    transform 0.48s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* Inactive items: collapsed to 0 width & transparent */
-    .nav-list li:not(.is-active-item):not(:has(> a.is-active)) {
+    .nav-list a {
+        transition: color 0.25s ease,
+                    background-color 0.25s ease,
+                    padding 0.52s cubic-bezier(0.16, 1, 0.3, 1),
+                    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                    box-shadow 0.25s ease,
+                    opacity 0.38s ease;
+    }
+
+    /* --------------------------------------------------------
+       State 1: Collapsed / Unhovered (Default)
+       Only the active item is shown. Inactive items are collapsed.
+       -------------------------------------------------------- */
+    .nav-center-capsule:not(:hover):not(:focus-within):not(.is-expanded) .nav-list li:not(.is-active-item) {
         max-width: 0;
         opacity: 0;
         pointer-events: none;
-        transform: scale(0.9);
+        transform: translateX(-10px) scale(0.9);
+        transition-delay: 0s !important;
     }
 
-    /* Active item: fully visible */
-    .nav-list li.is-active-item,
-    .nav-list li:has(> a.is-active) {
-        max-width: 190px;
+    .nav-center-capsule:not(:hover):not(:focus-within):not(.is-expanded) .nav-list li:not(.is-active-item) a {
+        padding-inline: 0;
+        opacity: 0;
+        pointer-events: none;
+        transition-delay: 0s !important;
+    }
+
+    /* Active item is always fully visible */
+    .nav-list li.is-active-item {
+        max-width: 200px;
         opacity: 1;
         pointer-events: auto;
-        transform: scale(1);
+        transform: translateX(0) scale(1);
     }
 
-    /* Fallback if no item has active class */
-    .nav-list:not(:has(.is-active-item)):not(:has(.is-active)) li:first-child {
-        max-width: 190px;
+    /* Fallback if no item has .is-active-item yet */
+    .nav-center-capsule:not(:hover):not(:focus-within):not(.is-expanded) .nav-list:not(:has(.is-active-item)) li:first-child {
+        max-width: 200px;
         opacity: 1;
         pointer-events: auto;
-        transform: scale(1);
+        transform: translateX(0) scale(1);
     }
 
-    /* Hover / Focus state: expand all links smoothly */
+    /* --------------------------------------------------------
+       State 2: Expanded on Hover, Focus, or .is-expanded
+       All menu items expand with luxurious staggered wave flow!
+       -------------------------------------------------------- */
     .nav-center-capsule:hover .nav-list,
-    .nav-center-capsule:focus-within .nav-list {
-        gap: 4px;
-        box-shadow: var(--capsule-shadow), 0 10px 34px rgba(0, 0, 0, 0.35);
-        border-color: rgba(255, 255, 255, 0.24);
+    .nav-center-capsule:focus-within .nav-list,
+    .nav-center-capsule.is-expanded .nav-list {
+        gap: 5px;
+        box-shadow: var(--capsule-shadow), 0 14px 44px rgba(0, 0, 0, 0.45), 0 0 24px rgba(56, 189, 248, 0.12);
+        border-color: rgba(255, 255, 255, 0.28);
     }
 
     .nav-center-capsule:hover .nav-list li,
-    .nav-center-capsule:focus-within .nav-list li {
-        max-width: 160px;
+    .nav-center-capsule:focus-within .nav-list li,
+    .nav-center-capsule.is-expanded .nav-list li {
+        max-width: 175px;
         opacity: 1;
         pointer-events: auto;
-        transform: scale(1);
+        transform: translateX(0) scale(1);
+    }
+
+    .nav-center-capsule:hover .nav-list li a,
+    .nav-center-capsule:focus-within .nav-list li a,
+    .nav-center-capsule.is-expanded .nav-list li a {
+        padding-inline: 18px;
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Staggered entrance wave for silky smooth reveal */
+    .nav-center-capsule:hover .nav-list li:nth-child(1),
+    .nav-center-capsule:focus-within .nav-list li:nth-child(1),
+    .nav-center-capsule.is-expanded .nav-list li:nth-child(1) {
+        transition-delay: 0.02s;
+    }
+
+    .nav-center-capsule:hover .nav-list li:nth-child(2),
+    .nav-center-capsule:focus-within .nav-list li:nth-child(2),
+    .nav-center-capsule.is-expanded .nav-list li:nth-child(2) {
+        transition-delay: 0.05s;
+    }
+
+    .nav-center-capsule:hover .nav-list li:nth-child(3),
+    .nav-center-capsule:focus-within .nav-list li:nth-child(3),
+    .nav-center-capsule.is-expanded .nav-list li:nth-child(3) {
+        transition-delay: 0.09s;
+    }
+
+    .nav-center-capsule:hover .nav-list li:nth-child(4),
+    .nav-center-capsule:focus-within .nav-list li:nth-child(4),
+    .nav-center-capsule.is-expanded .nav-list li:nth-child(4) {
+        transition-delay: 0.13s;
+    }
+
+    .nav-center-capsule:hover .nav-list li:nth-child(5),
+    .nav-center-capsule:focus-within .nav-list li:nth-child(5),
+    .nav-center-capsule.is-expanded .nav-list li:nth-child(5) {
+        transition-delay: 0.17s;
+    }
+
+    .nav-center-capsule:hover .nav-list li:nth-child(6),
+    .nav-center-capsule:focus-within .nav-list li:nth-child(6),
+    .nav-center-capsule.is-expanded .nav-list li:nth-child(6) {
+        transition-delay: 0.21s;
     }
 }
 
