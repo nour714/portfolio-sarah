@@ -108,7 +108,6 @@
 
 .skill-group:hover,
 .skill-group:focus-within {
-    transform: translateY(-6px) rotateX(2.5deg) rotateY(-2deg);
     border-color: rgba(var(--skill-accent), 0.56);
     box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 0.16),
