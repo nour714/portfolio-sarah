@@ -9,6 +9,7 @@
  */
 
 /* 1. Base Layer */
+@import url("css/vendor/lenis.min.css");
 @import url("css/base/variables.css");
 @import url("css/base/reset.css");
 
@@ -18,6 +19,7 @@
 @import url("css/components/about.css");
 @import url("css/components/skills.css");
 @import url("css/components/projects.css");
+@import url("css/components/certificates.css");
 @import url("css/components/experience.css");
 @import url("css/components/contact.css");
 @import url("css/components/modal.css");
