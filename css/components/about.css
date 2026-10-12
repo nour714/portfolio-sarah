@@ -12,13 +12,13 @@
 .reveal {
     opacity: 0;
     transform: translateY(24px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: opacity, transform;
 }
 
 .reveal.is-visible {
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 1 !important;
+    transform: translateY(0) !important;
 }
 
 .section-kicker {
