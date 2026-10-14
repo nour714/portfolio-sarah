@@ -4,27 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio of Allaa Saboukh - Bio AI Engineer & Data Specialist with 3+ years of experience in Computer Vision, Medical AI, and Robotics.">
-    <meta name="author" content="Allaa Saboukh">
-    <meta name="keywords" content="Allaa Saboukh, Bio AI Engineer, Computer Vision, Deep Learning, Medical AI, Biometrics, Robotics, Machine Learning, PyTorch, YOLOv8">
+    <meta name="description" content="Portfolio of Sarah Nabil - Machine Learning, Artificial Intelligence & Data Analysis Specialist.">
+    <meta name="author" content="Sarah Nabil">
+    <meta name="keywords" content="Sarah Nabil, Machine Learning, Artificial Intelligence, Data Analysis, Data Exploration, Data Preprocessing, Classification Models, Model Evaluation, NTI, ITIDA, Python, Scikit-Learn">
     <meta name="theme-color" content="#080b12">
 
     <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
-    <meta property="og:site_name" content="Allaa Saboukh Portfolio">
-    <meta property="og:title" content="Allaa Saboukh | Bio AI Engineer & Data Specialist">
-    <meta property="og:description" content="Bio AI & Computer Vision specialist delivering production-ready AI solutions across healthcare, automation, and edge devices.">
+    <meta property="og:site_name" content="Sarah Nabil Portfolio">
+    <meta property="og:title" content="Sarah Nabil | Machine Learning & AI Specialist">
+    <meta property="og:description" content="Turning data into meaningful insights and developing practical machine learning solutions to real-world problems.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="images/profile.jpg">
-    <meta property="og:image:alt" content="Allaa Saboukh - Bio AI Engineer">
+    <meta property="og:image:alt" content="Sarah Nabil - Machine Learning Specialist">
     <meta property="og:locale" content="en_US">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Allaa Saboukh | Bio AI Engineer & Data Specialist">
-    <meta name="twitter:description" content="Bio AI & Computer Vision specialist delivering production-ready AI solutions across healthcare, automation, and edge devices.">
+    <meta name="twitter:title" content="Sarah Nabil | Machine Learning & AI Specialist">
+    <meta name="twitter:description" content="Turning data into meaningful insights and developing practical machine learning solutions to real-world problems.">
     <meta name="twitter:image" content="images/profile.jpg">
 
-    <title>Allaa Saboukh | AI Engineer & Data Specialist</title>
+    <title>Sarah Nabil | Machine Learning & AI Specialist</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,66 +34,45 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 
-    <link rel="stylesheet" href="css/vendor/lenis.min.css">
+    <!-- Preload Hero ML Background Image -->
+    <link rel="preload" href="images/ml-hero-bg.webp" as="image" type="image/webp" fetchpriority="high">
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <!-- Cinematic Custom Cursor -->
-    <div class="cursor-dot" aria-hidden="true"></div>
-    <div class="cursor-ring" aria-hidden="true"></div>
-
-    <!-- AI Intro / Splash Screen -->
-    <div id="ai-intro-screen" class="ai-intro-screen" aria-label="Loading Portfolio" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-        <video class="ai-intro-bg-video" autoplay muted loop playsinline preload="auto" poster="hero-video-preview.jpg" aria-hidden="true">
-            <source src="hero-background.mp4" type="video/mp4">
-        </video>
-        <div class="ai-intro-bg-overlay"></div>
-        <div class="ai-intro-grid"></div>
-        <div class="ai-intro-scanline"></div>
-        
-        <div class="ai-intro-container">
-            <div class="ai-intro-badge">
-                <span class="ai-intro-status-dot"></span>
-                <span class="ai-intro-status-text">SYSTEM INITIALIZATION // NEURAL CORE</span>
-            </div>
-
-            <div class="ai-intro-logo-wrap">
-                <div class="ai-intro-rings">
-                    <span class="ring-pulse"></span>
-                    <span class="ring-orbit"></span>
-                </div>
-                <div class="ai-intro-avatar-core">
-                    <span class="ai-intro-initials">AS</span>
-                </div>
-            </div>
-
-            <h1 class="ai-intro-name">
-                <span class="name-part">ALLAA</span> <span class="name-part highlight">SABOUKH</span>
-            </h1>
-            <p class="ai-intro-title">AI &amp; DATA SCIENCE ENGINEER</p>
-
-            <div class="ai-intro-terminal-box">
-                <div class="ai-intro-terminal-line">
-                    <span class="terminal-prefix">&gt;</span>
-                    <span class="terminal-text" id="ai-intro-cmd">Loading modules...</span>
-                </div>
-            </div>
-
-            <div class="ai-intro-progress-track">
-                <div class="ai-intro-progress-bar" id="ai-intro-progress-bar"></div>
-            </div>
-
-            <div class="ai-intro-meta">
-                <span class="ai-intro-counter"><span id="ai-intro-pct">0</span>%</span>
-                <span class="ai-intro-tag">MODEL: AS-AI-v2.6 // READY</span>
-            </div>
-
-            <button type="button" class="ai-intro-skip-btn" id="ai-intro-skip-btn" aria-label="Skip Introduction">
-                SKIP INTRO <span aria-hidden="true">&rarr;</span>
-            </button>
+    <!-- MacBook macOS Custom Cursor -->
+    <div class="macos-cursor" aria-hidden="true">
+        <div class="macos-cursor-sheen"></div>
+        <div class="macos-cursor-icon macos-cursor-arrow">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <filter id="mac-arrow-filter" x="-30%" y="-30%" width="180%" height="180%">
+                        <feDropShadow dx="0.6" dy="1.4" stdDeviation="1.1" flood-color="#000000" flood-opacity="0.45"/>
+                    </filter>
+                </defs>
+                <g filter="url(#mac-arrow-filter)" fill="none" fill-rule="evenodd" transform="translate(2 2)">
+                    <path d="M6.148 18.473l1.863-1.003 1.615-.839-2.568-4.816h4.332L0.011 0.407v16.015l3.316-3.221z" fill="#FFFFFF"/>
+                    <path d="M6.431 17l1.765-.941-2.775-5.202h3.604L1 2.814v11.188l2.53-2.442z" fill="#000000"/>
+                </g>
+            </svg>
+        </div>
+        <div class="macos-cursor-icon macos-cursor-hand">
+            <svg viewBox="0 0 28 30" width="28" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <filter id="mac-hand-filter" x="-30%" y="-30%" width="180%" height="180%">
+                        <feDropShadow dx="0.6" dy="1.4" stdDeviation="1.1" flood-color="#000000" flood-opacity="0.45"/>
+                    </filter>
+                </defs>
+                <g filter="url(#mac-hand-filter)" fill="none" fill-rule="evenodd" transform="translate(1 2)">
+                    <path d="m3.885 13.552c.15.136.254.233.575.538.314.298.466.439.605.557.058.049.107.18.127.373.016.16.01.338-.009.509-.007.06-.013.102-.017.123-.042.228.132.44.365.442.21.002.37.005.797.012.107.002.107.002.214.004 1.16.02 1.753.014 2.178-.04.455-.056.923-.605 1.328-1.294.343.61.818 1.205 1.299 1.282.152.025.337.032.551.027.16-.003.328-.014.499-.029.128-.012.23-.023.292-.031.226-.03.373-.252.313-.472-.013-.047-.034-.134-.055-.244-.025-.127-.042-.251-.05-.364-.005-.072-.006-.137-.003-.193.006-.098.007-.152.01-.279.001-.047.001-.047.003-.088.005-.135.023-.263.082-.542.025-.122.147-.354.34-.641.057-.085.12-.174.186-.266.128-.175.265-.352.402-.521.082-.101.145-.177.18-.218.297-.424.613-1.12.729-1.525.111-.39.2-.1.11.255-1.816.03-.4.041-.724.041-1.231 0-.089 0-.089 0-.162 0-.12.001-.166 0-.222-.001-.154-.006-.306-.02-.694-.032-.814-.478-1.34-1.135-1.441-.559-.087-1.24.378-1.24.378s-.15-.523-.253-.684c-.166-.26-.594-.59-.922-.655-.336-.065-.735-.058-1.101.007-.321.057-.64.344-.825.653-.133.22-.008-.012-.14-.24-.183-.314-.61-.595-1.016-.678-.344-.071-.738-.044-1.098.063-.463.138-.536.49-.555.39-.061-.339-.067-.317-.105-.558-.143-.895-.303-1.514-.545-2.055.014.031-.088-.202-.126-.282-.064-.14-.129-.266-.2-.387-.218-.374-.468-.654-.783-.812-.545-.277-1.363-.142-1.751.31-.385.45-.449 1.202-.352 2.132.037.362.167 1.021.284 1.509.042.169.078.323.145.608.012.049.012.049.023.097.052.216.097.393.152.588-.006-.02.097.344.118.425.008.027.008.027.015.054.04.154.08.32.143.596.034.152.067.315.1.487.089.47.089.372.004.272-.06-.07-.115-.133-.169-.19-.1-.108-.191-.197-.278-.268-.635-.52-1.024-.748-1.557-.799-.876-.084-1.707.534-1.832 1.369-.076.512-.052.747.185 1.2.13.244.351.539.762 1.047.025.031.025.031.05.062.505.622.56.691.68.865.324.47 1.114 1.822 1.257 2.003z" fill="#000000"/>
+                    <path d="m1.683 9.272c-.025-.031-.025-.031-.05-.062-.377-.466-.584-.743-.681-.925-.153-.292-.162-.372-.107-.738.065-.433.532-.78 1.019-.734.336.032.63.206 1.153.633.057.047.125.113.203.197.046.05.095.105.148.167.08.093.347.421.308.373.058.07.1.124.147.19.094.135.147.21.219.305-.034-.045.215.298.267.349.279.266.682.042.657-.313-.004-.059-.018-.123-.047-.234-.115-.82-.155-1.083-.247-1.568-.034-.18-.069-.351-.105-.512-.065-.286-.107-.46-.15-.625-.008-.029-.008-.029-.016-.057-.023-.085-.127-.455-.12-.43-.052-.185-.095-.354-.145-.562-.011-.047-.011-.047-.022-.095-.067-.283-.104-.442-.147-.613-.11-.456-.234-1.087-.267-1.408-.075-.724-.023-1.334.176-1.567.155-.181.596-.254.842-.129.162.082.323.262.475.522.057.098.112.204.167.323.033.073.133.299.122.274.21.47.355 1.03.488 1.867.039.247.088.528.15.871.019.102.019.102.038.203.301 1.636.279 1.512.283 1.642.016.476.718.487.749.012.01-.15.007-.285-.011-.671-.003-.055-.003-.055-.005-.11-.015-.355-.014-.56.007-.677.038-.212.229-.45.404-.502.247-.073.517-.092.733-.047.207.042.449.201.518.32.084.144.155.364.21.636.045.22.075.455.097.706.006.078.01.139.017.239.003.041.003.041.006.076.002.017.002.017.005.045.004.019.004.019.018.067.007.138.007.138.56.189.166-.2.166-.2.161-.235.027-.119.044-.25.068-.498.015-.162.022-.241.031-.323.037-.34.084-.556.141-.651.07-.118.32-.283.431-.303.281-.05.589-.055.827-.009.107.021.37.224.432.321.128.202.252.852.322 1.496-.011.043-.011.043.161.288.59-.068.59-.068.574-.174.015-.038.028-.082.045-.15.043-.16.071-.253.112-.357.029-.072.06-.133.091-.182.12-.19.433-.319.707-.277.294.046.482.267.5.729.014.381.018.527.02.671 0 .053 0 .095 0 .215 0 .074 0 .074 0 .164 0 .489-.011.794-.039 1.174-.051.653-.136 1.343-.229 1.667-.094.331-.376.951-.6 1.274-.015.015-.083.096-.17.203-.145.179-.29.365-.425.552-.073.1-.141.197-.204.291-.244.364-.4.66-.45.904-.067.317-.091.485-.098.667-.002.051-.002.051-.003.101-.002.118-.004.166-.009.252-.005.091-.004.188.004.289.01.146 0 .346 0 .346s-.127-.012-.268-.008c-.173.004-.316-.002-.415-.018-.143-.023-.53-.507-.727-.883-.303-.577-1.036-.549-1.337-.04-.272.462-.66.918-.775.932-.375.047-.955.053-2.072.033-.107-.002-.107-.002-.214-.004-.428-.007-.412.065-.403-.013.025-.22.022-.179 0-.4-.037-.369-.151-.67-.389-.87-.123-.104-.27-.241-.565-.521-.337-.32-.443-.42-.573-.534l-.801-.891c-.088-.112-.86-1.434-1.213-1.945-.137-.199-.188-.263-.714-.912z" fill="#FFFFFF"/>
+                    <path d="m11.191 9.275v3.459c0 .5.75.5.75 0v-3.459c0-.5-.75-.5-.75 0zm-2.031 0l.016 3.473c.002.5.752.496.75-.004l-.016-3.473c-.002-.5-.752-.496-.75.004zm-1.209 3.454l-.021-3.426c-.003-.5-.753-.496-.75.004l.021 3.426c.003.5.753.496.75-.004z" fill="#FFFFFF"/>
+                </g>
+            </svg>
         </div>
     </div>
+
 
     <!-- Scroll Progress Bar -->
     <div id="scroll-progress-bar" aria-hidden="true"></div>
@@ -117,9 +97,35 @@
             <div class="project-modal-body">
                 <div class="project-modal-cats" id="project-modal-cats"></div>
                 <h2 class="project-modal-title" id="project-modal-title"></h2>
-                <p class="project-modal-desc" id="project-modal-desc"></p>
-                <ul class="project-modal-highlights" id="project-modal-highlights"></ul>
-                <div class="project-modal-tech" id="project-modal-tech"></div>
+                
+                <!-- Problem Statement -->
+                <div class="project-modal-problem-slot" id="project-modal-problem-slot"></div>
+                
+                <!-- Performance Metrics Grid -->
+                <div class="project-modal-metrics-slot" id="project-modal-metrics-slot"></div>
+                
+                <!-- MLOps Pipeline Architecture Diagram -->
+                <div class="project-modal-pipeline-slot" id="project-modal-pipeline-slot"></div>
+                
+                <!-- System Overview Description -->
+                <div class="project-modal-overview-slot">
+                    <h3 class="modal-section-heading">System Overview</h3>
+                    <p class="project-modal-desc" id="project-modal-desc"></p>
+                </div>
+                
+                <!-- Architecture & Engineering Highlights -->
+                <div class="project-modal-highlights-slot" id="project-modal-highlights-slot">
+                    <h3 class="modal-section-heading">Architecture & Engineering Highlights</h3>
+                    <ul class="project-modal-highlights" id="project-modal-highlights"></ul>
+                </div>
+                
+                <!-- Technologies -->
+                <div class="project-modal-tech-slot">
+                    <h3 class="modal-section-heading">Technologies Used</h3>
+                    <div class="project-modal-tech" id="project-modal-tech"></div>
+                </div>
+                
+                <!-- Modal Actions -->
                 <div class="project-modal-actions" id="project-modal-actions"></div>
             </div>
         </div>
@@ -162,13 +168,9 @@
         <nav class="nav-shell" aria-label="Primary">
             <a href="#hero" class="brand">
                 <span class="brand-badge" aria-hidden="true">
-                    <svg class="brand-badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
-                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                        <polyline points="2 17 12 22 22 17"></polyline>
-                        <polyline points="2 12 12 17 22 12"></polyline>
-                    </svg>
+                    <img src="images/logo-sn-cyan.png" alt="Sarah Nabil Logo" class="brand-badge-logo" width="29" height="29">
                 </span>
-                <span class="brand-title">ALLAA SABOUKH</span>
+                <span class="brand-title">SARAH NABIL</span>
             </a>
 
             <div class="nav-center-capsule">
@@ -178,7 +180,6 @@
                     <li><a href="#skills">Skills</a></li>
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#certificates">Certificates</a></li>
-                    <li><a href="#experience">Experience</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
@@ -198,35 +199,79 @@
 
     <main>
         <section class="hero" id="hero">
-            <video class="hero-background-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
-                <source src="hero-background.mp4" type="video/mp4">
-            </video>
+            <!-- ML Engineer Interactive Animated Background -->
+            <div id="mlbg-stage" class="mlbg-stage" aria-hidden="true">
+                <div id="mlbg-scene" class="mlbg-scene">
+                    <img src="images/ml-hero-bg.webp" alt="" draggable="false" fetchpriority="high" decoding="async">
+                    <div id="mlbg-lights"></div>
+                    <div class="mlbg-abs mlbg-beacon"></div>
+                    <div class="mlbg-abs mlbg-holo-scan"></div>
+                    <div class="mlbg-abs mlbg-laptop"></div>
+
+                    <!-- Training panel -->
+                    <div class="mlbg-panel mlbg-train">
+                        <div class="mlbg-head"><span id="mlbg-train-ttl">Training model…</span><b id="mlbg-train-pct">68%</b></div>
+                        <div class="mlbg-bar"><i id="mlbg-train-fill"></i></div>
+                        <ul class="mlbg-steps" id="mlbg-train-steps">
+                            <li><span class="mlbg-ic"></span>Loading dataset…</li>
+                            <li><span class="mlbg-ic"></span>Preprocessing…</li>
+                            <li><span class="mlbg-ic"></span>Training…</li>
+                            <li><span class="mlbg-ic"></span>Evaluating…</li>
+                        </ul>
+                        <div class="mlbg-eta" id="mlbg-train-eta">~ 1:42</div>
+                    </div>
+
+                    <!-- Live metric chart -->
+                    <div class="mlbg-panel mlbg-chart">
+                        <svg viewBox="0 0 100 96" preserveAspectRatio="none">
+                            <g stroke="rgba(130,190,255,.22)" stroke-width=".6">
+                                <line x1="12" y1="12" x2="12" y2="84"/><line x1="12" y1="84" x2="96" y2="84"/>
+                                <line x1="12" y1="30" x2="96" y2="30"/><line x1="12" y1="48" x2="96" y2="48"/><line x1="12" y1="66" x2="96" y2="66"/>
+                            </g>
+                            <path id="mlbg-chart-area" d="" fill="rgba(56,189,248,.18)"/>
+                            <path id="mlbg-chart-line" d="" fill="none" stroke="#6fe0ff" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" style="filter:drop-shadow(0 0 2px #38bdf8)"/>
+                            <circle id="mlbg-chart-pt" r="2.4" fill="#fff" style="filter:drop-shadow(0 0 3px #38bdf8)"/>
+                        </svg>
+                    </div>
+
+                    <!-- Robot terminal -->
+                    <div class="mlbg-panel mlbg-robot">
+                        <div class="mlbg-head"><span>Robot Control</span><span class="mlbg-st">Connected</span></div>
+                        <div id="mlbg-cmds"></div>
+                    </div>
+
+                    <canvas id="mlbg-net"></canvas>
+                    <div class="mlbg-vignette"></div>
+                </div>
+            </div>
             <div class="hero-content">
                 <div class="hero-layout">
                     <div class="hero-text">
-                        <h1>Hi, I'm <span class="hero-name-highlight">Allaa</span></h1>
+                        <div class="hero-status-pill">
+                            <span class="status-pulse-dot" aria-hidden="true"></span>
+                            <span>Open for ML &amp; Data Roles</span>
+                        </div>
+                        <h1><span class="hero-greeting">Hi, I'm</span> <span class="hero-name-highlight">Sarah</span></h1>
                         <p class="hero-role">
-                            <span class="role-typed" id="hero-role-typed">AI Engineer</span>
+                            <span class="hero-role-pulse" aria-hidden="true"></span>
+                            <span class="role-typed" id="hero-role-typed" data-roles="Machine Learning | AI Engineer">Machine Learning</span>
                             <span class="role-cursor" aria-hidden="true"></span>
                         </p>
                         <p class="hero-copy">
-                            Dynamic AI and Data Science Engineer with 3 years of hands-on experience
-                            in computer vision, deep learning, and advanced analytics. I build intelligent
-                            systems that turn complex data into actionable outcomes for healthcare,
-                            surveillance, and automation use cases.
+                            Machine Learning &amp; AI specialist with hands-on expertise in data exploration, preprocessing, classification modeling, and predictive analytics.
                         </p>
                         <div class="hero-cta-group">
                             <div class="hero-socials" aria-label="Social links">
-                                <a href="https://github.com/Alaa-Saboukh02" class="hero-social-link" target="_blank"
+                                <a href="https://github.com/sarahnabil" class="hero-social-link" target="_blank"
                                     rel="noopener noreferrer" aria-label="GitHub Profile">
                                     <i class="devicon-github-original" aria-hidden="true"></i>
                                 </a>
-                                <a href="https://www.linkedin.com/in/allaa-saboukh?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+                                <a href="https://www.linkedin.com/in/sarahnabil"
                                     class="hero-social-link" target="_blank" rel="noopener noreferrer"
                                     aria-label="LinkedIn Profile">
                                     <i class="devicon-linkedin-plain" aria-hidden="true"></i>
                                 </a>
-                                <a href="https://wa.me/201019741580" class="hero-social-link" target="_blank"
+                                <a href="https://wa.me/" class="hero-social-link" target="_blank"
                                     rel="noopener noreferrer" aria-label="WhatsApp">
                                     <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"
                                         aria-hidden="true">
@@ -247,53 +292,45 @@
 
         <section class="about" id="about" aria-labelledby="about-title">
             <div class="section-shell about-shell">
-                <p class="section-kicker">About</p>
                 <div class="about-panel">
                     <div class="about-visual" aria-hidden="true">
                         <div class="about-visual-backdrop"></div>
                         <div class="about-visual-glow"></div>
                         <div class="about-image-wrap">
                             <picture>
-                                <source srcset="images/about-me-polished.webp" type="image/webp">
+                                 <source srcset="images/about-me-polished.webp" type="image/webp">
                                 <img src="images/about-me-polished.png"
-                                     alt="Allaa Saboukh - Bio AI Engineer & Data Specialist"
+                                     alt="Sarah Nabil - Machine Learning &amp; AI Specialist"
                                      class="about-image"
-                                     width="689"
-                                     height="996"
+                                     width="580"
+                                     height="636"
                                      loading="lazy"
                                      decoding="async">
                             </picture>
-                        </div>
-                        <div class="about-visual-badge">
-                            <span class="badge-dot"></span>
-                            <span class="badge-text">Bio AI & Robotics</span>
                         </div>
                     </div>
 
                     <div class="about-content">
                         <div class="about-topline">
-                            <span class="about-status">Open For Impactful AI Work</span>
-                            <span class="about-location">Egypt · Saudi Arabia · Remote</span>
+                            <span class="about-status">Open For ML &amp; Data Roles</span>
+                            <span class="about-location">Egypt · Remote</span>
                         </div>
 
                         <h2 id="about-title">
-                            I transform visual and medical data into high-stakes AI solutions.
+                            I turn data into meaningful insights and practical machine learning solutions.
                         </h2>
 
                         <p class="about-copy">
-                            I am Allaa Saboukh, a Bio AI Engineer and Data Specialist with 3+ years of experience delivering
-                            intelligent systems across the MENA region. My expertise, fortified by specialized training at
-                            the National Telecommunication Institute (NTI) through the DEYP initiative, spans Computer
-                            Vision, Medical AI, and Robotics. I build production-ready pipelines—from healthcare analytics
-                            to real-time industrial automation—bridging the gap between deep learning research and reliable
-                            deployments.
+                            I am Sarah Nabil, building my expertise in Artificial Intelligence and Machine Learning with
+                            hands-on experience in data exploration, data preprocessing, classification models, and model
+                            evaluation. Through my Machine Learning Summer Training at the National Telecommunication
+                            Institute (NTI) in collaboration with ITIDA, I worked on an end-to-end e-commerce purchase intent
+                            prediction project. My work involved preparing data, handling class imbalance, comparing
+                            machine learning models, evaluating performance, and analyzing feature importance. I am
+                            passionate about turning data into meaningful insights and developing practical machine learning
+                            solutions to real-world problems.
                         </p>
 
-                        <div class="about-track" aria-label="Key highlights"></div>
-
-                        <p class="about-signature">
-                            Stack Signature: PyTorch, TensorFlow, YOLO, OpenVINO, FastAPI, Arduino, Docker.
-                        </p>
                     </div>
                 </div>
             </div>
@@ -301,41 +338,16 @@
 
         <section class="skills" id="skills" aria-labelledby="skills-title">
             <div class="section-shell skills-shell">
-                <p class="section-kicker">Skills</p>
-
                 <div class="skills-headline">
                     <div class="skills-title-wrap">
-                        <h2 id="skills-title">Technical Skill Architecture</h2>
-                        <p class="skills-copy">
-                            A structured view of my production stack across AI engineering, computer vision,
-                            deployment, and cloud-ready delivery.
-                        </p>
+                        <h2 id="skills-title">My Skills</h2>
                     </div>
-                    <dl class="skills-metrics" aria-label="Skills summary">
-                        <div class="skills-metric">
-                            <dt>Domains</dt>
-                            <dd>8</dd>
-                        </div>
-                        <div class="skills-metric">
-                            <dt>Tools & Tech</dt>
-                            <dd>34+</dd>
-                        </div>
-                        <div class="skills-metric">
-                            <dt>Core Track</dt>
-                            <dd>AI + CV</dd>
-                        </div>
-                        <div class="skills-metric">
-                            <dt>Cloud Scope</dt>
-                            <dd>AWS / GCP</dd>
-                        </div>
-                    </dl>
                 </div>
 
                 <div class="skills-board" aria-label="CV Skills Categories"></div>
 
                 <p class="skills-note">
-                    <strong>Focus:</strong> building efficient end-to-end AI pipelines with strong model quality,
-                    deployment readiness, and real-world reliability.
+                    <strong>Focus:</strong> turning data into meaningful insights and developing practical machine learning solutions to real-world problems.
                 </p>
             </div>
         </section>
@@ -352,28 +364,27 @@
             </aside>
 
             <div class="section-shell projects-shell">
-                <p class="section-kicker">Production Engineering</p>
                 <div class="projects-headline">
                     <h2 id="projects-title" class="projects-title-reveal">
                         <span class="title-word">Featured</span>
                         <span class="title-word">ML</span>
-                        <span class="title-word">Systems</span>
                         <span class="title-word">&amp;</span>
+                        <span class="title-word">Data</span>
                         <span class="title-word">Projects</span>
                     </h2>
                     <span class="projects-underline" aria-hidden="true"></span>
                 </div>
                 <p class="projects-copy">
-                    High-throughput computer vision, multimodal document intelligence, and edge AI architectures built for production reliability, ultra-low latency, and real-world scale.
+                    End-to-end machine learning pipelines, predictive classification models, exploratory data analysis, and practical solutions turning data into actionable insights.
                 </p>
 
                 <div class="projects-filters" role="group" aria-label="Project categories">
                     <button type="button" class="project-filter is-active" aria-pressed="true"
                         data-filter="all">All Systems</button>
-                    <button type="button" class="project-filter" aria-pressed="false" data-filter="ai">Computer Vision &amp; AI</button>
+                    <button type="button" class="project-filter" aria-pressed="false" data-filter="ai">Machine Learning &amp; AI</button>
                     <button type="button" class="project-filter" aria-pressed="false"
-                        data-filter="automation">Edge &amp; Automation</button>
-                    <button type="button" class="project-filter" aria-pressed="false" data-filter="web">MLOps &amp; Analytics</button>
+                        data-filter="automation">Predictive Pipelines</button>
+                    <button type="button" class="project-filter" aria-pressed="false" data-filter="web">Data Analytics &amp; EDA</button>
                 </div>
 
                 <div class="projects-stack projects-grid" id="projects-stack" aria-label="Featured machine learning projects list"></div>
@@ -381,212 +392,51 @@
         </section>
 
         <section class="certificates" id="certificates" aria-labelledby="certificates-title">
+            <!-- Scroll Progress Bar -->
+            <div class="certificates-progress-bar" id="certificates-progress-bar" aria-hidden="true"></div>
+
+            <!-- Floating Side Progress Indicator (01 / 06) -->
+            <aside class="certificates-side-indicator" id="certificates-side-indicator" aria-label="Active certificate indicator">
+                <span class="indicator-active" id="certificates-indicator-active">01</span>
+                <span class="indicator-divider" aria-hidden="true">/</span>
+                <span class="indicator-total" id="certificates-indicator-total">06</span>
+            </aside>
+
             <div class="section-shell certificates-shell">
-                <p class="section-kicker">Certifications</p>
                 <div class="certificates-headline">
-                    <h2 id="certificates-title">Verified Certifications &amp; Credentials</h2>
+                    <h2 id="certificates-title" class="certificates-title-reveal">
+                        <span class="title-word">Verified</span>
+                        <span class="title-word">Certifications</span>
+                        <span class="title-word">&amp;</span>
+                        <span class="title-word">Credentials</span>
+                    </h2>
                     <span class="certificates-underline" aria-hidden="true"></span>
                 </div>
                 <p class="certificates-copy">
-                    Accredited training programs and professional certifications spanning technical disciplines,
-                    business ideation, and leadership skills.
+                    Accredited training programs, professional certifications, and institutional diplomas spanning UX design, digital marketing, enterprise entrepreneurship, and leadership skills.
                 </p>
 
                 <div class="certificates-filters" role="group" aria-label="Certificate categories">
                     <button type="button" class="certificate-filter is-active" aria-pressed="true"
-                        data-filter="all">All</button>
+                        data-filter="all">All Credentials</button>
                     <button type="button" class="certificate-filter" aria-pressed="false"
                         data-filter="technical">Technical &amp; Professional</button>
                     <button type="button" class="certificate-filter" aria-pressed="false"
-                        data-filter="soft-skills">Soft Skills &amp; Leadership</button>
+                        data-filter="soft-skills">Leadership &amp; Soft Skills</button>
                 </div>
 
-                <div class="certificates-grid" aria-label="Certifications grid">
-                    <article class="certificate-card" data-category="technical" tabindex="0" role="button" aria-label="View certificate: Meta UX Design">
-                        <div class="cert-img-wrap">
-                            <img class="cert-img" src="images/certificates/cert-meta.png" alt="Meta UX Design" loading="lazy" decoding="async">
-                            <div class="cert-overlay" aria-hidden="true">
-                                <span class="cert-zoom-btn">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="cert-zoom-icon">
-                                        <circle cx="11" cy="11" r="8"></circle>
-                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                                        <line x1="11" y1="8" x2="11" y2="14"></line>
-                                        <line x1="8" y1="11" x2="14" y2="11"></line>
-                                    </svg>
-                                    <span class="cert-zoom-label">View Certificate</span>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="cert-body">
-                            <div class="cert-badge-row">
-                                <span class="cert-badge">Meta Certified</span>
-                                <span class="cert-date">2026</span>
-                            </div>
-                            <h3 class="cert-title">Meta UX Design</h3>
-                            <p class="cert-issuer">Meta · Professional Certification</p>
-                        </div>
-                    </article>
-
-                    <article class="certificate-card" data-category="technical" tabindex="0" role="button" aria-label="View certificate: Digital Marketing">
-                        <div class="cert-img-wrap">
-                            <img class="cert-img" src="images/certificates/cert-creativa.png" alt="Digital Marketing" loading="lazy" decoding="async">
-                            <div class="cert-overlay" aria-hidden="true">
-                                <span class="cert-zoom-btn">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="cert-zoom-icon">
-                                        <circle cx="11" cy="11" r="8"></circle>
-                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                                        <line x1="11" y1="8" x2="11" y2="14"></line>
-                                        <line x1="8" y1="11" x2="14" y2="11"></line>
-                                    </svg>
-                                    <span class="cert-zoom-label">View Certificate</span>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="cert-body">
-                            <div class="cert-badge-row">
-                                <span class="cert-badge">Creativa Hub</span>
-                                <span class="cert-date">2026</span>
-                            </div>
-                            <h3 class="cert-title">Digital Marketing</h3>
-                            <p class="cert-issuer">Creativa Training Certificate</p>
-                        </div>
-                    </article>
-
-                    <article class="certificate-card" data-category="technical" tabindex="0" role="button" aria-label="View certificate: Entrepreneurship &amp; Soft Skills">
-                        <div class="cert-img-wrap">
-                            <img class="cert-img" src="images/certificates/cert-microsoft.png" alt="Entrepreneurship &amp; Soft Skills" loading="lazy" decoding="async">
-                            <div class="cert-overlay" aria-hidden="true">
-                                <span class="cert-zoom-btn">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="cert-zoom-icon">
-                                        <circle cx="11" cy="11" r="8"></circle>
-                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                                        <line x1="11" y1="8" x2="11" y2="14"></line>
-                                        <line x1="8" y1="11" x2="14" y2="11"></line>
-                                    </svg>
-                                    <span class="cert-zoom-label">View Certificate</span>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="cert-body">
-                            <div class="cert-badge-row">
-                                <span class="cert-badge">Microsoft Certified</span>
-                                <span class="cert-date">2025 - 2026</span>
-                            </div>
-                            <h3 class="cert-title">Entrepreneurship &amp; Soft Skills</h3>
-                            <p class="cert-issuer">Microsoft &amp; Ministry of Youth Training</p>
-                        </div>
-                    </article>
-
-                    <article class="certificate-card" data-category="soft-skills" tabindex="0" role="button" aria-label="View certificate: Effective Communication Skills">
-                        <div class="cert-img-wrap">
-                            <img class="cert-img" src="images/certificates/cert-communication.png" alt="Effective Communication Skills" loading="lazy" decoding="async">
-                            <div class="cert-overlay" aria-hidden="true">
-                                <span class="cert-zoom-btn">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="cert-zoom-icon">
-                                        <circle cx="11" cy="11" r="8"></circle>
-                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                                        <line x1="11" y1="8" x2="11" y2="14"></line>
-                                        <line x1="8" y1="11" x2="14" y2="11"></line>
-                                    </svg>
-                                    <span class="cert-zoom-label">View Certificate</span>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="cert-body">
-                            <div class="cert-badge-row">
-                                <span class="cert-badge">Official Certificate</span>
-                                <span class="cert-date">2025</span>
-                            </div>
-                            <h3 class="cert-title">Effective Communication Skills</h3>
-                            <p class="cert-issuer">Damanhour University · مهارات التواصل الفعال</p>
-                        </div>
-                    </article>
-
-                    <article class="certificate-card" data-category="soft-skills" tabindex="0" role="button" aria-label="View certificate: Time Management">
-                        <div class="cert-img-wrap">
-                            <img class="cert-img" src="images/certificates/cert-time-mgmt.png" alt="Time Management" loading="lazy" decoding="async">
-                            <div class="cert-overlay" aria-hidden="true">
-                                <span class="cert-zoom-btn">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="cert-zoom-icon">
-                                        <circle cx="11" cy="11" r="8"></circle>
-                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                                        <line x1="11" y1="8" x2="11" y2="14"></line>
-                                        <line x1="8" y1="11" x2="14" y2="11"></line>
-                                    </svg>
-                                    <span class="cert-zoom-label">View Certificate</span>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="cert-body">
-                            <div class="cert-badge-row">
-                                <span class="cert-badge">Official Certificate</span>
-                                <span class="cert-date">2025</span>
-                            </div>
-                            <h3 class="cert-title">Time Management</h3>
-                            <p class="cert-issuer">Damanhour University · فن إدارة الوقت</p>
-                        </div>
-                    </article>
-
-                    <article class="certificate-card" data-category="soft-skills" tabindex="0" role="button" aria-label="View certificate: Teamwork Skills">
-                        <div class="cert-img-wrap">
-                            <img class="cert-img" src="images/certificates/cert-teamwork.png" alt="Teamwork Skills" loading="lazy" decoding="async">
-                            <div class="cert-overlay" aria-hidden="true">
-                                <span class="cert-zoom-btn">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="cert-zoom-icon">
-                                        <circle cx="11" cy="11" r="8"></circle>
-                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                                        <line x1="11" y1="8" x2="11" y2="14"></line>
-                                        <line x1="8" y1="11" x2="14" y2="11"></line>
-                                    </svg>
-                                    <span class="cert-zoom-label">View Certificate</span>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="cert-body">
-                            <div class="cert-badge-row">
-                                <span class="cert-badge">Official Certificate</span>
-                                <span class="cert-date">2025</span>
-                            </div>
-                            <h3 class="cert-title">Teamwork Skills</h3>
-                            <p class="cert-issuer">Damanhour University · مهارات العمل ضمن فريق</p>
-                        </div>
-                    </article>
-                </div>
+                <div class="certificates-stack certificates-grid" id="certificates-stack" aria-label="Certifications grid"></div>
             </div>
         </section>
 
-        <section class="experience" id="experience" aria-labelledby="experience-title">
-            <div class="section-shell experience-shell">
-                <p class="section-kicker">Experience</p>
-                <div class="experience-header">
-                    <div class="experience-title-wrap">
-                        <h2 id="experience-title">Professional Experience</h2>
-                        <p class="experience-copy">
-                            3+ years delivering AI systems from data to deployment across computer vision,
-                            automation, and analytics.
-                        </p>
-                    </div>
-                    <div class="experience-metrics" aria-label="Experience highlights"></div>
-                </div>
-
-                <div class="experience-grid"></div>
-            </div>
-        </section>
         <section class="contact" id="contact" aria-labelledby="contact-title">
             <div class="section-shell contact-shell">
-                <p class="section-kicker">Contact</p>
                 <div class="contact-header">
                     <div class="contact-title-wrap">
-                        <h2 id="contact-title">Let's build something impactful</h2>
+                        <h2 id="contact-title">Contact Me</h2>
                         <p class="contact-copy">
-                            Open to remote roles, freelance projects, and AI consulting. Share your brief and I will
-                            respond with a clear plan and next steps.
+                            Have a project or opportunity? Send a direct message below.
                         </p>
-                    </div>
-                    <div class="contact-actions">
-                        <a href="cv.pdf" class="contact-btn contact-btn-ghost">Download CV</a>
-                        <a href="mailto:allaa54sabboukh@gmail.com" class="contact-btn contact-btn-primary">Email Me</a>
-                        <a href="https://wa.me/201019741580" class="contact-btn contact-btn-ghost">WhatsApp Me</a>
                     </div>
                 </div>
 
@@ -594,11 +444,11 @@
                     <div class="contact-panel">
                         <div class="contact-panel-head">
                             <h3>Reach Me Directly</h3>
-                            <p>Fastest response via WhatsApp or Email. LinkedIn is best for quick introductions.</p>
+                            <p>Fastest response via Email or LinkedIn for collaborations and inquiries.</p>
                         </div>
 
                         <div class="contact-list">
-                            <a class="contact-item" href="mailto:allaa54sabboukh@gmail.com">
+                            <a class="contact-item" href="mailto:sarahnabil.ai@gmail.com">
                                 <span class="contact-icon" aria-hidden="true">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -610,22 +460,7 @@
                                 </span>
                                 <span>
                                     <span class="contact-label">Email</span>
-                                    <span class="contact-value">allaa54sabboukh@gmail.com</span>
-                                </span>
-                            </a>
-
-                            <a class="contact-item" href="https://wa.me/201019741580" target="_blank"
-                                rel="noopener noreferrer">
-                                <span class="contact-icon" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"
-                                        aria-hidden="true">
-                                        <path
-                                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                                    </svg>
-                                </span>
-                                <span>
-                                    <span class="contact-label">WhatsApp</span>
-                                    <span class="contact-value">01019741580</span>
+                                    <span class="contact-value">sarahnabil.ai@gmail.com</span>
                                 </span>
                             </a>
 
@@ -643,25 +478,25 @@
                             </div>
 
                             <a class="contact-item"
-                                href="https://www.linkedin.com/in/allaa-saboukh?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+                                href="https://www.linkedin.com/in/sarahnabil"
                                 target="_blank" rel="noopener noreferrer">
                                 <span class="contact-icon" aria-hidden="true">
                                     <i class="devicon-linkedin-plain" aria-hidden="true"></i>
                                 </span>
                                 <span>
                                     <span class="contact-label">LinkedIn</span>
-                                    <span class="contact-value">Connect for collaboration</span>
+                                    <span class="contact-value">linkedin.com/in/sarahnabil</span>
                                 </span>
                             </a>
 
-                            <a class="contact-item" href="https://github.com/Alaa-Saboukh02" target="_blank"
+                            <a class="contact-item" href="https://github.com/sarahnabil" target="_blank"
                                 rel="noopener noreferrer">
                                 <span class="contact-icon" aria-hidden="true">
                                     <i class="devicon-github-original" aria-hidden="true"></i>
                                 </span>
                                 <span>
                                     <span class="contact-label">GitHub</span>
-                                    <span class="contact-value">View repositories</span>
+                                    <span class="contact-value">github.com/sarahnabil</span>
                                 </span>
                             </a>
                         </div>
@@ -669,8 +504,7 @@
                         <div class="contact-availability">
                             <p class="contact-availability-title">Availability</p>
                             <p class="contact-availability-copy">
-                                Open for AI engineering projects, CV systems, and automation builds. Response time
-                                within 24-48 hours.
+                                Open for Machine Learning, Artificial Intelligence, and Data Analysis roles, internships, and collaborative research. Response time within 24-48 hours.
                             </p>
                         </div>
                     </div>
@@ -695,10 +529,10 @@
                         <label class="contact-field">
                             <span>Project Type</span>
                             <select name="project_type">
-                                <option value="AI System">AI System / Computer Vision</option>
-                                <option value="Automation">Automation & Workflow</option>
+                                <option value="Machine Learning">Machine Learning / AI Model</option>
+                                <option value="Data Analysis">Data Analysis &amp; EDA</option>
                                 <option value="Analytics">Analytics Dashboard</option>
-                                <option value="Consulting">Consulting / Strategy</option>
+                                <option value="Consulting">Consulting / Collaboration</option>
                             </select>
                         </label>
 
@@ -720,35 +554,28 @@
     </main>
 
     <footer
-        style="position:relative;z-index:2;padding:48px clamp(18px,6vw,60px) 32px;border-top:1px solid rgba(45,212,191,0.16);">
+        style="position:relative;z-index:2;background:transparent;padding:48px clamp(18px,6vw,60px) 32px;border-top:1px solid rgba(255,255,255,0.04);">
         <div
             style="max-width:1240px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;">
             <div>
-                <p style="font-size:1.05rem;font-weight:700;color:var(--text-main);margin-bottom:4px;">Allaa Saboukh</p>
-                <p style="font-size:0.82rem;color:var(--text-soft);">AI Engineer · Computer Vision · Deep Learning</p>
+                <p style="font-size:1.05rem;font-weight:700;color:var(--text-main);margin-bottom:4px;">Sarah Nabil</p>
+                <p style="font-size:0.82rem;color:var(--text-soft);">Machine Learning · Artificial Intelligence · Data Analysis</p>
             </div>
             <div style="display:flex;gap:12px;align-items:center;">
-                <a href="https://github.com/Alaa-Saboukh02" target="_blank" rel="noopener noreferrer"
+                <a href="https://github.com/sarahnabil" target="_blank" rel="noopener noreferrer"
                     aria-label="GitHub"
-                    style="width:38px;height:38px;border-radius:50%;border:1px solid rgba(45,212,191,0.3);background:rgba(8,51,60,0.4);display:inline-flex;align-items:center;justify-content:center;color:var(--text-soft);text-decoration:none;transition:border-color 0.2s ease,color 0.2s ease;">
+                    style="width:38px;height:38px;border-radius:50%;border:1px solid rgba(139,92,246,0.3);background:rgba(12,12,22,0.6);display:inline-flex;align-items:center;justify-content:center;color:var(--text-soft);text-decoration:none;transition:border-color 0.2s ease,color 0.2s ease;">
                     <i class="devicon-github-original" style="font-size:1.1rem;"></i>
                 </a>
-                <a href="https://www.linkedin.com/in/allaa-saboukh?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+                <a href="https://www.linkedin.com/in/sarahnabil"
                     target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
-                    style="width:38px;height:38px;border-radius:50%;border:1px solid rgba(45,212,191,0.3);background:rgba(8,51,60,0.4);display:inline-flex;align-items:center;justify-content:center;color:var(--text-soft);text-decoration:none;transition:border-color 0.2s ease,color 0.2s ease;">
+                    style="width:38px;height:38px;border-radius:50%;border:1px solid rgba(139,92,246,0.3);background:rgba(12,12,22,0.6);display:inline-flex;align-items:center;justify-content:center;color:var(--text-soft);text-decoration:none;transition:border-color 0.2s ease,color 0.2s ease;">
                     <i class="devicon-linkedin-plain" style="font-size:1.1rem;"></i>
-                </a>
-                <a href="https://wa.me/201019741580" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
-                    style="width:38px;height:38px;border-radius:50%;border:1px solid rgba(45,212,191,0.3);background:rgba(8,51,60,0.4);display:inline-flex;align-items:center;justify-content:center;color:var(--text-soft);text-decoration:none;transition:border-color 0.2s ease,color 0.2s ease;">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
-                        <path
-                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                    </svg>
                 </a>
             </div>
             <p
-                style="font-size:0.8rem;color:var(--text-soft);width:100%;text-align:center;border-top:1px solid rgba(45,212,191,0.1);padding-top:20px;margin-top:8px;">
-                &copy;  2026 All rights reserved — Developed by Nour Wael &amp; great design.
+                style="font-size:0.8rem;color:var(--text-soft);width:100%;text-align:center;border-top:1px solid rgba(255,255,255,0.06);padding-top:20px;margin-top:8px;">
+                &copy; 2026 Sarah Nabil. All rights reserved.
             </p>
         </div>
     </footer>
