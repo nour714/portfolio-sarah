@@ -1,8 +1,8 @@
 /* CSS Custom Properties & Design Tokens */
 :root {
-    --bg-night: #030712;
-    --bg-mid: #071827;
-    --bg-deep: #0b2136;
+    --bg-night: #070710;
+    --bg-mid: #070710;
+    --bg-deep: #070710;
     --text-main: #f3f8ff;
     --text-soft: #c4e4fa;
     --brand-blue: #0ea5e9;
@@ -52,6 +52,9 @@
     --bg-radial-b: rgba(37, 99, 235, 0.14);
     --hero-role-shadow: rgba(14, 165, 233, 0.42);
     --cursor-color: #38bdf8;
+    --cursor-mac-arrow: url("../../images/cursors/mac-arrow.svg") 2 2, default;
+    --cursor-mac-pointer: url("../../images/cursors/mac-pointer.svg") 8 2, pointer;
+    --cursor-mac-text: url("../../images/cursors/mac-text.svg") 11 10, text;
     --hero-surface: linear-gradient(90deg, rgba(3, 7, 18, 0.76) 0%, rgba(3, 7, 18, 0.56) 56%, rgba(3, 7, 18, 0.16) 100%);
     --hero-avatar-glow: rgba(6, 182, 212, 0.38);
     --hero-avatar-ring: rgba(45, 212, 191, 0.65);
@@ -90,16 +93,24 @@ body {
 body {
     font-family: "Poppins", "Segoe UI", sans-serif;
     line-height: 1.6;
-    background:
-        radial-gradient(circle at 82% 24%, var(--bg-radial-a), transparent 30%),
-        radial-gradient(circle at 17% 92%, var(--bg-radial-b), transparent 28%),
-        linear-gradient(135deg, var(--bg-night) 0%, var(--bg-mid) 44%, var(--bg-deep) 100%);
+    background: #070710;
     color: var(--text-main);
     overflow-x: hidden;
     position: relative;
 }
 
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+    z-index: 0;
+}
+
 body.light-mode {
+    background: #f0fdfa;
     --bg-night: #f0fdfa;
     --bg-mid: #e6f9f5;
     --bg-deep: #dcf4ee;
@@ -145,7 +156,11 @@ body.light-mode {
     --menu-line: #0f766e;
     --mobile-menu-bg: rgba(240, 253, 250, 0.96);
     --mobile-menu-border: rgba(45, 212, 191, 0.35);
-    --mobile-menu-shadow: rgba(13, 148, 136, 0.12);
     --button-a: #0d9488;
     --button-b: #0891b2;
     --bg-radial-a: rgba(20, 184, 166, 0.18);
+}
+
+body.light-mode::before {
+    background-image: radial-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+}
