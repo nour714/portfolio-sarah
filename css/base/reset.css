@@ -1,4 +1,5 @@
 /* Base Global Reset & Typography */
+body.light-mode {
     --bg-radial-b: rgba(6, 182, 212, 0.12);
     --hero-role-shadow: rgba(13, 148, 136, 0.2);
     --cursor-color: #0d9488;
@@ -14,9 +15,32 @@
     --canvas-node-alpha: 0.6;
 }
 
-#constellation-canvas,
-.bg-effects {
-    display: none !important;
+/* MacBook macOS Native Cursor Baseline */
+html,
+body {
+    cursor: var(--cursor-mac-arrow, default);
+}
+
+a,
+button,
+[role="button"],
+input[type="submit"],
+input[type="button"],
+select,
+.btn,
+.project-card,
+.certificate-card,
+.skill-chip,
+.filter-chip,
+.stat-card,
+[data-magnetic] {
+    cursor: var(--cursor-mac-pointer, pointer);
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    cursor: var(--cursor-mac-text, text);
 }
 
 
