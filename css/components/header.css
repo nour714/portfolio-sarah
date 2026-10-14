@@ -63,17 +63,34 @@ main {
     color: var(--capsule-badge-color);
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
     flex-shrink: 0;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    overflow: hidden;
+    position: relative;
 }
 
 .brand:hover .brand-badge {
     transform: scale(1.06);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 6px 20px rgba(14, 165, 233, 0.35);
+    border-color: rgba(56, 189, 248, 0.55);
 }
 
 .brand-badge-icon {
     width: 20px;
     height: 20px;
+}
+
+.brand-badge-logo {
+    width: 29px;
+    height: 29px;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), filter 0.28s ease;
+    filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.3));
+}
+
+.brand:hover .brand-badge-logo {
+    transform: rotate(3deg) scale(1.06);
+    filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.7));
 }
 
 .brand-title {
@@ -578,6 +595,11 @@ main {
         width: 17px;
         height: 17px;
     }
+
+    .brand-badge-logo {
+        width: 25px;
+        height: 25px;
+    }
 }
 
 @media (max-width: 600px) {
@@ -614,6 +636,11 @@ main {
     .brand-badge {
         width: 34px;
         height: 34px;
+    }
+
+    .brand-badge-logo {
+        width: 23px;
+        height: 23px;
     }
 
     .brand-title {
