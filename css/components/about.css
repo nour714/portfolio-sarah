@@ -1,6 +1,8 @@
-/* About Section, Bio, Tracks & Stats */
 .about {
-    padding: 42px clamp(18px, 6vw, 60px) 110px;
+    position: relative;
+    padding: clamp(48px, 7vw, 96px) clamp(18px, 6vw, 60px) clamp(60px, 8vw, 110px);
+    background: transparent;
+    overflow: clip;
 }
 
 .section-shell {
@@ -19,27 +21,6 @@
 .reveal.is-visible {
     opacity: 1 !important;
     transform: translateY(0) !important;
-}
-
-.section-kicker {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 16px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--brand-light);
-}
-
-.section-kicker::before {
-    content: "";
-    width: 26px;
-    height: 1px;
-    border-radius: 999px;
-    background: currentColor;
-    opacity: 0.8;
 }
 
 .about-shell {
@@ -176,6 +157,11 @@
     gap: 10px;
 }
 
+.about-track:empty {
+    display: none;
+    margin: 0;
+}
+
 .about-node {
     border: 1px solid rgba(45, 212, 191, 0.26);
     border-radius: 16px;
@@ -204,6 +190,11 @@
     margin-top: 15px;
     font-size: 0.92rem;
     color: var(--text-soft);
+}
+
+.about-signature:empty {
+    display: none;
+    margin: 0;
 }
 
 .about-visual {
@@ -266,7 +257,7 @@
     display: block;
     width: auto;
     max-width: 100%;
-    max-height: 480px;
+    max-height: 530px;
     height: auto;
     object-fit: contain;
     object-position: bottom center;
@@ -277,37 +268,6 @@
 .about-panel:hover .about-image {
     transform: translateY(-5px) scale(1.025);
     filter: drop-shadow(0 22px 36px rgba(2, 12, 27, 0.75)) drop-shadow(0 0 18px rgba(56, 189, 248, 0.28));
-}
-
-.about-visual-badge {
-    position: absolute;
-    bottom: 14px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 7px 16px;
-    border-radius: 999px;
-    border: 1px solid rgba(56, 189, 248, 0.38);
-    background: rgba(5, 20, 42, 0.88);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 8px 24px rgba(2, 12, 27, 0.5);
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    color: #e0f2fe;
-    white-space: nowrap;
-    pointer-events: none;
-}
-
-.about-visual-badge .badge-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #38bdf8;
-    box-shadow: 0 0 10px #38bdf8;
 }
 
 body.light-mode .about-panel {
@@ -346,18 +306,6 @@ body.light-mode .about-visual-backdrop {
 
 body.light-mode .about-visual-glow {
     background: radial-gradient(circle, rgba(45, 212, 191, 0.32) 0%, rgba(20, 184, 166, 0.16) 45%, transparent 70%);
-}
-
-body.light-mode .about-visual-badge {
-    border-color: rgba(45, 212, 191, 0.45);
-    background: rgba(240, 253, 250, 0.94);
-    color: #042f2e;
-    box-shadow: 0 8px 20px rgba(13, 148, 136, 0.15);
-}
-
-body.light-mode .about-visual-badge .badge-dot {
-    background: #0d9488;
-    box-shadow: 0 0 10px rgba(13, 148, 136, 0.6);
 }
 
 body.light-mode .about-image {
