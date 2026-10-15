@@ -11,41 +11,6 @@
     overflow: hidden;
 }
 
-.hero-background-video {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    max-width: none;
-    object-fit: cover;
-    object-position: center;
-    z-index: -2;
-}
-
-.hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: var(--hero-surface);
-    z-index: -1;
-}
-
-.hero::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 220px;
-    background: linear-gradient(180deg, transparent 0%, rgba(3, 7, 18, 0.45) 30%, rgba(3, 7, 18, 0.88) 70%, var(--bg-night) 100%);
-    pointer-events: none;
-    z-index: -1;
-}
-
-body.light-mode .hero::after {
-    background: linear-gradient(180deg, transparent 0%, rgba(240, 253, 250, 0.45) 30%, rgba(240, 253, 250, 0.88) 70%, var(--bg-night) 100%);
-}
-
 .hero-content {
     margin-inline: auto;
     width: min(1240px, 100%);
@@ -63,39 +28,113 @@ body.light-mode .hero::after {
     max-width: 860px;
 }
 
-.hero h1 {
-    font-size: var(--fs-hero-title);
-    line-height: 1.1;
-    letter-spacing: -0.8px;
-    font-weight: 800;
-}
-
-.hero-name-highlight {
-    color: var(--brand-light);
-    text-shadow: 0 8px 22px var(--hero-role-shadow);
-}
-
-.hero-role {
-    margin-top: 12px;
+/* Status Pill above Hero Headline */
+.hero-status-pill {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    min-height: 1.3em;
-    color: var(--brand-light);
-    font-weight: 700;
-    font-size: var(--fs-hero-role);
-    letter-spacing: 0.2px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba(14, 165, 233, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(56, 189, 248, 0.28);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+    font-family: var(--font-mono, "JetBrains Mono", monospace);
+    font-size: clamp(0.74rem, 1.1vw, 0.82rem);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #67e8f9;
+    margin-bottom: 18px;
+    width: fit-content;
+    animation: heroFadeUp 0.8s ease-out;
+}
+
+.status-pulse-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #22d3ee;
+    box-shadow: 0 0 10px #22d3ee, 0 0 20px rgba(34, 211, 238, 0.6);
+    animation: heroPulseGlow 2s ease-in-out infinite;
+}
+
+@keyframes heroPulseGlow {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.3);
+        opacity: 0.65;
+    }
+}
+
+.hero h1 {
+    font-size: clamp(2.4rem, 6vw, 4.4rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+    font-weight: 800;
+    margin-bottom: 4px;
+}
+
+.hero-greeting {
+    background: linear-gradient(180deg, #ffffff 40%, #cbd5e1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #ffffff;
+}
+
+.hero-name-highlight {
+    display: inline-block;
+    background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 24px rgba(56, 189, 248, 0.45));
+    letter-spacing: -0.02em;
+}
+
+.hero-role {
+    margin-top: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 18px 7px 14px;
+    border-radius: 999px;
+    background: rgba(12, 14, 26, 0.72);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(139, 92, 246, 0.32);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    font-family: var(--font-mono, "JetBrains Mono", monospace);
+    font-size: clamp(0.96rem, 1.7vw, 1.3rem);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    width: fit-content;
+}
+
+.hero-role-pulse {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22d3ee;
+    box-shadow: 0 0 10px #22d3ee, 0 0 20px rgba(139, 92, 246, 0.6);
+    flex-shrink: 0;
+    animation: heroPulseGlow 2s ease-in-out infinite;
 }
 
 .role-typed {
-    text-shadow: 0 8px 22px var(--hero-role-shadow);
+    color: #f1f5f9;
+    text-shadow: 0 0 16px rgba(196, 181, 253, 0.4);
 }
 
 .role-cursor {
-    width: 2px;
-    height: 1.05em;
-    background: var(--cursor-color);
-    border-radius: 999px;
+    width: 2.5px;
+    height: 1.15em;
+    background: #22d3ee;
+    box-shadow: 0 0 10px #22d3ee, 0 0 18px rgba(139, 92, 246, 0.6);
+    border-radius: 2px;
     animation: cursorBlink 0.92s steps(1, end) infinite;
 }
 
@@ -332,4 +371,38 @@ body.light-mode .hero-avatar-halo {
     object-fit: cover;
     background: linear-gradient(155deg, #0d9488, #042730);
 }
+
+/* Light Mode Overrides */
+body.light-mode .hero-status-pill {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(13, 148, 136, 0.35);
+    color: #0d9488;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+body.light-mode .hero-greeting {
+    background: linear-gradient(180deg, #0f172a 40%, #334155 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #0f172a;
+}
+
+body.light-mode .hero-name-highlight {
+    background: linear-gradient(135deg, #0284c7 0%, #6366f1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 18px rgba(2, 132, 199, 0.3));
+}
+
+body.light-mode .hero-role {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(99, 102, 241, 0.3);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+body.light-mode .role-typed {
+    color: #0f172a;
+    text-shadow: none;
+}
+
 
