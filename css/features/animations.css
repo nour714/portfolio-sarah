@@ -1,5 +1,131 @@
 /* Scroll Progress, Custom Cursor, Back to Top & Keyframes */
 /* =============================================
+   LENIS SMOOTH SCROLL FOUNDATION
+   ============================================= */
+html.lenis,
+html.lenis body {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: clip;
+}
+
+.lenis.lenis-smooth iframe {
+    pointer-events: none;
+}
+
+/* =============================================
+   CINEMATIC MOTION SYSTEM CLASSES
+   ============================================= */
+.motion-line-mask,
+.motion-word-mask {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+}
+
+.motion-line,
+.motion-word {
+    display: inline-block;
+    will-change: transform, opacity, filter;
+}
+
+[data-image-reveal] {
+    overflow: hidden;
+}
+
+[data-parallax-image],
+[data-parallax-layer] {
+    will-change: transform;
+}
+
+/* 3D Interactive Card Perspective & Containers */
+.projects-grid,
+.certificates-grid,
+.skills-board,
+.experience-grid,
+.experience-list,
+.stats-grid,
+.contact-list,
+.contact-grid,
+.about-track {
+    perspective: 1200px;
+}
+
+.project-card,
+.certificate-card,
+.experience-card,
+.skill-group,
+.contact-item,
+.stat-card,
+.skills-metric,
+.about-node {
+    position: relative;
+    transform-style: preserve-3d;
+    will-change: transform, box-shadow, border-color;
+    transition: box-shadow 0.35s ease, border-color 0.35s ease, background 0.35s ease;
+}
+
+/* Card Spotlight Sheen (Follows Mouse dynamically via CSS variables) */
+.card-spotlight {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    background: radial-gradient(
+        380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(45, 212, 191, 0.18),
+        rgba(6, 182, 212, 0.05) 45%,
+        transparent 70%
+    );
+}
+
+.project-card:hover .card-spotlight,
+.certificate-card:hover .card-spotlight,
+.experience-card:hover .card-spotlight,
+.skill-group:hover .card-spotlight,
+.contact-item:hover .card-spotlight,
+.stat-card:hover .card-spotlight,
+.skills-metric:hover .card-spotlight,
+.about-node:hover .card-spotlight {
+    opacity: 1;
+}
+
+/* Card Glow Enhancements on Hover */
+.project-card:hover,
+.certificate-card:hover,
+.experience-card:hover,
+.skill-group:hover,
+.contact-item:hover,
+.stat-card:hover,
+.skills-metric:hover,
+.about-node:hover {
+    box-shadow:
+        0 20px 48px rgba(1, 14, 18, 0.55),
+        0 0 32px rgba(45, 212, 191, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    border-color: rgba(94, 234, 212, 0.65);
+}
+
+/* Magnetic Elements */
+[data-magnetic] {
+    will-change: transform;
+    display: inline-flex;
+}
+
+/* =============================================
    SCROLL PROGRESS BAR
    ============================================= */
 #scroll-progress-bar {
@@ -11,66 +137,107 @@
     z-index: 9999;
     background: linear-gradient(90deg, #06b6d4, #14b8a6, #22d3ee);
     box-shadow: 0 0 12px rgba(6, 182, 212, 0.85);
-    transition: width 0.1s linear;
+    transition: width 0.05s linear;
     border-radius: 0 999px 999px 0;
 }
 
 /* =============================================
-   CUSTOM CURSOR
+   MacBook macOS CUSTOM CURSOR SYSTEM
    ============================================= */
-.cursor-dot,
-.cursor-ring {
+.macos-cursor {
     position: fixed;
-    border-radius: 50%;
+    top: 0;
+    left: 0;
     pointer-events: none;
-    z-index: 99999;
-    transform: translate(-50%, -50%);
-    transition: opacity 0.3s ease;
+    z-index: 999999;
+    will-change: transform;
+    opacity: 0;
+    transform: translate3d(-100px, -100px, 0);
+    transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.cursor-dot {
-    width: 8px;
-    height: 8px;
-    background: #22d3ee;
-    box-shadow: 0 0 10px rgba(34, 211, 238, 0.9);
-    transition: width 0.2s ease, height 0.2s ease, background 0.2s ease;
+.macos-cursor-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    transition: transform 0.14s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.12s ease;
+    transform-origin: 2px 2px;
 }
 
-.cursor-ring {
-    width: 38px;
-    height: 38px;
-    border: 2px solid rgba(45, 212, 191, 0.55);
-    background: rgba(45, 212, 191, 0.08);
-    backdrop-filter: blur(2px);
-    transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+/* Arrow: hotspot is at (2px, 2px) */
+.macos-cursor-arrow {
+    width: 24px;
+    height: 24px;
+    transform: translate3d(-2px, -2px, 0);
+    opacity: 1;
+    display: block;
 }
 
-.cursor-dot.is-hovering {
-    width: 12px;
-    height: 12px;
-    background: #5eead4;
-    box-shadow: 0 0 18px rgba(94, 234, 212, 1);
+/* Pointer Hand: hotspot is at index tip (8px, 2px) */
+.macos-cursor-hand {
+    width: 28px;
+    height: 30px;
+    transform: translate3d(-8px, -2px, 0) scale(0.85);
+    opacity: 0;
+    display: block;
+    transform-origin: 8px 2px;
 }
 
-.cursor-ring.is-hovering {
-    width: 54px;
-    height: 54px;
-    border-color: rgba(94, 234, 212, 0.7);
-    background: rgba(94, 234, 212, 0.12);
+/* Interactive Hover State: switch seamlessly from Arrow to Hand */
+.macos-cursor.is-hovering .macos-cursor-arrow {
+    opacity: 0;
+    transform: translate3d(-2px, -2px, 0) scale(0.85);
 }
 
-@media (pointer: coarse) {
-    .cursor-dot, .cursor-ring { display: none; }
-    * { cursor: auto !important; }
+.macos-cursor.is-hovering .macos-cursor-hand {
+    opacity: 1;
+    transform: translate3d(-8px, -2px, 0) scale(1);
 }
 
-body.light-mode .cursor-dot {
-    background: #0d9488;
-    box-shadow: 0 0 10px rgba(13, 148, 136, 0.8);
+/* Ambient macOS Spotlight Sheen Glow on hover */
+.macos-cursor-sheen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.24) 0%, rgba(56, 189, 248, 0) 70%);
+    transform: translate3d(-18px, -18px, 0) scale(0);
+    opacity: 0;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+    pointer-events: none;
 }
 
-body.light-mode .cursor-ring {
-    border-color: rgba(13, 148, 136, 0.5);
+.macos-cursor.is-hovering .macos-cursor-sheen {
+    transform: translate3d(-18px, -18px, 0) scale(1.35);
+    opacity: 1;
+}
+
+body.light-mode .macos-cursor-sheen {
+    background: radial-gradient(circle, rgba(14, 165, 233, 0.2) 0%, rgba(14, 165, 233, 0) 70%);
+}
+
+/* Hide native OS cursor only when MacBook custom cursor is active on fine pointers */
+@media (min-width: 769px) and (pointer: fine) {
+    body.has-macos-cursor,
+    body.has-macos-cursor * {
+        cursor: none !important;
+    }
+}
+
+/* Fallback/Mobile: Hide custom cursor on coarse touchscreens */
+@media (pointer: coarse), (max-width: 768px) {
+    .macos-cursor,
+    .cursor-dot,
+    .cursor-ring {
+        display: none !important;
+    }
+    body.has-macos-cursor,
+    body.has-macos-cursor * {
+        cursor: auto !important;
+    }
 }
 
 /* =============================================
@@ -134,7 +301,6 @@ body.light-mode #back-to-top:hover {
     box-shadow: 0 12px 26px rgba(13, 148, 136, 0.22);
 }
 
-
 /* =============================================
    EXTRA ANIMATIONS (Re-usable keyframes)
    ============================================= */
@@ -194,3 +360,33 @@ body.light-mode #back-to-top:hover {
     60% { left: 120%; opacity: 0; }
 }
 
+/* =============================================
+   ACCESSIBILITY & REDUCED MOTION
+   ============================================= */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .macos-cursor,
+    .cursor-dot,
+    .cursor-ring {
+        display: none !important;
+    }
+
+    .reveal,
+    .project-card.reveal,
+    .certificate-card.reveal,
+    .motion-line,
+    .motion-word {
+        opacity: 1 !important;
+        transform: none !important;
+        visibility: visible !important;
+        filter: none !important;
+    }
+}
