@@ -7,6 +7,7 @@ import { getText, setText, findContactItemByLabel } from "./utils.js";
 import { resolveHeroRoles } from "../modules/hero.js";
 import { createProjectCard } from "../modules/projects.js";
 import { createCertificateCard } from "../modules/certificates.js";
+import { createSkillCard, initSkillsArcCarousel } from "../modules/skills.js";
 
 export const isPlainObject = (value) => Boolean(value && typeof value === "object" && !Array.isArray(value));
 
@@ -23,7 +24,9 @@ export const deepMerge = (target, source) => {
     Object.keys(source).forEach((key) => {
         const sourceValue = source[key];
         if (Array.isArray(sourceValue)) {
-            target[key] = sourceValue.slice();
+            if (sourceValue.length > 0 || !Array.isArray(target[key]) || target[key].length === 0) {
+                target[key] = sourceValue.slice();
+            }
             return;
         }
         if (isPlainObject(sourceValue)) {
@@ -41,7 +44,7 @@ export const deepMerge = (target, source) => {
 };
 
 export const extractAdminState = () => {
-    const heroName = getText(".hero-text h1 span");
+    const heroName = getText(".hero-name-highlight") || getText(".hero-text h1 span:last-of-type") || getText(".hero-text h1 span");
     const heroCopy = getText(".hero-copy");
     const heroRoles = resolveHeroRoles();
     const heroAvatar = document.querySelector(".hero-avatar-img");
@@ -90,6 +93,10 @@ export const extractAdminState = () => {
         else if (label.includes("core")) skillsMetrics.core = value;
         else if (label.includes("cloud")) skillsMetrics.cloud = value;
     });
+
+    const skillItems = Array.from(document.querySelectorAll(".skill-card")).map((card) => ({
+        name: getText(".skill-name", card)
+    }));
 
     const skillGroups = Array.from(document.querySelectorAll(".skill-group")).map((group) => ({
         title: getText("h3", group),
@@ -185,6 +192,7 @@ export const extractAdminState = () => {
             copy: getText(".skills-copy"),
             metrics: skillsMetrics,
             groups: skillGroups,
+            items: skillItems,
             noteLabel: skillsNoteLabel,
             noteText: skillsNoteText
         },
@@ -231,9 +239,10 @@ export const normalizeAdminState = (state) => {
     state.about = state.about || { metrics: [] };
     state.about.metrics = Array.isArray(state.about.metrics) ? state.about.metrics : [];
 
-    state.skills = state.skills || { metrics: {}, groups: [] };
+    state.skills = state.skills || { metrics: {}, groups: [], items: [] };
     state.skills.metrics = state.skills.metrics || {};
     state.skills.groups = Array.isArray(state.skills.groups) ? state.skills.groups : [];
+    state.skills.items = Array.isArray(state.skills.items) ? state.skills.items : [];
 
     state.projectsSection = state.projectsSection || {};
     state.projects = Array.isArray(state.projects) ? state.projects : [];
@@ -256,7 +265,7 @@ export const normalizeAdminState = (state) => {
 
 export const applyHeroState = (hero) => {
     const heroRoleTyped = document.getElementById("hero-role-typed");
-    const nameSpan = document.querySelector(".hero-text h1 span");
+    const nameSpan = document.querySelector(".hero-name-highlight") || document.querySelector(".hero-text h1 span:last-of-type") || document.querySelector(".hero-text h1 span");
     const heroCopy = document.querySelector(".hero-copy");
     const heroPrimary = document.querySelector(".hero-actions .hero-btn");
     const heroSecondary = document.querySelector(".hero-actions .hero-btn-secondary");
@@ -324,52 +333,27 @@ export const applySkillsState = (skills) => {
         if (label.includes("cloud")) setText(metric.querySelector("dd"), skills?.metrics?.cloud || "");
     });
 
-    const board = document.querySelector(".skills-board");
-    if (board && Array.isArray(skills?.groups)) {
-        board.innerHTML = "";
+    let allItems = [];
+    if (Array.isArray(skills?.items) && skills.items.length) {
+        allItems = skills.items;
+    } else if (Array.isArray(skills?.groups)) {
         skills.groups.forEach((group) => {
-            const groupEl = document.createElement("article");
-            groupEl.className = "skill-group";
-
-            const head = document.createElement("div");
-            head.className = "skill-group-head";
-            const title = document.createElement("h3");
-            title.textContent = group.title || "";
-            const label = document.createElement("span");
-            label.className = "skill-group-label";
-            label.textContent = group.label || "";
-            head.append(title, label);
-
-            const list = document.createElement("ul");
-            list.className = "skill-tags";
             (group.items || []).forEach((item) => {
-                const li = document.createElement("li");
-                li.className = "skill-chip";
-                
-                const itemName = typeof item === "object" ? item.name : item;
-                const itemIcon = typeof item === "object" ? item.icon : "";
-                const itemTag = typeof item === "object" ? item.tag : "";
-
-                let icon;
-                if (itemIcon && itemIcon !== "fallback") {
-                    icon = document.createElement("i");
-                    icon.className = `skill-icon ${itemIcon}`;
-                    icon.setAttribute("aria-hidden", "true");
-                } else {
-                    icon = document.createElement("span");
-                    icon.className = "skill-icon fallback-icon";
-                    icon.setAttribute("aria-hidden", "true");
-                    icon.textContent = itemTag || String(itemName || "").trim().slice(0, 2).toUpperCase() || "SK";
-                }
-
-                const text = document.createElement("span");
-                text.textContent = itemName || "";
-                li.append(icon, text);
-                list.append(li);
+                allItems.push(item);
             });
+        });
+    }
 
-            groupEl.append(head, list);
-            board.append(groupEl);
+    // Modern Interactive Circular Arc Carousel
+    if (allItems.length) {
+        initSkillsArcCarousel(allItems);
+    }
+
+    const board = document.querySelector(".skills-board");
+    if (board && allItems.length) {
+        board.innerHTML = "";
+        allItems.forEach((item) => {
+            board.appendChild(createSkillCard(item));
         });
     }
 
@@ -390,11 +374,16 @@ export const applySkillsState = (skills) => {
 };
 
 export const applyProjectsState = (projectsSection, projects) => {
-    setText(document.querySelector("#projects-title"), projectsSection?.title || "");
+    const titleEl = document.querySelector("#projects-title");
+    if (titleEl && projectsSection?.title) {
+        const words = projectsSection.title.split(/\s+/).filter(Boolean);
+        titleEl.innerHTML = words.map((w) => `<span class="title-word">${w}</span>`).join(" ");
+    }
     setText(document.querySelector(".projects-copy"), projectsSection?.copy || "");
 
     const grid = document.querySelector(".projects-grid");
     if (!grid || !Array.isArray(projects)) return;
+    window.__projectsData = projects;
     grid.innerHTML = "";
     projects.forEach((project, index) => {
         grid.appendChild(createProjectCard(project, index));
@@ -406,7 +395,11 @@ export const applyProjectsState = (projectsSection, projects) => {
 };
 
 export const applyCertificatesState = (certificatesSection, certificates) => {
-    setText(document.querySelector("#certificates-title"), certificatesSection?.title || "");
+    const titleEl = document.querySelector("#certificates-title");
+    if (titleEl && certificatesSection?.title) {
+        const words = certificatesSection.title.split(/\s+/).filter(Boolean);
+        titleEl.innerHTML = words.map((w) => `<span class="title-word">${w}</span>`).join(" ");
+    }
     setText(document.querySelector(".certificates-copy"), certificatesSection?.copy || "");
 
     const grid = document.querySelector(".certificates-grid");
