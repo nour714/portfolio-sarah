@@ -34,9 +34,6 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 
-    <!-- Preload Hero ML Background Image -->
-    <link rel="preload" href="images/ml-hero-bg.webp" as="image" type="image/webp" fetchpriority="high">
-
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -199,51 +196,6 @@
 
     <main>
         <section class="hero" id="hero">
-            <!-- ML Engineer Interactive Animated Background -->
-            <div id="mlbg-stage" class="mlbg-stage" aria-hidden="true">
-                <div id="mlbg-scene" class="mlbg-scene">
-                    <img src="images/ml-hero-bg.webp" alt="" draggable="false" fetchpriority="high" decoding="async">
-                    <div id="mlbg-lights"></div>
-                    <div class="mlbg-abs mlbg-beacon"></div>
-                    <div class="mlbg-abs mlbg-holo-scan"></div>
-                    <div class="mlbg-abs mlbg-laptop"></div>
-
-                    <!-- Training panel -->
-                    <div class="mlbg-panel mlbg-train">
-                        <div class="mlbg-head"><span id="mlbg-train-ttl">Training model…</span><b id="mlbg-train-pct">68%</b></div>
-                        <div class="mlbg-bar"><i id="mlbg-train-fill"></i></div>
-                        <ul class="mlbg-steps" id="mlbg-train-steps">
-                            <li><span class="mlbg-ic"></span>Loading dataset…</li>
-                            <li><span class="mlbg-ic"></span>Preprocessing…</li>
-                            <li><span class="mlbg-ic"></span>Training…</li>
-                            <li><span class="mlbg-ic"></span>Evaluating…</li>
-                        </ul>
-                        <div class="mlbg-eta" id="mlbg-train-eta">~ 1:42</div>
-                    </div>
-
-                    <!-- Live metric chart -->
-                    <div class="mlbg-panel mlbg-chart">
-                        <svg viewBox="0 0 100 96" preserveAspectRatio="none">
-                            <g stroke="rgba(130,190,255,.22)" stroke-width=".6">
-                                <line x1="12" y1="12" x2="12" y2="84"/><line x1="12" y1="84" x2="96" y2="84"/>
-                                <line x1="12" y1="30" x2="96" y2="30"/><line x1="12" y1="48" x2="96" y2="48"/><line x1="12" y1="66" x2="96" y2="66"/>
-                            </g>
-                            <path id="mlbg-chart-area" d="" fill="rgba(56,189,248,.18)"/>
-                            <path id="mlbg-chart-line" d="" fill="none" stroke="#6fe0ff" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" style="filter:drop-shadow(0 0 2px #38bdf8)"/>
-                            <circle id="mlbg-chart-pt" r="2.4" fill="#fff" style="filter:drop-shadow(0 0 3px #38bdf8)"/>
-                        </svg>
-                    </div>
-
-                    <!-- Robot terminal -->
-                    <div class="mlbg-panel mlbg-robot">
-                        <div class="mlbg-head"><span>Robot Control</span><span class="mlbg-st">Connected</span></div>
-                        <div id="mlbg-cmds"></div>
-                    </div>
-
-                    <canvas id="mlbg-net"></canvas>
-                    <div class="mlbg-vignette"></div>
-                </div>
-            </div>
             <div class="hero-content">
                 <div class="hero-layout">
                     <div class="hero-text">
@@ -344,7 +296,76 @@
                     </div>
                 </div>
 
-                <div class="skills-board" aria-label="CV Skills Categories"></div>
+                <!-- Interactive Arc Carousel Stage -->
+                <div class="skills-arc-stage" id="skills-arc-stage" role="region" aria-label="Interactive Skills Arc Carousel" tabindex="0">
+                    <!-- SVG Curved Arch Ribbon Band (Translucent on website dark background) -->
+                    <div class="skills-arch-canvas" aria-hidden="true">
+                        <svg class="skills-arch-svg" viewBox="0 0 1000 480" preserveAspectRatio="xMidYMid meet">
+                            <defs>
+                                <linearGradient id="skillsArchBandGrad" x1="0%" y1="100%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="rgba(120, 80, 200, 0.04)"/>
+                                    <stop offset="25%" stop-color="rgba(139, 92, 246, 0.18)"/>
+                                    <stop offset="50%" stop-color="rgba(168, 85, 247, 0.32)"/>
+                                    <stop offset="75%" stop-color="rgba(139, 92, 246, 0.18)"/>
+                                    <stop offset="100%" stop-color="rgba(120, 80, 200, 0.04)"/>
+                                </linearGradient>
+                            </defs>
+                            <!-- Wide Translucent Arch Ribbon (Track) -->
+                            <path d="M 73 348 A 460 460 0 0 1 927 348" stroke="url(#skillsArchBandGrad)" stroke-width="84" fill="none" stroke-linecap="round"/>
+                            <!-- Luminous Ambient Core Guideline -->
+                            <path class="skills-arch-glow-line" d="M 73 348 A 460 460 0 0 1 927 348" stroke="rgba(168, 85, 247, 0.35)" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-dasharray="6 8"/>
+                        </svg>
+                    </div>
+
+                    <!-- Active Skill Spotlight (Top Center of Arch) -->
+                    <div class="skills-spotlight" id="skills-spotlight" aria-live="polite">
+                        <!-- Circular Apex Badge with Halo -->
+                        <div class="skills-spotlight-icon-wrap" id="spotlight-icon-wrap">
+                            <div class="skills-spotlight-halo" id="spotlight-halo"></div>
+                            <div class="skills-spotlight-icon" id="spotlight-icon"></div>
+                        </div>
+
+                        <!-- Inside Arch Content -->
+                        <div class="skills-spotlight-counter" id="spotlight-counter">01 / 18</div>
+                        <h3 class="skills-spotlight-title" id="spotlight-title">Python</h3>
+
+                        <div class="skills-spotlight-meta">
+                            <span class="skills-spotlight-level" id="spotlight-level">EXPERT</span>
+                            <div class="skills-spotlight-bar-track">
+                                <div class="skills-spotlight-bar-fill" id="spotlight-bar-fill" style="width: 96%;"></div>
+                            </div>
+                        </div>
+
+                        <p class="skills-spotlight-desc" id="spotlight-desc">
+                            Core language for ML development, algorithms, data processing pipelines, and model evaluation.
+                        </p>
+                    </div>
+
+                    <!-- Orbital Arc of Surrounding Circular Skill Badges -->
+                    <div class="skills-arc-track" id="skills-arc-track" aria-label="Skills Orbit Track"></div>
+
+                    <!-- Bottom Navigation Controls -->
+                    <div class="skills-controls">
+                        <button type="button" class="skills-nav-btn skills-nav-prev" id="skills-nav-prev" aria-label="Previous skill">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M19 12H5M12 19l-7-7 7-7"/>
+                            </svg>
+                        </button>
+
+                        <div class="skills-drag-hint" id="skills-drag-hint">
+                            <span>DRAG TO EXPLORE</span>
+                        </div>
+
+                        <button type="button" class="skills-nav-btn skills-nav-next" id="skills-nav-next" aria-label="Next skill">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Preserved semantic board for SEO and screen readers -->
+                <div class="skills-board visually-hidden" aria-label="All Skills List"></div>
 
                 <p class="skills-note">
                     <strong>Focus:</strong> turning data into meaningful insights and developing practical machine learning solutions to real-world problems.
