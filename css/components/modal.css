@@ -1,6 +1,6 @@
 /* Project Detail Modal */
 /* =============================================
-   PROJECT MODAL
+   PROJECT CASE STUDY MODAL
    ============================================= */
 #project-modal-overlay {
     position: fixed;
@@ -9,14 +9,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
-    background: rgba(2, 8, 30, 0.82);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    padding: clamp(12px, 3vw, 28px);
+    background: rgba(3, 4, 12, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s ease;
 }
 
 #project-modal-overlay.is-open {
@@ -27,147 +27,243 @@
 
 .project-modal {
     position: relative;
-    width: min(760px, 100%);
+    width: min(880px, 94vw);
     max-height: 90vh;
     overflow-y: auto;
     border-radius: 24px;
-    border: 1px solid rgba(45, 212, 191, 0.36);
-    background: linear-gradient(145deg, rgba(4, 25, 33, 0.98), rgba(2, 16, 22, 0.98));
-    box-shadow: 0 30px 80px rgba(1, 10, 15, 0.75), inset 0 1px 0 rgba(45, 212, 191, 0.15);
-    transform: translateY(24px) scale(0.97);
+    border: 1px solid rgba(139, 92, 246, 0.32);
+    background: linear-gradient(150deg, rgba(13, 13, 26, 0.98), rgba(7, 8, 16, 0.98));
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 50px rgba(139, 92, 246, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transform: translateY(28px) scale(0.96);
     transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
     scrollbar-width: thin;
-    scrollbar-color: rgba(45, 212, 191, 0.4) transparent;
+    scrollbar-color: rgba(139, 92, 246, 0.5) transparent;
 }
 
 #project-modal-overlay.is-open .project-modal {
     transform: translateY(0) scale(1);
 }
 
-.project-modal::-webkit-scrollbar { width: 5px; }
-.project-modal::-webkit-scrollbar-thumb { background: rgba(45, 212, 191, 0.4); border-radius: 999px; }
+.project-modal::-webkit-scrollbar { width: 6px; }
+.project-modal::-webkit-scrollbar-thumb { background: rgba(139, 92, 246, 0.45); border-radius: 999px; }
 
 .project-modal-close {
     position: sticky;
     top: 16px;
     margin: 16px 16px 0 auto;
     display: flex;
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
-    border: 1px solid rgba(45, 212, 191, 0.35);
-    background: rgba(8, 40, 50, 0.7);
-    color: #ccfbf1;
+    border: 1px solid rgba(139, 92, 246, 0.4);
+    background: rgba(18, 18, 36, 0.85);
+    color: #e2e8f0;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    z-index: 10;
-    transition: background 0.2s ease, transform 0.2s ease;
+    z-index: 20;
+    backdrop-filter: blur(8px);
+    transition: background 0.2s ease, transform 0.25s ease, border-color 0.2s ease;
 }
 
 .project-modal-close:hover {
-    background: rgba(45, 212, 191, 0.25);
+    background: rgba(139, 92, 246, 0.3);
+    border-color: rgba(34, 211, 238, 0.6);
+    color: #ffffff;
     transform: rotate(90deg) scale(1.1);
 }
 
 .project-modal-close svg {
-    width: 16px; height: 16px;
-    fill: none; stroke: currentColor;
-    stroke-width: 2.2; stroke-linecap: round;
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.2;
+    stroke-linecap: round;
 }
 
 .project-modal-img {
     width: 100%;
-    height: 240px;
+    max-height: 280px;
     object-fit: cover;
     display: block;
-    border-radius: 18px 18px 0 0;
-    margin-top: -52px;
+    border-radius: 20px 20px 0 0;
+    margin-top: -54px;
+    border-bottom: 1px solid rgba(139, 92, 246, 0.2);
 }
 
 .project-modal-body {
-    padding: 24px 28px 32px;
+    padding: 24px clamp(20px, 4vw, 36px) 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
 }
 
 .project-modal-cats {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 14px;
+    gap: 8px;
+    align-items: center;
 }
 
 .project-modal-cat {
-    padding: 3px 10px;
+    padding: 4px 12px;
     border-radius: 999px;
-    background: rgba(20, 184, 166, 0.16);
-    border: 1px solid rgba(45, 212, 191, 0.38);
-    color: #5eead4;
-    font-size: 0.7rem;
+    background: rgba(139, 92, 246, 0.12);
+    border: 1px solid rgba(139, 92, 246, 0.35);
+    color: #c4b5fd;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
 }
 
 .project-modal-title {
-    font-size: clamp(1.3rem, 2.8vw, 1.85rem);
+    font-family: var(--font-sans, sans-serif);
+    font-size: clamp(1.4rem, 2.8vw, 2.1rem);
     font-weight: 800;
-    letter-spacing: -0.3px;
-    line-height: 1.18;
-    color: #f0fdfa;
-    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: #ffffff;
+    margin: 0;
 }
 
+/* Modal Subheadings & Section Badges */
+.modal-section-heading {
+    font-family: var(--font-sans, sans-serif);
+    font-size: 0.96rem;
+    font-weight: 700;
+    color: #c4b5fd;
+    letter-spacing: -0.01em;
+    margin: 0 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.modal-section-heading::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #22d3ee;
+    box-shadow: 0 0 8px #22d3ee;
+    flex-shrink: 0;
+}
+
+.modal-section-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #a855f7;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+}
+
+.modal-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #22d3ee;
+    box-shadow: 0 0 8px #22d3ee;
+}
+
+/* Problem Slot */
+.project-modal-problem-slot .project-problem-box {
+    margin: 0;
+    padding: 12px 16px;
+    border-radius: 12px;
+    background: rgba(139, 92, 246, 0.1);
+    border-left: 3px solid #8b5cf6;
+}
+
+/* Metrics Slot */
+.project-modal-metrics-slot {
+    background: rgba(15, 16, 32, 0.6);
+    border: 1px solid rgba(139, 92, 246, 0.22);
+    border-radius: 16px;
+    padding: 16px;
+}
+
+.project-modal-metrics-slot .project-metrics-grid {
+    margin: 6px 0 0;
+}
+
+/* Pipeline Slot */
+.project-modal-pipeline-slot .project-pipeline {
+    margin: 0;
+    border-color: rgba(139, 92, 246, 0.3);
+    background: rgba(12, 13, 26, 0.85);
+}
+
+/* Overview Description */
 .project-modal-desc {
-    font-size: 1rem;
+    font-family: var(--font-sans, sans-serif);
+    font-size: clamp(0.92rem, 1.1vw, 1.02rem);
     line-height: 1.68;
-    color: #94a3b8;
-    margin-bottom: 20px;
+    color: #cbd5e1;
+    margin: 0;
 }
 
+/* Highlights List */
 .project-modal-highlights {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 7px;
-    margin-bottom: 22px;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
 }
 
 .project-modal-highlights li {
     display: flex;
     gap: 10px;
+    font-family: var(--font-sans, sans-serif);
     font-size: 0.9rem;
     line-height: 1.55;
-    color: #ccfbf1;
+    color: #e2e8f0;
 }
 
 .project-modal-highlights li::before {
     content: "▹";
-    color: #06b6d4;
+    color: #22d3ee;
+    font-weight: 700;
     flex-shrink: 0;
     margin-top: 1px;
 }
 
+/* Tech Tags */
 .project-modal-tech {
     display: flex;
     flex-wrap: wrap;
-    gap: 7px;
-    margin-bottom: 24px;
+    gap: 8px;
 }
 
 .project-modal-tech-tag {
     padding: 5px 12px;
     border-radius: 8px;
-    background: rgba(13, 148, 136, 0.18);
-    border: 1px solid rgba(45, 212, 191, 0.36);
-    color: #5eead4;
-    font-size: 0.8rem;
+    background: rgba(34, 211, 238, 0.08);
+    border: 1px solid rgba(34, 211, 238, 0.3);
+    color: #67e8f9;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.78rem;
     font-weight: 600;
+    letter-spacing: 0.02em;
 }
 
+/* Modal Actions */
 .project-modal-actions {
     display: flex;
     gap: 12px;
     flex-wrap: wrap;
+    align-items: center;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .project-modal-btn {
@@ -175,50 +271,109 @@
     align-items: center;
     gap: 8px;
     padding: 10px 20px;
-    border-radius: 100px;
+    border-radius: 12px;
+    font-family: var(--font-sans, sans-serif);
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     text-decoration: none;
-    transition: transform 0.22s ease, box-shadow 0.22s ease;
+    transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
     cursor: pointer;
-    border: none;
+    border: 1px solid transparent;
 }
 
 .project-modal-btn-primary {
-    background: linear-gradient(120deg, #06b6d4, #0d9488);
-    color: #011216;
-    box-shadow: 0 6px 20px rgba(6, 182, 212, 0.4);
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 16px rgba(139, 92, 246, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .project-modal-btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 28px rgba(6, 182, 212, 0.58);
+    box-shadow: 0 8px 24px rgba(139, 92, 246, 0.6);
+    color: #ffffff;
 }
 
 .project-modal-btn-secondary {
-    background: rgba(8, 48, 58, 0.6);
-    color: #ccfbf1;
-    border: 1px solid rgba(45, 212, 191, 0.38);
+    background: rgba(255, 255, 255, 0.06);
+    color: #e2e8f0;
+    border-color: rgba(255, 255, 255, 0.16);
 }
 
 .project-modal-btn-secondary:hover {
     transform: translateY(-2px);
-    background: rgba(13, 74, 90, 0.7);
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(139, 92, 246, 0.5);
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   Light Mode Support
+   ========================================================================== */
+body.light-mode #project-modal-overlay {
+    background: rgba(15, 23, 42, 0.55);
 }
 
 body.light-mode .project-modal {
-    background: linear-gradient(145deg, rgba(240, 253, 250, 0.99), rgba(204, 251, 241, 0.99));
-    border-color: rgba(20, 184, 166, 0.35);
-    box-shadow: 0 30px 80px rgba(13, 148, 136, 0.18);
+    background: linear-gradient(150deg, #ffffff, #f8fafc);
+    border-color: rgba(139, 92, 246, 0.3);
+    box-shadow: 0 30px 80px rgba(15, 23, 42, 0.18), 0 0 30px rgba(139, 92, 246, 0.1);
 }
 
-body.light-mode .project-modal-title { color: #042f2e; }
-body.light-mode .project-modal-desc { color: #115e59; }
-body.light-mode .project-modal-highlights li { color: #134e4a; }
-body.light-mode .project-modal-highlights li::before { color: #0d9488; }
-body.light-mode .project-modal-tech-tag { color: #0f766e; background: rgba(13, 148, 136, 0.1); border-color: rgba(13, 148, 136, 0.28); }
-body.light-mode .project-modal-cat { color: #0f766e; background: rgba(13, 148, 136, 0.1); border-color: rgba(13, 148, 136, 0.28); }
-body.light-mode .project-modal-close { background: rgba(204, 251, 241, 0.85); color: #042f2e; border-color: rgba(45, 212, 191, 0.42); }
-body.light-mode .project-modal-btn-secondary { background: rgba(204, 251, 241, 0.8); color: #0f766e; border-color: rgba(13, 148, 136, 0.35); }
-body.light-mode #project-modal-overlay { background: rgba(4, 47, 46, 0.45); }
+body.light-mode .project-modal-close {
+    background: #f1f5f9;
+    border-color: rgba(139, 92, 246, 0.3);
+    color: #1e293b;
+}
 
+body.light-mode .project-modal-close:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+
+body.light-mode .project-modal-title {
+    color: #0f172a;
+}
+
+body.light-mode .project-modal-desc {
+    color: #334155;
+}
+
+body.light-mode .modal-section-heading {
+    color: #6d28d9;
+}
+
+body.light-mode .project-modal-metrics-slot {
+    background: #f8fafc;
+    border-color: rgba(139, 92, 246, 0.2);
+}
+
+body.light-mode .project-modal-problem-slot .project-problem-box {
+    background: rgba(139, 92, 246, 0.08);
+}
+
+body.light-mode .project-modal-highlights li {
+    color: #1e293b;
+}
+
+body.light-mode .project-modal-tech-tag {
+    background: rgba(34, 211, 238, 0.12);
+    border-color: rgba(34, 211, 238, 0.4);
+    color: #0891b2;
+}
+
+body.light-mode .project-modal-cat {
+    background: rgba(139, 92, 246, 0.1);
+    border-color: rgba(139, 92, 246, 0.3);
+    color: #6d28d9;
+}
+
+body.light-mode .project-modal-btn-secondary {
+    background: #f1f5f9;
+    color: #1e293b;
+    border-color: #cbd5e1;
+}
+
+body.light-mode .project-modal-btn-secondary:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+}
