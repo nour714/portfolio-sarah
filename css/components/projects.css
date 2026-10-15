@@ -19,23 +19,8 @@
 
     position: relative;
     padding: clamp(40px, 8vw, 100px) clamp(16px, 5vw, 60px) clamp(80px, 12vw, 140px);
-    background: radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.08), transparent 45%),
-                radial-gradient(circle at 80% 60%, rgba(34, 211, 238, 0.05), transparent 40%),
-                #070710;
+    background: transparent;
     overflow: clip;
-}
-
-/* Subtle Noise / Mesh Grid Texture Overlay */
-.projects::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-    background-size: 32px 32px;
-    mask-image: radial-gradient(ellipse at 50% 50%, #000 40%, transparent 80%);
-    -webkit-mask-image: radial-gradient(ellipse at 50% 50%, #000 40%, transparent 80%);
-    pointer-events: none;
-    z-index: 0;
 }
 
 /* Fixed Scroll Progress Bar (Top of Viewport) */
@@ -116,15 +101,7 @@
 }
 
 .projects .section-kicker {
-    font-family: var(--font-mono);
-    font-size: clamp(0.78rem, 1.2vw, 0.88rem);
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--projects-accent-cyan);
-    text-shadow: 0 0 14px rgba(34, 211, 238, 0.4);
-    text-align: center;
-    margin-bottom: 8px;
+    display: none !important;
 }
 
 .projects-headline {
@@ -715,12 +692,13 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-    padding: 8px 16px;
+    gap: 8px;
+    padding: 9px 20px;
     border-radius: 10px;
     font-family: var(--font-sans);
-    font-size: 0.82rem;
+    font-size: 0.85rem;
     font-weight: 600;
+    line-height: 1.2;
     text-decoration: none;
     cursor: pointer;
     transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
@@ -769,9 +747,12 @@
 
 .case-study-arrow {
     display: inline-block;
-    transition: transform 0.24s ease;
+    font-size: 0.95rem;
+    line-height: 1;
+    transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.project-btn-primary:hover .case-study-arrow,
 .project-btn-ghost:hover .case-study-arrow {
     transform: translateX(4px);
 }
