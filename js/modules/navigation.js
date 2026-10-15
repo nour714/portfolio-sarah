@@ -65,11 +65,6 @@ export const initMenu = () => {
 
         const activeLink = sectionLinks.find((link) => link.getAttribute("href") === `#${currentSection.id}`);
         if (activeLink) setActiveLink(activeLink);
-
-        const ctaBtn = document.querySelector(".nav-cta-btn");
-        if (ctaBtn) {
-            ctaBtn.classList.toggle("is-active", currentSection?.id === "contact");
-        }
     };
 
     const scheduleActiveUpdate = () => {
@@ -85,6 +80,36 @@ export const initMenu = () => {
         menuToggle.setAttribute("aria-expanded", String(!expanded));
         navList.classList.toggle("open", !expanded);
     });
+
+    // Desktop Capsule Expand on Hover / Focus
+    const capsule = document.querySelector(".nav-center-capsule");
+    if (capsule) {
+        let collapseTimer = null;
+
+        const expandCapsule = () => {
+            if (collapseTimer) {
+                clearTimeout(collapseTimer);
+                collapseTimer = null;
+            }
+            capsule.classList.add("is-expanded");
+        };
+
+        const collapseCapsule = () => {
+            if (collapseTimer) clearTimeout(collapseTimer);
+            collapseTimer = setTimeout(() => {
+                capsule.classList.remove("is-expanded");
+            }, 240);
+        };
+
+        capsule.addEventListener("mouseenter", expandCapsule);
+        capsule.addEventListener("mouseleave", collapseCapsule);
+        capsule.addEventListener("focusin", expandCapsule);
+        capsule.addEventListener("focusout", (event) => {
+            if (!capsule.contains(event.relatedTarget)) {
+                collapseCapsule();
+            }
+        });
+    }
 
     navLinks.forEach((link) => {
         link.addEventListener("click", () => {
