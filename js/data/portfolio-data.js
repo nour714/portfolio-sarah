@@ -6,19 +6,21 @@
  * without touching any HTML!
  */
 
+import { projectsSection, projects } from "./projects.js";
+import { certificatesSection, certificates } from "./certificates.js";
+
 export const portfolioData = {
     hero: {
-        name: "Allaa",
+        name: "Sarah",
+        fullName: "Sarah Nabil",
         roles: [
-            "AI Engineer",
-            "Computer Vision Engineer",
-            "Deep Learning Specialist",
-            "Data Science Engineer"
+            "Machine Learning",
+            "AI Engineer"
         ],
-        copy: "Dynamic AI and Data Science Engineer with 3 years of hands-on experience in computer vision, deep learning, and advanced analytics. I build intelligent systems that turn complex data into actionable outcomes for healthcare, surveillance, and automation use cases.",
+        copy: "Machine Learning & AI specialist with hands-on expertise in data exploration, preprocessing, classification modeling, and predictive analytics.",
         avatar: {
             src: "images/avatar-placeholder.svg",
-            alt: "Allaa Saboukh Avatar"
+            alt: "Sarah Nabil Avatar"
         },
         primary: {
             text: "View Resume",
@@ -31,367 +33,196 @@ export const portfolioData = {
     },
 
     social: {
-        github: "https://github.com/Alaa-Saboukh02",
-        linkedin: "https://www.linkedin.com/in/allaa-saboukh?utm_source=share_via&utm_content=profile&utm_medium=member_android",
-        whatsapp: "https://wa.me/201019741580",
-        email: "allaa54sabboukh@gmail.com"
+        github: "https://github.com/sarahnabil",
+        linkedin: "https://www.linkedin.com/in/sarahnabil",
+        whatsapp: "https://wa.me/",
+        email: "sarahnabil.ai@gmail.com"
     },
 
     about: {
-        status: "Open For Impactful AI Work",
-        location: "Egypt · Saudi Arabia · Remote",
-        title: "I transform visual and medical data into high-stakes AI solutions.",
-        copy: "I am Allaa Saboukh, a Bio AI Engineer and Data Specialist with 3+ years of experience delivering intelligent systems across the MENA region. My expertise, fortified by specialized training at the National Telecommunication Institute (NTI) through the DEYP initiative, spans Computer Vision, Medical AI, and Robotics. I build production-ready pipelines—from healthcare analytics to real-time industrial automation—bridging the gap between deep learning research and reliable deployments.",
-        signature: "Stack Signature: PyTorch, TensorFlow, YOLO, OpenVINO, FastAPI, Arduino, Docker.",
-        metrics: [
-            { value: "3+", label: "Years Experience" },
-            { value: "20+", label: "Production AI Builds" },
-            { value: "Bio AI + Edge", label: "Core Specialization" }
-        ],
+        status: "Open For ML & Data Roles",
+        location: "Egypt · Remote",
+        title: "I turn data into meaningful insights and practical machine learning solutions.",
+        copy: "I am Sarah Nabil, building my expertise in Artificial Intelligence and Machine Learning with hands-on experience in data exploration, data preprocessing, classification models, and model evaluation. Through my Machine Learning Summer Training at the National Telecommunication Institute (NTI) in collaboration with ITIDA, I worked on an end-to-end e-commerce purchase intent prediction project. My work involved preparing data, handling class imbalance, comparing machine learning models, evaluating performance, and analyzing feature importance. I am passionate about turning data into meaningful insights and developing practical machine learning solutions to real-world problems.",
+        signature: "",
+        metrics: [],
         image: {
             srcWebp: "images/about-me-polished.webp",
             srcPng: "images/about-me-polished.png",
-            alt: "Allaa Saboukh - Bio AI Engineer & Data Specialist",
-            badgeText: "Bio AI & Robotics"
+            alt: "Sarah Nabil - Machine Learning & AI Specialist",
+            badgeText: "ML & Data Analysis"
         }
     },
 
     skills: {
-        title: "Technical Skill Architecture",
-        copy: "A structured view of my production stack across AI engineering, computer vision, deployment, and cloud-ready delivery.",
+        title: "My Skills",
+        copy: "",
         metrics: {
-            domains: "8",
-            tools: "34+",
-            core: "AI + CV",
-            cloud: "AWS / GCP"
+            domains: "",
+            tools: "",
+            core: "",
+            cloud: ""
         },
+        items: [
+            { name: "Python", icon: "python", level: "EXPERT", progress: 96, description: "Core language for ML development, algorithms, data processing pipelines, and model evaluation.", color: "#38bdf8", haloColor: "rgba(56, 189, 248, 0.45)", barColor: "#38bdf8", label: "PYTHON" },
+            { name: "Machine Learning", icon: "machine learning", level: "EXPERT", progress: 95, description: "End-to-end predictive modeling, supervised and unsupervised learning, and classification pipelines.", color: "#a855f7", haloColor: "rgba(168, 85, 247, 0.45)", barColor: "#c084fc", label: "ML" },
+            { name: "Scikit-Learn", icon: "scikit-learn", level: "EXPERT", progress: 94, description: "Robust model architectures, transformers, hyperparameter tuning via GridSearchCV, and pipelines.", color: "#f97316", haloColor: "rgba(249, 115, 22, 0.45)", barColor: "#fb923c", label: "SKLEARN" },
+            { name: "XGBoost", icon: "xgboost", level: "EXPERT", progress: 94, description: "High-performance gradient boosting on tabular data with custom objective and regularization tuning.", color: "#22c55e", haloColor: "rgba(34, 197, 94, 0.45)", barColor: "#4ade80", label: "XGBOOST" },
+            { name: "Random Forest", icon: "random forest", level: "ADVANCED", progress: 92, description: "Ensemble learning with bagging, decision tree ensembles, and feature importance diagnostics.", color: "#10b981", haloColor: "rgba(16, 185, 129, 0.45)", barColor: "#34d399", label: "FOREST" },
+            { name: "Pandas", icon: "pandas", level: "EXPERT", progress: 95, description: "High-speed tabular manipulation, aggregations, data reshaping, and missing-value handling.", color: "#e11d48", haloColor: "rgba(225, 29, 72, 0.45)", barColor: "#f43f5e", label: "PANDAS" },
+            { name: "NumPy", icon: "numpy", level: "EXPERT", progress: 93, description: "Vectorized numerical computing, matrix linear algebra, and high-performance array transformations.", color: "#4f46e5", haloColor: "rgba(79, 70, 229, 0.45)", barColor: "#818cf8", label: "NUMPY" },
+            { name: "SQL", icon: "sql", level: "ADVANCED", progress: 91, description: "Writing relational queries, aggregations, window functions, and structured database extraction.", color: "#0ea5e9", haloColor: "rgba(14, 165, 233, 0.45)", barColor: "#38bdf8", label: "SQL" },
+            { name: "Data Preprocessing", icon: "data preprocessing", level: "EXPERT", progress: 96, description: "Automated data cleaning, outlier treatment, feature scaling, and categorical encoding.", color: "#06b6d4", haloColor: "rgba(6, 182, 212, 0.45)", barColor: "#22d3ee", label: "DATA PREP" },
+            { name: "Feature Engineering", icon: "feature engineering", level: "EXPERT", progress: 94, description: "Creating high-impact domain features, interaction terms, and dimensionality reduction strategies.", color: "#ec4899", haloColor: "rgba(236, 72, 153, 0.45)", barColor: "#f472b6", label: "FEATURE ENG" },
+            { name: "SMOTE", icon: "smote", level: "SPECIALIZED", progress: 90, description: "Tackling severe class imbalance using synthetic minority over-sampling and hybrid techniques.", color: "#14b8a6", haloColor: "rgba(20, 184, 166, 0.45)", barColor: "#2dd4bf", label: "SMOTE" },
+            { name: "Model Evaluation", icon: "model evaluation", level: "EXPERT", progress: 95, description: "Comprehensive metrics analysis with ROC-AUC curves, Precision-Recall, and confusion matrices.", color: "#fb7185", haloColor: "rgba(251, 113, 133, 0.45)", barColor: "#f43f5e", label: "EVALUATION" },
+            { name: "Cross-Validation", icon: "cross-validation", level: "EXPERT", progress: 93, description: "Preventing data leakage and overfitting using Stratified K-Fold and validation schemes.", color: "#818cf8", haloColor: "rgba(129, 140, 248, 0.45)", barColor: "#a5b4fc", label: "CV" },
+            { name: "Matplotlib", icon: "devicon-matplotlib-plain colored", level: "ADVANCED", progress: 91, description: "Crafting publication-quality statistical charts, diagnostic plots, and distribution graphs.", color: "#38bdf8", haloColor: "rgba(56, 189, 248, 0.45)", barColor: "#38bdf8", label: "MATPLOTLIB" },
+            { name: "Seaborn", icon: "seaborn", level: "ADVANCED", progress: 91, description: "Multi-variate statistical visualization, correlation matrices, pairplots, and distribution curves.", color: "#0284c7", haloColor: "rgba(2, 132, 199, 0.45)", barColor: "#38bdf8", label: "SEABORN" },
+            { name: "EDA", icon: "exploratory eda", level: "EXPERT", progress: 95, description: "Uncovering statistical patterns, anomalies, business insights, and hypothesis validations.", color: "#f59e0b", haloColor: "rgba(245, 158, 11, 0.45)", barColor: "#fbbf24", label: "EDA" },
+            { name: "Algorithms", icon: "oop & algorithms", level: "ADVANCED", progress: 90, description: "Clean object-oriented architecture, modular code design, and efficient data structures.", color: "#3b82f6", haloColor: "rgba(59, 130, 246, 0.45)", barColor: "#60a5fa", label: "ALGORITHMS" },
+            { name: "Git", icon: "git", level: "ADVANCED", progress: 88, description: "Collaborative Git workflows, reproducible experiments, and clean repository management.", color: "#f05032", haloColor: "rgba(240, 80, 50, 0.45)", barColor: "#fb7185", label: "GIT" }
+        ],
         groups: [
             {
-                title: "Programming Languages",
+                title: "Programming & Core",
                 label: "Core",
                 items: [
                     { name: "Python", icon: "devicon-python-plain colored" },
-                    { name: "C/C++", icon: "devicon-cplusplus-plain colored" },
-                    { name: "JavaScript", icon: "devicon-javascript-plain colored" }
+                    { name: "SQL", icon: "fallback", tag: "SQL" },
+                    { name: "OOP & Algorithms", icon: "fallback", tag: "OOP" }
                 ]
             },
             {
-                title: "Deep Learning Frameworks",
+                title: "Data Manipulation & EDA",
                 label: "Advanced",
                 items: [
-                    { name: "PyTorch", icon: "devicon-pytorch-original colored" },
-                    { name: "TensorFlow", icon: "devicon-tensorflow-original colored" },
-                    { name: "Keras", icon: "devicon-keras-original colored" },
-                    { name: "FastAI", icon: "fallback", tag: "FA" }
-                ]
-            },
-            {
-                title: "Computer Vision",
-                label: "Advanced",
-                items: [
-                    { name: "OpenCV", icon: "devicon-opencv-plain colored" },
-                    { name: "YOLOv5/v8", icon: "fallback", tag: "YO" },
-                    { name: "MediaPipe", icon: "fallback", tag: "MP" },
-                    { name: "Detectron2", icon: "fallback", tag: "D2" }
-                ]
-            },
-            {
-                title: "Data Science & ML",
-                label: "Strong",
-                items: [
-                    { name: "Scikit-learn", icon: "devicon-scikitlearn-plain colored" },
-                    { name: "XGBoost", icon: "fallback", tag: "XG" },
                     { name: "Pandas", icon: "devicon-pandas-original colored" },
                     { name: "NumPy", icon: "devicon-numpy-original colored" },
-                    { name: "Matplotlib", icon: "fallback", tag: "MP" },
-                    { name: "Seaborn", icon: "fallback", tag: "SB" }
-                ]
-            },
-            {
-                title: "Deployment & APIs",
-                label: "Production",
-                items: [
-                    { name: "Flask", icon: "devicon-flask-original colored" },
-                    { name: "FastAPI", icon: "devicon-fastapi-plain colored" },
-                    { name: "Streamlit", icon: "devicon-streamlit-plain colored" },
-                    { name: "Docker", icon: "devicon-docker-plain colored" }
-                ]
-            },
-            {
-                title: "Databases",
-                label: "Data Layer",
-                items: [
-                    { name: "SQL", icon: "fallback", tag: "SQL" },
-                    { name: "MongoDB", icon: "devicon-mongodb-plain colored" },
-                    { name: "Microsoft SQL Server", icon: "devicon-microsoftsqlserver-plain colored" }
-                ]
-            },
-            {
-                title: "Tools & Platforms",
-                label: "Workflow",
-                items: [
-                    { name: "Google Colab", icon: "devicon-googlecolab-plain colored" },
-                    { name: "Jupyter", icon: "devicon-jupyter-plain colored" },
-                    { name: "Git", icon: "devicon-git-plain colored" },
-                    { name: "Linux", icon: "devicon-linux-plain colored" },
-                    { name: "AWS", icon: "devicon-amazonwebservices-plain-wordmark colored" },
-                    { name: "Google Cloud", icon: "devicon-googlecloud-plain colored" }
-                ]
-            },
-            {
-                title: "Others",
-                label: "Optimization",
-                items: [
-                    { name: "Model Optimization", icon: "fallback", tag: "MO" },
-                    { name: "Edge Deployment", icon: "fallback", tag: "ED" },
                     { name: "Data Preprocessing", icon: "fallback", tag: "DP" },
                     { name: "Feature Engineering", icon: "fallback", tag: "FE" }
+                ]
+            },
+            {
+                title: "Machine Learning & Modeling",
+                label: "Advanced",
+                items: [
+                    { name: "Scikit-learn", icon: "devicon-scikitlearn-plain colored" },
+                    { name: "Classification Models", icon: "fallback", tag: "CL" },
+                    { name: "Regression Models", icon: "fallback", tag: "RG" },
+                    { name: "XGBoost", icon: "fallback", tag: "XG" },
+                    { name: "Random Forest", icon: "fallback", tag: "RF" }
+                ]
+            },
+            {
+                title: "Imbalanced Data & Evaluation",
+                label: "Specialized",
+                items: [
+                    { name: "SMOTE & Resampling", icon: "fallback", tag: "SM" },
+                    { name: "ROC-AUC & F1-Score", icon: "fallback", tag: "EV" },
+                    { name: "Feature Importance", icon: "fallback", tag: "FI" },
+                    { name: "Cross-Validation", icon: "fallback", tag: "CV" }
+                ]
+            },
+            {
+                title: "Data Visualization & Reporting",
+                label: "Insights",
+                items: [
+                    { name: "Matplotlib", icon: "fallback", tag: "MP" },
+                    { name: "Seaborn", icon: "fallback", tag: "SB" },
+                    { name: "Exploratory Dashboards", icon: "fallback", tag: "ED" }
+                ]
+            },
+            {
+                title: "Tools & Environments",
+                label: "Workflow",
+                items: [
+                    { name: "Jupyter", icon: "devicon-jupyter-plain colored" },
+                    { name: "Google Colab", icon: "devicon-googlecolab-plain colored" },
+                    { name: "Git", icon: "devicon-git-plain colored" },
+                    { name: "VS Code", icon: "devicon-vscode-plain colored" }
                 ]
             }
         ],
         noteLabel: "Focus:",
-        noteText: "building efficient end-to-end AI pipelines with strong model quality, deployment readiness, and real-world reliability."
+        noteText: "Building robust data-driven ML pipelines with high predictive power and rigorous model evaluation."
     },
 
-    projectsSection: {
-        title: "Featured Projects",
-        copy: "Production-focused projects spanning computer vision, intelligent automation, and analytics delivery.",
-        categories: [
-            { filter: "all", label: "All", active: true },
-            { filter: "ai", label: "AI" },
-            { filter: "web", label: "Web" },
-            { filter: "automation", label: "Automation" }
-        ]
-    },
+    projectsSection,
+    projects,
 
-    projects: [
-        {
-            id: "project-1",
-            title: "Sugary AI: Diabetes Analysis",
-            categories: ["ai"],
-            meta: ["HealthTech", "Analytics", "Prediction"],
-            description: "An end-to-end AI system for analyzing glucose levels and providing personalized health insights. Built to improve diabetic patient care.",
-            highlights: [
-                "Developed accurate prediction models using clinical datasets.",
-                "Integrated intuitive visualization for health trends and monitoring."
-            ],
-            tech: ["Python", "TensorFlow", "Scikit-Learn"],
-            image: {
-                src: "images/sugary_project.png",
-                alt: "Sugary AI: Diabetes Analysis"
-            },
-            githubUrl: "https://github.com/Alaa-Saboukh02/Sugary_project",
-            shareUrl: "https://github.com/Alaa-Saboukh02/Sugary_project",
-            shareTitle: "Sugary AI: Diabetes Analysis"
-        },
-        {
-            id: "project-2",
-            title: "AutoVision: Car Wash Detection",
-            categories: ["ai", "automation"],
-            meta: ["Computer Vision", "Object Detection", "Tracking"],
-            description: "Real-time computer vision model for identifying cars entering/ exiting car wash stations and tracking their status.",
-            highlights: [
-                "Implemented YOLO-based detection with 95% accuracy.",
-                "Optimized for real-time inference on edge devices for surveillance."
-            ],
-            tech: ["YOLOv8", "OpenCV", "PyTorch"],
-            image: {
-                src: "images/car_wash.png",
-                alt: "AutoVision: Car Wash Detection"
-            },
-            githubUrl: "https://github.com/Alaa-Saboukh02/car_waching-models",
-            shareUrl: "https://github.com/Alaa-Saboukh02/car_waching-models",
-            shareTitle: "AutoVision: Car Wash Detection"
-        },
-        {
-            id: "project-3",
-            title: "BikeStore Data Intelligence",
-            categories: ["web", "automation"],
-            meta: ["Data Analysis", "SQL", "Market Trends"],
-            description: "Analysis pipeline for bike retail, uncovering sales patterns and customer behavior through SQL and Python.",
-            highlights: [
-                "Transformed raw SQL data into actionable business intelligence.",
-                "Created high-impact visualizations for store performance tracking."
-            ],
-            tech: ["SQL", "Pandas", "Matplotlib"],
-            image: {
-                src: "images/bike_store.png",
-                alt: "BikeStore Data Intelligence"
-            },
-            githubUrl: "https://github.com/Alaa-Saboukh02/Bike_store.python",
-            shareUrl: "https://github.com/Alaa-Saboukh02/Bike_store.python",
-            shareTitle: "BikeStore Data Intelligence"
-        },
-        {
-            id: "project-4",
-            title: "InvoiceSense AI: NLP Classifier",
-            categories: ["ai"],
-            meta: ["NLP", "Transformers", "FinTech"],
-            description: "Deep learning tool designed to automatically categorize restaurant and store invoices using advanced NLP.",
-            highlights: [
-                "Leveraged Transformer models for high-precision text classification.",
-                "Automated document sorting workflows for efficient finance management."
-            ],
-            tech: ["HuggingFace", "Python", "Deep Learning"],
-            image: {
-                src: "images/invoice_classifier.png",
-                alt: "InvoiceSense AI: NLP Classifier"
-            },
-            githubUrl: "https://github.com/Alaa-Saboukh02/AutoModelForSequenceClassification",
-            shareUrl: "https://github.com/Alaa-Saboukh02/AutoModelForSequenceClassification",
-            shareTitle: "InvoiceSense AI: NLP Classifier"
-        }
-    ],
-
-    certificatesSection: {
-        kicker: "Certifications",
-        title: "Verified Certifications & Credentials",
-        copy: "Accredited training programs and professional certifications spanning technical disciplines, business ideation, and leadership skills."
-    },
-
-    certificates: [
-        {
-            id: "cert-1",
-            title: "Meta UX Design",
-            issuer: "Meta · Professional Certification",
-            category: "technical",
-            date: "2026",
-            image: "images/certificates/cert-meta.png",
-            badge: "Meta Certified",
-            description: "Principles of UX/UI Design, interactive prototyping, user research methodologies, and design systems certified by Meta & Coursera."
-        },
-        {
-            id: "cert-2",
-            title: "Digital Marketing",
-            issuer: "Creativa Training Certificate",
-            category: "technical",
-            date: "2026",
-            image: "images/certificates/cert-creativa.png",
-            badge: "Creativa Hub",
-            description: "Bootcamp certificate in Digital Marketing, client acquisition strategies, data-driven campaigns, and marketing analytics at Creativa Hub Damanhour."
-        },
-        {
-            id: "cert-3",
-            title: "Entrepreneurship & Soft Skills",
-            issuer: "Microsoft & Ministry of Youth Training",
-            category: "technical",
-            date: "2025 - 2026",
-            image: "images/certificates/cert-microsoft.png",
-            badge: "Microsoft Certified",
-            description: "Entrepreneurship ideation, business modeling, design thinking, and collaborative workforce skills certified by Microsoft and the Ministry of Youth & Sports."
-        },
-        {
-            id: "cert-4",
-            title: "Effective Communication Skills",
-            issuer: "Damanhour University · مهارات التواصل الفعال",
-            category: "soft-skills",
-            date: "2025",
-            image: "images/certificates/cert-communication.png",
-            badge: "Official Certificate",
-            description: "Specialized training workshop on effective communication, active listening, negotiation techniques, and public speaking at Damanhour University."
-        },
-        {
-            id: "cert-5",
-            title: "Time Management",
-            issuer: "Damanhour University · فن إدارة الوقت",
-            category: "soft-skills",
-            date: "2025",
-            image: "images/certificates/cert-time-mgmt.png",
-            badge: "Official Certificate",
-            description: "Practical strategies for productivity, priority matrix management, task delegation, and efficient workflow execution."
-        },
-        {
-            id: "cert-6",
-            title: "Teamwork Skills",
-            issuer: "Damanhour University · مهارات العمل ضمن فريق",
-            category: "soft-skills",
-            date: "2025",
-            image: "images/certificates/cert-teamwork.png",
-            badge: "Official Certificate",
-            description: "Interactive training on high-performance team dynamics, collaborative problem solving, leadership, and emotional intelligence."
-        }
-    ],
+    certificatesSection,
+    certificates,
 
     experience: {
-        title: "Professional Experience",
-        copy: "3+ years delivering AI systems from data to deployment across computer vision, automation, and analytics.",
+        title: "Professional Experience & Training",
+        copy: "Applied machine learning training and practical data engineering projects focused on real-world business impact.",
         metrics: [
             {
-                label: "Delivery",
-                value: "20+ Builds",
-                description: "Production-ready AI pipelines shipped."
+                label: "Track",
+                value: "NTI × ITIDA",
+                description: "Machine Learning Summer Training graduate."
             },
             {
                 label: "Focus",
-                value: "CV + AI",
-                description: "Detection, classification, tracking, OCR."
+                value: "ML & Analytics",
+                description: "Data exploration, preprocessing, and classification."
             },
             {
-                label: "Deployment",
-                value: "Edge + Cloud",
-                description: "FastAPI, Docker, and optimized inference."
+                label: "Delivery",
+                value: "End-to-End",
+                description: "Imbalance mitigation, modeling, and feature importance."
             }
         ],
         items: [
             {
-                role: "Bio AI & Machine Learning Engineer",
-                org: "Healthcare · BioTech Solutions",
-                period: "Core Specialty",
-                summary: "Lead developer of intelligent systems for medical analysis, including the specialized \"Sugary App\" for diabetes data intelligence.",
+                role: "Machine Learning Trainee",
+                org: "National Telecommunication Institute (NTI) × ITIDA",
+                period: "Summer Training",
+                summary: "Completed intensive Machine Learning Summer Training, developing an end-to-end e-commerce purchase intent prediction project.",
                 points: [
-                    "Architected deep learning pipelines for high-precision medical imaging and biostatistics.",
-                    "Engineered predictive models for healthcare monitoring with a focus on real-world reliability.",
-                    "Collaborated on regional AI initiatives across Egypt and Saudi Arabia."
+                    "Engineered an end-to-end predictive pipeline analyzing user session behavior to forecast online purchase intent.",
+                    "Addressed severe class imbalance using advanced resampling and class weighting techniques.",
+                    "Benchmarked multiple machine learning classification algorithms, evaluating metrics including ROC-AUC, F1-Score, and precision-recall trade-offs.",
+                    "Extracted business insights through feature importance analysis to pinpoint decisive drivers of consumer purchase behavior."
                 ],
-                tags: ["Deep Learning", "BioTech", "Medical AI"]
+                tags: ["Machine Learning", "NTI × ITIDA", "Classification Models", "Class Imbalance"]
             },
             {
-                role: "Data Intelligence Specialist",
-                org: "NTI · Digital Egypt Pioneers",
-                period: "Professional Track",
-                summary: "Certified Specialist through the National Telecommunication Institute, focusing on advanced analytics and data-driven strategy.",
+                role: "Data Analyst & ML Practitioner",
+                org: "Applied Machine Learning Projects",
+                period: "Specialized Practice",
+                summary: "Designing predictive models and data exploration workflows for structured tabular datasets.",
                 points: [
-                    "Built automated data mining and visualization layers for complex industrial datasets.",
-                    "Delivered KPI dashboards that translate model signals into strategic business outcomes.",
-                    "Optimized data pipelines for large-scale analytics and intelligence reporting."
+                    "Conducted thorough Exploratory Data Analysis (EDA) uncovering actionable trends and correlations.",
+                    "Standardized robust preprocessing pipelines for scaling, categorical encoding, and outlier mitigation.",
+                    "Implemented automated evaluation reporting with clear visualization of performance metrics and confusion matrices."
                 ],
-                tags: ["Data Analysis", "NTI Certified", "Business Intelligence"]
-            },
-            {
-                role: "Robotics & IoT Developer",
-                org: "Edge AI · Hardware Integration",
-                period: "Innovation Track",
-                summary: "Integrating AI models with embedded systems to build physical automation and smart robotic platforms.",
-                points: [
-                    "Designed Arduino-based control systems integrated with real-time vision algorithms.",
-                    "Developed Edge AI deployments for surveillance and automated industrial workflows.",
-                    "Spearheaded R&D projects bridging the gap between ML software and physical hardware."
-                ],
-                tags: ["Robotics", "Arduino", "Edge Computing"]
+                tags: ["Python", "Pandas", "Scikit-Learn", "EDA", "Data Preprocessing"]
             }
         ]
     },
 
     contact: {
-        title: "Contact & Collaboration",
-        copy: "Have a project or opportunity? Send a direct message below.",
+        title: "Contact Me",
+        copy: "Have an opportunity or project in Machine Learning or Data Analysis? Send a direct message below.",
         primary: {
-            text: "allaa54sabboukh@gmail.com",
-            url: "mailto:allaa54sabboukh@gmail.com"
+            text: "sarahnabil.ai@gmail.com",
+            url: "mailto:sarahnabil.ai@gmail.com"
         },
         secondary: {
             text: "WhatsApp Message",
-            url: "https://wa.me/201019741580"
+            url: "https://wa.me/"
         },
-        location: "Egypt · KSA · Remote",
-        linkedinLabel: "linkedin.com/in/allaa-saboukh",
-        githubLabel: "github.com/Alaa-Saboukh02",
+        location: "Egypt · Remote",
+        linkedinLabel: "linkedin.com/in/sarahnabil",
+        githubLabel: "github.com/sarahnabil",
         panelTitle: "Direct Channels",
-        panelCopy: "Prefer email or phone? Reach me anytime through these verified channels.",
+        panelCopy: "Reach me anytime via Email or LinkedIn for collaborations and inquiries.",
         availabilityTitle: "Current Availability",
-        availabilityCopy: "Open to full-time AI roles, contract engagements, and consultancy on deep learning and vision pipelines.",
+        availabilityCopy: "Open to Machine Learning, Artificial Intelligence, and Data Analysis roles, internships, and research projects.",
         formTitle: "Send a Message",
-        formCopy: "Fill out the form below to discuss project scope, timelines, or advisory work.",
+        formCopy: "Fill out the form below to connect regarding project scope or opportunities.",
         formNote: "Your message will be sent securely to my inbox.",
         formSubmit: "Send Message"
     }
