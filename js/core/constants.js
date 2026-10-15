@@ -9,8 +9,6 @@ export const MOBILE_NAV_BREAKPOINT = 1024;
 export const SVG_NS = "http://www.w3.org/2000/svg";
 
 export const HERO_ROLES = [
-    "AI Engineer",
-    "Computer Vision Engineer",
-    "Deep Learning Specialist",
-    "Data Science Engineer"
+    "Machine Learning",
+    "AI Engineer"
 ];
