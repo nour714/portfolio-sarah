@@ -9,7 +9,6 @@ import { portfolioData } from "./data/portfolio-data.js";
 import { initThemeToggle } from "./modules/theme.js";
 import { initMenu } from "./modules/navigation.js";
 import { initHeroRoleTyping, initHeroAvatarFallback } from "./modules/hero.js";
-import { initMlBackground } from "./modules/ml-background.js";
 import { initProjectFilters, initProjectShare, initProjectModal, refreshProjectScrollInteractions } from "./modules/projects.js";
 import { initCertificateFilters, initCertificateModal, refreshCertificateScrollInteractions } from "./modules/certificates.js";
 import {
@@ -24,7 +23,6 @@ import {
     initMagnetic,
     initCard3DTilt
 } from "./modules/animations.js";
-import { initConstellation } from "./modules/constellation.js";
 import { initContactFormFallback } from "./modules/contact.js";
 import { initPublicPortfolio } from "./services/firebase.service.js";
 
@@ -39,7 +37,6 @@ const boot = () => {
     safelyInit(initThemeToggle);
     safelyInit(initMenu);
     safelyInit(initHeroRoleTyping);
-    safelyInit(initMlBackground);
     safelyInit(initHeroAvatarFallback);
     safelyInit(initHeroCinematicEntrance);
     safelyInit(initProjectFilters);
@@ -49,7 +46,6 @@ const boot = () => {
     safelyInit(refreshCertificateScrollInteractions);
     safelyInit(initCertificateModal);
     safelyInit(initScrollReveal);
-    safelyInit(initConstellation);
     safelyInit(() => initPublicPortfolio(refreshScrollReveal));
     safelyInit(initScrollProgressBar);
     safelyInit(initCustomCursor);
