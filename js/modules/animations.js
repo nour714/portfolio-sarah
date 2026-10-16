@@ -144,16 +144,6 @@ export const initHeroCinematicEntrance = () => {
     const playHeroEntrance = () => {
         const tl = window.gsap.timeline({ defaults: { ease: "power4.out" } });
 
-        const mlbgStage = document.getElementById("mlbg-stage");
-        if (mlbgStage) {
-            tl.fromTo(
-                mlbgStage,
-                { opacity: 0.2 },
-                { opacity: 1, duration: 1.6, ease: "power2.out" },
-                0
-            );
-        }
-
         tl.fromTo(
                 ".hero-status-pill",
                 { y: 20, autoAlpha: 0 },
@@ -192,16 +182,7 @@ export const initHeroCinematicEntrance = () => {
             );
     };
 
-    const introScreen = document.getElementById("ai-intro-screen");
-    if (introScreen) {
-        window.addEventListener("ai-intro-finished", playHeroEntrance, { once: true });
-        // Failsafe in case intro is skipped or takes long
-        setTimeout(() => {
-            if (!introScreen.isConnected) playHeroEntrance();
-        }, 3200);
-    } else {
-        playHeroEntrance();
-    }
+    playHeroEntrance();
 };
 
 /**
@@ -311,22 +292,7 @@ export const initScrollReveal = () => {
             }
         });
 
-        // 3. Parallax background video in hero
-        const heroBgVideo = document.querySelector(".hero-background-video");
-        if (heroBgVideo) {
-            gsap.to(heroBgVideo, {
-                yPercent: 18,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: ".hero",
-                    start: "top top",
-                    end: "bottom top",
-                    scrub: 1.2
-                }
-            });
-        }
-
-        // 4. Staggered Batch Entrance for All Cards Across the Site
+        // 3. Staggered Batch Entrance for All Cards Across the Site
         const batchReveal = (selector, start = "top 88%", stagger = 0.07) => {
             ScrollTrigger.batch(selector, {
                 start,
@@ -361,7 +327,40 @@ export const initScrollReveal = () => {
         batchReveal(".stat-card", "top 90%", 0.07);
         batchReveal(".skills-metric", "top 90%", 0.06);
 
-        // Refresh triggers on intro finish and load
+        // 4. Cinematic 3D Perspective Flip Entrance for Contact Cards
+        const contactCards = document.querySelectorAll(".contact-panel, .contact-form");
+        if (contactCards.length) {
+            gsap.fromTo(
+                contactCards,
+                {
+                    y: 60,
+                    rotateX: 18,
+                    autoAlpha: 0,
+                    scale: 0.96,
+                    filter: "blur(6px)"
+                },
+                {
+                    y: 0,
+                    rotateX: 0,
+                    autoAlpha: 1,
+                    scale: 1,
+                    filter: "blur(0px)",
+                    duration: 1.15,
+                    ease: "power3.out",
+                    stagger: 0.15,
+                    scrollTrigger: {
+                        trigger: ".contact-grid",
+                        start: "top 85%",
+                        once: true
+                    },
+                    onComplete: () => {
+                        contactCards.forEach((card) => card.classList.add("is-visible"));
+                    }
+                }
+            );
+        }
+
+        // Refresh triggers on load
         const handleRefresh = () => {
             requestAnimationFrame(() => {
                 ScrollTrigger.refresh();
@@ -370,10 +369,6 @@ export const initScrollReveal = () => {
         };
 
         window.addEventListener("load", handleRefresh);
-        window.addEventListener("ai-intro-finished", () => {
-            handleRefresh();
-            setTimeout(handleRefresh, 850);
-        });
     }
 };
 
@@ -633,14 +628,94 @@ const boundCards = new WeakSet();
  * Initializes Professional 3D Physics Tilt & Dynamic Spotlight Sheen for ALL Cards Across the Site
  */
 export const initCard3DTilt = () => {
-    if (getMediaMatch("(prefers-reduced-motion: reduce)") ||
-        window.matchMedia("(pointer: coarse)").matches ||
-        !window.gsap) {
+    if (getMediaMatch("(prefers-reduced-motion: reduce)")) {
+        return;
+    }
+
+    if (!window.gsap) {
+        if (typeof requestAnimationFrame === "function") {
+            requestAnimationFrame(initCard3DTilt);
+        }
         return;
     }
 
     const gsap = window.gsap;
-    const CARD_SELECTOR = ".experience-card, .skill-card, .contact-item, .stat-card, .skills-metric, .about-node";
+    const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
+
+    // 1. Hero 3D Interactive Console Cards: Contact Section (.contact-panel and .contact-form)
+    const contactCards = Array.from(document.querySelectorAll(".contact-panel, .contact-form"));
+    contactCards.forEach((card, index) => {
+        // Inject dynamic spotlight sheen element if not already present
+        if (!card.querySelector(".card-spotlight")) {
+            const spotlight = document.createElement("div");
+            spotlight.className = "card-spotlight";
+            spotlight.setAttribute("aria-hidden", "true");
+            card.prepend(spotlight);
+        }
+
+        if (boundCards.has(card)) return;
+        boundCards.add(card);
+
+        // Ambient 3D floating levitation (subtle floating console oscillation)
+        let ambientFloat = null;
+        if (!getMediaMatch("(prefers-reduced-motion: reduce)")) {
+            ambientFloat = gsap.to(card, {
+                y: -6,
+                rotateX: index === 0 ? 1.4 : -1.2,
+                rotateY: index === 0 ? -1.0 : 1.3,
+                duration: 3.6 + index * 0.4,
+                delay: index * 0.35,
+                ease: "sine.inOut",
+                yoyo: true,
+                repeat: -1
+            });
+        }
+
+        if (!isCoarsePointer) {
+            const rotateXTo = gsap.quickTo(card, "rotateX", { duration: 0.45, ease: "power2.out" });
+            const rotateYTo = gsap.quickTo(card, "rotateY", { duration: 0.45, ease: "power2.out" });
+            const yTo = gsap.quickTo(card, "y", { duration: 0.45, ease: "power2.out" });
+
+            card.addEventListener("pointerenter", () => {
+                if (ambientFloat) ambientFloat.pause();
+            });
+
+            card.addEventListener("pointermove", (e) => {
+                const rect = card.getBoundingClientRect();
+                const relX = e.clientX - rect.left;
+                const relY = e.clientY - rect.top;
+
+                // Update spotlight coordinates in real-time
+                card.style.setProperty("--mouse-x", `${relX}px`);
+                card.style.setProperty("--mouse-y", `${relY}px`);
+
+                // Normalized offsets from center (-0.5 to +0.5)
+                const normX = relX / rect.width - 0.5;
+                const normY = relY / rect.height - 0.5;
+
+                // Max tilt angle: 5.5deg for tactile 3D perspective
+                const maxTilt = 5.5;
+
+                rotateYTo(normX * maxTilt * 2);
+                rotateXTo(-normY * maxTilt * 2);
+                yTo(-8);
+            });
+
+            card.addEventListener("pointerleave", () => {
+                rotateXTo(0);
+                rotateYTo(0);
+                yTo(0);
+                gsap.delayedCall(0.5, () => {
+                    if (ambientFloat) ambientFloat.resume();
+                });
+            });
+        }
+    });
+
+    // 2. Standard 3D Cards across the rest of the site
+    if (isCoarsePointer) return;
+
+    const CARD_SELECTOR = ".experience-card, .skill-card, .stat-card, .skills-metric, .about-node";
     const cards = Array.from(document.querySelectorAll(CARD_SELECTOR));
 
     cards.forEach((card) => {
