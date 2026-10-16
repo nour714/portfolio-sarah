@@ -14,7 +14,6 @@ import {
     initBackToTop,
     initCounterAnimation
 } from "./modules/animations.js";
-import { initConstellation } from "./modules/constellation.js";
 import { initContactFormFallback } from "./modules/contact.js";
 import { applyAdminState } from "./core/state.js";
 import { portfolioData } from "./data/portfolio-data.js";
@@ -30,7 +29,6 @@ const bootAdmin = () => {
     safelyInit(initProjectFilters);
     safelyInit(initProjectShare);
     safelyInit(initScrollReveal);
-    safelyInit(initConstellation);
     safelyInit(initAdminDashboard);
     safelyInit(initScrollProgressBar);
     safelyInit(initBackToTop);
