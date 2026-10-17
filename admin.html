@@ -14,21 +14,6 @@
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/admin/admin.css">
-    <style>
-        body.admin-only {
-            overflow: hidden;
-        }
-        body.admin-only > header,
-        body.admin-only > main,
-        body.admin-only > footer,
-        body.admin-only .admin-launch {
-            display: none;
-        }
-        body.admin-only [data-admin-close],
-        body.admin-only #admin-close {
-            display: none;
-        }
-    </style>
 </head>
 <body class="admin-only">
     <header class="site-header">
@@ -162,7 +147,7 @@
                 </div>
             </div>
         </section>
-        <div class="section-divider" style="padding: 0 clamp(18px, 6vw, 60px);"></div>
+        <div class="section-divider"></div>
 
         <section class="about" id="about" aria-labelledby="about-title">
             <div class="section-shell about-shell">
@@ -401,12 +386,12 @@
             <div class="portfolio-footer-socials">
                 <a href="https://github.com/sarahnabil" target="_blank" rel="noopener noreferrer"
                     aria-label="GitHub" class="portfolio-footer-social-link">
-                    <i class="devicon-github-original" style="font-size:1.1rem;"></i>
+                    <i class="devicon-github-original"></i>
                 </a>
                 <a href="https://www.linkedin.com/in/sarahnabil"
                     target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
                     class="portfolio-footer-social-link">
-                    <i class="devicon-linkedin-plain" style="font-size:1.1rem;"></i>
+                    <i class="devicon-linkedin-plain"></i>
                 </a>
                 <a href="https://wa.me/201019741580" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
                     class="portfolio-footer-social-link">
@@ -422,34 +407,34 @@
         </div>
     </footer>
 
-    <button class="admin-launch" id="admin-launch" type="button" aria-haspopup="dialog" style="display: none;">
+    <button class="admin-launch" id="admin-launch" type="button" aria-haspopup="dialog">
         Admin Studio
     </button>
 
-    <div class="admin-auth-overlay" id="admin-login-section" aria-labelledby="admin-login-title" aria-hidden="true" hidden style="display: none; position: fixed; inset: 0; background: rgba(2, 8, 38, 0.2); z-index: 10000; align-items: center; justify-content: center; padding: 20px;">
-        <form class="admin-login-form" id="admin-login-form" novalidate style="background: rgba(30,35,48,0.6); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); padding: 48px 40px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.08); width: 100%; max-width: 440px; display: flex; flex-direction: column; gap: 24px; box-shadow: none !important;">
-            <div style="text-align: center; margin-bottom: 8px;">
-                <h2 id="admin-login-title" style="margin: 0 0 8px 0; color: #fff; font-size: 1.75rem; font-weight: 600; letter-spacing: -0.02em;">Content Studio</h2>
-                <p style="margin: 0; color: rgba(255,255,255,0.6); font-size: 0.95rem;">Sign in to access the dashboard and manage your portfolio content and messages.</p>
+    <div class="admin-auth-overlay" id="admin-login-section" aria-labelledby="admin-login-title" aria-hidden="true" hidden>
+        <form class="admin-login-form" id="admin-login-form" novalidate>
+            <div class="admin-login-header">
+                <h2 class="admin-login-title" id="admin-login-title">Content Studio</h2>
+                <p class="admin-login-subtitle">Sign in to access the dashboard and manage your portfolio content and messages.</p>
             </div>
             
-            <div id="login-error" role="alert" aria-live="polite" hidden style="display: none; color: #ff5252; background: rgba(255,82,82,0.1); padding: 12px; border-radius: 8px; font-size: 0.875rem; text-align: center; border: 1px solid rgba(255,82,82,0.2);"></div>
+            <div class="admin-login-error" id="login-error" role="alert" aria-live="polite" hidden></div>
             
-            <div style="display: flex; flex-direction: column; gap: 16px;">
-                <label class="admin-field" style="display: block;">
-                    <span style="color: rgba(255,255,255,0.8); font-size: 0.875rem; font-weight: 500; margin-bottom: 8px; display: block;">Email Address</span>
-                    <input type="email" id="login-email" autocomplete="username" required placeholder="name@example.com" style="width: 100%; box-sizing: border-box; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 14px 16px; border-radius: 12px; font-size: 1rem; transition: border-color 0.2s, background 0.2s; outline: none;" onfocus="this.style.borderColor='rgba(255,255,255,0.3)'; this.style.background='rgba(0,0,0,0.3)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'; this.style.background='rgba(0,0,0,0.2)'">
+            <div class="admin-login-fields">
+                <label class="admin-field">
+                    <span>Email Address</span>
+                    <input type="email" id="login-email" autocomplete="username" required placeholder="name@example.com">
                 </label>
                 
-                <label class="admin-field" style="display: block;">
-                    <span style="color: rgba(255,255,255,0.8); font-size: 0.875rem; font-weight: 500; margin-bottom: 8px; display: block;">Password</span>
-                    <input type="password" id="login-pass" autocomplete="current-password" required placeholder="Password" style="width: 100%; box-sizing: border-box; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 14px 16px; border-radius: 12px; font-size: 1rem; transition: border-color 0.2s, background 0.2s; outline: none;" onfocus="this.style.borderColor='rgba(255,255,255,0.3)'; this.style.background='rgba(0,0,0,0.3)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'; this.style.background='rgba(0,0,0,0.2)'">
+                <label class="admin-field">
+                    <span>Password</span>
+                    <input type="password" id="login-pass" autocomplete="current-password" required placeholder="Password">
                 </label>
             </div>
             
-            <button type="submit" id="login-btn" class="admin-btn admin-btn-primary" style="width: 100%; padding: 14px; border-radius: 12px; font-size: 1rem; font-weight: 500; margin-top: 8px; background: #fff; color: #0a1020; border: none; cursor: pointer; transition: transform 0.2s, opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'" onmousedown="this.style.transform='scale(0.98)'" onmouseup="this.style.transform='scale(1)'">Login</button>
+            <button type="submit" id="login-btn" class="admin-btn admin-btn-primary admin-login-btn">Login</button>
             
-            <a href="index.html" style="color: rgba(255,255,255,0.5); text-align: center; font-size: 0.875rem; text-decoration: none; margin-top: 8px; transition: color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.8)'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">&larr; Back to Portfolio</a>
+            <a href="index.html" class="admin-login-back">&larr; Back to Portfolio</a>
         </form>
     </div>
 
@@ -475,7 +460,7 @@
                 <div class="admin-sidebar-footer">
                     <button class="admin-btn admin-btn-ghost" id="admin-theme-toggle" type="button">Dark Mode</button>
                     <button class="admin-btn admin-btn-ghost" id="admin-show-login" type="button">Sign In</button>
-                    <button class="admin-btn admin-btn-danger" id="admin-logout" type="button" style="display: none; width: 100%; border-color: #ff5252; color: #ff5252;">Logout</button>
+                    <button class="admin-btn admin-btn-danger admin-logout-btn" id="admin-logout" type="button">Logout</button>
                     <button class="admin-btn admin-btn-primary" id="admin-close" type="button">Exit</button>
                 </div>
             </aside>
@@ -827,7 +812,7 @@
                                 <button class="admin-btn admin-btn-ghost" type="button" id="admin-messages-refresh">Refresh</button>
                             </div>
                             <div id="admin-messages-list" class="admin-list">
-                                <p style="color:var(--text-soft,#888);font-size:0.9rem;padding:16px 0;">Select this section to load messages.</p>
+                                <p class="admin-messages-placeholder">Select this section to load messages.</p>
                             </div>
                         </div>
                     </div>
@@ -858,20 +843,9 @@
     <script src="js/vendor/lenis.min.js"></script>
 
     <!-- Firebase Integration Service -->
-    <script type="module" src="firebase-integration.js"></script>
+    <script type="module" src="js/services/firebase-api.js"></script>
 
     <script type="module" src="js/admin.js"></script>
-    <script>
-        window.addEventListener(
-            "keydown",
-            (event) => {
-                if (event.key !== "Escape") return;
-                event.preventDefault();
-                event.stopImmediatePropagation();
-            },
-            true
-        );
-    </script>
 </body>
 </html>
 
