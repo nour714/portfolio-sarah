@@ -43,6 +43,10 @@ textarea {
     cursor: var(--cursor-mac-text, text);
 }
 
+.section-divider {
+    padding: 0 clamp(18px, 6vw, 60px);
+}
+
 /* ==========================================================================
    Global Footer Styles
    ========================================================================== */
@@ -102,6 +106,10 @@ textarea {
     border-color: var(--accent);
     background: rgba(56, 189, 248, 0.12);
     transform: translateY(-2px);
+}
+
+.portfolio-footer-social-link i {
+    font-size: 1.1rem;
 }
 
 .portfolio-footer-copy {
