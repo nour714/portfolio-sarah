@@ -86,6 +86,16 @@
     cursor: grabbing;
 }
 
+/* Zero-Latency GSAP Assembly Choreography */
+.skills-arc-stage.is-assembling .skills-arc-badge,
+.skills-arc-stage.is-assembling .skills-spotlight-icon,
+.skills-arc-stage.is-assembling .skills-spotlight-halo,
+.skills-arc-stage.is-assembling .skills-arc-label,
+.skills-arc-stage.is-assembling .skills-spotlight-bar-fill,
+.skills-arc-stage.is-assembling .skills-nav-btn {
+    transition: none !important;
+}
+
 /* Curved Arch SVG Ribbon Canvas */
 .skills-arch-canvas {
     position: absolute;
@@ -237,6 +247,7 @@
 
 .skills-spotlight-bar-fill {
     height: 100%;
+    width: 96%;
     background: var(--spotlight-level-color, #fb7185);
     border-radius: 999px;
     will-change: width;
