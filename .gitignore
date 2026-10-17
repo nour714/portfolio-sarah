@@ -47,3 +47,12 @@ ui-debug.log*
 
 # Temporary & Log Files
 *.log
+
+# Test Artifacts & Browser Profiles
+tests/.chrome-test-profile*
+tests/*.png
+test_*.png
+current_landing.png
+test_frame.html
+collect_report.js
+*.portfolio-backup.*

@@ -37,30 +37,31 @@
 }
 
 .experience-metric {
-    border: 1px solid rgba(45, 212, 191, 0.28);
+    border: 1px solid rgba(139, 92, 246, 0.22);
     border-radius: 16px;
     padding: 12px 14px;
-    background: linear-gradient(150deg, rgba(4, 38, 48, 0.78), rgba(2, 22, 28, 0.94));
+    background: linear-gradient(150deg, rgba(14, 16, 32, 0.8), rgba(8, 9, 20, 0.94));
     box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.12),
-        0 12px 26px rgba(1, 18, 22, 0.34);
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        0 12px 26px rgba(0, 0, 0, 0.45);
     transform-style: preserve-3d;
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .experience-metric:hover {
     transform: translateY(-6px) rotateX(2deg) rotateY(-2deg);
-    border-color: rgba(94, 234, 212, 0.6);
+    border-color: rgba(56, 189, 248, 0.55);
     box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.16),
-        0 18px 32px rgba(1, 18, 22, 0.45);
+        inset 0 1px 0 rgba(255, 255, 255, 0.14),
+        0 18px 32px rgba(0, 0, 0, 0.65),
+        0 0 20px rgba(56, 189, 248, 0.15);
 }
 
 .experience-metric span {
     font-size: 0.68rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: #99f6e4;
+    color: #7dd3fc;
 }
 
 .experience-metric strong {
@@ -73,7 +74,7 @@
 
 .experience-metric p {
     margin-top: 6px;
-    color: #a7dcd6;
+    color: #94a3b8;
     font-size: 0.82rem;
     line-height: 1.52;
 }
@@ -88,23 +89,24 @@
 
 .experience-card {
     position: relative;
-    border: 1px solid rgba(45, 212, 191, 0.3);
+    border: 1px solid rgba(139, 92, 246, 0.28);
     border-radius: 22px;
     padding: clamp(16px, 2.6vw, 22px) clamp(16px, 2.6vw, 22px) clamp(16px, 2.6vw, 22px) clamp(20px, 3vw, 26px);
-    background: linear-gradient(152deg, rgba(4, 38, 48, 0.88), rgba(2, 22, 28, 0.95));
+    background: linear-gradient(152deg, rgba(14, 16, 32, 0.88), rgba(8, 9, 20, 0.95));
     box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.12),
-        0 16px 34px rgba(1, 18, 22, 0.38);
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        0 16px 34px rgba(0, 0, 0, 0.55);
     overflow: hidden;
     transform-style: preserve-3d;
     transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
 }
 
 .experience-card:hover {
-    border-color: rgba(94, 234, 212, 0.6);
+    border-color: rgba(56, 189, 248, 0.55);
     box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.16),
-        0 24px 44px rgba(1, 18, 22, 0.5);
+        inset 0 1px 0 rgba(255, 255, 255, 0.14),
+        0 24px 44px rgba(0, 0, 0, 0.65),
+        0 0 30px rgba(56, 189, 248, 0.18);
 }
 
 .experience-card::before {
@@ -115,7 +117,7 @@
     left: 14px;
     width: 3px;
     border-radius: 999px;
-    background: linear-gradient(180deg, rgba(34, 211, 238, 0.95), rgba(20, 184, 166, 0.42));
+    background: linear-gradient(180deg, #38bdf8, #818cf8);
     opacity: 0.9;
 }
 
@@ -135,26 +137,26 @@
 
 .experience-org {
     margin-top: 4px;
-    color: #a2b4d6;
+    color: #94a3b8;
     font-size: 0.9rem;
 }
 
 .experience-period {
     border-radius: 999px;
-    border: 1px solid rgba(45, 212, 191, 0.68);
+    border: 1px solid rgba(56, 189, 248, 0.4);
     padding: 4px 10px;
     font-size: 0.65rem;
     font-weight: 700;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: #ccfbf1;
-    background: rgba(8, 51, 60, 0.62);
+    color: #e0f2fe;
+    background: rgba(14, 165, 233, 0.12);
     white-space: nowrap;
 }
 
 .experience-summary {
     margin-top: 12px;
-    color: #b4c4e4;
+    color: #cbd5e1;
     font-size: 0.92rem;
     line-height: 1.62;
 }
@@ -165,7 +167,7 @@
     padding: 0;
     display: grid;
     gap: 8px;
-    color: #a7b7d8;
+    color: #94a3b8;
     font-size: 0.86rem;
     line-height: 1.56;
 }
@@ -181,7 +183,8 @@
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: rgba(34, 211, 238, 0.9);
+    background: #38bdf8;
+    box-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
     margin-top: 7px;
     flex-shrink: 0;
 }
@@ -195,95 +198,91 @@
 
 .experience-tags span {
     border-radius: 999px;
-    border: 1px solid rgba(45, 212, 191, 0.52);
+    border: 1px solid rgba(139, 92, 246, 0.3);
     padding: 4px 10px;
     font-size: 0.7rem;
     font-weight: 600;
-    color: #ccfbf1;
-    background: rgba(8, 51, 60, 0.52);
+    color: #c4b5fd;
+    background: rgba(139, 92, 246, 0.1);
     text-transform: uppercase;
     letter-spacing: 0.08em;
 }
 
 body.light-mode .project-meta span {
-    color: #042f2e;
-    border-color: rgba(45, 212, 191, 0.6);
-    background: rgba(204, 251, 241, 0.6);
+    color: #4338ca;
+    border-color: rgba(99, 102, 241, 0.3);
+    background: rgba(99, 102, 241, 0.08);
 }
 
 body.light-mode .project-highlights {
-    color: #115e59;
+    color: #475569;
 }
 
 body.light-mode .project-highlights li::before {
-    background: rgba(13, 148, 136, 0.9);
+    background: #0284c7;
 }
 
 body.light-mode .experience-title-wrap h2 {
-    color: #042f2e;
+    color: #0f172a;
 }
 
 body.light-mode .experience-metric {
-    border-color: rgba(45, 212, 191, 0.4);
-    background: linear-gradient(152deg, rgba(255, 255, 255, 0.95), rgba(240, 253, 250, 0.9));
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.78),
-        0 10px 18px rgba(13, 148, 136, 0.1);
+    border-color: rgba(226, 232, 240, 0.9);
+    background: #ffffff;
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
 }
 
 body.light-mode .experience-metric span {
-    color: #0d9488;
+    color: #0284c7;
 }
 
 body.light-mode .experience-metric strong {
-    color: #042f2e;
+    color: #0f172a;
 }
 
 body.light-mode .experience-metric p {
-    color: #115e59;
+    color: #475569;
 }
 
 body.light-mode .experience-card {
-    border-color: rgba(45, 212, 191, 0.35);
-    background: linear-gradient(152deg, rgba(255, 255, 255, 0.95), rgba(240, 253, 250, 0.9));
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.92),
-        0 12px 22px rgba(13, 148, 136, 0.12);
+    border-color: rgba(226, 232, 240, 0.9);
+    background: #ffffff;
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.06);
 }
 
 body.light-mode .experience-role h3 {
-    color: #042f2e;
+    color: #0f172a;
 }
 
 body.light-mode .experience-card::before {
-    background: linear-gradient(180deg, rgba(13, 148, 136, 0.95), rgba(45, 212, 191, 0.6));
+    background: linear-gradient(180deg, #0284c7, #6366f1);
 }
 
 body.light-mode .experience-org {
-    color: #115e59;
+    color: #475569;
 }
 
 body.light-mode .experience-period {
-    color: #042f2e;
-    border-color: rgba(45, 212, 191, 0.68);
-    background: rgba(204, 251, 241, 0.9);
+    color: #0284c7;
+    border-color: rgba(56, 189, 248, 0.4);
+    background: rgba(2, 132, 199, 0.08);
 }
 
 body.light-mode .experience-summary {
-    color: #115e59;
+    color: #475569;
 }
 
 body.light-mode .experience-points {
-    color: #115e59;
+    color: #475569;
 }
 
 body.light-mode .experience-points li::before {
-    background: rgba(13, 148, 136, 0.92);
+    background: #0284c7;
 }
 
 body.light-mode .experience-tags span {
-    color: #042f2e;
-    border-color: rgba(45, 212, 191, 0.54);
-    background: rgba(204, 251, 241, 0.72);
+    color: #4338ca;
+    border-color: rgba(99, 102, 241, 0.3);
+    background: rgba(99, 102, 241, 0.08);
 }
 

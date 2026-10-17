@@ -229,11 +229,11 @@
 }
 
 .certificate-filter.is-active {
-    color: #ffffff;
-    background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
-    border-color: rgba(255, 255, 255, 0.3);
+    color: var(--btn-primary-text, #ffffff);
+    background: var(--btn-primary-bg);
+    border-color: var(--btn-primary-border);
     font-weight: 700;
-    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+    box-shadow: var(--btn-primary-shadow);
 }
 
 /* ==========================================================================
@@ -554,20 +554,21 @@
     gap: 8px;
     padding: 10px 22px;
     border-radius: 999px;
-    background: rgba(139, 92, 246, 0.9);
+    background: var(--btn-primary-bg);
     backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: #ffffff;
+    border: 1px solid var(--btn-primary-border);
+    color: var(--btn-primary-text, #ffffff);
     font-family: var(--font-sans);
     font-size: 0.88rem;
     font-weight: 600;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(139, 92, 246, 0.4);
+    box-shadow: var(--btn-primary-shadow);
     transform: translateY(8px);
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
 }
 
 .certificate-card:hover .cert-zoom-btn {
     transform: translateY(0);
+    box-shadow: var(--btn-primary-hover-shadow);
 }
 
 .cert-zoom-icon {
@@ -603,130 +604,79 @@
 
 .cert-modal {
     position: relative;
-    width: min(880px, 100%);
-    max-height: 90vh;
-    overflow-y: auto;
-    border-radius: 20px;
-    background: rgba(12, 12, 24, 0.94);
+    width: auto;
+    max-width: min(1080px, 94vw);
+    max-height: 92vh;
+    border-radius: 18px;
+    background: rgba(10, 10, 20, 0.96);
     border: 1px solid rgba(139, 92, 246, 0.35);
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 40px rgba(139, 92, 246, 0.2);
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.88), 0 0 45px rgba(139, 92, 246, 0.22);
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(10px, 2vw, 20px);
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .cert-modal-close {
     position: absolute;
-    top: 14px;
-    right: 14px;
+    top: 12px;
+    right: 12px;
     width: 38px;
     height: 38px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(12, 12, 24, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     color: #ffffff;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 10;
-    transition: all 0.2s ease;
+    z-index: 30;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .cert-modal-close:hover {
-    background: rgba(239, 68, 68, 0.8);
+    background: rgba(239, 68, 68, 0.95);
     border-color: #ef4444;
-    transform: scale(1.08);
+    transform: scale(1.1) rotate(90deg);
 }
 
 .cert-modal-media {
     position: relative;
-    padding: clamp(16px, 3vw, 32px);
-    background: rgba(5, 5, 12, 0.8);
+    width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 0;
+    background: transparent;
+    border-bottom: none;
 }
 
 .cert-modal-img {
     max-width: 100%;
-    max-height: 52vh;
+    max-height: 85vh;
+    width: auto;
+    height: auto;
+    min-width: min(560px, 88vw);
     object-fit: contain;
     border-radius: 12px;
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7);
-}
-
-.cert-modal-body {
-    padding: clamp(18px, 2.8vw, 30px);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.cert-modal-badge {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    font-weight: 700;
-    padding: 3px 10px;
-    border-radius: 999px;
-    background: rgba(139, 92, 246, 0.2);
-    border: 1px solid rgba(139, 92, 246, 0.4);
-    color: #c4b5fd;
-    width: fit-content;
+    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.75), 0 0 35px rgba(139, 92, 246, 0.2);
+    display: block;
 }
 
 .cert-modal-title {
-    font-family: var(--font-sans);
-    font-size: clamp(1.3rem, 2.2vw, 1.8rem);
-    font-weight: 700;
-    color: #ffffff;
-    margin: 0;
+    display: none !important;
 }
 
-.cert-modal-issuer {
-    font-family: var(--font-sans);
-    font-size: 0.95rem;
-    color: var(--certificates-accent-cyan);
-    margin: 0;
-}
-
-.cert-modal-desc {
-    font-family: var(--font-sans);
-    font-size: 0.92rem;
-    line-height: 1.6;
-    color: var(--certificates-text-secondary);
-    margin: 0;
-}
-
-.cert-modal-actions {
-    display: flex;
-    gap: 12px;
-    margin-top: 8px;
-}
-
-.cert-modal-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 22px;
-    border-radius: 999px;
-    font-family: var(--font-sans);
-    font-size: 0.88rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.25s ease;
-}
-
-.cert-modal-btn-primary {
-    background: linear-gradient(135deg, #8b5cf6, #6d28d9);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    color: #ffffff;
-    box-shadow: 0 4px 18px rgba(139, 92, 246, 0.4);
-}
-
-.cert-modal-btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(139, 92, 246, 0.6);
+.cert-modal-body {
+    display: none !important;
 }
 
 /* ==========================================================================
@@ -785,7 +735,7 @@ body.light-mode .cert-modal {
 }
 
 body.light-mode .cert-modal-media {
-    background: #f8fafc;
+    background: transparent;
 }
 
 body.light-mode .cert-modal-title {
@@ -793,7 +743,14 @@ body.light-mode .cert-modal-title {
 }
 
 body.light-mode .cert-modal-close {
-    background: rgba(0, 0, 0, 0.06);
+    background: rgba(255, 255, 255, 0.85);
     color: #0f172a;
-    border-color: rgba(0, 0, 0, 0.12);
+    border-color: rgba(15, 23, 42, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+body.light-mode .cert-modal-close:hover {
+    background: rgba(239, 68, 68, 0.95);
+    border-color: #ef4444;
+    color: #ffffff;
 }

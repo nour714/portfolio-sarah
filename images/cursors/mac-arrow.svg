@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <defs>
+    <filter id="mac-arrow-shadow" x="-30%" y="-30%" width="180%" height="180%">
+      <feDropShadow dx="0.6" dy="1.4" stdDeviation="1" flood-color="#000000" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+  <g filter="url(#mac-arrow-shadow)" fill="none" fill-rule="evenodd" transform="translate(2 2)">
+    <!-- Crisp White Border -->
+    <path d="M6.148 18.473l1.863-1.003 1.615-.839-2.568-4.816h4.332L0.011 0.407v16.015l3.316-3.221z" fill="#FFFFFF"/>
+    <!-- Solid Pitch Black Body -->
+    <path d="M6.431 17l1.765-.941-2.775-5.202h3.604L1 2.814v11.188l2.53-2.442z" fill="#000000"/>
+  </g>
+</svg>

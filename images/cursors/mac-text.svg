@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <defs>
+    <filter id="mac-text-shadow" x="-30%" y="-30%" width="180%" height="180%">
+      <feDropShadow dx="0.5" dy="1" stdDeviation="0.8" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <g filter="url(#mac-text-shadow)" transform="translate(4, 2)">
+    <!-- White Halo Outer -->
+    <path d="M4 2 h6 M7 2 v16 M4 18 h6" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round"/>
+    <!-- Black Crisp Core -->
+    <path d="M4 2 h6 M7 2 v16 M4 18 h6" stroke="#000000" stroke-width="1.5" stroke-linecap="round"/>
+  </g>
+</svg>

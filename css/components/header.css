@@ -382,7 +382,7 @@ main {
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
 }
 
-/* Circular Action Button with ↗ Arrow (Exact match to circular button in reference) */
+/* Circular Action Button with ↗ Arrow (Unified Brand Style) */
 .nav-action-circle {
     width: 44px;
     height: 44px;
@@ -394,8 +394,8 @@ main {
     justify-content: center;
     text-decoration: none;
     box-shadow: var(--capsule-cta-shadow);
-    transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, background-color 0.22s ease;
-    border: 1px solid rgba(0, 0, 0, 0.06);
+    transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, background 0.22s ease, border-color 0.22s ease;
+    border: 1px solid var(--btn-primary-border);
     flex-shrink: 0;
 }
 
@@ -408,14 +408,15 @@ main {
 
 .nav-action-circle:hover {
     transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.22);
+    background: var(--capsule-cta-hover);
+    box-shadow: var(--btn-primary-hover-shadow);
 }
 
 .nav-action-circle:hover svg {
     transform: translate(1px, -1px);
 }
 
-/* High-Contrast Pill CTA (Exact match to 'CONTACT US' in reference) */
+/* High-Contrast Pill CTA (Unified Primary Button Style) */
 .nav-cta-btn {
     height: 44px;
     padding: 0 24px;
@@ -432,15 +433,15 @@ main {
     align-items: center;
     justify-content: center;
     box-shadow: var(--capsule-cta-shadow);
-    transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, background-color 0.22s ease;
-    border: 1px solid rgba(0, 0, 0, 0.06);
+    transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, background 0.22s ease, border-color 0.22s ease;
+    border: 1px solid var(--btn-primary-border);
     white-space: nowrap;
 }
 
 .nav-cta-btn:hover {
     transform: translateY(-2px);
     background: var(--capsule-cta-hover);
-    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.22);
+    box-shadow: var(--btn-primary-hover-shadow);
 }
 
 /* Mobile Menu Hamburger Toggle */

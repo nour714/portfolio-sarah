@@ -260,13 +260,14 @@
 
 @keyframes skillsArchGlowPulse {
     0% {
-        opacity: 0.25;
-        stroke: rgba(139, 92, 246, 0.25);
+        opacity: 0.35;
+        stroke: rgba(56, 189, 248, 0.4);
+        filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.35));
     }
     100% {
-        opacity: 0.75;
-        stroke: rgba(168, 85, 247, 0.6);
-        filter: drop-shadow(0 0 5px rgba(168, 85, 247, 0.45));
+        opacity: 0.85;
+        stroke: rgba(139, 92, 246, 0.65);
+        filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.5));
     }
 }
 
@@ -408,10 +409,10 @@
 .skills-nav-btn:hover,
 .skills-nav-btn:focus-visible {
     transform: scale(1.08);
-    border-color: rgba(255, 255, 255, 0.38);
-    background: rgba(32, 38, 54, 0.9);
-    color: #ffffff;
-    box-shadow: 0 0 18px rgba(255, 255, 255, 0.16);
+    border-color: rgba(56, 189, 248, 0.65);
+    background: rgba(14, 18, 38, 0.95);
+    color: #38bdf8;
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.35);
 }
 
 .skills-drag-hint {
@@ -429,13 +430,14 @@
     position: relative;
     z-index: 2;
     margin-top: 36px;
-    border: 1px solid rgba(126, 161, 246, 0.25);
+    border: 1px solid rgba(139, 92, 246, 0.22);
     border-radius: 14px;
-    padding: 12px 16px;
-    color: var(--text-soft, rgba(226, 232, 240, 0.75));
+    padding: 12px 18px;
+    color: var(--text-soft, #94a3b8);
     font-size: 0.9rem;
     line-height: 1.55;
-    background: rgba(8, 24, 36, 0.45);
+    background: rgba(14, 16, 32, 0.6);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08);
     text-align: center;
     max-width: 760px;
     margin-inline: auto;
@@ -530,4 +532,82 @@
 
 .skill-card {
     display: none;
+}
+
+/* ==========================================================================
+   Light Mode Overrides for Skills Carousel
+   ========================================================================== */
+body.light-mode .skills-title-wrap h2 {
+    color: #0f172a;
+}
+
+body.light-mode .skills-spotlight-title {
+    color: #0f172a;
+}
+
+body.light-mode .skills-spotlight-desc {
+    color: #475569;
+}
+
+body.light-mode .skills-spotlight-counter {
+    color: #64748b;
+}
+
+body.light-mode .skills-spotlight-bar-track {
+    background: rgba(15, 23, 42, 0.1);
+}
+
+body.light-mode .skills-spotlight-icon {
+    background: radial-gradient(circle at 50% 30%, #ffffff, #f8fafc);
+    border-color: rgba(56, 189, 248, 0.6);
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.1), 0 0 20px rgba(56, 189, 248, 0.2);
+}
+
+body.light-mode .skills-arc-badge {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(226, 232, 240, 0.95);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+}
+
+body.light-mode .skills-arc-item:hover .skills-arc-badge {
+    background: #ffffff;
+    border-color: rgba(56, 189, 248, 0.6);
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12), 0 0 16px rgba(56, 189, 248, 0.2);
+}
+
+body.light-mode .skills-arc-label {
+    color: #64748b;
+}
+
+body.light-mode .skills-arc-item:hover .skills-arc-label {
+    color: #0f172a;
+}
+
+body.light-mode .skills-nav-btn {
+    background: #ffffff;
+    border-color: rgba(226, 232, 240, 0.95);
+    color: #0f172a;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+}
+
+body.light-mode .skills-nav-btn:hover {
+    background: #f8fafc;
+    border-color: rgba(99, 102, 241, 0.5);
+    color: #4338ca;
+    box-shadow: 0 8px 18px rgba(99, 102, 241, 0.15);
+}
+
+body.light-mode .skills-drag-hint {
+    color: #64748b;
+}
+
+body.light-mode .skills-note {
+    background: #ffffff;
+    border-color: rgba(226, 232, 240, 0.95);
+    color: #475569;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+}
+
+body.light-mode .skills-note strong {
+    color: #0f172a;
 }

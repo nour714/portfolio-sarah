@@ -190,37 +190,46 @@ export const initHeroCinematicEntrance = () => {
  */
 export const initScrollReveal = () => {
     const reducedMotion = getMediaMatch("(prefers-reduced-motion: reduce)");
-    const revealItems = new Set();
+    const selectorGroups = [
+        [".section-kicker, .skills-headline, .projects-headline, .certificates-headline, .experience-header, .contact-header", "up"],
+        [".about-panel, .skills-board, .projects-copy, .certificates-copy, .experience-metrics", "soft"],
+        [".projects-filters, .certificates-filters, .skills-note", "left"],
+        [".contact-panel, .contact-form", "soft"],
+        [".project-card-wrapper, .certificate-card-wrapper, .experience-card, .skill-group, .contact-item, .stat-card, .skills-metric", "card"]
+    ];
 
-    // Ensure all target elements are tracked for visibility
-    const collectRevealTargets = (selector) => {
-        const nodes = Array.from(document.querySelectorAll(selector)).filter(
-            (node) => node instanceof HTMLElement
-        );
-        nodes.forEach((node) => {
-            node.classList.add("reveal");
-            revealItems.add(node);
+    let observer;
+    const observe = (element) => {
+        if (!element || element.classList.contains("is-visible")) return;
+        if (reducedMotion || typeof window.IntersectionObserver !== "function") {
+            element.classList.add("is-visible");
+        } else {
+            observer.observe(element);
+        }
+    };
+
+    const decorate = () => {
+        selectorGroups.forEach(([selector, variant]) => {
+            const elements = Array.from(document.querySelectorAll(selector)).filter(
+                (node) => node instanceof HTMLElement && !node.classList.contains("is-hidden")
+            );
+
+            elements.forEach((element, index) => {
+                element.classList.add("reveal", `reveal--${variant}`);
+
+                // The capped delay gives grouped cards a deliberate rhythm without
+                // making later content feel slow on long lists.
+                if (variant === "card") {
+                    element.style.setProperty("--reveal-delay", `${Math.min(index % 4, 3) * 75}ms`);
+                }
+
+                observe(element);
+            });
         });
     };
 
-    collectRevealTargets(".section-kicker, .about-panel");
-    collectRevealTargets(".skills-headline, .skills-board, .skills-note");
-    collectRevealTargets(".projects-headline, .projects-copy, .projects-filters, .projects-grid");
-    collectRevealTargets(".project-card");
-    collectRevealTargets(".certificates-headline, .certificates-copy, .certificates-filters, .certificate-card");
-    collectRevealTargets(".experience-header, .experience-metrics, .experience-card");
-    collectRevealTargets(".contact-header, .contact-panel, .contact-form, .contact-item");
-
-    const items = Array.from(revealItems);
-    if (!items.length) return;
-
-    if (reducedMotion || typeof window.IntersectionObserver !== "function") {
-        items.forEach((item) => item.classList.add("is-visible"));
-        return;
-    }
-
-    // Infallible IntersectionObserver: guarantees every reveal element becomes visible
-    const observer = new IntersectionObserver(
+    if (!reducedMotion && typeof window.IntersectionObserver === "function") {
+        observer = new IntersectionObserver(
         (entries, activeObserver) => {
             entries.forEach((entry) => {
                 if (!entry.isIntersecting) return;
@@ -228,14 +237,14 @@ export const initScrollReveal = () => {
                 activeObserver.unobserve(entry.target);
             });
         },
-        { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
-    );
+            { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+        );
+    }
 
-    items.forEach((item) => observer.observe(item));
+    decorate();
 
     window.__refreshScrollReveal = () => {
-        const nextItems = Array.from(document.querySelectorAll(".reveal:not(.is-visible)"));
-        nextItems.forEach((item) => observer.observe(item));
+        decorate();
         if (window.ScrollTrigger) window.ScrollTrigger.refresh();
     };
 
@@ -292,75 +301,7 @@ export const initScrollReveal = () => {
             }
         });
 
-        // 3. Staggered Batch Entrance for All Cards Across the Site
-        const batchReveal = (selector, start = "top 88%", stagger = 0.07) => {
-            ScrollTrigger.batch(selector, {
-                start,
-                once: true,
-                onEnter: (batch) => {
-                    gsap.fromTo(
-                        batch,
-                        { y: 32, autoAlpha: 0, filter: "blur(6px)", scale: 0.98 },
-                        {
-                            y: 0,
-                            autoAlpha: 1,
-                            filter: "blur(0px)",
-                            scale: 1,
-                            duration: 0.85,
-                            ease: "power4.out",
-                            stagger,
-                            overwrite: "auto",
-                            onComplete: () => {
-                                batch.forEach((el) => el.classList.add("is-visible"));
-                            }
-                        }
-                    );
-                }
-            });
-        };
-
-        batchReveal(".project-card-wrapper", "top 88%", 0.08);
-        batchReveal(".certificate-card-wrapper", "top 88%", 0.08);
-        batchReveal(".skill-group", "top 88%", 0.07);
-        batchReveal(".experience-card", "top 88%", 0.08);
-        batchReveal(".contact-item", "top 90%", 0.06);
-        batchReveal(".stat-card", "top 90%", 0.07);
-        batchReveal(".skills-metric", "top 90%", 0.06);
-
-        // 4. Cinematic 3D Perspective Flip Entrance for Contact Cards
-        const contactCards = document.querySelectorAll(".contact-panel, .contact-form");
-        if (contactCards.length) {
-            gsap.fromTo(
-                contactCards,
-                {
-                    y: 60,
-                    rotateX: 18,
-                    autoAlpha: 0,
-                    scale: 0.96,
-                    filter: "blur(6px)"
-                },
-                {
-                    y: 0,
-                    rotateX: 0,
-                    autoAlpha: 1,
-                    scale: 1,
-                    filter: "blur(0px)",
-                    duration: 1.15,
-                    ease: "power3.out",
-                    stagger: 0.15,
-                    scrollTrigger: {
-                        trigger: ".contact-grid",
-                        start: "top 85%",
-                        once: true
-                    },
-                    onComplete: () => {
-                        contactCards.forEach((card) => card.classList.add("is-visible"));
-                    }
-                }
-            );
-        }
-
-        // Refresh triggers on load
+        // Refresh after images, web fonts, and dynamic cards have settled.
         const handleRefresh = () => {
             requestAnimationFrame(() => {
                 ScrollTrigger.refresh();

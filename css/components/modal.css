@@ -282,28 +282,29 @@
 }
 
 .project-modal-btn-primary {
-    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
-    color: #ffffff;
-    box-shadow: 0 4px 16px rgba(139, 92, 246, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    background: var(--btn-primary-bg);
+    color: var(--btn-primary-text, #ffffff);
+    border: 1px solid var(--btn-primary-border);
+    box-shadow: var(--btn-primary-shadow);
 }
 
 .project-modal-btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(139, 92, 246, 0.6);
-    color: #ffffff;
+    box-shadow: var(--btn-primary-hover-shadow);
+    color: var(--btn-primary-text, #ffffff);
 }
 
 .project-modal-btn-secondary {
-    background: rgba(255, 255, 255, 0.06);
-    color: #e2e8f0;
-    border-color: rgba(255, 255, 255, 0.16);
+    background: var(--btn-secondary-bg);
+    color: var(--btn-secondary-text);
+    border: 1px solid var(--btn-secondary-border);
 }
 
 .project-modal-btn-secondary:hover {
     transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.14);
-    border-color: rgba(139, 92, 246, 0.5);
-    color: #ffffff;
+    background: var(--btn-secondary-hover-bg);
+    border-color: var(--btn-secondary-hover-border);
+    color: var(--btn-secondary-hover-text);
 }
 
 /* ==========================================================================
@@ -368,12 +369,13 @@ body.light-mode .project-modal-cat {
 }
 
 body.light-mode .project-modal-btn-secondary {
-    background: #f1f5f9;
-    color: #1e293b;
-    border-color: #cbd5e1;
+    background: var(--btn-secondary-bg);
+    color: var(--btn-secondary-text);
+    border-color: var(--btn-secondary-border);
 }
 
 body.light-mode .project-modal-btn-secondary:hover {
-    background: #e2e8f0;
-    color: #0f172a;
+    background: var(--btn-secondary-hover-bg);
+    border-color: var(--btn-secondary-hover-border);
+    color: var(--btn-secondary-hover-text);
 }

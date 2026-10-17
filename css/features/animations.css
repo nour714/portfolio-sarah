@@ -48,6 +48,14 @@ html.lenis body {
     will-change: transform;
 }
 
+/* Applied after component styles so reveal timing is consistent for cards,
+   panels and dynamically rendered content alike. */
+.reveal {
+    transition:
+        opacity 520ms ease-out var(--reveal-delay, 0ms),
+        transform 820ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms);
+}
+
 /* 3D Interactive Card Perspective & Containers */
 .projects-grid,
 .certificates-grid,
@@ -65,6 +73,8 @@ html.lenis body {
 .certificate-card,
 .experience-card,
 .skill-group,
+.contact-panel,
+.contact-form,
 .contact-item,
 .stat-card,
 .skills-metric,
@@ -86,8 +96,8 @@ html.lenis body {
     transition: opacity 0.35s ease;
     background: radial-gradient(
         380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-        rgba(45, 212, 191, 0.18),
-        rgba(6, 182, 212, 0.05) 45%,
+        rgba(56, 189, 248, 0.18),
+        rgba(139, 92, 246, 0.08) 45%,
         transparent 70%
     );
 }
@@ -96,6 +106,8 @@ html.lenis body {
 .certificate-card:hover .card-spotlight,
 .experience-card:hover .card-spotlight,
 .skill-group:hover .card-spotlight,
+.contact-panel:hover .card-spotlight,
+.contact-form:hover .card-spotlight,
 .contact-item:hover .card-spotlight,
 .stat-card:hover .card-spotlight,
 .skills-metric:hover .card-spotlight,
@@ -113,10 +125,10 @@ html.lenis body {
 .skills-metric:hover,
 .about-node:hover {
     box-shadow:
-        0 20px 48px rgba(1, 14, 18, 0.55),
-        0 0 32px rgba(45, 212, 191, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.18);
-    border-color: rgba(94, 234, 212, 0.65);
+        0 20px 48px rgba(0, 0, 0, 0.6),
+        0 0 30px rgba(56, 189, 248, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.16);
+    border-color: rgba(56, 189, 248, 0.55);
 }
 
 /* Magnetic Elements */
@@ -133,10 +145,10 @@ html.lenis body {
     top: 0;
     left: 0;
     width: 0%;
-    height: 3px;
+    height: 3.5px;
     z-index: 9999;
-    background: linear-gradient(90deg, #06b6d4, #14b8a6, #22d3ee);
-    box-shadow: 0 0 12px rgba(6, 182, 212, 0.85);
+    background: linear-gradient(90deg, #38bdf8, #818cf8, #8b5cf6, #c084fc);
+    box-shadow: 0 0 14px rgba(56, 189, 248, 0.65), 0 0 24px rgba(139, 92, 246, 0.45);
     transition: width 0.05s linear;
     border-radius: 0 999px 999px 0;
 }
@@ -229,9 +241,7 @@ body.light-mode .macos-cursor-sheen {
 
 /* Fallback/Mobile: Hide custom cursor on coarse touchscreens */
 @media (pointer: coarse), (max-width: 768px) {
-    .macos-cursor,
-    .cursor-dot,
-    .cursor-ring {
+    .macos-cursor {
         display: none !important;
     }
     body.has-macos-cursor,
@@ -251,18 +261,18 @@ body.light-mode .macos-cursor-sheen {
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    border: 1px solid rgba(45, 212, 191, 0.42);
-    background: linear-gradient(145deg, rgba(8, 51, 60, 0.88), rgba(3, 27, 33, 0.94));
-    color: #ccfbf1;
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    background: linear-gradient(145deg, rgba(14, 18, 38, 0.92), rgba(7, 8, 18, 0.96));
+    color: #7dd3fc;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 8px 24px rgba(1, 18, 22, 0.48), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.18);
     opacity: 0;
     transform: translateY(18px);
     pointer-events: none;
-    transition: opacity 0.35s ease, transform 0.35s ease, box-shadow 0.25s ease;
+    transition: opacity 0.35s ease, transform 0.35s ease, box-shadow 0.25s ease, border-color 0.25s ease, color 0.25s ease;
 }
 
 #back-to-top.is-visible {
@@ -272,9 +282,9 @@ body.light-mode .macos-cursor-sheen {
 }
 
 #back-to-top:hover {
-    box-shadow: 0 12px 32px rgba(6, 182, 212, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    box-shadow: 0 12px 32px rgba(14, 165, 233, 0.45), 0 0 24px rgba(139, 92, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.25);
     transform: translateY(-3px);
-    border-color: rgba(94, 234, 212, 0.8);
+    border-color: rgba(56, 189, 248, 0.85);
     color: #ffffff;
 }
 
@@ -289,16 +299,17 @@ body.light-mode .macos-cursor-sheen {
 }
 
 body.light-mode #back-to-top {
-    background: linear-gradient(145deg, rgba(240, 253, 250, 0.95), rgba(204, 251, 241, 0.95));
-    color: #0f766e;
-    border-color: rgba(45, 212, 191, 0.45);
-    box-shadow: 0 8px 18px rgba(13, 148, 136, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    background: #ffffff;
+    color: #0284c7;
+    border-color: rgba(203, 213, 225, 0.9);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.95);
 }
 
 body.light-mode #back-to-top:hover {
-    background: linear-gradient(145deg, #ccfbf1, #99f6e4);
-    color: #042f2e;
-    box-shadow: 0 12px 26px rgba(13, 148, 136, 0.22);
+    background: #f8fafc;
+    color: #4338ca;
+    border-color: rgba(99, 102, 241, 0.5);
+    box-shadow: 0 12px 24px rgba(99, 102, 241, 0.15);
 }
 
 /* =============================================
@@ -373,9 +384,7 @@ body.light-mode #back-to-top:hover {
         scroll-behavior: auto !important;
     }
 
-    .macos-cursor,
-    .cursor-dot,
-    .cursor-ring {
+    .macos-cursor {
         display: none !important;
     }
 
