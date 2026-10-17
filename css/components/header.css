@@ -8,7 +8,6 @@
     display: flex;
     justify-content: center;
     padding: 0 clamp(16px, 3.5vw, 40px);
-    animation: navDrop 0.55s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 50;
     pointer-events: none;
     transform: translateZ(0);
