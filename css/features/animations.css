@@ -48,12 +48,76 @@ html.lenis body {
     will-change: transform;
 }
 
-/* Applied after component styles so reveal timing is consistent for cards,
-   panels and dynamically rendered content alike. */
+/* Zero-Latency GSAP Assembly Choreography across all sections */
+.is-assembling,
+.is-assembling * {
+    transition: none !important;
+}
+
+/* =============================================
+   CINEMATIC SCROLL REVEAL SYSTEM
+   ============================================= */
 .reveal {
+    --reveal-x: 0px;
+    --reveal-y: 32px;
+    --reveal-scale: 1;
+    --reveal-blur: 8px;
+    --reveal-delay: 0ms;
+    opacity: 0;
+    filter: blur(var(--reveal-blur));
+    transform: translate3d(var(--reveal-x), var(--reveal-y), 0) scale(var(--reveal-scale));
     transition:
-        opacity 520ms ease-out var(--reveal-delay, 0ms),
-        transform 820ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms);
+        opacity 750ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay),
+        transform 880ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay),
+        filter 750ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay);
+    will-change: opacity, transform, filter;
+}
+
+.reveal.is-visible {
+    opacity: 1 !important;
+    filter: blur(0px) !important;
+    transform: translate3d(0, 0, 0) scale(1) !important;
+    will-change: auto;
+}
+
+/* Directional and Contextual Variants */
+.reveal--up {
+    --reveal-x: 0px;
+    --reveal-y: 32px;
+    --reveal-blur: 8px;
+}
+
+.reveal--left {
+    --reveal-x: -36px;
+    --reveal-y: 0px;
+    --reveal-blur: 6px;
+}
+
+.reveal--right {
+    --reveal-x: 36px;
+    --reveal-y: 0px;
+    --reveal-blur: 6px;
+}
+
+.reveal--soft {
+    --reveal-x: 0px;
+    --reveal-y: 22px;
+    --reveal-scale: 0.985;
+    --reveal-blur: 4px;
+}
+
+.reveal--card {
+    --reveal-x: 0px;
+    --reveal-y: 36px;
+    --reveal-scale: 0.965;
+    --reveal-blur: 6px;
+}
+
+.reveal--scale {
+    --reveal-x: 0px;
+    --reveal-y: 20px;
+    --reveal-scale: 0.92;
+    --reveal-blur: 10px;
 }
 
 /* 3D Interactive Card Perspective & Containers */
