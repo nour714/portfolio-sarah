@@ -8,6 +8,7 @@ import { resolveHeroRoles } from "../modules/hero.js";
 import { createProjectCard } from "../modules/projects.js";
 import { createCertificateCard } from "../modules/certificates.js";
 import { createSkillCard, initSkillsArcCarousel } from "../modules/skills.js";
+import { portfolioData } from "../data/portfolio-data.js";
 
 export const isPlainObject = (value) => Boolean(value && typeof value === "object" && !Array.isArray(value));
 
@@ -44,20 +45,27 @@ export const deepMerge = (target, source) => {
 };
 
 export const extractAdminState = () => {
-    const heroName = getText(".hero-name-highlight") || getText(".hero-text h1 span:last-of-type") || getText(".hero-text h1 span");
-    const heroCopy = getText(".hero-copy");
-    const heroRoles = resolveHeroRoles();
+    const defaultData = deepClone(portfolioData) || {};
+
+    const heroName = getText(".hero-name-highlight") || getText(".hero-text h1 span:last-of-type") || getText(".hero-text h1 span") || defaultData.hero?.name || "Sarah";
+    const heroCopy = getText(".hero-copy") || defaultData.hero?.copy || "";
+    const domRoles = resolveHeroRoles();
+    const heroRoles = (domRoles && domRoles.length) ? domRoles : (defaultData.hero?.roles || ["Machine Learning", "AI Engineer"]);
     const heroAvatar = document.querySelector(".hero-avatar-img");
     const heroPrimary = document.querySelector(".hero-actions .hero-btn");
     const heroSecondary = document.querySelector(".hero-actions .hero-btn-secondary");
 
     const heroSocialLinks = Array.from(document.querySelectorAll(".hero-social-link"));
-    const social = { github: "", linkedin: "", email: "" };
+    const social = { 
+        github: defaultData.social?.github || "", 
+        linkedin: defaultData.social?.linkedin || "", 
+        email: defaultData.social?.email || "" 
+    };
     heroSocialLinks.forEach((link) => {
         const href = link.getAttribute("href") || "";
         const label = String(link.getAttribute("aria-label") || "").toLowerCase();
-        if (label.includes("github") || href.includes("github")) social.github = href;
-        if (label.includes("linkedin") || href.includes("linkedin")) social.linkedin = href;
+        if ((label.includes("github") || href.includes("github")) && href && href !== "#") social.github = href;
+        if ((label.includes("linkedin") || href.includes("linkedin")) && href && href !== "#") social.linkedin = href;
         if (href.startsWith("mailto:")) social.email = href.replace("mailto:", "");
     });
 
@@ -75,8 +83,8 @@ export const extractAdminState = () => {
         social.github = contactGithubItem.getAttribute("href") || social.github;
     }
     const contactLocationItem = findContactItemByLabel("location");
-    const contactLinkedInLabel = contactLinkedInItem ? getText(".contact-value", contactLinkedInItem) : "";
-    const contactGithubLabel = contactGithubItem ? getText(".contact-value", contactGithubItem) : "";
+    const contactLinkedInLabel = contactLinkedInItem ? getText(".contact-value", contactLinkedInItem) : (defaultData.contact?.linkedinLabel || "");
+    const contactGithubLabel = contactGithubItem ? getText(".contact-value", contactGithubItem) : (defaultData.contact?.githubLabel || "");
 
     const aboutMetrics = Array.from(document.querySelectorAll(".about-track .about-node")).map((node) => ({
         value: getText("strong", node),
@@ -107,13 +115,13 @@ export const extractAdminState = () => {
     }));
 
     const skillsNoteStrong = document.querySelector(".skills-note strong");
-    const skillsNoteLabel = skillsNoteStrong ? String(skillsNoteStrong.textContent || "").trim() : "Focus:";
+    const skillsNoteLabel = skillsNoteStrong ? String(skillsNoteStrong.textContent || "").trim() : (defaultData.skills?.noteLabel || "Focus:");
     const skillsNoteText = (() => {
         const note = document.querySelector(".skills-note");
-        if (!note) return "";
+        if (!note) return defaultData.skills?.noteText || "";
         const raw = String(note.textContent || "").trim();
-        if (!skillsNoteLabel) return raw;
-        return raw.replace(skillsNoteLabel, "").trim();
+        if (!skillsNoteLabel) return raw || defaultData.skills?.noteText || "";
+        return raw.replace(skillsNoteLabel, "").trim() || defaultData.skills?.noteText || "";
     })();
 
     const projects = Array.from(document.querySelectorAll(".project-card")).map((card, index) => {
@@ -167,68 +175,73 @@ export const extractAdminState = () => {
             roles: heroRoles,
             copy: heroCopy,
             avatar: {
-                src: heroAvatar?.getAttribute("src") || "",
-                alt: heroAvatar?.getAttribute("alt") || ""
+                src: heroAvatar?.getAttribute("src") || defaultData.hero?.avatar?.src || "",
+                alt: heroAvatar?.getAttribute("alt") || defaultData.hero?.avatar?.alt || ""
             },
             primary: {
-                text: heroPrimary ? String(heroPrimary.textContent || "").trim() : "",
-                url: heroPrimary?.getAttribute("href") || ""
+                text: heroPrimary ? String(heroPrimary.textContent || "").trim() : (defaultData.hero?.primary?.text || "View Resume"),
+                url: heroPrimary?.getAttribute("href") || defaultData.hero?.primary?.url || "cv.html"
             },
             secondary: {
-                text: heroSecondary ? String(heroSecondary.textContent || "").trim() : "",
-                url: heroSecondary?.getAttribute("href") || ""
+                text: heroSecondary ? String(heroSecondary.textContent || "").trim() : (defaultData.hero?.secondary?.text || "View Projects"),
+                url: heroSecondary?.getAttribute("href") || defaultData.hero?.secondary?.url || "#projects"
             }
         },
         about: {
-            status: getText(".about-status"),
-            location: getText(".about-location"),
-            title: getText("#about-title"),
-            copy: getText(".about-copy"),
-            signature: getText(".about-signature"),
-            metrics: aboutMetrics
+            status: getText(".about-status") || defaultData.about?.status || "Open For ML & Data Roles",
+            location: getText(".about-location") || defaultData.about?.location || "Egypt · Remote",
+            title: getText("#about-title") || defaultData.about?.title || "",
+            copy: getText(".about-copy") || defaultData.about?.copy || "",
+            signature: getText(".about-signature") || defaultData.about?.signature || "",
+            metrics: aboutMetrics.length ? aboutMetrics : (defaultData.about?.metrics || [])
         },
         skills: {
-            title: getText("#skills-title"),
-            copy: getText(".skills-copy"),
+            title: getText("#skills-title") || defaultData.skills?.title || "My Skills",
+            copy: getText(".skills-copy") || defaultData.skills?.copy || "",
             metrics: skillsMetrics,
-            groups: skillGroups,
-            items: skillItems,
+            groups: skillGroups.length ? skillGroups : (defaultData.skills?.groups || []),
+            items: skillItems.length ? skillItems : (defaultData.skills?.items || []),
             noteLabel: skillsNoteLabel,
             noteText: skillsNoteText
         },
         projectsSection: {
-            title: getText("#projects-title"),
-            copy: getText(".projects-copy")
+            title: getText("#projects-title") || defaultData.projectsSection?.title || "Featured ML & Data Projects",
+            copy: getText(".projects-copy") || defaultData.projectsSection?.copy || ""
         },
-        projects,
+        projects: projects.length ? projects : (defaultData.projects || []),
+        certificatesSection: {
+            title: getText("#certificates-title") || defaultData.certificatesSection?.title || "Verified Certifications & Credentials",
+            copy: getText(".certificates-copy") || defaultData.certificatesSection?.copy || ""
+        },
+        certificates: defaultData.certificates || [],
         experience: {
-            title: getText("#experience-title"),
-            copy: getText(".experience-copy"),
-            metrics: experienceMetrics,
-            items: experienceItems
+            title: getText("#experience-title") || defaultData.experience?.title || "Professional Experience & Training",
+            copy: getText(".experience-copy") || defaultData.experience?.copy || "",
+            metrics: experienceMetrics.length ? experienceMetrics : (defaultData.experience?.metrics || []),
+            items: experienceItems.length ? experienceItems : (defaultData.experience?.items || [])
         },
         contact: {
-            title: getText("#contact-title"),
-            copy: getText(".contact-copy"),
+            title: getText("#contact-title") || defaultData.contact?.title || "Contact Me",
+            copy: getText(".contact-copy") || defaultData.contact?.copy || "",
             primary: {
-                text: getText(".contact-actions .contact-btn-primary"),
-                url: document.querySelector(".contact-actions .contact-btn-primary")?.getAttribute("href") || ""
+                text: getText(".contact-actions .contact-btn-primary") || defaultData.contact?.primary?.text || "",
+                url: document.querySelector(".contact-actions .contact-btn-primary")?.getAttribute("href") || defaultData.contact?.primary?.url || ""
             },
             secondary: {
-                text: getText(".contact-actions .contact-btn-ghost"),
-                url: document.querySelector(".contact-actions .contact-btn-ghost")?.getAttribute("href") || ""
+                text: getText(".contact-actions .contact-btn-ghost") || defaultData.contact?.secondary?.text || "",
+                url: document.querySelector(".contact-actions .contact-btn-ghost")?.getAttribute("href") || defaultData.contact?.secondary?.url || ""
             },
-            location: contactLocationItem ? getText(".contact-value", contactLocationItem) : "",
-            linkedinLabel: contactLinkedInLabel,
-            githubLabel: contactGithubLabel,
-            panelTitle: contactPanelTitle,
-            panelCopy: contactPanelCopy,
-            availabilityTitle: contactAvailabilityTitle,
-            availabilityCopy: contactAvailabilityCopy,
-            formTitle: contactFormTitle,
-            formCopy: contactFormCopy,
-            formNote: contactFormNote,
-            formSubmit: contactFormSubmit
+            location: contactLocationItem ? getText(".contact-value", contactLocationItem) : (defaultData.contact?.location || "Egypt · Remote"),
+            linkedinLabel: contactLinkedInLabel || defaultData.contact?.linkedinLabel || "linkedin.com/in/sarahnabil",
+            githubLabel: contactGithubLabel || defaultData.contact?.githubLabel || "github.com/sarahnabil",
+            panelTitle: contactPanelTitle || defaultData.contact?.panelTitle || "Direct Channels",
+            panelCopy: contactPanelCopy || defaultData.contact?.panelCopy || "",
+            availabilityTitle: contactAvailabilityTitle || defaultData.contact?.availabilityTitle || "Current Availability",
+            availabilityCopy: contactAvailabilityCopy || defaultData.contact?.availabilityCopy || "",
+            formTitle: contactFormTitle || defaultData.contact?.formTitle || "Send a Message",
+            formCopy: contactFormCopy || defaultData.contact?.formCopy || "",
+            formNote: contactFormNote || defaultData.contact?.formNote || "",
+            formSubmit: contactFormSubmit || defaultData.contact?.formSubmit || "Send Message"
         },
         social
     };
@@ -545,6 +558,21 @@ export const applySocialState = (social) => {
     });
 };
 
+export const applyFooterState = (hero) => {
+    const footerName = document.querySelector(".portfolio-footer-brand h4");
+    if (footerName && (hero?.fullName || hero?.name)) {
+        setText(footerName, hero.fullName || hero.name);
+    }
+    const footerRole = document.querySelector(".portfolio-footer-brand p");
+    if (footerRole && hero?.roles?.length) {
+        setText(footerRole, hero.roles.join(" · "));
+    }
+    const footerCopy = document.querySelector(".portfolio-footer-copy");
+    if (footerCopy && (hero?.fullName || hero?.name)) {
+        setText(footerCopy, `© ${new Date().getFullYear()} ${hero.fullName || hero.name}. All rights reserved.`);
+    }
+};
+
 export const applyAdminState = (state) => {
     if (!state) return;
     applyHeroState(state.hero);
@@ -555,6 +583,7 @@ export const applyAdminState = (state) => {
     applyExperienceState(state.experience);
     applyContactState(state.contact, state.social);
     applySocialState(state.social);
+    applyFooterState(state.hero);
 
     // Sync with admin dashboard state if initialized
     if (window.__syncAdminDashboardState) {
