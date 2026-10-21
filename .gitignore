@@ -49,8 +49,10 @@ ui-debug.log*
 *.log
 
 # Test Artifacts & Browser Profiles
+.tmp_chrome_profile*
 tests/.chrome-test-profile*
 tests/*.png
+tests/**/*.png
 test_*.png
 current_landing.png
 test_frame.html
