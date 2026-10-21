@@ -31,16 +31,13 @@
 
 ```
 New Portfilo/
-├── index.html                     # Main public portfolio (dynamic hydration & 3D intro)
+├── index.html                     # Main public portfolio (dynamic hydration & cinematic hero)
 ├── admin.html                     # Content Studio & CMS Dashboard
 ├── cv.html                        # Dedicated CV previewer with PDF download
 ├── cv.pdf                         # Resume document
 ├── style.css                      # Master CSS index importing all modular layers
-├── scroll-intro.css               # Apple-style scroll intro overlay & HUD styles
-├── scroll-intro.js                # Apple-style canvas scroll intro engine
-│
-├── frames/                        # Desktop 192-frame WebP sequence (1080p)
-├── frames-mobile/                 # Mobile 192-frame WebP sequence (optimized)
+├── firestore.rules                # Cloud Firestore Security Rules
+├── gemini_generated_video_8cc9ee73.mp4 # Cinematic video backdrop for hero
 │
 ├── js/
 │   ├── main.js                    # Public site bootstrap & module orchestrator
@@ -48,7 +45,7 @@ New Portfilo/
 │   │
 │   ├── core/                      # Core foundations
 │   │   ├── constants.js           # App configuration, selectors, initial state
-│   │   ├── utils.js               # DOM helpers, sanitizers, share utilities
+│   │   ├── utils.js               # DOM helpers, card spotlight, share utilities
 │   │   └── state.js               # Central state manager & DOM hydration engines
 │   │
 │   ├── data/                      # Content Data Store (Single Source of Truth)
@@ -59,16 +56,17 @@ New Portfilo/
 │   ├── services/                  # External & side-effect services
 │   │   ├── storage.service.js     # LocalStorage abstraction with safe fallback
 │   │   ├── toast.service.js       # Accessible toast notification system
-│   │   └── firebase.service.js    # Firebase Realtime/Firestore sync provider
+│   │   ├── firebase-api.js        # Firebase SDK + Firestore REST API integration
+│   │   └── firebase.service.js    # Firebase state synchronization bridge
 │   │
 │   ├── modules/                   # UI Feature Modules
 │   │   ├── theme.js               # Dark / Light theme toggle & persistence
 │   │   ├── navigation.js          # Navbar scroll-spy, mobile drawer, smooth scroll
 │   │   ├── hero.js                # Dynamic role typewriter & avatar fallback
+│   │   ├── hero-intro.js          # Cinematic video stage & intro controls
 │   │   ├── skills.js              # 3D Arc Carousel & categorized skills board
 │   │   ├── projects.js            # Filter tabs, project modals, spotlight & share
 │   │   ├── certificates.js        # Sticky certificates stack, filters & detail modal
-│   │   ├── constellation.js       # Canvas neural network particle animation
 │   │   ├── animations.js          # Cinematic motion, Lenis, GSAP, 3D tilt, custom cursor
 │   │   └── contact.js             # Interactive contact form & fallback handling
 │   │
@@ -89,6 +87,7 @@ New Portfilo/
 │   ├── components/
 │   │   ├── header.css             # Navbar, logo badge, theme toggle
 │   │   ├── hero.css               # Hero section, neural badge, CTAs, avatar
+│   │   ├── hero-video.css         # Cinematic video stage, HUD controls, scrim
 │   │   ├── about.css              # Bio narrative, metric chips, timeline nodes
 │   │   ├── skills.css             # 3D Arc Carousel, skill cards & badges
 │   │   ├── projects.css           # Project cards, sticky stack, pipeline diagrams
