@@ -878,7 +878,7 @@ export const initAdminDashboard = () => {
 
     document.addEventListener("keydown", (event) => {
         if (event.key !== "Escape") return;
-        if (!document.body.classList.contains("admin-open")) return;
+        if (!document.body.classList.contains("admin-open") || document.body.classList.contains("admin-only")) return;
         closeAdmin();
     });
 
@@ -1077,6 +1077,15 @@ export const initAdminDashboard = () => {
 
     const saveButton = document.getElementById("admin-save");
     if (saveButton) saveButton.addEventListener("click", persistState);
+
+    // Global keyboard shortcut: Ctrl+S / Cmd+S to save admin state
+    document.addEventListener("keydown", (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "s") {
+            e.preventDefault();
+            const btn = document.getElementById("admin-save") || document.getElementById("save-admin-btn");
+            if (btn) btn.click();
+        }
+    });
     const resetButton = document.getElementById("admin-reset");
     if (resetButton) {
         resetButton.addEventListener("click", () => {
