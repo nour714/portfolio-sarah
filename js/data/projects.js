@@ -45,6 +45,7 @@ export const projects = [
         ],
         image: {
             src: "images/bike_store.png",
+            srcWebp: "images/bike_store.webp",
             alt: "E-Commerce Purchase Intent Prediction Preview"
         },
         previewUrl: "images/bike_store.png",
@@ -81,6 +82,7 @@ export const projects = [
         ],
         image: {
             src: "images/sugary_project.png",
+            srcWebp: "images/sugary_project.webp",
             alt: "Predictive Health Analytics Preview"
         },
         previewUrl: "images/sugary_project.png",
@@ -117,6 +119,7 @@ export const projects = [
         ],
         image: {
             src: "images/invoice_classifier.png",
+            srcWebp: "images/invoice_classifier.webp",
             alt: "Document Classification Preview"
         },
         previewUrl: "images/invoice_classifier.png",
