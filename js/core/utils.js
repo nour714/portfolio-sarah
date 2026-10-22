@@ -126,3 +126,20 @@ export const safelyInit = (initializer) => {
         // Keep the rest of interactive controls working even if one initializer fails.
     }
 };
+
+export const bindCardSpotlight = (selector) => {
+    if (getMediaMatch("(pointer: coarse)")) return;
+    const cards = Array.from(document.querySelectorAll(selector));
+    cards.forEach((card) => {
+        if (card.dataset.spotlightBound) return;
+        card.dataset.spotlightBound = "true";
+        card.addEventListener("pointermove", (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty("--mouse-x", `${x}px`);
+            card.style.setProperty("--mouse-y", `${y}px`);
+        });
+    });
+};
+
