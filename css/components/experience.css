@@ -208,22 +208,12 @@
     letter-spacing: 0.08em;
 }
 
-body.light-mode .project-meta span {
-    color: #4338ca;
-    border-color: rgba(99, 102, 241, 0.3);
-    background: rgba(99, 102, 241, 0.08);
-}
-
-body.light-mode .project-highlights {
-    color: #475569;
-}
-
-body.light-mode .project-highlights li::before {
-    background: #0284c7;
-}
-
 body.light-mode .experience-title-wrap h2 {
     color: #0f172a;
+}
+
+body.light-mode .experience-copy {
+    color: #475569;
 }
 
 body.light-mode .experience-metric {
