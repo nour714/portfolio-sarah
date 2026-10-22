@@ -12,7 +12,7 @@
  * - Full accessibility and lightbox certificate modal
  */
 
-import { setText } from "../core/utils.js";
+import { setText, bindCardSpotlight } from "../core/utils.js";
 import { portfolioData } from "../data/portfolio-data.js";
 
 /**
@@ -27,7 +27,7 @@ export const createCertificateCard = (cert, index = 0) => {
 
     // Wrapper for sticky stacking & ScrollTrigger tracking
     const wrapper = document.createElement("div");
-    wrapper.className = "certificate-card-wrapper reveal";
+    wrapper.className = "certificate-card-wrapper reveal is-visible";
     wrapper.setAttribute("data-category", cert.category || "all");
     wrapper.setAttribute("data-card-index", cardIndexStr);
 
@@ -204,7 +204,7 @@ export const initCertificatesSectionIntro = () => {
                 id: "cert-title-reveal",
                 trigger: title,
                 start: "top 86%",
-                once: true
+                toggleActions: "restart none restart none"
             }
         }
     );
@@ -395,18 +395,7 @@ export const initCertificatesScrollIndicator = () => {
  * Desktop Hover Spotlight Sheen
  */
 export const initCertificateSpotlight = () => {
-    if (window.matchMedia("(pointer: coarse)").matches) return;
-    const cards = Array.from(document.querySelectorAll(".certificate-card"));
-
-    cards.forEach((card) => {
-        card.addEventListener("pointermove", (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            card.style.setProperty("--mouse-x", `${x}px`);
-            card.style.setProperty("--mouse-y", `${y}px`);
-        });
-    });
+    bindCardSpotlight(".certificate-card");
 };
 
 /**
@@ -425,11 +414,56 @@ export const refreshCertificateScrollInteractions = () => {
 };
 
 /**
+ * Ensures Certificate Lightbox Modal exists in DOM
+ */
+export const ensureCertificateModal = () => {
+    let overlay = document.getElementById("cert-modal-overlay");
+    if (!overlay) {
+        overlay = document.createElement("div");
+        overlay.id = "cert-modal-overlay";
+        overlay.setAttribute("role", "dialog");
+        overlay.setAttribute("aria-modal", "true");
+        overlay.setAttribute("aria-labelledby", "cert-modal-title");
+        overlay.setAttribute("data-lenis-prevent", "");
+        overlay.innerHTML = `
+            <div class="cert-modal" data-lenis-prevent>
+                <button class="cert-modal-close" id="cert-modal-close" aria-label="Close certificate modal">
+                    <svg viewBox="0 0 24 24">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+                <div class="cert-modal-media">
+                    <img src="" alt="" class="cert-modal-img" id="cert-modal-img">
+                </div>
+                <h2 class="cert-modal-title sr-only" id="cert-modal-title"></h2>
+                <div class="cert-modal-body" aria-hidden="true">
+                    <span class="cert-modal-badge" id="cert-modal-badge">Verified Credential</span>
+                    <p class="cert-modal-issuer" id="cert-modal-issuer"></p>
+                    <p class="cert-modal-desc" id="cert-modal-desc"></p>
+                    <div class="cert-modal-actions">
+                        <a href="#" class="cert-modal-btn cert-modal-btn-primary" id="cert-modal-open-link" target="_blank" rel="noopener noreferrer">
+                            <span>View Full Image</span>
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <line x1="7" y1="17" x2="17" y2="7"></line>
+                                <polyline points="7 7 17 7 17 17"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(overlay);
+    }
+    return overlay;
+};
+
+/**
  * Opens Certificate Lightbox Modal
  * @param {Object} cert
  */
 export const openCertificateModal = (cert) => {
-    const overlay = document.getElementById("cert-modal-overlay");
+    const overlay = ensureCertificateModal();
     if (!overlay) return;
 
     const modalImg = document.getElementById("cert-modal-img");
@@ -476,7 +510,7 @@ export const closeCertificateModal = () => {
  * Initializes Certificate Modal Events & binds pre-rendered cards
  */
 export const initCertificateModal = () => {
-    const overlay = document.getElementById("cert-modal-overlay");
+    const overlay = ensureCertificateModal();
     const closeBtn = document.getElementById("cert-modal-close");
     if (!overlay) return;
 
@@ -590,4 +624,8 @@ export const initCertificateFilters = () => {
         const key = activeBtn ? activeBtn.getAttribute("data-filter") || "all" : "all";
         applyFilter(key);
     };
+
+    const defaultFilter =
+        filterButtons.find((button) => button.classList.contains("is-active"))?.getAttribute("data-filter") || "all";
+    applyFilter(defaultFilter);
 };
