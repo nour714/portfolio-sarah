@@ -5,405 +5,16 @@
  * Sarah Nabil - Machine Learning, AI & Data Science Specialist
  */
 
-// ==========================================================================
-// Official & Bespoke Vector SVGs for Machine Learning & Data Science Stack
-// ==========================================================================
+import {
+    SKILL_METADATA,
+    enrichSkill,
+    getSkillIconElement
+} from "./skills/skill-icons.js";
 
-const PYTHON_SVG = `<svg viewBox="0 0 24 24" class="skill-svg" width="34" height="34" aria-hidden="true">
-    <path fill="#387eb8" d="M11.9 2c-5.1 0-4.8 2.2-4.8 2.2l.01 2.3h4.9v.7H5.2S2 6.8 2 12c0 5.1 2.8 4.9 2.8 4.9h1.7v-2.4s-.1-2.8 2.8-2.8h4.8s2.7.04 2.7-2.6V4.7S17.1 2 11.9 2zm-2.7 1.5c.6 0 1 .4 1 1s-.4 1-1 1-1-.4-1-1 .4-1 1-1z"/>
-    <path fill="#ffe052" d="M12.1 22c5.1 0 4.8-2.2 4.8-2.2l-.01-2.3H12v-.7h6.8s3.2.4 3.2-4.8c0-5.1-2.8-4.9-2.8-4.9h-1.7v2.4s.1 2.8-2.8 2.8H9.9s-2.7-.04-2.7 2.6v4.4s-.3 2.7 4.9 2.7zm2.7-1.5c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1z"/>
-</svg>`;
-
-const ML_SVG = `<svg viewBox="0 0 24 24" fill="none" class="skill-svg" width="28" height="28" aria-hidden="true">
-    <rect x="5" y="5" width="14" height="14" rx="3" fill="rgba(168,85,247,0.22)" stroke="#a855f7" stroke-width="1.8"/>
-    <circle cx="9" cy="9" r="1.6" fill="#c084fc"/>
-    <circle cx="15" cy="9" r="1.6" fill="#c084fc"/>
-    <circle cx="12" cy="14" r="1.8" fill="#e879f9"/>
-    <path d="M9 9l3 5 3-5" stroke="#a855f7" stroke-width="1.6"/>
-    <path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3" stroke="#c084fc" stroke-width="1.6" stroke-linecap="round"/>
-</svg>`;
-
-const SKLEARN_SVG = `<svg viewBox="0 0 24 24" class="skill-svg" width="30" height="30" aria-hidden="true">
-    <ellipse cx="7" cy="12" rx="4" ry="7" fill="#f97316" opacity="0.9"/>
-    <ellipse cx="17" cy="12" rx="4" ry="7" fill="#38bdf8" opacity="0.9"/>
-    <path d="M7 6c3 3 7 3 10 0M7 18c3-3 7-3 10 0" stroke="#ffffff" stroke-width="1.6" fill="none"/>
-</svg>`;
-
-const XGBOOST_SVG = `<svg viewBox="0 0 24 24" fill="none" class="skill-svg" width="28" height="28" aria-hidden="true">
-    <polygon points="12,2 21,7 21,17 12,22 3,17 3,7" fill="rgba(34,197,94,0.22)" stroke="#22c55e" stroke-width="1.8"/>
-    <path d="M8 8l8 8M16 8l-8 8" stroke="#4ade80" stroke-width="2.4" stroke-linecap="round"/>
-</svg>`;
-
-const RANDOM_FOREST_SVG = `<svg viewBox="0 0 24 24" fill="none" class="skill-svg" width="28" height="28" aria-hidden="true">
-    <circle cx="12" cy="4" r="2.5" fill="#10b981"/>
-    <circle cx="6" cy="12" r="2" fill="#34d399"/>
-    <circle cx="18" cy="12" r="2" fill="#34d399"/>
-    <circle cx="4" cy="19" r="1.8" fill="#6ee7b7"/>
-    <circle cx="8" cy="19" r="1.8" fill="#6ee7b7"/>
-    <circle cx="16" cy="19" r="1.8" fill="#6ee7b7"/>
-    <circle cx="20" cy="19" r="1.8" fill="#6ee7b7"/>
-    <path d="M12 6.5L6 10M12 6.5L18 10M6 14L4 17.2M6 14L8 17.2M18 14L16 17.2M18 14L20 17.2" stroke="#10b981" stroke-width="1.6"/>
-</svg>`;
-
-const PANDAS_SVG = `<svg viewBox="0 0 24 24" fill="none" class="skill-svg" width="28" height="28" aria-hidden="true">
-    <rect x="4" y="4" width="7" height="7" rx="1.5" fill="#e11d48"/>
-    <rect x="13" y="4" width="7" height="7" rx="1.5" fill="#fb7185"/>
-    <rect x="4" y="13" width="7" height="7" rx="1.5" fill="#f43f5e"/>
-    <rect x="13" y="13" width="7" height="7" rx="1.5" fill="#e11d48"/>
-</svg>`;
-
-const NUMPY_SVG = `<svg viewBox="0 0 24 24" fill="none" class="skill-svg" width="28" height="28" aria-hidden="true">
-    <polygon points="12,2 22,8 22,18 12,22 2,18 2,8" stroke="#4f46e5" stroke-width="1.8" fill="rgba(79,70,229,0.18)"/>
-    <line x1="12" y1="2" x2="12" y2="22" stroke="#818cf8" stroke-width="1.5"/>
-    <line x1="2" y1="8" x2="22" y2="18" stroke="#818cf8" stroke-width="1.5"/>
-</svg>`;
-
-const SQL_SVG = `<svg viewBox="0 0 24 24" fill="none" class="skill-svg" width="26" height="26" aria-hidden="true">
-    <ellipse cx="12" cy="5" rx="8" ry="3" fill="rgba(56,189,248,0.25)" stroke="#38bdf8" stroke-width="1.8"/>
-    <path d="M4 5v6c0 1.66 3.58 3 8 3s8-1.34 8-3V5" stroke="#38bdf8" stroke-width="1.8"/>
-    <path d="M4 11v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6" stroke="#0ea5e9" stroke-width="1.8"/>
-</svg>`;
-
-const DATA_PREP_SVG = `<svg viewBox="0 0 24 24" fill="none" class="skill-svg" width="28" height="28" aria-hidden="true">
-    <path d="M3 6h18M6 12h12M9 18h6" stroke="#06b6d4" stroke-width="2.2" stroke-linecap="round"/>
-    <circle cx="7" cy="6" r="2" fill="#22d3ee"/>
-    <circle cx="15" cy="12" r="2" fill="#22d3ee"/>
-    <circle cx="11" cy="18" r="2" fill="#22d3ee"/>
-</svg>`;
-
-const FEATURE_ENG_SVG = `<svg viewBox="0 0 24 24" fill="none" class="skill-svg" width="28" height="28" aria-hidden="true">
-    <path d="M4 6h16M4 12h16M4 18h16" stroke="rgba(236,72,153,0.45)" stroke-width="1.8" stroke-linecap="round"/>
-    <circle cx="9" cy="6" r="2.5" fill="#ec4899" stroke="#f472b6" stroke-width="1.5"/>
-    <circle cx="16" cy="12" r="2.5" fill="#ec4899" stroke="#f472b6" stroke-width="1.5"/>
-    <circle cx="7" cy="18" r="2.5" fill="#ec4899" stroke="#f472b6" stroke-width="1.5"/>
-</svg>`;
-
-const SMOTE_SVG = `<svg viewBox="0 0 24 24" fill="none" class="skill-svg" width="28" height="28" aria-hidden="true">
-    <path d="M12 3v18M4 7l8-4 8 4M4 7l3 7h-6l3-7zM20 7l3 7h-6l3-7z" stroke="#14b8a6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-    <circle cx="12" cy="19" r="2" fill="#2dd4bf"/>
-</svg>`;
-
-const EVAL_SVG = `<svg viewBox="0 0 24 24" fill="none" class="skill-svg" width="28" height="28" aria-hidden="true">
-    <circle cx="12" cy="12" r="9" stroke="#fb7185" stroke-width="1.8" fill="rgba(251,113,133,0.18)"/>
-    <circle cx="12" cy="12" r="5" stroke="#f43f5e" stroke-width="1.8"/>
-    <circle cx="12" cy="12" r="2" fill="#ffffff"/>
-</svg>`;
-
-const CV_SVG = `<svg viewBox="0 0 24 24" fill="none" class="skill-svg" width="28" height="28" aria-hidden="true">
-    <rect x="3" y="5" width="4" height="14" rx="1.5" fill="#6366f1"/>
-    <rect x="8.5" y="5" width="4" height="14" rx="1.5" fill="#818cf8"/>
-    <rect x="14" y="5" width="4" height="14" rx="1.5" fill="#818cf8"/>
-    <rect x="19.5" y="5" width="2" height="14" rx="1" fill="rgba(99,102,241,0.3)"/>
-</svg>`;
-
-const SEABORN_SVG = `<svg viewBox="0 0 24 24" fill="none" class="skill-svg" width="28" height="28" aria-hidden="true">
-    <path d="M3 18c3-1 4-10 8-10s5 11 10 9" stroke="#38bdf8" stroke-width="2.2" stroke-linecap="round"/>
-    <circle cx="11" cy="8" r="2.5" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5"/>
-    <circle cx="16" cy="14" r="2" fill="#0ea5e9"/>
-</svg>`;
-
-const EDA_SVG = `<svg viewBox="0 0 24 24" fill="none" class="skill-svg" width="28" height="28" aria-hidden="true">
-    <rect x="3" y="3" width="18" height="18" rx="3" stroke="#f59e0b" stroke-width="1.8" fill="rgba(245,158,11,0.15)"/>
-    <path d="M7 16v-4M12 16v-7M17 16v-2" stroke="#fbbf24" stroke-width="2.2" stroke-linecap="round"/>
-</svg>`;
-
-const ALGO_SVG = `<svg viewBox="0 0 24 24" fill="none" class="skill-svg" width="28" height="28" aria-hidden="true">
-    <rect x="9" y="3" width="6" height="4" rx="1.5" fill="#3b82f6" stroke="#60a5fa" stroke-width="1.2"/>
-    <rect x="3" y="15" width="6" height="4" rx="1.5" fill="#3b82f6" stroke="#60a5fa" stroke-width="1.2"/>
-    <rect x="15" y="15" width="6" height="4" rx="1.5" fill="#3b82f6" stroke="#60a5fa" stroke-width="1.2"/>
-    <path d="M12 7v4M6 13h12M6 13v2M18 13v2" stroke="#60a5fa" stroke-width="1.8"/>
-</svg>`;
-
-const GIT_SVG = `<svg viewBox="0 0 24 24" class="skill-svg" width="28" height="28" aria-hidden="true">
-    <path fill="#f05032" d="M21.6 10.9L13.1 2.4c-.6-.6-1.5-.6-2.1 0L8.7 4.7l2.7 2.7c.6-.2 1.4 0 1.9.5.5.5.7 1.3.5 1.9l2.6 2.6c.6-.2 1.4 0 1.9.5.8.8.8 2.1 0 2.9s-2.1.8-2.9 0c-.6-.6-.7-1.4-.4-2.1L12.5 11v5.1c.2.1.4.3.5.5.8.8.8 2.1 0 2.9s-2.1.8-2.9 0c-.8-.8-.8-2.1 0-2.9.2-.2.4-.4.6-.5V10.8c-.2-.1-.4-.3-.6-.5-.6-.6-.7-1.4-.4-2.1L7.1 5.6 2.4 10.3c-.6.6-.6 1.5 0 2.1l8.5 8.5c.6.6 1.5.6 2.1 0l8.5-8.5c.6-.6.6-1.5.1-2.1z"/>
-</svg>`;
-
-const SVG_MAP = {
-    "python": PYTHON_SVG,
-    "svg-python": PYTHON_SVG,
-    "machine learning": ML_SVG,
-    "svg-ml": ML_SVG,
-    "scikit-learn": SKLEARN_SVG,
-    "scikit": SKLEARN_SVG,
-    "svg-sklearn": SKLEARN_SVG,
-    "xgboost": XGBOOST_SVG,
-    "svg-xgboost": XGBOOST_SVG,
-    "random forest": RANDOM_FOREST_SVG,
-    "svg-random-forest": RANDOM_FOREST_SVG,
-    "pandas": PANDAS_SVG,
-    "svg-pandas": PANDAS_SVG,
-    "numpy": NUMPY_SVG,
-    "svg-numpy": NUMPY_SVG,
-    "sql": SQL_SVG,
-    "svg-sql": SQL_SVG,
-    "data preprocessing": DATA_PREP_SVG,
-    "svg-data-prep": DATA_PREP_SVG,
-    "feature engineering": FEATURE_ENG_SVG,
-    "svg-feature-eng": FEATURE_ENG_SVG,
-    "smote": SMOTE_SVG,
-    "smote & resampling": SMOTE_SVG,
-    "imbalanced data (smote)": SMOTE_SVG,
-    "svg-smote": SMOTE_SVG,
-    "model evaluation": EVAL_SVG,
-    "roc-auc & f1-score": EVAL_SVG,
-    "svg-eval": EVAL_SVG,
-    "cross-validation": CV_SVG,
-    "svg-cv": CV_SVG,
-    "seaborn": SEABORN_SVG,
-    "svg-seaborn": SEABORN_SVG,
-    "eda": EDA_SVG,
-    "exploratory eda": EDA_SVG,
-    "exploratory dashboards": EDA_SVG,
-    "svg-eda": EDA_SVG,
-    "algorithms": ALGO_SVG,
-    "oop & algorithms": ALGO_SVG,
-    "svg-algo": ALGO_SVG,
-    "git": GIT_SVG,
-    "svg-git": GIT_SVG
-};
-
-// ==========================================================================
-// Comprehensive Skill Metadata
-// ==========================================================================
-
-export const SKILL_METADATA = {
-    "python": {
-        level: "EXPERT",
-        progress: 96,
-        description: "Core language for ML development, algorithms, data processing pipelines, and model evaluation.",
-        color: "#38bdf8",
-        haloColor: "rgba(56, 189, 248, 0.45)",
-        barColor: "#38bdf8",
-        label: "PYTHON"
-    },
-    "machine learning": {
-        level: "EXPERT",
-        progress: 95,
-        description: "End-to-end predictive modeling, supervised and unsupervised learning, and classification pipelines.",
-        color: "#a855f7",
-        haloColor: "rgba(168, 85, 247, 0.45)",
-        barColor: "#c084fc",
-        label: "ML"
-    },
-    "scikit-learn": {
-        level: "EXPERT",
-        progress: 94,
-        description: "Robust model architectures, transformers, hyperparameter tuning via GridSearchCV, and pipelines.",
-        color: "#f97316",
-        haloColor: "rgba(249, 115, 22, 0.45)",
-        barColor: "#fb923c",
-        label: "SKLEARN"
-    },
-    "xgboost": {
-        level: "EXPERT",
-        progress: 94,
-        description: "High-performance gradient boosting on tabular data with custom objective and regularization tuning.",
-        color: "#22c55e",
-        haloColor: "rgba(34, 197, 94, 0.45)",
-        barColor: "#4ade80",
-        label: "XGBOOST"
-    },
-    "random forest": {
-        level: "ADVANCED",
-        progress: 92,
-        description: "Ensemble learning with bagging, decision tree ensembles, and feature importance diagnostics.",
-        color: "#10b981",
-        haloColor: "rgba(16, 185, 129, 0.45)",
-        barColor: "#34d399",
-        label: "FOREST"
-    },
-    "pandas": {
-        level: "EXPERT",
-        progress: 95,
-        description: "High-speed tabular manipulation, aggregations, data reshaping, and missing-value handling.",
-        color: "#e11d48",
-        haloColor: "rgba(225, 29, 72, 0.45)",
-        barColor: "#f43f5e",
-        label: "PANDAS"
-    },
-    "numpy": {
-        level: "EXPERT",
-        progress: 93,
-        description: "Vectorized numerical computing, matrix linear algebra, and high-performance array transformations.",
-        color: "#4f46e5",
-        haloColor: "rgba(79, 70, 229, 0.45)",
-        barColor: "#818cf8",
-        label: "NUMPY"
-    },
-    "sql": {
-        level: "ADVANCED",
-        progress: 91,
-        description: "Writing relational queries, aggregations, window functions, and structured database extraction.",
-        color: "#0ea5e9",
-        haloColor: "rgba(14, 165, 233, 0.45)",
-        barColor: "#38bdf8",
-        label: "SQL"
-    },
-    "data preprocessing": {
-        level: "EXPERT",
-        progress: 96,
-        description: "Automated data cleaning, outlier treatment, feature scaling, and categorical encoding.",
-        color: "#06b6d4",
-        haloColor: "rgba(6, 182, 212, 0.45)",
-        barColor: "#22d3ee",
-        label: "DATA PREP"
-    },
-    "feature engineering": {
-        level: "EXPERT",
-        progress: 94,
-        description: "Creating high-impact domain features, interaction terms, and dimensionality reduction strategies.",
-        color: "#ec4899",
-        haloColor: "rgba(236, 72, 153, 0.45)",
-        barColor: "#f472b6",
-        label: "FEATURE ENG"
-    },
-    "smote": {
-        level: "SPECIALIZED",
-        progress: 90,
-        description: "Tackling severe class imbalance using synthetic minority over-sampling and hybrid techniques.",
-        color: "#14b8a6",
-        haloColor: "rgba(20, 184, 166, 0.45)",
-        barColor: "#2dd4bf",
-        label: "SMOTE"
-    },
-    "model evaluation": {
-        level: "EXPERT",
-        progress: 95,
-        description: "Comprehensive metrics analysis with ROC-AUC curves, Precision-Recall, and confusion matrices.",
-        color: "#fb7185",
-        haloColor: "rgba(251, 113, 133, 0.45)",
-        barColor: "#f43f5e",
-        label: "EVALUATION"
-    },
-    "cross-validation": {
-        level: "EXPERT",
-        progress: 93,
-        description: "Preventing data leakage and overfitting using Stratified K-Fold and validation schemes.",
-        color: "#818cf8",
-        haloColor: "rgba(129, 140, 248, 0.45)",
-        barColor: "#a5b4fc",
-        label: "CV"
-    },
-    "matplotlib": {
-        level: "ADVANCED",
-        progress: 91,
-        description: "Crafting publication-quality statistical charts, diagnostic plots, and distribution graphs.",
-        color: "#38bdf8",
-        haloColor: "rgba(56, 189, 248, 0.45)",
-        barColor: "#38bdf8",
-        label: "MATPLOTLIB"
-    },
-    "seaborn": {
-        level: "ADVANCED",
-        progress: 91,
-        description: "Multi-variate statistical visualization, correlation matrices, pairplots, and distribution curves.",
-        color: "#0284c7",
-        haloColor: "rgba(2, 132, 199, 0.45)",
-        barColor: "#38bdf8",
-        label: "SEABORN"
-    },
-    "eda": {
-        level: "EXPERT",
-        progress: 95,
-        description: "Uncovering statistical patterns, anomalies, business insights, and hypothesis validations.",
-        color: "#f59e0b",
-        haloColor: "rgba(245, 158, 11, 0.45)",
-        barColor: "#fbbf24",
-        label: "EDA"
-    },
-    "algorithms": {
-        level: "ADVANCED",
-        progress: 90,
-        description: "Clean object-oriented architecture, modular code design, and efficient data structures.",
-        color: "#3b82f6",
-        haloColor: "rgba(59, 130, 246, 0.45)",
-        barColor: "#60a5fa",
-        label: "ALGORITHMS"
-    },
-    "git": {
-        level: "ADVANCED",
-        progress: 88,
-        description: "Collaborative Git workflows, reproducible experiments, and clean repository management.",
-        color: "#f05032",
-        haloColor: "rgba(240, 80, 50, 0.45)",
-        barColor: "#fb7185",
-        label: "GIT"
-    }
-};
-
-/**
- * Enriches raw skill items with metadata
- */
-export const enrichSkill = (item) => {
-    const rawName = typeof item === "object" ? item.name : String(item || "");
-    const key = (rawName || "").trim().toLowerCase();
-    const meta = SKILL_METADATA[key] || {};
-
-    return {
-        name: rawName,
-        icon: (typeof item === "object" && item.icon) || key,
-        level: (typeof item === "object" && item.level) || meta.level || "EXPERT",
-        progress: (typeof item === "object" && item.progress) || meta.progress || 92,
-        description: (typeof item === "object" && item.description) || meta.description || `Specialized competence and practical implementation in ${rawName}.`,
-        color: (typeof item === "object" && item.color) || meta.color || "#38bdf8",
-        haloColor: (typeof item === "object" && item.haloColor) || meta.haloColor || "rgba(56, 189, 248, 0.45)",
-        barColor: (typeof item === "object" && item.barColor) || meta.barColor || "#fb7185",
-        label: (typeof item === "object" && item.label) || meta.label || (rawName.length > 8 ? rawName.slice(0, 6).toUpperCase() : rawName.toUpperCase())
-    };
-};
-
-/**
- * Creates an icon element (devicon or SVG)
- */
-export const getSkillIconElement = (item) => {
-    const itemName = typeof item === "object" ? item.name : String(item || "");
-    const itemIcon = typeof item === "object" ? item.icon : "";
-    const key = (itemName || "").trim().toLowerCase();
-    const iconKey = (itemIcon || "").trim().toLowerCase();
-
-    // 1. Direct SVG registered
-    const svgMarkup = SVG_MAP[iconKey] || SVG_MAP[key];
-    if (svgMarkup) {
-        const span = document.createElement("span");
-        span.className = "skill-icon skill-icon-svg";
-        span.setAttribute("aria-hidden", "true");
-        span.innerHTML = svgMarkup;
-        return span;
-    }
-
-    // 2. Devicon class
-    if (itemIcon && itemIcon.startsWith("devicon-")) {
-        const i = document.createElement("i");
-        i.className = `skill-icon ${itemIcon}`;
-        i.setAttribute("aria-hidden", "true");
-        return i;
-    }
-
-    // 3. Known devicons by name
-    const deviconMap = {
-        python: "devicon-python-plain colored",
-        pandas: "devicon-pandas-plain colored",
-        numpy: "devicon-numpy-plain colored",
-        scikit: "devicon-scikitlearn-plain colored",
-        matplotlib: "devicon-matplotlib-plain colored",
-        git: "devicon-git-plain colored"
-    };
-
-    for (const [sub, cls] of Object.entries(deviconMap)) {
-        if (key.includes(sub)) {
-            const i = document.createElement("i");
-            i.className = `skill-icon ${cls}`;
-            i.setAttribute("aria-hidden", "true");
-            return i;
-        }
-    }
-
-    // Fallback
-    const span = document.createElement("span");
-    span.className = "skill-icon skill-icon-svg";
-    span.setAttribute("aria-hidden", "true");
-    span.innerHTML = ML_SVG;
-    return span;
+export {
+    SKILL_METADATA,
+    enrichSkill,
+    getSkillIconElement
 };
 
 /**
@@ -456,6 +67,8 @@ let nextBtn = null;
 let arcTween = null;
 let idleFloatTween = null;
 let idleHaloTween = null;
+let assemblyTimeline = null;
+let hasAssembled = false;
 
 // Auto-Rotation (Auto-Play) Engine
 const AUTO_PLAY_INTERVAL = 2200; // Snappy 2.2 seconds per skill
@@ -880,6 +493,9 @@ export const initSkillsArcCarousel = (rawItems) => {
 
             btn.addEventListener("click", (e) => {
                 e.stopPropagation();
+                if (assemblyTimeline && assemblyTimeline.isActive()) {
+                    assemblyTimeline.progress(1);
+                }
                 renderSkillsArcCarousel(index, true);
             });
 
@@ -891,6 +507,9 @@ export const initSkillsArcCarousel = (rawItems) => {
     if (prevBtn && !prevBtn._hasBoundClick) {
         prevBtn._hasBoundClick = true;
         prevBtn.addEventListener("click", () => {
+            if (assemblyTimeline && assemblyTimeline.isActive()) {
+                assemblyTimeline.progress(1);
+            }
             if (window.gsap) {
                 window.gsap.fromTo(prevBtn, { scale: 0.88 }, { scale: 1, duration: 0.3, ease: "back.out(2)" });
             }
@@ -901,6 +520,9 @@ export const initSkillsArcCarousel = (rawItems) => {
     if (nextBtn && !nextBtn._hasBoundClick) {
         nextBtn._hasBoundClick = true;
         nextBtn.addEventListener("click", () => {
+            if (assemblyTimeline && assemblyTimeline.isActive()) {
+                assemblyTimeline.progress(1);
+            }
             if (window.gsap) {
                 window.gsap.fromTo(nextBtn, { scale: 0.88 }, { scale: 1, duration: 0.3, ease: "back.out(2)" });
             }
@@ -935,6 +557,9 @@ export const initSkillsArcCarousel = (rawItems) => {
         });
 
         stageEl.addEventListener("pointerdown", (e) => {
+            if (assemblyTimeline && assemblyTimeline.isActive()) {
+                assemblyTimeline.progress(1);
+            }
             // Ignore interaction when clicking controls or spotlight buttons
             if (e.target.closest(".skills-controls") || e.target.closest(".skills-spotlight")) return;
             isPointerDown = true;
@@ -1030,4 +655,377 @@ export const initSkillsArcCarousel = (rawItems) => {
 
     // Initial Render
     renderSkillsArcCarousel(activeIndex, false);
+};
+
+/**
+ * Cinema-Grade Convergence Assembly Motion
+ * "كل حاجه تتجمع قدامي لما اوصل لقسم الاسكيلز"
+ * Gathers and converges all dispersed badges, arch ribbons, spotlight 3D core,
+ * capacitor progress surge, and interactive controls when reaching the skills section.
+ * Supports bidirectional playback (both forward scroll and reverse scroll).
+ */
+export const initSkillsAssemblyAnimation = () => {
+    stageEl = document.getElementById("skills-arc-stage");
+    if (!stageEl || !skillList.length) return;
+
+    const gsap = window.gsap;
+    const ScrollTrigger = window.ScrollTrigger;
+
+    // Check reduced motion preference (WCAG AA compliance)
+    const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (!gsap || !ScrollTrigger || prefersReducedMotion) {
+        if (stageEl) stageEl.classList.remove("is-assembling");
+        startIdleFloating();
+        startIdleHalo();
+        resumeAutoPlay();
+        return;
+    }
+
+    // Kill any existing assembly trigger/timeline to prevent duplicate stacking
+    if (assemblyTimeline) {
+        assemblyTimeline.kill();
+        assemblyTimeline = null;
+    }
+    const existingSt = ScrollTrigger.getById("skills-convergence-assembly");
+    if (existingSt) {
+        existingSt.kill();
+    }
+
+    const archCanvas = document.querySelector(".skills-arch-canvas");
+    const glowLine = document.querySelector(".skills-arch-glow-line");
+    const metaEl = document.querySelector(".skills-spotlight-meta");
+    const dragHint = document.getElementById("skills-drag-hint");
+    const skillsNote = document.querySelector(".skills-note");
+
+    const getVisibleBadges = () => {
+        const count = skillList.length;
+        const { maxOffset } = getArcGeometry();
+        const list = [];
+        for (let i = 0; i < count; i++) {
+            const itemEl = trackEl ? trackEl.querySelector(`[data-index="${i}"]`) : null;
+            if (!itemEl) continue;
+
+            let diff = (i - activeIndex) % count;
+            if (diff > count / 2) diff -= count;
+            if (diff < -count / 2) diff += count;
+
+            const absDiff = Math.abs(diff);
+            if (absDiff <= maxOffset + 0.6 && absDiff > 0.3) {
+                const badge = itemEl.querySelector(".skills-arc-badge");
+                const label = itemEl.querySelector(".skills-arc-label");
+                list.push({ itemEl, badge, label, diff, absDiff });
+            }
+        }
+        return list.sort((a, b) => b.absDiff - a.absDiff);
+    };
+
+    const getSpreadFactor = () => {
+        const isMobile = window.innerWidth < 640;
+        const isTablet = window.innerWidth < 960 && !isMobile;
+        return isMobile ? 0.45 : isTablet ? 0.75 : 1.0;
+    };
+
+    const resetAssembly = () => {
+        if (assemblyTimeline) {
+            assemblyTimeline.kill();
+            assemblyTimeline = null;
+        }
+        pauseAutoPlay();
+        if (idleFloatTween) idleFloatTween.kill();
+        if (idleHaloTween) idleHaloTween.kill();
+
+        if (stageEl) stageEl.classList.add("is-assembling");
+
+        const sortedBadges = getVisibleBadges();
+        const spreadFactor = getSpreadFactor();
+
+        sortedBadges.forEach(({ badge, label, diff, absDiff }) => {
+            const dir = diff < 0 ? -1 : 1;
+            const scatterX = dir * (120 + absDiff * 55) * spreadFactor;
+            const scatterY = (45 + absDiff * 30) * spreadFactor;
+            const scatterRot = dir * (25 + absDiff * 14);
+
+            if (badge) {
+                gsap.set(badge, {
+                    x: scatterX,
+                    y: scatterY,
+                    scale: 0.15,
+                    rotation: scatterRot,
+                    opacity: 0,
+                    filter: "blur(12px)"
+                });
+            }
+            if (label) {
+                gsap.set(label, { opacity: 0, y: 10 });
+            }
+        });
+
+        if (archCanvas) gsap.set(archCanvas, { scale: 0.8, y: 35, opacity: 0, filter: "blur(12px)" });
+        if (iconEl) gsap.set(iconEl, { y: -75, scale: 0.15, rotationY: 180, opacity: 0 });
+        if (haloEl) gsap.set(haloEl, { scale: 0.1, opacity: 0 });
+        if (counterEl) gsap.set(counterEl, { y: -16, opacity: 0 });
+        if (titleEl) gsap.set(titleEl, { y: 22, opacity: 0, filter: "blur(8px)" });
+        if (metaEl) gsap.set(metaEl, { scale: 0.9, opacity: 0 });
+        if (barFillEl) gsap.set(barFillEl, { width: "0%" });
+        if (descEl) gsap.set(descEl, { y: 16, opacity: 0, filter: "blur(4px)" });
+        if (prevBtn) gsap.set(prevBtn, { x: -35, opacity: 0 });
+        if (nextBtn) gsap.set(nextBtn, { x: 35, opacity: 0 });
+        if (dragHint) gsap.set(dragHint, { y: 18, opacity: 0 });
+        if (skillsNote) gsap.set(skillsNote, { y: 22, opacity: 0 });
+    };
+
+    const playAssembly = () => {
+        if (idleFloatTween) idleFloatTween.kill();
+        if (idleHaloTween) idleHaloTween.kill();
+        pauseAutoPlay();
+
+        if (stageEl) stageEl.classList.add("is-assembling");
+
+        const sortedBadges = getVisibleBadges();
+        const spreadFactor = getSpreadFactor();
+        const activeSkill = skillList[activeIndex] || skillList[0];
+
+        if (assemblyTimeline) {
+            assemblyTimeline.kill();
+        }
+
+        assemblyTimeline = gsap.timeline({
+            id: "skills-convergence-assembly-timeline",
+            onComplete: () => {
+                hasAssembled = true;
+                if (stageEl) stageEl.classList.remove("is-assembling");
+                sortedBadges.forEach(({ badge, label }) => {
+                    if (badge) gsap.set(badge, { clearProps: "transform,filter,opacity" });
+                    if (label) gsap.set(label, { clearProps: "opacity,transform" });
+                });
+                startIdleFloating();
+                startIdleHalo();
+                resumeAutoPlay();
+            }
+        });
+
+        // 1. Arch Canvas & Luminous Track Emergence
+        if (archCanvas) {
+            assemblyTimeline.fromTo(
+                archCanvas,
+                { scale: 0.8, y: 35, opacity: 0, filter: "blur(12px)" },
+                { scale: 1, y: 0, opacity: 1, filter: "blur(0px)", duration: 0.95, ease: "power3.out" },
+                0
+            );
+        }
+
+        if (glowLine) {
+            assemblyTimeline.fromTo(
+                glowLine,
+                { opacity: 0.05, strokeWidth: 1 },
+                {
+                    opacity: 1,
+                    strokeWidth: 3.5,
+                    filter: "drop-shadow(0 0 16px rgba(56, 189, 248, 0.95))",
+                    duration: 0.65,
+                    ease: "power2.out",
+                    yoyo: true,
+                    repeat: 1
+                },
+                0.12
+            );
+        }
+
+        // 2. Central Spotlight Apex Vault & Shockwave Bloom
+        if (iconEl) {
+            assemblyTimeline.fromTo(
+                iconEl,
+                {
+                    y: -75,
+                    scale: 0.15,
+                    rotationY: 180,
+                    rotationX: -25,
+                    opacity: 0,
+                    filter: `blur(14px) brightness(2.6) drop-shadow(0 0 35px ${activeSkill.color})`
+                },
+                {
+                    y: 0,
+                    scale: 1,
+                    rotationY: 0,
+                    rotationX: 0,
+                    opacity: 1,
+                    filter: "blur(0px) brightness(1)",
+                    duration: 0.85,
+                    ease: "back.out(1.8)"
+                },
+                0.08
+            );
+        }
+
+        if (haloEl) {
+            assemblyTimeline.fromTo(
+                haloEl,
+                { scale: 0.1, opacity: 0, filter: "blur(6px)" },
+                {
+                    scale: 1.5,
+                    opacity: 1,
+                    filter: "blur(24px)",
+                    duration: 0.38,
+                    ease: "power2.out"
+                },
+                0.5
+            );
+            assemblyTimeline.to(
+                haloEl,
+                { scale: 1, opacity: 0.85, duration: 0.32, ease: "power2.inOut" },
+                0.88
+            );
+        }
+
+        // 3. Staggered Badges Inward Convergence ("كل حاجه تتجمع قدامي")
+        sortedBadges.forEach(({ badge, label, diff, absDiff }, idx) => {
+            if (!badge) return;
+            const dir = diff < 0 ? -1 : 1;
+            const scatterX = dir * (120 + absDiff * 55) * spreadFactor;
+            const scatterY = (45 + absDiff * 30) * spreadFactor;
+            const scatterRot = dir * (25 + absDiff * 14);
+
+            const badgeStartTime = 0.16 + idx * 0.045;
+
+            assemblyTimeline.fromTo(
+                badge,
+                {
+                    x: scatterX,
+                    y: scatterY,
+                    scale: 0.15,
+                    rotation: scatterRot,
+                    opacity: 0,
+                    filter: "blur(12px)"
+                },
+                {
+                    x: 0,
+                    y: 0,
+                    scale: 1,
+                    rotation: 0,
+                    opacity: 1,
+                    filter: "blur(0px)",
+                    duration: 0.85,
+                    ease: "back.out(1.4)"
+                },
+                badgeStartTime
+            );
+
+            if (label) {
+                assemblyTimeline.fromTo(
+                    label,
+                    { opacity: 0, y: 10 },
+                    { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" },
+                    badgeStartTime + 0.35
+                );
+            }
+        });
+
+        // 4. Spotlight Typography & Capacitor Progress Surge
+        if (counterEl) {
+            assemblyTimeline.fromTo(
+                counterEl,
+                { y: -16, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.45, ease: "expo.out" },
+                0.35
+            );
+        }
+
+        if (titleEl) {
+            assemblyTimeline.fromTo(
+                titleEl,
+                { y: 22, scale: 0.94, opacity: 0, filter: "blur(8px)", letterSpacing: "0.06em" },
+                { y: 0, scale: 1, opacity: 1, filter: "blur(0px)", letterSpacing: "-0.025em", duration: 0.65, ease: "expo.out" },
+                0.4
+            );
+        }
+
+        if (metaEl) {
+            assemblyTimeline.fromTo(
+                metaEl,
+                { scale: 0.9, opacity: 0 },
+                { scale: 1, opacity: 1, duration: 0.5, ease: "power2.out" },
+                0.45
+            );
+        }
+
+        if (barFillEl) {
+            const targetWidth = activeSkill ? activeSkill.progress : 96;
+            assemblyTimeline.fromTo(
+                barFillEl,
+                { width: "0%" },
+                { width: `${targetWidth}%`, duration: 0.9, ease: "expo.out" },
+                0.5
+            );
+        }
+
+        if (descEl) {
+            assemblyTimeline.fromTo(
+                descEl,
+                { y: 16, opacity: 0, filter: "blur(4px)" },
+                { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.55, ease: "power2.out" },
+                0.55
+            );
+        }
+
+        // 5. Navigation Controls & Hints
+        if (prevBtn) {
+            assemblyTimeline.fromTo(
+                prevBtn,
+                { x: -35, opacity: 0 },
+                { x: 0, opacity: 1, duration: 0.55, ease: "power3.out" },
+                0.55
+            );
+        }
+
+        if (nextBtn) {
+            assemblyTimeline.fromTo(
+                nextBtn,
+                { x: 35, opacity: 0 },
+                { x: 0, opacity: 1, duration: 0.55, ease: "power3.out" },
+                0.55
+            );
+        }
+
+        if (dragHint) {
+            assemblyTimeline.fromTo(
+                dragHint,
+                { y: 18, scale: 0.9, opacity: 0 },
+                { y: 0, scale: 1, opacity: 1, duration: 0.5, ease: "back.out(2)" },
+                0.6
+            );
+        }
+
+        if (skillsNote) {
+            assemblyTimeline.fromTo(
+                skillsNote,
+                { y: 22, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" },
+                0.68
+            );
+        }
+    };
+
+    // Prime elements into dispersed initial state
+    resetAssembly();
+
+    // Create bidirectional ScrollTrigger for both downward and reverse upward scroll
+    ScrollTrigger.create({
+        id: "skills-convergence-assembly",
+        trigger: stageEl,
+        start: "top 82%",
+        end: "bottom 20%",
+        onEnter: () => {
+            playAssembly();
+        },
+        onEnterBack: () => {
+            playAssembly();
+        },
+        onLeave: () => {
+            resetAssembly();
+        },
+        onLeaveBack: () => {
+            resetAssembly();
+        }
+    });
 };
