@@ -173,9 +173,9 @@ body.light-mode {
     --capsule-cta-shadow: 0 4px 16px rgba(2, 132, 199, 0.28), 0 2px 6px rgba(15, 23, 42, 0.08);
     --capsule-circle-bg: linear-gradient(135deg, #0284c7 0%, #4f46e5 100%);
     --capsule-circle-text: #ffffff;
-    --capsule-badge-bg: #0f172a;
-    --capsule-badge-border: rgba(15, 23, 42, 0.12);
-    --capsule-badge-color: #38bdf8;
+    --capsule-badge-bg: linear-gradient(135deg, rgba(2, 132, 199, 0.1) 0%, rgba(99, 102, 241, 0.08) 100%);
+    --capsule-badge-border: rgba(2, 132, 199, 0.28);
+    --capsule-badge-color: #0284c7;
 
     /* Unified Button Tokens (Light Mode) */
     --btn-primary-bg: linear-gradient(135deg, #0284c7 0%, #4f46e5 100%);
@@ -191,16 +191,16 @@ body.light-mode {
     --btn-secondary-hover-border: #0284c7;
     --btn-secondary-hover-text: #0284c7;
 
-    --theme-btn-bg: rgba(241, 245, 249, 0.9);
-    --theme-btn-border: rgba(203, 213, 225, 0.8);
+    --theme-btn-bg: rgba(255, 255, 255, 0.95);
+    --theme-btn-border: rgba(203, 213, 225, 0.9);
     --theme-btn-text: #0f172a;
     --menu-line: #0f172a;
     --mobile-menu-bg: rgba(255, 255, 255, 0.98);
     --mobile-menu-border: rgba(226, 232, 240, 0.85);
     --button-a: #0284c7;
     --button-b: #6366f1;
-    --bg-radial-a: rgba(2, 132, 199, 0.12);
-    --bg-radial-b: rgba(99, 102, 241, 0.08);
+    --bg-radial-a: rgba(2, 132, 199, 0.08);
+    --bg-radial-b: rgba(99, 102, 241, 0.06);
 }
 
 body.light-mode::before {
