@@ -12,12 +12,13 @@ import { certificatesSection, certificates } from "./certificates.js";
 export const portfolioData = {
     hero: {
         name: "Sarah",
-        fullName: "Sarah Nabil",
+        fullName: "Sarah Nabil Abu Al-Magd Ahmad",
         roles: [
             "Machine Learning",
-            "AI Engineer"
+            "Computer Vision",
+            "Artificial Intelligence"
         ],
-        copy: "Machine Learning & AI specialist with hands-on expertise in data exploration, preprocessing, classification modeling, and predictive analytics.",
+        copy: "Third-year Artificial Intelligence student at Kafrelsheikh University with a strong passion for Machine Learning, Computer Vision with OpenCV, Artificial Neural Networks (ANN), and predictive modeling.",
         avatar: {
             src: "images/avatar-placeholder.svg",
             alt: "Sarah Nabil Avatar"
@@ -35,117 +36,110 @@ export const portfolioData = {
     social: {
         github: "https://github.com/sarahnabil",
         linkedin: "https://www.linkedin.com/in/sarahnabil",
-        whatsapp: "https://wa.me/",
-        email: "sarahnabil.ai@gmail.com"
+        whatsapp: "https://wa.me/201099478701",
+        email: "sarahhnabil71@gmail.com"
     },
 
     about: {
-        status: "Open For ML & Data Roles",
-        location: "Egypt · Remote",
-        title: "I turn data into meaningful insights and practical machine learning solutions.",
-        copy: "I am Sarah Nabil, building my expertise in Artificial Intelligence and Machine Learning with hands-on experience in data exploration, data preprocessing, classification models, and model evaluation. Through my Machine Learning Summer Training at the National Telecommunication Institute (NTI) in collaboration with ITIDA, I worked on an end-to-end e-commerce purchase intent prediction project. My work involved preparing data, handling class imbalance, comparing machine learning models, evaluating performance, and analyzing feature importance. I am passionate about turning data into meaningful insights and developing practical machine learning solutions to real-world problems.",
+        status: "Seeking ML & Computer Vision Internship",
+        location: "Egypt · Kafrelsheikh University",
+        title: "Third-year AI student building practical Machine Learning & Computer Vision solutions.",
+        copy: "I am Sarah Nabil Abu Al-Magd Ahmad, a third-year Artificial Intelligence student at the Faculty of Artificial Intelligence, Kafrelsheikh University (Expected Graduation: 2028 | Cumulative GPA: 3.27 / 4.00). I have hands-on project experience in classification, regression, artificial neural networks (ANN), and computer vision using Python and OpenCV. Familiar with supervised and unsupervised learning approaches, I completed an intensive 120-hour Machine Learning Training at the National Telecommunication Institute (NTI) with a 95% score, the Sprints × Microsoft AI Summer Camp, and the CIB Programming Internship. I am actively seeking a Machine Learning or Computer Vision internship to gain industry experience and contribute to real-world AI projects.",
         signature: "",
-        metrics: [],
+        metrics: [
+            { label: "Cumulative GPA", value: "3.27 / 4.00" },
+            { label: "NTI ML Score", value: "95%" },
+            { label: "NTI Training", value: "120 hrs" },
+            { label: "Graduation Year", value: "2028" }
+        ],
         image: {
             srcWebp: "images/about-me-polished.webp",
             srcPng: "images/about-me-polished.png",
-            alt: "Sarah Nabil - Machine Learning & AI Specialist",
-            badgeText: "ML & Data Analysis"
+            alt: "Sarah Nabil - Machine Learning & Computer Vision Specialist",
+            badgeText: "AI & Computer Vision"
         }
     },
 
     skills: {
         title: "My Skills",
-        copy: "",
+        copy: "Core technical capabilities across Artificial Intelligence, Computer Vision, Machine Learning, Programming, and Database Systems.",
         metrics: {
-            domains: "",
-            tools: "",
-            core: "",
-            cloud: ""
+            domains: "AI & CV",
+            tools: "OpenCV · Qt · SQL",
+            core: "Python · C++",
+            cloud: "NumPy · Matplotlib"
         },
         items: [
-            { name: "Python", icon: "python", level: "EXPERT", progress: 96, description: "Core language for ML development, algorithms, data processing pipelines, and model evaluation.", color: "#38bdf8", haloColor: "rgba(56, 189, 248, 0.45)", barColor: "#38bdf8", label: "PYTHON" },
-            { name: "Machine Learning", icon: "machine learning", level: "EXPERT", progress: 95, description: "End-to-end predictive modeling, supervised and unsupervised learning, and classification pipelines.", color: "#a855f7", haloColor: "rgba(168, 85, 247, 0.45)", barColor: "#c084fc", label: "ML" },
-            { name: "Scikit-Learn", icon: "scikit-learn", level: "EXPERT", progress: 94, description: "Robust model architectures, transformers, hyperparameter tuning via GridSearchCV, and pipelines.", color: "#f97316", haloColor: "rgba(249, 115, 22, 0.45)", barColor: "#fb923c", label: "SKLEARN" },
-            { name: "XGBoost", icon: "xgboost", level: "EXPERT", progress: 94, description: "High-performance gradient boosting on tabular data with custom objective and regularization tuning.", color: "#22c55e", haloColor: "rgba(34, 197, 94, 0.45)", barColor: "#4ade80", label: "XGBOOST" },
-            { name: "Random Forest", icon: "random forest", level: "ADVANCED", progress: 92, description: "Ensemble learning with bagging, decision tree ensembles, and feature importance diagnostics.", color: "#10b981", haloColor: "rgba(16, 185, 129, 0.45)", barColor: "#34d399", label: "FOREST" },
-            { name: "Pandas", icon: "pandas", level: "EXPERT", progress: 95, description: "High-speed tabular manipulation, aggregations, data reshaping, and missing-value handling.", color: "#e11d48", haloColor: "rgba(225, 29, 72, 0.45)", barColor: "#f43f5e", label: "PANDAS" },
-            { name: "NumPy", icon: "numpy", level: "EXPERT", progress: 93, description: "Vectorized numerical computing, matrix linear algebra, and high-performance array transformations.", color: "#4f46e5", haloColor: "rgba(79, 70, 229, 0.45)", barColor: "#818cf8", label: "NUMPY" },
-            { name: "SQL", icon: "sql", level: "ADVANCED", progress: 91, description: "Writing relational queries, aggregations, window functions, and structured database extraction.", color: "#0ea5e9", haloColor: "rgba(14, 165, 233, 0.45)", barColor: "#38bdf8", label: "SQL" },
-            { name: "Data Preprocessing", icon: "data preprocessing", level: "EXPERT", progress: 96, description: "Automated data cleaning, outlier treatment, feature scaling, and categorical encoding.", color: "#06b6d4", haloColor: "rgba(6, 182, 212, 0.45)", barColor: "#22d3ee", label: "DATA PREP" },
-            { name: "Feature Engineering", icon: "feature engineering", level: "EXPERT", progress: 94, description: "Creating high-impact domain features, interaction terms, and dimensionality reduction strategies.", color: "#ec4899", haloColor: "rgba(236, 72, 153, 0.45)", barColor: "#f472b6", label: "FEATURE ENG" },
-            { name: "SMOTE", icon: "smote", level: "SPECIALIZED", progress: 90, description: "Tackling severe class imbalance using synthetic minority over-sampling and hybrid techniques.", color: "#14b8a6", haloColor: "rgba(20, 184, 166, 0.45)", barColor: "#2dd4bf", label: "SMOTE" },
-            { name: "Model Evaluation", icon: "model evaluation", level: "EXPERT", progress: 95, description: "Comprehensive metrics analysis with ROC-AUC curves, Precision-Recall, and confusion matrices.", color: "#fb7185", haloColor: "rgba(251, 113, 133, 0.45)", barColor: "#f43f5e", label: "EVALUATION" },
-            { name: "Cross-Validation", icon: "cross-validation", level: "EXPERT", progress: 93, description: "Preventing data leakage and overfitting using Stratified K-Fold and validation schemes.", color: "#818cf8", haloColor: "rgba(129, 140, 248, 0.45)", barColor: "#a5b4fc", label: "CV" },
-            { name: "Matplotlib", icon: "devicon-matplotlib-plain colored", level: "ADVANCED", progress: 91, description: "Crafting publication-quality statistical charts, diagnostic plots, and distribution graphs.", color: "#38bdf8", haloColor: "rgba(56, 189, 248, 0.45)", barColor: "#38bdf8", label: "MATPLOTLIB" },
-            { name: "Seaborn", icon: "seaborn", level: "ADVANCED", progress: 91, description: "Multi-variate statistical visualization, correlation matrices, pairplots, and distribution curves.", color: "#0284c7", haloColor: "rgba(2, 132, 199, 0.45)", barColor: "#38bdf8", label: "SEABORN" },
-            { name: "EDA", icon: "exploratory eda", level: "EXPERT", progress: 95, description: "Uncovering statistical patterns, anomalies, business insights, and hypothesis validations.", color: "#f59e0b", haloColor: "rgba(245, 158, 11, 0.45)", barColor: "#fbbf24", label: "EDA" },
-            { name: "Algorithms", icon: "oop & algorithms", level: "ADVANCED", progress: 90, description: "Clean object-oriented architecture, modular code design, and efficient data structures.", color: "#3b82f6", haloColor: "rgba(59, 130, 246, 0.45)", barColor: "#60a5fa", label: "ALGORITHMS" },
-            { name: "Git", icon: "git", level: "ADVANCED", progress: 88, description: "Collaborative Git workflows, reproducible experiments, and clean repository management.", color: "#f05032", haloColor: "rgba(240, 80, 50, 0.45)", barColor: "#fb7185", label: "GIT" }
+            { name: "Python", icon: "python", level: "GOOD", progress: 92, description: "Primary programming language for Machine Learning, data processing, algorithms, and Computer Vision workflows.", color: "#38bdf8", haloColor: "rgba(56, 189, 248, 0.45)", barColor: "#38bdf8", label: "PYTHON" },
+            { name: "OpenCV", icon: "opencv", level: "ADVANCED", progress: 88, description: "Computer Vision development, image processing, filtering, contour detection, and visual feature extraction.", color: "#22c55e", haloColor: "rgba(34, 197, 94, 0.45)", barColor: "#4ade80", label: "OPENCV" },
+            { name: "Machine Learning", icon: "machine learning", level: "EXPERT", progress: 95, description: "Supervised and unsupervised learning, model training, predictive pipelines, and algorithm benchmarking.", color: "#a855f7", haloColor: "rgba(168, 85, 247, 0.45)", barColor: "#c084fc", label: "ML" },
+            { name: "Neural Networks (ANN)", icon: "ann", level: "ADVANCED", progress: 89, description: "Artificial Neural Networks (ANN), multi-layer perceptron architectures, and deep learning foundations.", color: "#ec4899", haloColor: "rgba(236, 72, 153, 0.45)", barColor: "#f472b6", label: "ANN" },
+            { name: "C++", icon: "c++", level: "INTERMEDIATE", progress: 82, description: "Object-oriented software development, memory efficiency, data structures, and algorithmic logic.", color: "#0ea5e9", haloColor: "rgba(14, 165, 233, 0.45)", barColor: "#38bdf8", label: "C++" },
+            { name: "Qt Framework", icon: "qt", level: "INTERMEDIATE", progress: 80, description: "Cross-platform desktop application development using C++ and object-oriented GUI architecture.", color: "#10b981", haloColor: "rgba(16, 185, 129, 0.45)", barColor: "#34d399", label: "QT GUI" },
+            { name: "SQL & MySQL", icon: "sql & mysql", level: "ADVANCED", progress: 88, description: "Relational database schema design, data querying, joins, aggregations, and MySQL administration.", color: "#f59e0b", haloColor: "rgba(245, 158, 11, 0.45)", barColor: "#fbbf24", label: "SQL/MYSQL" },
+            { name: "Classification", icon: "classification", level: "EXPERT", progress: 94, description: "Supervised classification modeling, decision boundaries, multi-class predictions, and error analysis.", color: "#38bdf8", haloColor: "rgba(56, 189, 248, 0.45)", barColor: "#38bdf8", label: "CLASSIFY" },
+            { name: "Regression", icon: "regression", level: "ADVANCED", progress: 91, description: "Linear and polynomial regression models, continuous target forecasting, and residual evaluation.", color: "#818cf8", haloColor: "rgba(129, 140, 248, 0.45)", barColor: "#a5b4fc", label: "REGRESSION" },
+            { name: "NumPy", icon: "numpy", level: "EXPERT", progress: 93, description: "High-performance vectorized numerical computation, multi-dimensional array operations, and linear algebra.", color: "#4f46e5", haloColor: "rgba(79, 70, 229, 0.45)", barColor: "#818cf8", label: "NUMPY" },
+            { name: "Matplotlib", icon: "matplotlib", level: "ADVANCED", progress: 90, description: "Data visualization, statistical plotting, distribution charts, and model performance graphs.", color: "#06b6d4", haloColor: "rgba(6, 182, 212, 0.45)", barColor: "#22d3ee", label: "MATPLOTLIB" },
+            { name: "Computer Vision", icon: "computer vision", level: "ADVANCED", progress: 87, description: "Computer vision fundamentals, spatial image manipulation, edge detection, and visual recognition.", color: "#14b8a6", haloColor: "rgba(20, 184, 166, 0.45)", barColor: "#2dd4bf", label: "VISION" },
+            { name: "OOP Concepts", icon: "oop concepts", level: "INTERMEDIATE", progress: 85, description: "Object-Oriented Programming (encapsulation, inheritance, polymorphism, and abstraction) in Python & C++.", color: "#3b82f6", haloColor: "rgba(59, 130, 246, 0.45)", barColor: "#60a5fa", label: "OOP" },
+            { name: "Scikit-Learn", icon: "scikit-learn", level: "EXPERT", progress: 94, description: "Building ML pipelines, estimators, hyperparameter tuning, cross-validation, and metrics computation.", color: "#f97316", haloColor: "rgba(249, 115, 22, 0.45)", barColor: "#fb923c", label: "SKLEARN" },
+            { name: "Data Preprocessing", icon: "data preprocessing", level: "EXPERT", progress: 93, description: "Data cleaning, missing value handling, feature scaling, normalization, and categorical encoding.", color: "#0284c7", haloColor: "rgba(2, 132, 199, 0.45)", barColor: "#38bdf8", label: "DATA PREP" },
+            { name: "Unsupervised Learning", icon: "unsupervised learning", level: "ADVANCED", progress: 86, description: "Clustering algorithms (K-Means, Hierarchical), pattern discovery, and dimensionality exploration.", color: "#a855f7", haloColor: "rgba(168, 85, 247, 0.45)", barColor: "#c084fc", label: "CLUSTERING" },
+            { name: "Model Evaluation", icon: "model evaluation", level: "EXPERT", progress: 94, description: "ROC-AUC curves, confusion matrices, Precision, Recall, F1-Score, and cross-validation analysis.", color: "#fb7185", haloColor: "rgba(251, 113, 133, 0.45)", barColor: "#f43f5e", label: "EVALUATION" },
+            { name: "Git & GitHub", icon: "git & github", level: "ADVANCED", progress: 88, description: "Version control, code collaboration, repository management, and reproducible experiments.", color: "#f05032", haloColor: "rgba(240, 80, 50, 0.45)", barColor: "#fb7185", label: "GIT" }
         ],
         groups: [
             {
                 title: "Programming & Core",
                 label: "Core",
                 items: [
-                    { name: "Python", icon: "devicon-python-plain colored" },
-                    { name: "SQL", icon: "fallback", tag: "SQL" },
-                    { name: "OOP & Algorithms", icon: "fallback", tag: "OOP" }
+                    { name: "Python", icon: "python" },
+                    { name: "C++", icon: "c++" },
+                    { name: "OOP Concepts", icon: "oop concepts" },
+                    { name: "Git", icon: "git & github" }
                 ]
             },
             {
-                title: "Data Manipulation & EDA",
-                label: "Advanced",
+                title: "Machine Learning & Neural Networks",
+                label: "AI & ML",
                 items: [
-                    { name: "Pandas", icon: "devicon-pandas-original colored" },
-                    { name: "NumPy", icon: "devicon-numpy-original colored" },
-                    { name: "Data Preprocessing", icon: "fallback", tag: "DP" },
-                    { name: "Feature Engineering", icon: "fallback", tag: "FE" }
+                    { name: "Classification & Regression", icon: "classification" },
+                    { name: "Supervised & Unsupervised", icon: "unsupervised learning" },
+                    { name: "Neural Networks (ANN)", icon: "ann" },
+                    { name: "Scikit-Learn", icon: "scikit-learn" }
                 ]
             },
             {
-                title: "Machine Learning & Modeling",
-                label: "Advanced",
+                title: "Computer Vision",
+                label: "Vision",
                 items: [
-                    { name: "Scikit-learn", icon: "devicon-scikitlearn-plain colored" },
-                    { name: "Classification Models", icon: "fallback", tag: "CL" },
-                    { name: "Regression Models", icon: "fallback", tag: "RG" },
-                    { name: "XGBoost", icon: "fallback", tag: "XG" },
-                    { name: "Random Forest", icon: "fallback", tag: "RF" }
+                    { name: "OpenCV", icon: "opencv" },
+                    { name: "Image Processing", icon: "opencv" },
+                    { name: "Computer Vision Fundamentals", icon: "computer vision" }
                 ]
             },
             {
-                title: "Imbalanced Data & Evaluation",
-                label: "Specialized",
+                title: "Data Processing & Visualization",
+                label: "Data",
                 items: [
-                    { name: "SMOTE & Resampling", icon: "fallback", tag: "SM" },
-                    { name: "ROC-AUC & F1-Score", icon: "fallback", tag: "EV" },
-                    { name: "Feature Importance", icon: "fallback", tag: "FI" },
-                    { name: "Cross-Validation", icon: "fallback", tag: "CV" }
+                    { name: "NumPy", icon: "numpy" },
+                    { name: "Matplotlib", icon: "matplotlib" },
+                    { name: "Data Preprocessing", icon: "data preprocessing" }
                 ]
             },
             {
-                title: "Data Visualization & Reporting",
-                label: "Insights",
+                title: "Databases & Desktop GUI",
+                label: "Tools",
                 items: [
-                    { name: "Matplotlib", icon: "fallback", tag: "MP" },
-                    { name: "Seaborn", icon: "fallback", tag: "SB" },
-                    { name: "Exploratory Dashboards", icon: "fallback", tag: "ED" }
-                ]
-            },
-            {
-                title: "Tools & Environments",
-                label: "Workflow",
-                items: [
-                    { name: "Jupyter", icon: "devicon-jupyter-plain colored" },
-                    { name: "Google Colab", icon: "devicon-googlecolab-plain colored" },
-                    { name: "Git", icon: "devicon-git-plain colored" },
-                    { name: "VS Code", icon: "devicon-vscode-plain colored" }
+                    { name: "SQL", icon: "sql" },
+                    { name: "MySQL", icon: "sql & mysql" },
+                    { name: "Qt Framework", icon: "qt" }
                 ]
             }
         ],
         noteLabel: "Focus:",
-        noteText: "Building robust data-driven ML pipelines with high predictive power and rigorous model evaluation."
+        noteText: "Practical modeling, Computer Vision with OpenCV, Artificial Neural Networks (ANN), and robust real-world AI pipelines."
     },
 
     projectsSection,
@@ -155,75 +149,98 @@ export const portfolioData = {
     certificates,
 
     experience: {
-        title: "Professional Experience & Training",
-        copy: "Applied machine learning training and practical data engineering projects focused on real-world business impact.",
+        title: "Education, Certifications & Training",
+        copy: "Academic journey at Kafrelsheikh University and specialized professional training programs in AI, Machine Learning, and Software Engineering.",
         metrics: [
             {
-                label: "Track",
-                value: "NTI × ITIDA",
-                description: "Machine Learning Summer Training graduate."
+                label: "Academic Standing",
+                value: "GPA 3.27",
+                description: "Faculty of Artificial Intelligence, Kafrelsheikh University."
             },
             {
-                label: "Focus",
-                value: "ML & Analytics",
-                description: "Data exploration, preprocessing, and classification."
+                label: "NTI Machine Learning",
+                value: "Score 95%",
+                description: "120 hours intensive training (26 July – 20 August 2026)."
             },
             {
-                label: "Delivery",
-                value: "End-to-End",
-                description: "Imbalance mitigation, modeling, and feature importance."
+                label: "Industry Training",
+                value: "Microsoft & CIB",
+                description: "Sprints × Microsoft AI Camp & CIB Programming Internship."
             }
         ],
         items: [
             {
-                role: "Machine Learning Trainee",
-                org: "National Telecommunication Institute (NTI) × ITIDA",
-                period: "Summer Training",
-                summary: "Completed intensive Machine Learning Summer Training, developing an end-to-end e-commerce purchase intent prediction project.",
+                role: "Machine Learning Trainee (Score: 95%)",
+                org: "National Telecommunication Institute (NTI)",
+                period: "26 July – 20 August 2026 · 120 Hours",
+                summary: "Completed intensive 120-hour Machine Learning training covering supervised and unsupervised learning, model training, and evaluation, graduating with an exceptional 95% score.",
                 points: [
-                    "Engineered an end-to-end predictive pipeline analyzing user session behavior to forecast online purchase intent.",
-                    "Addressed severe class imbalance using advanced resampling and class weighting techniques.",
-                    "Benchmarked multiple machine learning classification algorithms, evaluating metrics including ROC-AUC, F1-Score, and precision-recall trade-offs.",
-                    "Extracted business insights through feature importance analysis to pinpoint decisive drivers of consumer purchase behavior."
+                    "Completed 120 instructional and practical hours covering end-to-end Machine Learning workflows.",
+                    "Implemented classification and regression algorithms, data preprocessing, and model benchmarking.",
+                    "Evaluated models using precision, recall, F1-Score, and ROC-AUC metrics.",
+                    "Graduated with an outstanding academic score of 95%."
                 ],
-                tags: ["Machine Learning", "NTI × ITIDA", "Classification Models", "Class Imbalance"]
+                tags: ["NTI", "Machine Learning", "Python", "120 Hours", "Score: 95%"]
             },
             {
-                role: "Data Analyst & ML Practitioner",
-                org: "Applied Machine Learning Projects",
-                period: "Specialized Practice",
-                summary: "Designing predictive models and data exploration workflows for structured tabular datasets.",
+                role: "AI & Machine Learning Summer Camp",
+                org: "Sprints × Microsoft",
+                period: "Completed",
+                summary: "Participated in an intensive AI and Machine Learning summer camp organized by Sprints in collaboration with Microsoft.",
                 points: [
-                    "Conducted thorough Exploratory Data Analysis (EDA) uncovering actionable trends and correlations.",
-                    "Standardized robust preprocessing pipelines for scaling, categorical encoding, and outlier mitigation.",
-                    "Implemented automated evaluation reporting with clear visualization of performance metrics and confusion matrices."
+                    "Studied artificial intelligence foundations, predictive machine learning algorithms, and real-world AI applications.",
+                    "Engaged in hands-on practical exercises applying data modeling and algorithmic problem-solving.",
+                    "Collaborated with peers on AI-driven solution architectures."
                 ],
-                tags: ["Python", "Pandas", "Scikit-Learn", "EDA", "Data Preprocessing"]
+                tags: ["Microsoft", "Sprints", "AI & ML", "Summer Camp"]
+            },
+            {
+                role: "Programming Intern",
+                org: "Commercial International Bank (CIB)",
+                period: "Completed",
+                summary: "Completed professional programming internship at CIB focusing on software engineering principles, clean code, and algorithmic implementation.",
+                points: [
+                    "Gained hands-on experience in structured programming concepts and object-oriented development.",
+                    "Applied algorithmic problem-solving to enterprise-level computational tasks.",
+                    "Followed software development best practices and collaborative workflows."
+                ],
+                tags: ["CIB", "Programming", "OOP", "Software Engineering"]
+            },
+            {
+                role: "Introduction to AI — Professional Certificate",
+                org: "LinkedIn Learning",
+                period: "Certificate Obtained",
+                summary: "Earned foundational certification covering core artificial intelligence principles, machine learning concepts, and modern AI paradigms.",
+                points: [
+                    "Mastered fundamental principles of artificial intelligence and machine learning subfields.",
+                    "Explored neural network architectures, data-driven reasoning, and ethical AI development."
+                ],
+                tags: ["LinkedIn Learning", "Artificial Intelligence", "Certificate"]
             }
         ]
     },
 
     contact: {
         title: "Contact Me",
-        copy: "Have an opportunity or project in Machine Learning or Data Analysis? Send a direct message below.",
+        copy: "Seeking a Machine Learning or Computer Vision internship to gain industry experience and contribute to real-world AI projects. Let's connect!",
         primary: {
-            text: "sarahnabil.ai@gmail.com",
-            url: "mailto:sarahnabil.ai@gmail.com"
+            text: "sarahhnabil71@gmail.com",
+            url: "mailto:sarahhnabil71@gmail.com"
         },
         secondary: {
-            text: "WhatsApp Message",
-            url: "https://wa.me/"
+            text: "+20 1099478701",
+            url: "https://wa.me/201099478701"
         },
-        location: "Egypt · Remote",
+        location: "Egypt · Kafrelsheikh University",
         linkedinLabel: "linkedin.com/in/sarahnabil",
         githubLabel: "github.com/sarahnabil",
         panelTitle: "Direct Channels",
-        panelCopy: "Reach me anytime via Email or LinkedIn for collaborations and inquiries.",
+        panelCopy: "Reach me directly via Email, WhatsApp, or LinkedIn for internship opportunities and project collaborations.",
         availabilityTitle: "Current Availability",
-        availabilityCopy: "Open to Machine Learning, Artificial Intelligence, and Data Analysis roles, internships, and research projects.",
+        availabilityCopy: "Open to Machine Learning and Computer Vision internships, AI research opportunities, and collaborative technical projects.",
         formTitle: "Send a Message",
-        formCopy: "Fill out the form below to connect regarding project scope or opportunities.",
-        formNote: "Your message will be sent securely to my inbox.",
+        formCopy: "Fill out the form below to reach out regarding internships, projects, or collaborations.",
+        formNote: "Your message will be sent directly to sarahhnabil71@gmail.com.",
         formSubmit: "Send Message"
     }
 };
