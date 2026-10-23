@@ -552,6 +552,14 @@ body.light-mode .skills-title-wrap h2 {
     color: #0f172a;
 }
 
+body.light-mode .skills-copy {
+    color: #475569;
+}
+
+body.light-mode .skills-spotlight-halo {
+    background: radial-gradient(circle, rgba(2, 132, 199, 0.18) 0%, rgba(99, 102, 241, 0.08) 45%, transparent 70%);
+}
+
 body.light-mode .skills-spotlight-title {
     color: #0f172a;
 }
@@ -565,29 +573,34 @@ body.light-mode .skills-spotlight-counter {
 }
 
 body.light-mode .skills-spotlight-bar-track {
-    background: rgba(15, 23, 42, 0.1);
+    background: rgba(15, 23, 42, 0.08);
 }
 
 body.light-mode .skills-spotlight-icon {
     background: radial-gradient(circle at 50% 30%, #ffffff, #f8fafc);
-    border-color: rgba(56, 189, 248, 0.6);
-    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.1), 0 0 20px rgba(56, 189, 248, 0.2);
+    border-color: rgba(2, 132, 199, 0.5);
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08), 0 0 20px rgba(2, 132, 199, 0.15);
+}
+
+body.light-mode .skills-arch-glow-line {
+    stroke: rgba(2, 132, 199, 0.3);
 }
 
 body.light-mode .skills-arc-badge {
-    background: rgba(255, 255, 255, 0.95);
+    background: #ffffff;
     border-color: rgba(226, 232, 240, 0.95);
-    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
 }
 
 body.light-mode .skills-arc-item:hover .skills-arc-badge {
     background: #ffffff;
-    border-color: rgba(56, 189, 248, 0.6);
-    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12), 0 0 16px rgba(56, 189, 248, 0.2);
+    border-color: rgba(2, 132, 199, 0.55);
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.1), 0 0 16px rgba(2, 132, 199, 0.15);
 }
 
 body.light-mode .skills-arc-label {
-    color: #64748b;
+    color: #475569;
+    font-weight: 700;
 }
 
 body.light-mode .skills-arc-item:hover .skills-arc-label {
@@ -596,7 +609,7 @@ body.light-mode .skills-arc-item:hover .skills-arc-label {
 
 body.light-mode .skills-nav-btn {
     background: #ffffff;
-    border-color: rgba(226, 232, 240, 0.95);
+    border-color: rgba(203, 213, 225, 0.9);
     color: #0f172a;
     box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
 }
