@@ -648,3 +648,44 @@ main {
         letter-spacing: 0.04em;
     }
 }
+
+/* ==========================================================================
+   Light Mode Overrides for Header
+   ========================================================================== */
+body.light-mode .brand-badge {
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
+}
+
+body.light-mode .brand:hover .brand-badge {
+    box-shadow: 0 4px 16px rgba(2, 132, 199, 0.2);
+    border-color: rgba(2, 132, 199, 0.45);
+}
+
+body.light-mode .brand-badge-logo {
+    filter: drop-shadow(0 2px 6px rgba(2, 132, 199, 0.25));
+}
+
+body.light-mode .brand:hover .brand-badge-logo {
+    filter: drop-shadow(0 4px 10px rgba(2, 132, 199, 0.45));
+}
+
+body.light-mode .nav-center-capsule:hover .nav-list,
+body.light-mode .nav-center-capsule:focus-within .nav-list,
+body.light-mode .nav-center-capsule.is-expanded .nav-list {
+    box-shadow: var(--capsule-shadow), 0 10px 30px rgba(15, 23, 42, 0.08);
+    border-color: rgba(203, 213, 225, 0.95);
+}
+
+body.light-mode .theme-toggle {
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+}
+
+body.light-mode .theme-toggle:hover {
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.1);
+    border-color: #0284c7;
+    color: #0284c7;
+}
+
+body.light-mode .menu-toggle {
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
+}
