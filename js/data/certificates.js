@@ -1,102 +1,110 @@
 /**
  * Verified Certifications & Credentials Data
- * Machine Learning & Data Engineering Portfolio
- * Edit this file to add, modify, or reorder certifications.
+ * Clean Architecture - Presentation / UI Layer
+ *
+ * All certificate images are rendered directly from uploaded original PDFs.
+ * Sarah Nabil Aboelmajd Ahmad – AI Student, Kafrelsheikh University
  */
 
 export const certificatesSection = {
-    kicker: "Credentials & Mastery",
-    title: "Verified Certifications & Credentials",
-    copy: "Accredited training programs, professional certifications, and institutional diplomas spanning UX design, digital marketing, enterprise entrepreneurship, and leadership skills.",
+    kicker: "Credentials & Training",
+    title: "Verified Certifications & Training",
+    copy: "Accredited training programs, professional certifications, and institutional diplomas across Machine Learning, AI, Software Engineering, and Leadership.",
     categories: [
-        { filter: "all", label: "All Credentials", active: true },
-        { filter: "technical", label: "Technical & Professional" },
+        { filter: "all",         label: "All Credentials",       active: true },
+        { filter: "technical",   label: "Technical & AI Training" },
         { filter: "soft-skills", label: "Leadership & Soft Skills" }
     ]
 };
 
 export const certificates = [
+    // ─── TECHNICAL ──────────────────────────────────────────────────────────────
     {
         id: "cert-1",
         index: "01",
-        title: "Meta UX Design Specialization",
-        issuer: "Meta & Coursera · Professional Credential",
+        title: "Machine Learning Training (120 Hours)",
+        issuer: "National Telecommunication Institute (NTI) & ITIDA",
         category: "technical",
-        badge: "Meta Certified",
-        date: "2026",
-        credentialId: "COURSERA-META-UX-9842",
-        image: "images/certificates/cert-meta.png",
-        verificationUrl: "images/certificates/cert-meta.png",
-        summary: "End-to-end user experience engineering, interactive design systems, and usability heuristics certified by Meta.",
-        description: "Comprehensive professional certification in UX/UI design systems, design thinking frameworks, wireframing, high-fidelity Figma prototyping, and quantitative user testing methodologies certified by Meta & Coursera.",
+        badge: "Score: 95%",
+        date: "26 July – 20 August 2026",
+        credentialId: "NTI-316260",
+        image: "images/certificates/cert-nti-ml.png",
+        imageFallback: "images/certificates/cert-nti-ml.webp",
+        verificationUrl: "images/certificates/nti-itida-machine-learning-training.pdf",
+        summary: "Intensive 120-hour summer training in Machine Learning completed with an outstanding 95% score — certified by NTI & ITIDA.",
+        description: "Accredited 120-hour intensive Machine Learning program (90 Technical hrs + 30 Freelancing hrs) covering supervised and unsupervised learning, feature engineering, data preprocessing, model evaluation (ROC-AUC, Precision, Recall, F1), and predictive modeling with Python and Scikit-Learn. Issued by NTI under ITIDA, signed by ITIDA CEO Eng. Ahmed El Zaher and NTI Director Prof. Ahmed Khattab.",
         metrics: [
-            { label: "Course Modules", value: 7, prefix: "", suffix: " Courses" },
-            { label: "Capstone Grade", value: 98.5, prefix: "", suffix: "%" },
-            { label: "Practical Labs", value: 120, prefix: ">", suffix: " hrs" }
+            { label: "Graduation Score", value: 95,  prefix: "",    suffix: "%" },
+            { label: "Training Duration",value: 120, prefix: "",    suffix: " hrs" },
+            { label: "Student ID",       value: 316260, prefix: "#", suffix: "" }
         ],
-        skills: ["UX Research", "Figma", "User Journey", "Wireframing", "Design Systems", "Usability Testing"],
+        skills: ["Machine Learning", "Python", "Data Preprocessing", "Supervised Learning", "Model Evaluation", "Scikit-Learn"],
         pipeline: [
-            { label: "Foundations", detail: "UX Principles" },
-            { label: "Research", detail: "User Interviews" },
-            { label: "Wireframes", detail: "Low & High Fidelity" },
-            { label: "Prototyping", detail: "Interactive States" },
-            { label: "Meta Review", detail: "Verified Credential" }
+            { label: "Data Exploration",  detail: "EDA & Feature Analysis" },
+            { label: "Preprocessing",     detail: "Scaling & Encoding" },
+            { label: "Model Training",    detail: "Classification & Regression" },
+            { label: "Evaluation",        detail: "ROC-AUC & F1-Score" },
+            { label: "NTI Credential",    detail: "Graduated with 95%" }
         ]
     },
     {
         id: "cert-2",
         index: "02",
-        title: "Digital Marketing & Growth Bootcamp",
-        issuer: "Creativa Hub Damanhour · Ministry of CIT",
+        title: "Sprints × Microsoft Summer Camp – AI and Machine Learning",
+        issuer: "Sprints × Microsoft",
         category: "technical",
-        badge: "Creativa Hub",
+        badge: "40 hrs",
         date: "2026",
-        credentialId: "CREATIVA-DM-2026-B81",
-        image: "images/certificates/cert-creativa.png",
-        verificationUrl: "images/certificates/cert-creativa.png",
-        summary: "Data-driven marketing, customer acquisition funnels, and digital branding strategies at Creativa Hub.",
-        description: "Intensive training on growth marketing frameworks, multi-channel performance advertising, social media analytics, customer lifetime value modeling, and digital brand positioning sponsored by the Ministry of Communications & IT.",
+        credentialId: "ID-SPR-S967AU",
+        image: "images/certificates/cert-sprints-microsoft.png",
+        imageFallback: "images/certificates/cert-sprints-microsoft.webp",
+        verificationUrl: "images/certificates/sprints-microsoft-ai-summer-camp.pdf",
+        summary: "Comprehensive AI and applied machine learning summer camp (40 hrs) delivered jointly by Sprints and Microsoft — certified by Sprints CEO Ayman Bazaraa.",
+        description: "Intensive training camp organized by Sprints in collaboration with Microsoft, covering artificial intelligence fundamentals, modern machine learning architectures, predictive data workflows, and applied problem-solving. 40-hour learning workload. Certificate ID: SPR-S967AU.",
         metrics: [
-            { label: "Campaign ROI", value: 4.8, prefix: "", suffix: "x" },
-            { label: "Curriculum Score", value: 96, prefix: "", suffix: "%" },
-            { label: "Bootcamp Hours", value: 80, prefix: "", suffix: " hrs" }
+            { label: "Learning Workload", value: 40,  prefix: "",  suffix: " hrs" },
+            { label: "Program Status",    value: 100, prefix: "",  suffix: "% Complete" },
+            { label: "Certificate ID",    value: "S967AU", prefix: "SPR-", suffix: "" }
         ],
-        skills: ["Performance Marketing", "Google Analytics", "Content Strategy", "A/B Testing", "Funnel Optimization"],
+        skills: ["Artificial Intelligence", "Machine Learning", "Data Modeling", "Microsoft AI", "Problem Solving"],
         pipeline: [
-            { label: "Market Audit", detail: "Audience Profiling" },
-            { label: "Content Matrix", detail: "Campaign Blueprints" },
-            { label: "PPC & Funnels", detail: "Multi-Platform Ads" },
-            { label: "Data Analytics", detail: "Conversion Tracking" },
-            { label: "Final Pitch", detail: "Client Growth Plan" }
+            { label: "AI Foundations",   detail: "Core Principles" },
+            { label: "ML Modeling",      detail: "Supervised Algorithms" },
+            { label: "Practical Labs",   detail: "Python & Data Workflows" },
+            { label: "Final Assessment", detail: "Capstone Project" },
+            { label: "Accreditation",    detail: "Sprints × Microsoft" }
         ]
     },
     {
         id: "cert-3",
         index: "03",
-        title: "Entrepreneurship & Workforce Readiness",
-        issuer: "Microsoft & Ministry of Youth Training",
+        title: "CIB Summer Program – "The Green Leap"",
+        issuer: "Commercial International Bank (CIB)",
         category: "technical",
-        badge: "Microsoft Certified",
-        date: "2025 - 2026",
-        credentialId: "MS-YOUTH-ENTR-4421",
-        image: "images/certificates/cert-microsoft.png",
-        verificationUrl: "images/certificates/cert-microsoft.png",
-        summary: "Business modeling, technological innovation ideation, and collaborative enterprise leadership certified by Microsoft.",
-        description: "Accredited workforce entrepreneurship program focusing on Business Model Canvas (BMC), design-led problem solving, financial viability modeling, and collaborative agile teamwork developed by Microsoft and the Ministry of Youth & Sports.",
+        badge: "July 2025",
+        date: "July 2025",
+        credentialId: "CIB-INTERN-2025",
+        image: "images/certificates/cert-cib-internship.png",
+        imageFallback: "images/certificates/cert-cib-internship.webp",
+        verificationUrl: "images/certificates/cib-summer-internship-green-leap.pdf",
+        summary: "Certificate of Attendance for the CIB Summer Internship Program "The Green Leap" – signed by Mohamed El-Senary, CIB Chief Human Resources Officer.",
+        description: "Certificate of Attendance awarded by Commercial International Bank (CIB) for participation, completion, and understanding of the principles, approaches, and best practices of the CIB Summer Program "The Green Leap" as an integral part of the CIB Summer Internship Program, July 2025. Partnered with IFC, Euromoney Learning, SAS, Frankfurt School, LinkedIn Learning, Udemy Business, and more.",
         metrics: [
-            { label: "Business Labs", value: 12, prefix: "", suffix: " Labs" },
-            { label: "Program Score", value: 95, prefix: "", suffix: "%" },
-            { label: "Mentorship Hours", value: 65, prefix: "", suffix: " hrs" }
+            { label: "Internship Status", value: 100, prefix: "",  suffix: "% Complete" },
+            { label: "Partner Orgs",      value: 12,  prefix: "",  suffix: " Institutions" },
+            { label: "Year",              value: 2025, prefix: "",  suffix: "" }
         ],
-        skills: ["Business Modeling", "Design Thinking", "Financial Planning", "Pitch Deck", "Agile Execution"],
+        skills: ["Banking Technology", "Sustainability", "ESG Principles", "Professional Development", "Financial Systems"],
         pipeline: [
-            { label: "Problem Discovery", detail: "Pain Point Analysis" },
-            { label: "Business Model", detail: "BMC Architecture" },
-            { label: "Financial Projections", detail: "Unit Economics" },
-            { label: "Investor Pitch", detail: "Presentation Review" },
-            { label: "MS Credential", detail: "Accredited Diploma" }
+            { label: "Orientation",     detail: "Enterprise Practices" },
+            { label: "Green Finance",   detail: "Sustainability & ESG" },
+            { label: "Industry Labs",   detail: "Partner Organizations" },
+            { label: "Project Work",    detail: "Hands-on Implementation" },
+            { label: "CIB Certificate", detail: "Successful Completion" }
         ]
     },
+
+    // ─── SOFT SKILLS ────────────────────────────────────────────────────────────
     {
         id: "cert-4",
         index: "04",
@@ -105,23 +113,24 @@ export const certificates = [
         category: "soft-skills",
         badge: "University Diploma",
         date: "2025",
-        credentialId: "DAMANHOUR-COMM-2025-09",
-        image: "images/certificates/cert-communication.png",
-        verificationUrl: "images/certificates/cert-communication.png",
-        summary: "Executive communication, active listening mastery, negotiation tactics, and persuasive public speaking.",
-        description: "Specialized university development diploma focusing on assertive stakeholder communication, cross-functional negotiation, conflict resolution, emotional intelligence, and confident technical presentations.",
+        credentialId: "DAMANHOUR-COMM-2025",
+        image: "images/certificates/cert-sprints-microsoft.png",   // placeholder – replace when image uploaded
+        imageFallback: "images/certificates/cert-sprints-microsoft.webp",
+        verificationUrl: "#",
+        summary: "Executive communication, active listening, negotiation tactics, and confident technical presentations.",
+        description: "Specialized university development diploma focusing on assertive stakeholder communication, cross-functional collaboration, conflict resolution, emotional intelligence, and confident technical presentation delivery.",
         metrics: [
-            { label: "Core Modules", value: 6, prefix: "", suffix: " Modules" },
+            { label: "Core Modules",   value: 6,  prefix: "", suffix: " Modules" },
             { label: "Speech Mastery", value: 94, prefix: "", suffix: "%" },
             { label: "Workshop Hours", value: 40, prefix: "", suffix: " hrs" }
         ],
         skills: ["Active Listening", "Negotiation", "Public Speaking", "Conflict Resolution", "Executive Presentation"],
         pipeline: [
-            { label: "Verbal Dynamics", detail: "Clarity & Tone" },
-            { label: "Body Language", detail: "Non-Verbal Impact" },
-            { label: "Negotiation Lab", detail: "Win-Win Framing" },
-            { label: "Live Speech", detail: "Audience Engagement" },
-            { label: "Certification", detail: "University Seal" }
+            { label: "Verbal Dynamics",  detail: "Clarity & Tone" },
+            { label: "Body Language",    detail: "Non-Verbal Impact" },
+            { label: "Negotiation Lab",  detail: "Win-Win Framing" },
+            { label: "Live Speech",      detail: "Audience Engagement" },
+            { label: "Certification",    detail: "University Seal" }
         ]
     },
     {
@@ -132,50 +141,52 @@ export const certificates = [
         category: "soft-skills",
         badge: "Productivity Certified",
         date: "2025",
-        credentialId: "DAMANHOUR-TIME-2025-14",
-        image: "images/certificates/cert-time-mgmt.png",
-        verificationUrl: "images/certificates/cert-time-mgmt.png",
-        summary: "High-leverage prioritization, Eisenhower matrix execution, deep work protocols, and cognitive load minimization.",
-        description: "Advanced institutional training in high-performance personal productivity systems, priority quadrant prioritization, Pomodoro deep-work sprints, procrastination mitigation, and scalable delegation strategies.",
+        credentialId: "DAMANHOUR-TIME-2025",
+        image: "images/certificates/cert-nti-ml.png",   // placeholder – replace when image uploaded
+        imageFallback: "images/certificates/cert-nti-ml.webp",
+        verificationUrl: "#",
+        summary: "High-leverage prioritization, Eisenhower matrix execution, deep work protocols, and productivity optimization.",
+        description: "Advanced institutional training in personal productivity systems, priority quadrant prioritization, deep-work sprints, procrastination mitigation, and structured task scheduling.",
         metrics: [
             { label: "Productivity Gain", value: 42, prefix: "+", suffix: "%" },
-            { label: "Framework Score", value: 97, prefix: "", suffix: "%" },
-            { label: "Case Scenarios", value: 30, prefix: "", suffix: " hrs" }
+            { label: "Framework Score",   value: 97, prefix: "",  suffix: "%" },
+            { label: "Case Scenarios",    value: 30, prefix: "",  suffix: " hrs" }
         ],
-        skills: ["Priority Matrix", "Deep Work", "Sprint Planning", "Habit Stacking", "Workflow Automation"],
+        skills: ["Priority Matrix", "Deep Work", "Sprint Planning", "Habit Stacking", "Workflow Optimization"],
         pipeline: [
-            { label: "Audit Habits", detail: "Time-Tracking Data" },
-            { label: "Eisenhower Matrix", detail: "Urgent vs Important" },
-            { label: "Deep Work Flow", detail: "Focus Sprints" },
+            { label: "Audit Habits",       detail: "Time-Tracking Data" },
+            { label: "Eisenhower Matrix",  detail: "Urgent vs Important" },
+            { label: "Deep Work Flow",     detail: "Focus Sprints" },
             { label: "Delegation Systems", detail: "Leverage Protocols" },
-            { label: "Certified", detail: "Official Badge" }
+            { label: "Certified",          detail: "Official Badge" }
         ]
     },
     {
         id: "cert-6",
         index: "06",
-        title: "Collaborative Teamwork & Agile Leadership",
+        title: "Collaborative Teamwork & Agile Dynamics",
         issuer: "Damanhour University · مهارات العمل ضمن فريق",
         category: "soft-skills",
         badge: "Leadership Diploma",
         date: "2025",
-        credentialId: "DAMANHOUR-TEAM-2025-22",
-        image: "images/certificates/cert-teamwork.png",
-        verificationUrl: "images/certificates/cert-teamwork.png",
-        summary: "Cross-functional team synchronization, psychological safety, and collective problem-solving in high-stakes environments.",
-        description: "Rigorous experiential training on high-performance group psychology, collaborative sprint retrospectives, constructive feedback loops, distributed team leadership, and collective problem resolution.",
+        credentialId: "DAMANHOUR-TEAM-2025",
+        image: "images/certificates/cert-cib-internship.png",   // placeholder – replace when image uploaded
+        imageFallback: "images/certificates/cert-cib-internship.webp",
+        verificationUrl: "#",
+        summary: "Cross-functional team synchronization, psychological safety, and collective problem-solving.",
+        description: "Rigorous experiential training on high-performance group psychology, collaborative sprint retrospectives, constructive feedback loops, distributed teamwork, and collective problem resolution.",
         metrics: [
-            { label: "Team Sprints", value: 10, prefix: "", suffix: " Sprints" },
+            { label: "Team Sprints",   value: 10, prefix: "", suffix: " Sprints" },
             { label: "Teamwork Score", value: 96, prefix: "", suffix: "%" },
-            { label: "Field Exercises", value: 35, prefix: "", suffix: " hrs" }
+            { label: "Field Exercises",value: 35, prefix: "", suffix: " hrs" }
         ],
         skills: ["Team Dynamics", "Agile Mindset", "Peer Accountability", "Feedback Loops", "Collaborative Strategy"],
         pipeline: [
-            { label: "Team Charter", detail: "Shared Objectives" },
-            { label: "Role Alignment", detail: "Strengths-Based" },
+            { label: "Team Charter",    detail: "Shared Objectives" },
+            { label: "Role Alignment",  detail: "Strengths-Based" },
             { label: "Simulation Labs", detail: "Crisis Response" },
-            { label: "Retrospectives", detail: "Continuous Growth" },
-            { label: "Accreditation", detail: "Leadership Diploma" }
+            { label: "Retrospectives",  detail: "Continuous Growth" },
+            { label: "Accreditation",   detail: "Leadership Diploma" }
         ]
     }
 ];
