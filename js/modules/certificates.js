@@ -108,9 +108,19 @@ export const createCertificateCard = (cert, index = 0) => {
             <span class="browser-lock-icon" aria-hidden="true">🔒</span>
             <span class="browser-url-text">sarahnabil.ai/verify/${safeDomainPath}</span>
         </div>
-        <div class="browser-status-chip">
-            <span class="pulse-ring" aria-hidden="true"></span>
-            <span class="status-text">VERIFIED</span>
+        <div class="browser-bar-actions">
+            <div class="browser-status-chip">
+                <span class="pulse-ring" aria-hidden="true"></span>
+                <span class="status-text">VERIFIED</span>
+            </div>
+            ${cert.verificationUrl && cert.verificationUrl !== '#' ? `
+            <a href="${cert.verificationUrl}" class="browser-view-full-btn" target="_blank" rel="noopener noreferrer" title="View original authentic document" onclick="event.stopPropagation();">
+                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                </svg>
+                <span>Original PDF</span>
+            </a>` : ''}
         </div>
     `;
 
@@ -273,63 +283,24 @@ export const initStickyCertificateStack = () => {
 };
 
 /**
- * Parallax on Certificate Preview Media inside each browser frame
+ * Parallax on Certificate Preview Media - Disabled vertical translation
+ * so that 100% of official certificates, borders, and signatures are always visible.
  */
 export const initCertificateParallax = () => {
-    if (!window.gsap || !window.ScrollTrigger) return;
-    const gsap = window.gsap;
-    const ScrollTrigger = window.ScrollTrigger;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    ScrollTrigger.getAll().forEach((st) => {
-        if (st.vars.id && String(st.vars.id).startsWith("cert-parallax-")) {
-            st.kill();
-        }
-    });
+    if (window.ScrollTrigger) {
+        window.ScrollTrigger.getAll().forEach((st) => {
+            if (st.vars.id && String(st.vars.id).startsWith("cert-parallax-")) {
+                st.kill();
+            }
+        });
+    }
 
     const mediaList = Array.from(document.querySelectorAll(".certificate-preview-media"));
-    mediaList.forEach((media, i) => {
-        const wrapper = media.closest(".certificate-card-wrapper") || media.closest(".certificate-card");
-        if (!wrapper) return;
-
-        gsap.fromTo(
-            media,
-            { yPercent: -6 },
-            {
-                yPercent: 6,
-                ease: "none",
-                scrollTrigger: {
-                    id: `cert-parallax-${i}`,
-                    trigger: wrapper,
-                    start: "top bottom",
-                    end: "bottom top",
-                    scrub: 1.2,
-                    invalidateOnRefresh: true
-                }
-            }
-        );
+    mediaList.forEach((media) => {
+        if (window.gsap) {
+            window.gsap.set(media, { clearProps: "transform" });
+        }
     });
-};
-
-/**
- * Animated Metric Counters stub (preserved for architecture test compatibility)
- */
-export const initCertificateCounters = () => {
-    // Certificate cards focus purely on the image
-};
-
-/**
- * Curriculum / Pathway Diagram stub (preserved for architecture test compatibility)
- */
-export const initCertificatePipelineDiagrams = () => {
-    // Certificate cards focus purely on the image
-};
-
-/**
- * Skills & Competencies Tags Stagger Reveal stub (preserved for architecture test compatibility)
- */
-export const initCertificateSkillsAnimation = () => {
-    // Certificate cards focus purely on the image
 };
 
 /**
