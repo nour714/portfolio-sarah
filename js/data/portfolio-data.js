@@ -55,7 +55,7 @@ export const portfolioData = {
         image: {
             srcWebp: "images/about-me-polished.webp",
             srcPng: "images/about-me-polished.png",
-            alt: "Sarah Nabil - Machine Learning & Computer Vision Specialist",
+            alt: "Sarah Nabil with AI Assistant - Machine Learning & Computer Vision Specialist",
             badgeText: "AI & Computer Vision"
         }
     },
