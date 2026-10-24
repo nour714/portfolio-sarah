@@ -184,7 +184,7 @@ node tests/test_architecture.mjs
 ✅ Skills loaded: [ 'SKILL_METADATA', 'createSkillCard', 'initSkillsArcCarousel', ... ]
 ✅ Projects loaded: [ 'animateModalArchitecture', 'createProjectCard', 'initStickyCardStack', ... ]
 ✅ Certificates loaded: [ 'openCertificateModal', 'initStickyCertificateStack', ... ]
-✅ Animations loaded: [ 'initCinematicMotionSystem', 'initLenis', 'initCard3DTilt', ... ]
+✅ Animations loaded: [ 'initLenis', 'initScrollReveal', 'initCard3DTilt', ... ]
 ✅ Contact loaded: [ 'initContactFormFallback' ]
 ✅ Admin Preview loaded: [ 'renderPreview', 'updatePreviewScale' ]
 ✅ Admin Dashboard loaded: [ 'initAdminDashboard' ]
@@ -223,9 +223,12 @@ node tests/test_architecture.mjs
 
 ## 👤 Author
 
-**Sarah Nabil (سارة نبيل)**
-- **Role:** Machine Learning & Artificial Intelligence Specialist
-- **Specialization:** Exploratory Data Analysis, Data Preprocessing, Imbalance Mitigation, Classification Modeling, Feature Importance
-- **Email:** [sarahnabil.ai@gmail.com](mailto:sarahnabil.ai@gmail.com)
+**Sarah Nabil Abu Al-Magd Ahmad (سارة نبيل أبو المجد أحمد)**
+- **Education:** Bachelor's Degree in Artificial Intelligence (General Program), Faculty of Artificial Intelligence, Kafrelsheikh University (GPA: 3.27 / 4.00 · Expected 2028)
+- **Role:** Machine Learning, Computer Vision & Artificial Intelligence Specialist
+- **Core Skills:** Python, C++, OpenCV, ANN, Machine Learning (Classification, Regression, Supervised & Unsupervised), SQL & MySQL, Qt Framework, NumPy, Matplotlib
+- **Accredited Training:** NTI Machine Learning Training (120 hrs | Score: 95%), Sprints × Microsoft AI Camp, CIB Programming Internship, LinkedIn Learning AI
+- **Email:** [sarahhnabil71@gmail.com](mailto:sarahhnabil71@gmail.com)
+- **WhatsApp:** [+20 1099478701](https://wa.me/201099478701)
 - **LinkedIn:** [linkedin.com/in/sarahnabil](https://www.linkedin.com/in/sarahnabil)
 - **GitHub:** [github.com/sarahnabil](https://github.com/sarahnabil)
