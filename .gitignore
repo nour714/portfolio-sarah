@@ -51,6 +51,10 @@ ui-debug.log*
 # Test Artifacts & Browser Profiles
 .tmp_chrome_profile*
 tests/.chrome-test-profile*
+.chrome-*
+.playwright-mcp/
+tests/artifacts/*
+!tests/artifacts/.gitkeep
 tests/*.png
 tests/**/*.png
 test_*.png
