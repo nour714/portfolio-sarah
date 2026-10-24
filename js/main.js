@@ -15,6 +15,7 @@ import { initCertificateFilters, initCertificateModal, refreshCertificateScrollI
 import {
     initLenis,
     initHeroCinematicEntrance,
+    initCinematicScroll,
     initScrollReveal,
     refreshScrollReveal,
     initScrollProgressBar,
@@ -41,6 +42,7 @@ const boot = () => {
     safelyInit(initHeroAvatarFallback);
     safelyInit(initHeroIntro);
     safelyInit(initHeroCinematicEntrance);
+    safelyInit(initCinematicScroll);
     safelyInit(initProjectFilters);
     safelyInit(refreshProjectScrollInteractions);
     safelyInit(initProjectShare);
