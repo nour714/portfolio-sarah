@@ -295,6 +295,8 @@ body.light-mode .role-typed {
     align-items: center;
     isolation: isolate;
     width: 100%;
+    perspective: 1200px;
+    transform-style: preserve-3d;
 }
 
 .hero-visual-glow {
@@ -302,6 +304,7 @@ body.light-mode .role-typed {
     border-radius: 50%;
     pointer-events: none;
     z-index: 0;
+    will-change: transform, opacity;
 }
 
 .hero-visual-glow-primary {
@@ -355,46 +358,34 @@ body.light-mode .role-typed {
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    /* Perfect blending with background: smooth fade out to transparent at bottom and soft side feathering */
+    will-change: transform, opacity, filter;
+    /* Fade only the lower edge so the android stays clearly visible over the video. */
     -webkit-mask-image: linear-gradient(
         to bottom,
         #000000 0%,
-        #000000 62%,
-        rgba(0, 0, 0, 0.92) 74%,
-        rgba(0, 0, 0, 0.55) 86%,
-        rgba(0, 0, 0, 0.18) 94%,
+        #000000 84%,
+        rgba(0, 0, 0, 0.72) 94%,
         transparent 100%
     );
     mask-image: linear-gradient(
         to bottom,
         #000000 0%,
-        #000000 62%,
-        rgba(0, 0, 0, 0.92) 74%,
-        rgba(0, 0, 0, 0.55) 86%,
-        rgba(0, 0, 0, 0.18) 94%,
+        #000000 84%,
+        rgba(0, 0, 0, 0.72) 94%,
         transparent 100%
     );
-    animation: heroPortraitFloat 6s ease-in-out infinite alternate;
-}
-
-@keyframes heroPortraitFloat {
-    0% {
-        transform: translateY(0);
-    }
-    100% {
-        transform: translateY(-9px);
-    }
 }
 
 .hero-portrait-img {
     display: block;
     width: 100%;
     height: auto;
-    max-height: clamp(420px, 62vh, 620px);
+    max-height: clamp(440px, 76vh, 700px);
     object-fit: contain;
     object-position: bottom center;
     filter: drop-shadow(0 20px 38px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 28px rgba(56, 189, 248, 0.22));
-    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), filter 0.45s ease;
+    will-change: transform, filter;
+    transition: filter 0.45s ease;
 }
 
 .hero-portrait-frame:hover .hero-portrait-img {
@@ -445,7 +436,7 @@ body.light-mode .role-typed {
     }
 
     .hero-portrait-img {
-        max-height: 290px;
+        max-height: 350px;
     }
 }
 
@@ -526,5 +517,4 @@ body.light-mode .role-cursor {
     background: #0284c7;
     box-shadow: 0 0 8px rgba(2, 132, 199, 0.5);
 }
-
 
