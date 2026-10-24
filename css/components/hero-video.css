@@ -1,0 +1,564 @@
+/* ==========================================================================
+   Hero Cinematic Video Intro & Telemetry System
+   Clean Architecture - Presentation / UI Component Layer
+   ========================================================================== */
+
+/* 1. Cinematic Video Stage & Viewport Background */
+.hero-video-stage {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+    background: #080b12;
+    pointer-events: none;
+    isolation: isolate;
+}
+
+.hero-intro-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.02);
+    min-width: 100%;
+    min-height: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 38%;
+    display: block;
+    background-color: #080b12;
+    transition: filter 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 2. Bespoke Luxury Scrim Overlay for Crystal Readability */
+.hero-video-scrim {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        /* Horizontal gradient: deep rich dark on left for text legibility, feathering to reveal Sarah & robot on right */
+        linear-gradient(
+            90deg,
+            rgba(8, 11, 18, 0.95) 0%,
+            rgba(8, 11, 18, 0.91) 32%,
+            rgba(8, 11, 18, 0.72) 55%,
+            rgba(8, 11, 18, 0.42) 75%,
+            rgba(8, 11, 18, 0.78) 100%
+        ),
+        /* Vertical feathering: seamless blend with header and about section */
+        linear-gradient(
+            180deg,
+            rgba(8, 11, 18, 0.7) 0%,
+            transparent 22%,
+            transparent 72%,
+            rgba(8, 11, 18, 0.98) 100%
+        );
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1;
+    transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body.is-hero-assembled .hero-video-scrim {
+    opacity: 1;
+}
+
+/* Atmospheric Vignette & Subtle Film Grain Overlay */
+.hero-video-vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at 50% 50%,
+        transparent 52%,
+        rgba(5, 7, 14, 0.45) 82%,
+        rgba(3, 4, 10, 0.85) 100%
+    );
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* 3. Initial Intro State Management */
+body.is-video-intro-active {
+    overflow: hidden !important;
+}
+
+body.is-video-intro-active .site-header {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-30px);
+}
+
+body.is-video-intro-active .hero-content {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+/* 4. Cinematic Intro Controls HUD (Active while video plays) */
+.hero-intro-hud {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: clamp(18px, 3.8vh, 36px) clamp(18px, 4.5vw, 56px);
+    z-index: 25;
+    pointer-events: none;
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s;
+}
+
+body.is-hero-assembled .hero-intro-hud {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+.hero-intro-hud * {
+    pointer-events: auto;
+}
+
+.hero-intro-hud-top {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    gap: 16px;
+}
+
+.hero-intro-hud-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Glassmorphism HUD Action Buttons */
+.hero-hud-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 18px;
+    border-radius: 999px;
+    background: rgba(12, 16, 32, 0.68);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    color: #f1f5f9;
+    font-family: var(--font-mono, "JetBrains Mono", monospace);
+    font-size: clamp(0.78rem, 1vw, 0.86rem);
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, color 0.22s ease;
+}
+
+.hero-hud-btn:hover {
+    transform: translateY(-2px);
+    border-color: rgba(56, 189, 248, 0.7);
+    background: rgba(14, 165, 233, 0.22);
+    box-shadow: 0 10px 28px rgba(14, 165, 233, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+}
+
+.hero-hud-btn:focus-visible {
+    outline: 2px solid #38bdf8;
+    outline-offset: 2px;
+}
+
+.hero-hud-skip-btn {
+    border-color: rgba(56, 189, 248, 0.4);
+    background: rgba(14, 165, 233, 0.14);
+}
+
+.hero-hud-skip-btn svg {
+    transition: transform 0.2s ease;
+}
+
+.hero-hud-skip-btn:hover svg {
+    transform: translateX(3px);
+}
+
+/* Sound Toggle Icon States */
+.hud-sound-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hud-sound-icon-active {
+    display: none;
+}
+
+/* 5. Assembled Holographic Telemetry Cluster (Right Side Visual) */
+.hero-telemetry-cluster {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    max-width: 440px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    opacity: 0;
+    transform: translateX(36px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body.is-hero-assembled .hero-telemetry-cluster {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Individual Telemetry HUD Card */
+.hero-telemetry-card {
+    position: relative;
+    padding: clamp(16px, 2.4vw, 22px);
+    border-radius: 20px;
+    background: rgba(10, 14, 28, 0.72);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(56, 189, 248, 0.28);
+    box-shadow:
+        0 16px 36px rgba(0, 0, 0, 0.55),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        0 0 28px rgba(56, 189, 248, 0.12);
+    overflow: hidden;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.35s ease;
+}
+
+.hero-telemetry-card:hover {
+    transform: translateY(-4px) scale(1.015);
+    border-color: rgba(56, 189, 248, 0.6);
+    box-shadow:
+        0 22px 48px rgba(0, 0, 0, 0.65),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 0 36px rgba(56, 189, 248, 0.25);
+}
+
+.telemetry-card-glow {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.telemetry-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.telemetry-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22d3ee;
+    box-shadow: 0 0 10px #22d3ee;
+    animation: hudDotPulse 1.8s ease-in-out infinite;
+}
+
+.telemetry-tag {
+    font-family: var(--font-mono, "JetBrains Mono", monospace);
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: #38bdf8;
+    text-transform: uppercase;
+}
+
+.telemetry-card-stat {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.telemetry-stat-value {
+    font-family: var(--font-mono, "JetBrains Mono", monospace);
+    font-size: clamp(2rem, 3.8vw, 2.6rem);
+    font-weight: 800;
+    line-height: 1;
+    background: linear-gradient(135deg, #ffffff 40%, #7dd3fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 16px rgba(56, 189, 248, 0.4));
+}
+
+.telemetry-stat-label {
+    font-size: 0.84rem;
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+.telemetry-card-desc {
+    font-size: 0.86rem;
+    line-height: 1.55;
+    color: #cbd5e1;
+    margin: 0;
+}
+
+.telemetry-icon {
+    font-size: 1.2rem;
+    color: #38bdf8;
+}
+
+/* Mini Real-Time Neural Graph Bars */
+.telemetry-mini-graph {
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+    height: 28px;
+    margin-top: 10px;
+    padding-top: 4px;
+}
+
+.graph-bar {
+    flex: 1;
+    height: var(--h, 50%);
+    border-radius: 3px 3px 1px 1px;
+    background: linear-gradient(180deg, #38bdf8 0%, rgba(99, 102, 241, 0.4) 100%);
+    box-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
+    animation: barPulse 2.4s ease-in-out infinite alternate;
+}
+
+.graph-bar:nth-child(2) { animation-delay: 0.3s; }
+.graph-bar:nth-child(3) { animation-delay: 0.6s; }
+.graph-bar:nth-child(4) { animation-delay: 0.9s; }
+.graph-bar:nth-child(5) { animation-delay: 1.2s; }
+.graph-bar:nth-child(6) { animation-delay: 1.5s; }
+
+@keyframes barPulse {
+    0% {
+        transform: scaleY(0.75);
+    }
+    100% {
+        transform: scaleY(1.15);
+    }
+}
+
+/* Interactive Replay Intro Button */
+.hero-replay-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 11px 22px;
+    border-radius: 999px;
+    background: rgba(14, 165, 233, 0.12);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(56, 189, 248, 0.38);
+    color: #7dd3fc;
+    font-family: var(--font-mono, "JetBrains Mono", monospace);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+    transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+    width: fit-content;
+}
+
+.hero-replay-btn svg {
+    transition: transform 0.4s ease;
+}
+
+.hero-replay-btn:hover {
+    transform: translateY(-2px);
+    background: rgba(14, 165, 233, 0.24);
+    border-color: #38bdf8;
+    color: #ffffff;
+    box-shadow: 0 8px 26px rgba(14, 165, 233, 0.4);
+}
+
+.hero-replay-btn:hover svg {
+    transform: rotate(-180deg);
+}
+
+.hero-replay-btn:focus-visible {
+    outline: 2px solid #38bdf8;
+    outline-offset: 2px;
+}
+
+/* 7. Portrait Fallback Visibility */
+.hero-portrait-fallback {
+    display: none !important;
+}
+
+body.is-hero-assembled .hero-portrait-fallback,
+body.video-fallback-active .hero-portrait-fallback,
+body.no-video .hero-portrait-fallback {
+    display: flex !important;
+}
+
+body.is-hero-assembling .hero-portrait-frame {
+    animation-play-state: paused;
+}
+
+body.video-fallback-active .hero-telemetry-cluster,
+body.no-video .hero-telemetry-cluster {
+    display: none !important;
+}
+
+/* 8. Light Mode Refinements */
+body.light-mode .hero-video-stage {
+    background: #f8fafc;
+}
+
+body.light-mode .hero-video-vignette {
+    display: none !important;
+}
+
+body.light-mode .hero-video-scrim {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(248, 250, 252, 0.96) 0%,
+            rgba(248, 250, 252, 0.92) 36%,
+            rgba(248, 250, 252, 0.74) 58%,
+            rgba(248, 250, 252, 0.45) 78%,
+            rgba(248, 250, 252, 0.88) 100%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(248, 250, 252, 0.8) 0%,
+            transparent 22%,
+            transparent 72%,
+            rgba(248, 250, 252, 0.98) 100%
+        );
+}
+
+body.light-mode .hero-telemetry-card {
+    background: rgba(255, 255, 255, 0.92);
+    border-color: rgba(226, 232, 240, 0.95);
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+body.light-mode .telemetry-stat-value {
+    background: linear-gradient(135deg, #0f172a 40%, #0284c7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+body.light-mode .telemetry-card-desc {
+    color: #475569;
+}
+
+body.light-mode .hero-replay-btn {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(203, 213, 225, 0.9);
+    color: #0284c7;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+}
+
+body.light-mode .hero-intro-hud-badge {
+    background: rgba(255, 255, 255, 0.92);
+    border-color: rgba(2, 132, 199, 0.3);
+    color: #0284c7;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+}
+
+body.light-mode .hero-intro-hud-pulse {
+    background: #0284c7;
+    box-shadow: 0 0 10px #0284c7;
+}
+
+body.light-mode .hero-hud-btn {
+    background: rgba(255, 255, 255, 0.92);
+    border-color: rgba(203, 213, 225, 0.9);
+    color: #0f172a;
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.05);
+}
+
+body.light-mode .hero-hud-btn:hover {
+    background: #ffffff;
+    border-color: #0284c7;
+    color: #0284c7;
+}
+
+/* 9. Responsive Adjustments */
+@media (max-width: 991px) {
+    .hero-telemetry-cluster {
+        max-width: 100%;
+        margin-top: 10px;
+    }
+
+    .hero-intro-hud {
+        padding: 16px 20px;
+    }
+
+    .hero-intro-hud-top {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .hero-intro-hud-badge {
+        font-size: 0.72rem;
+        padding: 5px 12px;
+    }
+
+    .hero-hud-btn {
+        padding: 7px 14px;
+        font-size: 0.74rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .hero-intro-hud {
+        padding: 14px 16px;
+    }
+
+    .hero-intro-hud-badge {
+        padding: 5px 10px;
+        font-size: 0.68rem;
+    }
+
+    .hero-hud-btn {
+        padding: 6px 12px;
+        font-size: 0.72rem;
+        gap: 6px;
+    }
+
+    .hero-telemetry-card {
+        padding: 14px 16px;
+    }
+
+    .telemetry-stat-value {
+        font-size: 1.8rem;
+    }
+}
+
+/* 10. Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .hero-intro-video {
+        transition: none !important;
+        transform: translate(-50%, -50%) !important;
+    }
+
+    .hero-video-scrim {
+        opacity: 1 !important;
+        transition: none !important;
+    }
+
+    .hero-intro-hud {
+        display: none !important;
+    }
+
+    .hero-telemetry-cluster {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    .hero-intro-hud-pulse,
+    .telemetry-status-dot,
+    .graph-bar {
+        animation: none !important;
+    }
+}
