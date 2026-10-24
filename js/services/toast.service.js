@@ -4,8 +4,14 @@
  */
 
 export const showToast = (message, duration = 3000) => {
-    const toast = document.getElementById("portfolio-toast");
-    if (!toast) return;
+    let toast = document.getElementById("portfolio-toast");
+    if (!toast) {
+        toast = document.createElement("div");
+        toast.id = "portfolio-toast";
+        toast.setAttribute("role", "status");
+        toast.setAttribute("aria-live", "polite");
+        document.body.appendChild(toast);
+    }
 
     if (toast.__hideTimeoutId) {
         window.clearTimeout(toast.__hideTimeoutId);
