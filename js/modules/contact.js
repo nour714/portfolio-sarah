@@ -22,7 +22,7 @@ export const initContactFormFallback = () => {
         const subject = encodeURIComponent(`Project Inquiry: ${projectType || "General"} - ${name}`);
         const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nProject Type: ${projectType}\n\nMessage:\n${message}`);
 
-        window.location.href = `mailto:sarahnabil.ai@gmail.com?subject=${subject}&body=${body}`;
+        window.location.href = `mailto:sarahhnabil71@gmail.com?subject=${subject}&body=${body}`;
 
         if (statusNote) {
             statusNote.textContent = "Redirecting to your email client to send your message...";
