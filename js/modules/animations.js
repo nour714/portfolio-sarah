@@ -33,32 +33,4 @@ export {
     initContactAssembly,
     initFooterAssembly
 } from "./animations/section-assemblies.js";
-
-import { initLenis } from "./animations/lenis-scroll.js";
-import { initCustomCursor } from "./animations/custom-cursor.js";
-import {
-    initScrollProgressBar,
-    initBackToTop,
-    initMagnetic,
-    initCard3DTilt
-} from "./animations/scroll-effects.js";
-import {
-    initCounterAnimation,
-    initScrollReveal
-} from "./animations/reveals.js";
-import { initHeroCinematicEntrance } from "./animations/section-assemblies.js";
-
-/**
- * Master Bootstrap for the Cinematic Motion System
- */
-export const initCinematicMotionSystem = () => {
-    initLenis();
-    initHeroCinematicEntrance();
-    initScrollReveal();
-    initScrollProgressBar();
-    initCustomCursor();
-    initBackToTop();
-    initCounterAnimation();
-    initMagnetic();
-    initCard3DTilt();
-};
+export { initCinematicScroll } from "./animations/cinematic-scroll.js";
