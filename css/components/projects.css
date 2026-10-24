@@ -242,17 +242,17 @@
 .projects-stack {
     position: relative;
     z-index: 1;
-    margin: clamp(32px, 5vw, 55px) auto 0;
+    margin: clamp(24px, 4vw, 42px) auto 0;
     display: flex;
     flex-direction: column;
-    width: min(1000px, 100%);
+    width: min(880px, 94vw);
 }
 
 /* Card Wrapper (Sticky target on desktop) */
 .project-card-wrapper {
     position: sticky;
-    top: clamp(75px, 10vh, 105px);
-    margin-bottom: clamp(38px, 6vh, 75px);
+    top: clamp(65px, 8vh, 90px);
+    margin-bottom: clamp(28px, 4.5vh, 50px);
     width: 100%;
     transition: opacity 0.4s ease;
 }
@@ -286,10 +286,10 @@
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     border: 1px solid var(--projects-card-border);
-    border-radius: 20px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12);
     overflow: hidden;
-    padding: clamp(18px, 2.6vw, 30px);
+    padding: clamp(14px, 2vw, 22px);
     display: flex;
     flex-direction: column;
     will-change: transform, opacity, filter;
