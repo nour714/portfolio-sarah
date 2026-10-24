@@ -128,15 +128,15 @@
                         <div class="hero-visual-glow hero-visual-glow-primary" aria-hidden="true"></div>
                         <div class="hero-visual-glow hero-visual-glow-secondary" aria-hidden="true"></div>
                         
-                        <!-- Portrait Fallback (Active if video unsupported / reduced motion) -->
+                        <!-- Hero visual shown after the intro or when video playback is unavailable -->
                         <div class="hero-portrait-frame hero-portrait-fallback" id="hero-portrait-fallback">
                             <picture>
-                                <source srcset="images/hero-portrait.webp" type="image/webp">
-                                <img src="images/hero-portrait.png"
-                                     alt="Sarah Nabil - Machine Learning &amp; AI Specialist"
+                                <source srcset="images/hero-android.webp" type="image/webp">
+                                <img src="images/hero-android.png"
+                                     alt="Futuristic white android with electric-blue lighting"
                                      class="hero-portrait-img"
-                                     width="828"
-                                     height="1024"
+                                     width="768"
+                                     height="1152"
                                      fetchpriority="high"
                                      decoding="async">
                             </picture>
@@ -154,13 +154,23 @@
                         <div class="about-visual-backdrop"></div>
                         <div class="about-visual-glow"></div>
                         <div class="about-image-wrap">
-                            <picture>
-                                 <source srcset="images/about-me-polished.webp" type="image/webp">
-                                <img src="images/about-me-polished.png"
+                            <picture class="about-layer about-layer-robot">
+                                <source srcset="images/about-robot.webp" type="image/webp">
+                                <img src="images/about-robot.png"
+                                     alt="AI Assistant Robot"
+                                     class="about-image about-img-robot"
+                                     width="960"
+                                     height="1024"
+                                     loading="lazy"
+                                     decoding="async">
+                            </picture>
+                            <picture class="about-layer about-layer-sarah">
+                                <source srcset="images/about-sarah.webp" type="image/webp">
+                                <img src="images/about-sarah.png"
                                      alt="Sarah Nabil - Machine Learning &amp; AI Specialist"
-                                     class="about-image"
-                                     width="580"
-                                     height="636"
+                                     class="about-image about-img-sarah"
+                                     width="960"
+                                     height="1024"
                                      loading="lazy"
                                      decoding="async">
                             </picture>
@@ -293,7 +303,7 @@
             <aside class="certificates-side-indicator" id="certificates-side-indicator" aria-label="Active certificate indicator">
                 <span class="indicator-active" id="certificates-indicator-active">01</span>
                 <span class="indicator-divider" aria-hidden="true">/</span>
-                <span class="indicator-total" id="certificates-indicator-total">06</span>
+                <span class="indicator-total" id="certificates-indicator-total">03</span>
             </aside>
 
             <div class="section-shell certificates-shell">
@@ -307,9 +317,9 @@
                     <button type="button" class="certificate-filter is-active" aria-pressed="true"
                         data-filter="all">All Credentials</button>
                     <button type="button" class="certificate-filter" aria-pressed="false"
-                        data-filter="technical">Technical &amp; Professional</button>
+                        data-filter="technical">Machine Learning &amp; AI</button>
                     <button type="button" class="certificate-filter" aria-pressed="false"
-                        data-filter="soft-skills">Leadership &amp; Soft Skills</button>
+                        data-filter="internship">Banking &amp; Industry Programs</button>
                 </div>
 
                 <div class="certificates-stack certificates-grid" id="certificates-stack" aria-label="Certifications grid"></div>
