@@ -20,7 +20,7 @@
     position: relative;
     padding: clamp(40px, 8vw, 100px) clamp(16px, 5vw, 60px) clamp(80px, 12vw, 140px);
     background: transparent;
-    overflow: clip;
+    overflow: visible;
 }
 
 /* Fixed Scroll Progress Bar (Top of Viewport) */
@@ -191,11 +191,29 @@
     max-width: 100%;
 }
 
-@media (max-width: 560px) {
+@media (max-width: 640px) {
     .projects-filters {
-        border-radius: 20px;
-        padding: 8px;
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        max-width: 100%;
+        width: 100%;
+        justify-content: flex-start;
+        padding: 5px 6px;
+        border-radius: 999px;
         gap: 6px;
+    }
+
+    .projects-filters::-webkit-scrollbar {
+        display: none;
+    }
+
+    .project-filter {
+        flex-shrink: 0;
+        padding: 7px 14px;
+        font-size: 0.78rem;
     }
 }
 
@@ -261,12 +279,63 @@
     display: none !important;
 }
 
-/* Fallback for mobile and reduced motion: no sticky stacking */
+/* Responsive Sticky Stacking for Mobile & Desktop */
 @media (max-width: 899px) {
     .project-card-wrapper {
-        position: relative !important;
-        top: auto !important;
-        margin-bottom: 24px !important;
+        position: sticky;
+        top: clamp(56px, 7.5vh, 72px);
+        margin-bottom: clamp(24px, 4.5vh, 44px);
+    }
+}
+
+@media (max-width: 640px) {
+    .projects {
+        padding: 40px 10px 70px;
+        overflow: visible;
+    }
+
+    .projects-stack {
+        width: 100%;
+        margin-top: 16px;
+    }
+
+    .project-card {
+        padding: 12px 10px;
+        border-radius: 16px;
+    }
+
+    .project-card-header {
+        margin-bottom: 10px;
+        padding-bottom: 8px;
+    }
+
+    .project-card-index {
+        font-size: 1.5rem;
+    }
+
+    .project-card-body {
+        gap: 12px;
+    }
+
+    .project-title {
+        font-size: 1.15rem;
+        margin-bottom: 6px;
+    }
+
+    .project-description {
+        font-size: 0.88rem;
+        line-height: 1.48;
+        margin-bottom: 8px;
+    }
+
+    .project-tech-tags {
+        margin-bottom: 10px;
+        gap: 4px;
+    }
+
+    .project-browser-frame .browser-viewport {
+        aspect-ratio: 16 / 9;
+        max-height: clamp(135px, 19vh, 175px);
     }
 }
 
@@ -407,12 +476,13 @@
 
 .project-title {
     font-family: var(--font-sans);
-    font-size: clamp(1.2rem, 1.8vw, 1.6rem);
+    font-size: clamp(1.15rem, 1.8vw, 1.6rem);
     font-weight: 700;
-    line-height: 1.24;
+    line-height: 1.25;
     letter-spacing: -0.02em;
     color: var(--projects-text-primary);
     margin-bottom: 10px;
+    word-break: break-word;
 }
 
 /* Problem Statement Box */
@@ -468,8 +538,20 @@
 
 @media (max-width: 480px) {
     .project-metrics-grid {
-        grid-template-columns: 1fr;
-        gap: 8px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 6px;
+    }
+
+    .project-metric {
+        padding: 6px 6px;
+    }
+
+    .metric-value-wrap {
+        font-size: 0.95rem;
+    }
+
+    .metric-label {
+        font-size: 0.58rem;
     }
 }
 
@@ -636,9 +718,19 @@
 
 @media (max-width: 640px) {
     .pipeline-nodes-row {
-        flex-wrap: wrap;
-        gap: 10px;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px 10px;
     }
+
+    .pipeline-node {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        text-align: left;
+        gap: 6px;
+    }
+
     .pipeline-svg-wrapper {
         display: none;
     }
@@ -686,6 +778,25 @@
     gap: 8px;
     margin-top: auto;
     padding-top: 4px;
+}
+
+@media (max-width: 640px) {
+    .project-actions-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+        width: 100%;
+    }
+
+    .project-btn {
+        width: 100%;
+        padding: 10px 12px;
+        font-size: 0.82rem;
+    }
+
+    .project-actions-row .project-btn-primary {
+        grid-column: span 2;
+    }
 }
 
 .project-btn {
