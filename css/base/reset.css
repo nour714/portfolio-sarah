@@ -47,6 +47,22 @@ textarea {
     padding: 0 clamp(18px, 6vw, 60px);
 }
 
+/* Mobile-Friendly Section Scroll Offset for Fixed Floating Navbar */
+section[id],
+main > section {
+    scroll-margin-top: clamp(76px, 12vh, 100px);
+}
+
+/* Base Mobile Responsive Guard */
+@media (max-width: 768px) {
+    html {
+        -webkit-text-size-adjust: 100%;
+    }
+    body {
+        overflow-x: clip;
+    }
+}
+
 /* ==========================================================================
    Global Footer Styles
    ========================================================================== */
