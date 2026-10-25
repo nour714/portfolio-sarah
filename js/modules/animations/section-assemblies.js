@@ -888,6 +888,12 @@ export const initFooterAssembly = () => {
     const footerElements = footer.querySelectorAll(".portfolio-footer-brand, .portfolio-footer-socials, .portfolio-footer-copy");
     if (!footerElements.length) return;
 
+    const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) {
+        gsap.set(footerElements, { clearProps: "all" });
+        return;
+    }
+
     let footerTimeline = null;
 
     const resetAssembly = () => {
@@ -918,11 +924,14 @@ export const initFooterAssembly = () => {
     ScrollTrigger.create({
         id: "cinematic-reveal-footer-assembly",
         trigger: footer,
-        start: "top 92%",
-        end: "bottom bottom",
+        start: "top 95%",
         onEnter: playAssembly,
         onEnterBack: playAssembly,
-        onLeave: resetAssembly,
         onLeaveBack: resetAssembly
     });
+
+    // Failsafe: if footer is already partially visible on screen upon initialization, play immediately
+    if (ScrollTrigger.isInViewport(footer, 0.1)) {
+        playAssembly();
+    }
 };
