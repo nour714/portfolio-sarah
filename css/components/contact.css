@@ -564,16 +564,57 @@ body.light-mode .contact-field select:focus {
 }
 
 @media (max-width: 640px) {
+    .contact {
+        padding: 40px 10px 70px;
+    }
+
+    .contact-title-wrap h2 {
+        font-size: clamp(1.8rem, 6.8vw, 2.5rem);
+    }
+
+    .contact-copy {
+        font-size: 0.92rem;
+        line-height: 1.6;
+        padding: 0 4px;
+    }
+
+    .contact-panel,
+    .contact-form {
+        padding: 20px 14px;
+        border-radius: 20px;
+    }
+
+    .contact-field input,
+    .contact-field textarea,
+    .contact-field select {
+        font-size: 16px; /* Prevents unwanted iOS auto-zoom on focus */
+        padding: 12px 14px;
+        border-radius: 12px;
+    }
+
+    .contact-value {
+        word-break: break-all;
+        font-size: 0.84rem;
+    }
+
+    .contact-item {
+        padding: 10px 12px;
+        gap: 10px;
+    }
+
     .contact-form-grid {
         grid-template-columns: 1fr;
     }
 
     .contact-form-footer {
-        align-items: flex-start;
+        align-items: stretch;
+        flex-direction: column;
+        gap: 10px;
     }
 
     .contact-btn {
         width: 100%;
+        padding: 12px 20px;
     }
 }
 
