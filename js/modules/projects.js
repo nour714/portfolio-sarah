@@ -107,7 +107,6 @@ export const initStickyCardStack = () => {
     const gsap = window.gsap;
     const ScrollTrigger = window.ScrollTrigger;
 
-    const isDesktop = window.matchMedia("(min-width: 900px)").matches;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     // Clean up any existing card stack ScrollTriggers
@@ -119,8 +118,8 @@ export const initStickyCardStack = () => {
 
     const cardWrappers = Array.from(document.querySelectorAll(".project-card-wrapper:not(.is-hidden)"));
 
-    if (!isDesktop || reducedMotion) {
-        // Mobile or Reduced Motion: Reset to standard stacked flow
+    if (reducedMotion) {
+        // Reduced Motion: Reset to standard stacked flow
         cardWrappers.forEach((wrapper) => {
             const card = wrapper.querySelector(".project-card");
             if (card) {
@@ -132,7 +131,15 @@ export const initStickyCardStack = () => {
 
     if (cardWrappers.length <= 1) return;
 
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    const targetScale = isMobile ? 0.94 : 0.92;
+    const targetOpacity = isMobile ? 0.5 : 0.45;
+    const targetBlur = isMobile ? "blur(3px)" : "blur(4px)";
+    const startTrigger = isMobile ? "top 85%" : "top 80%";
+    const endTrigger = isMobile ? "top 16%" : "top 18%";
+
     cardWrappers.forEach((wrapper, i) => {
+        wrapper.style.zIndex = String(i + 1);
         const card = wrapper.querySelector(".project-card");
         if (!card) return;
 
@@ -141,16 +148,16 @@ export const initStickyCardStack = () => {
             const nextWrapper = cardWrappers[i + 1];
 
             gsap.to(card, {
-                scale: 0.92,
-                opacity: 0.45,
-                filter: "blur(4px)",
+                scale: targetScale,
+                opacity: targetOpacity,
+                filter: targetBlur,
                 transformOrigin: "center top",
                 ease: "none",
                 scrollTrigger: {
                     id: `card-stack-${i}`,
                     trigger: nextWrapper,
-                    start: "top 80%",
-                    end: "top 18%",
+                    start: startTrigger,
+                    end: endTrigger,
                     scrub: true,
                     invalidateOnRefresh: true
                 }
