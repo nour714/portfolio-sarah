@@ -8,7 +8,7 @@ import { applyAdminState } from "./core/state.js";
 import { portfolioData } from "./data/portfolio-data.js";
 import { initThemeToggle } from "./modules/theme.js";
 import { initMenu } from "./modules/navigation.js";
-import { initHeroRoleTyping, initHeroAvatarFallback } from "./modules/hero.js";
+import { initHeroRoleTyping, initHeroAvatarFallback, initHeroPortraitInteraction } from "./modules/hero.js";
 import { initHeroIntro } from "./modules/hero-intro.js";
 import { initProjectFilters, initProjectShare, initProjectModal, refreshProjectScrollInteractions } from "./modules/projects.js";
 import { initCertificateFilters, initCertificateModal, refreshCertificateScrollInteractions } from "./modules/certificates.js";
@@ -40,6 +40,7 @@ const boot = () => {
     safelyInit(initMenu);
     safelyInit(initHeroRoleTyping);
     safelyInit(initHeroAvatarFallback);
+    safelyInit(initHeroPortraitInteraction);
     safelyInit(initHeroIntro);
     safelyInit(initHeroCinematicEntrance);
     safelyInit(initCinematicScroll);
