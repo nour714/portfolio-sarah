@@ -490,12 +490,30 @@ main {
    -------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
     .site-header {
-        inset: 12px 0 auto;
-        padding: 0 16px;
+        inset: 10px 0 auto;
+        padding: 0 14px;
+        transition: transform 0.3s ease, padding 0.3s ease;
     }
 
     .nav-shell {
         position: relative;
+        padding: 6px 10px;
+        border-radius: 9999px;
+        transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, -webkit-backdrop-filter 0.3s ease, backdrop-filter 0.3s ease;
+    }
+
+    .site-header.is-scrolled .nav-shell {
+        background: rgba(8, 10, 20, 0.88);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        backdrop-filter: blur(20px) saturate(180%);
+        border: 1px solid rgba(56, 189, 248, 0.28);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.65), 0 0 20px rgba(56, 189, 248, 0.1);
+    }
+
+    body.light-mode .site-header.is-scrolled .nav-shell {
+        background: rgba(255, 255, 255, 0.94);
+        border-color: rgba(203, 213, 225, 0.9);
+        box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
     }
 
     /* Move capsule out of absolute center on mobile */
@@ -513,41 +531,61 @@ main {
     /* Mobile Menu Drawer */
     .nav-list {
         position: absolute;
-        top: calc(100% + 14px);
+        top: calc(100% + 10px);
         left: 0;
+        right: 0;
         width: 100%;
-        border-radius: 22px;
+        border-radius: 20px;
         background: var(--mobile-menu-bg);
         border: 1px solid var(--mobile-menu-border);
-        box-shadow: 0 16px 36px var(--mobile-menu-shadow);
-        padding: 16px;
+        box-shadow: 0 20px 50px var(--mobile-menu-shadow), 0 0 25px rgba(56, 189, 248, 0.12);
+        padding: 12px;
         gap: 6px;
         flex-direction: column;
         align-items: stretch;
         opacity: 0;
         pointer-events: none;
-        transform: translateY(-10px);
-        transition: opacity 0.24s cubic-bezier(0.16, 1, 0.3, 1), transform 0.24s cubic-bezier(0.16, 1, 0.3, 1);
-        max-height: min(72vh, 460px);
+        transform: translateY(-8px) scale(0.98);
+        transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        max-height: min(75vh, 480px);
         overflow-y: auto;
         overscroll-behavior: contain;
-        -webkit-backdrop-filter: blur(24px);
-        backdrop-filter: blur(24px);
-        z-index: 60;
+        -webkit-backdrop-filter: blur(28px);
+        backdrop-filter: blur(28px);
+        z-index: 100;
     }
 
     .nav-list.open {
         opacity: 1;
         pointer-events: auto;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
     }
 
     .nav-list a {
         width: 100%;
         padding: 12px 18px;
         font-size: 0.88rem;
+        font-weight: 600;
+        letter-spacing: 0.06em;
         justify-content: flex-start;
-        border-radius: 14px;
+        border-radius: 12px;
+        color: var(--text-soft);
+        background: transparent;
+        transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .nav-list a.is-active,
+    .nav-list a:hover {
+        color: #ffffff;
+        background: linear-gradient(135deg, rgba(14, 165, 233, 0.22) 0%, rgba(99, 102, 241, 0.22) 100%);
+        border: 1px solid rgba(56, 189, 248, 0.35);
+    }
+
+    body.light-mode .nav-list a.is-active,
+    body.light-mode .nav-list a:hover {
+        color: #0284c7;
+        background: rgba(2, 132, 199, 0.1);
+        border: 1px solid rgba(2, 132, 199, 0.3);
     }
 
     .nav-mobile-contact {
@@ -559,8 +597,8 @@ main {
     }
 
     .theme-toggle {
-        min-width: 60px;
-        padding: 8px 14px;
+        min-width: 58px;
+        padding: 8px 13px;
         font-size: 0.74rem;
     }
 
@@ -578,12 +616,12 @@ main {
 
 @media (max-width: 768px) {
     .site-header {
-        padding: 0 12px;
+        padding: 0 10px;
     }
 
     .brand-title {
-        font-size: 0.9rem;
-        letter-spacing: 0.08em;
+        font-size: 0.88rem;
+        letter-spacing: 0.07em;
     }
 
     .brand-badge {
@@ -604,8 +642,8 @@ main {
 
 @media (max-width: 600px) {
     .site-header {
-        inset: 10px 0 auto;
-        padding: 0 10px;
+        inset: 8px 0 auto;
+        padding: 0 8px;
     }
 
     .nav-cta-btn {
@@ -613,14 +651,14 @@ main {
     }
 
     .theme-toggle {
-        min-width: 54px;
-        padding: 7px 12px;
-        font-size: 0.72rem;
+        min-width: 52px;
+        padding: 6px 11px;
+        font-size: 0.7rem;
     }
 
     .brand-title {
-        font-size: 0.84rem;
-        letter-spacing: 0.06em;
+        font-size: 0.82rem;
+        letter-spacing: 0.05em;
     }
 }
 
@@ -644,8 +682,8 @@ main {
     }
 
     .brand-title {
-        font-size: 0.8rem;
-        letter-spacing: 0.04em;
+        font-size: 0.78rem;
+        letter-spacing: 0.03em;
     }
 }
 
