@@ -114,6 +114,8 @@
     font-weight: 600;
     letter-spacing: 0.01em;
     width: fit-content;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .hero-role-pulse {
@@ -350,6 +352,7 @@ body.light-mode .role-typed {
     }
 }
 
+/* Hero Visual Interactive Portrait Frame */
 .hero-portrait-frame {
     position: relative;
     z-index: 1;
@@ -359,7 +362,11 @@ body.light-mode .role-typed {
     justify-content: center;
     align-items: flex-end;
     will-change: transform, opacity, filter;
-    /* Fade only the lower edge so the android stays clearly visible over the video. */
+    cursor: pointer;
+    border-radius: 16px;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    /* Fade only the lower edge to blend seamlessly into dark background */
     -webkit-mask-image: linear-gradient(
         to bottom,
         #000000 0%,
@@ -376,6 +383,40 @@ body.light-mode .role-typed {
     );
 }
 
+.hero-portrait-frame:focus-visible {
+    outline: 2px solid rgba(56, 189, 248, 0.75);
+    outline-offset: 6px;
+}
+
+/* Interactive Container */
+.hero-portrait-interactive {
+    position: relative;
+    width: 100%;
+    display: grid;
+    place-items: end center;
+    isolation: isolate;
+    transform: translateY(0) scale(1);
+    transition: transform 0.56s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+}
+
+.hero-portrait-frame:hover .hero-portrait-interactive,
+.hero-portrait-frame:focus-visible .hero-portrait-interactive,
+.hero-portrait-frame.is-halo-active .hero-portrait-interactive {
+    transform: translateY(-3px) scale(1.015);
+}
+
+/* Stacked Image Layers (Grid Alignment prevents any layout shift) */
+.hero-portrait-layer {
+    grid-area: 1 / 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    pointer-events: none;
+}
+
 .hero-portrait-img {
     display: block;
     width: 100%;
@@ -383,60 +424,204 @@ body.light-mode .role-typed {
     max-height: clamp(440px, 76vh, 700px);
     object-fit: contain;
     object-position: bottom center;
-    filter: drop-shadow(0 20px 38px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 28px rgba(56, 189, 248, 0.22));
-    will-change: transform, filter;
-    transition: filter 0.45s ease;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
-.hero-portrait-frame:hover .hero-portrait-img {
-    transform: scale(1.02);
-    filter: drop-shadow(0 24px 44px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 36px rgba(56, 189, 248, 0.35));
+/* 1. Default State: Clean Natural Monochrome Portrait */
+.hero-portrait-layer-default {
+    z-index: 1;
+    opacity: 1;
+    transition: opacity 0.56s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero-portrait-layer-default .hero-portrait-img {
+    filter: drop-shadow(0 20px 38px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 24px rgba(56, 189, 248, 0.18));
+    will-change: filter;
+    transition: filter 0.56s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* 2. Hover State: Dramatic Portrait with Glowing White Halo */
+.hero-portrait-layer-halo {
+    z-index: 2;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.56s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, filter;
+}
+
+.hero-portrait-layer-halo .hero-portrait-img {
+    filter: drop-shadow(0 24px 44px rgba(0, 0, 0, 0.85))
+            drop-shadow(0 0 25px rgba(255, 255, 255, 0.45))
+            drop-shadow(0 0 55px rgba(255, 255, 255, 0.2))
+            drop-shadow(0 0 35px rgba(56, 189, 248, 0.3))
+            contrast(1.02)
+            brightness(1.02);
+    will-change: filter;
+    transition: filter 0.56s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Reveal Halo on Hover, Focus, or Touch Active */
+.hero-portrait-frame:hover .hero-portrait-layer-halo,
+.hero-portrait-frame:focus-visible .hero-portrait-layer-halo,
+.hero-portrait-frame.is-halo-active .hero-portrait-layer-halo {
+    opacity: 1;
+}
+
+/* 3. Soft Ambient Halo Aura Illumination */
+.hero-portrait-halo-aura {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -10%) scale(0.85);
+    width: clamp(160px, 50%, 280px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle at 50% 45%,
+        rgba(255, 255, 255, 0.28) 0%,
+        rgba(224, 242, 254, 0.14) 38%,
+        rgba(56, 189, 248, 0.06) 62%,
+        transparent 75%
+    );
+    filter: blur(32px);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
+    transition: opacity 0.56s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.56s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+}
+
+.hero-portrait-frame:hover .hero-portrait-halo-aura,
+.hero-portrait-frame:focus-visible .hero-portrait-halo-aura,
+.hero-portrait-frame.is-halo-active .hero-portrait-halo-aura {
+    opacity: 1;
+    transform: translate(-50%, -10%) scale(1.06);
 }
 
 /* Responsive Breakpoints */
 @media (max-width: 991px) {
     .hero {
-        padding-top: 110px;
-        padding-bottom: 50px;
+        padding-top: clamp(80px, 12vh, 105px);
+        padding-bottom: clamp(36px, 5vh, 48px);
         min-height: auto;
     }
 
     .hero-layout {
         grid-template-columns: 1fr;
-        gap: 28px;
-        text-align: left;
+        gap: 16px;
+        text-align: center;
+        justify-items: center;
     }
 
     .hero-text {
         max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero-status-pill {
+        margin-bottom: 12px;
     }
 
     .hero-visual {
         order: -1;
         margin-bottom: 0;
+        width: 100%;
+        max-width: 240px;
     }
 
     .hero-portrait-frame {
-        max-width: 310px;
+        max-width: 210px;
     }
 
     .hero-portrait-img {
-        max-height: 340px;
+        max-height: clamp(180px, 26vh, 230px);
+    }
+
+    .hero-copy {
+        text-align: center;
+        margin-inline: auto;
+        max-width: 540px;
+    }
+
+    .hero-cta-group {
+        width: 100%;
+        align-items: center;
+        margin-top: 20px;
+        gap: 12px;
+    }
+
+    .hero-socials {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .hero-actions {
+        width: 100%;
+        max-width: 360px;
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .hero-btn {
+        flex: 1;
+        min-width: 130px;
+        padding: 12px 18px;
+        font-size: 0.88rem;
+        justify-content: center;
+        text-align: center;
     }
 }
 
 @media (max-width: 640px) {
     .hero {
-        padding-top: 96px;
-        padding-bottom: 44px;
+        padding-top: 76px;
+        padding-bottom: 32px;
+        padding-inline: 14px;
+    }
+
+    .hero-layout {
+        gap: 12px;
     }
 
     .hero-portrait-frame {
-        max-width: 260px;
+        max-width: 175px;
     }
 
     .hero-portrait-img {
-        max-height: 350px;
+        max-height: clamp(160px, 24vh, 200px);
+    }
+
+    .hero h1 {
+        font-size: clamp(2rem, 7.8vw, 2.7rem);
+    }
+
+    .hero-role {
+        font-size: clamp(0.82rem, 3.4vw, 0.98rem);
+        padding: 5px 12px;
+        gap: 6px;
+    }
+
+    .hero-actions {
+        max-width: 100%;
+        gap: 8px;
+    }
+
+    .hero-btn {
+        padding: 11px 14px;
+        font-size: 0.84rem;
+        min-width: 120px;
+    }
+
+    .hero-social-link {
+        width: 40px;
+        height: 40px;
     }
 }
 
@@ -444,6 +629,17 @@ body.light-mode .role-typed {
     .hero-visual-glow-primary,
     .hero-portrait-frame {
         animation: none !important;
+    }
+
+    .hero-portrait-interactive {
+        transition: none !important;
+        transform: none !important;
+    }
+
+    .hero-portrait-layer-default,
+    .hero-portrait-layer-halo,
+    .hero-portrait-halo-aura {
+        transition-duration: 0.01ms !important;
     }
 }
 
@@ -466,8 +662,25 @@ body.light-mode .hero-visual-glow-secondary {
     );
 }
 
-body.light-mode .hero-portrait-img {
+body.light-mode .hero-portrait-layer-default .hero-portrait-img {
     filter: drop-shadow(0 14px 28px rgba(15, 23, 42, 0.12)) drop-shadow(0 0 22px rgba(56, 189, 248, 0.2));
+}
+
+body.light-mode .hero-portrait-layer-halo .hero-portrait-img {
+    filter: drop-shadow(0 18px 32px rgba(15, 23, 42, 0.16))
+            drop-shadow(0 0 28px rgba(255, 255, 255, 0.9))
+            drop-shadow(0 0 42px rgba(56, 189, 248, 0.35))
+            contrast(1.02)
+            brightness(1.02);
+}
+
+body.light-mode .hero-portrait-halo-aura {
+    background: radial-gradient(
+        circle at 50% 45%,
+        rgba(255, 255, 255, 0.5) 0%,
+        rgba(56, 189, 248, 0.18) 45%,
+        transparent 72%
+    );
 }
 
 /* Light Mode Overrides */
