@@ -121,3 +121,63 @@ export const initHeroAvatarFallback = () => {
         applyFallback();
     }
 };
+
+/**
+ * Interactive Hero Portrait Hover & Touch Controller
+ * Provides seamless mouse hover, touch toggle, and keyboard accessibility (Enter/Space)
+ */
+export const initHeroPortraitInteraction = () => {
+    const frame = document.querySelector(".hero-portrait-frame");
+    if (!frame) return;
+
+    let isTouched = false;
+
+    // Toggle active halo state
+    const toggleHalo = (force) => {
+        const willBeActive = typeof force === "boolean" ? force : !frame.classList.contains("is-halo-active");
+        frame.classList.toggle("is-halo-active", willBeActive);
+        frame.setAttribute("aria-pressed", willBeActive ? "true" : "false");
+    };
+
+    // Keyboard accessibility: Enter or Space toggles the halo
+    frame.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            toggleHalo();
+        } else if (e.key === "Escape") {
+            toggleHalo(false);
+        }
+    });
+
+    // Touch device support: tap to toggle, dismiss on tap outside
+    frame.addEventListener("pointerdown", (e) => {
+        if (e.pointerType === "touch") {
+            isTouched = true;
+        }
+    }, { passive: true });
+
+    frame.addEventListener("click", (e) => {
+        // If triggered by touch or keyboard action, toggle state
+        if (isTouched || e.detail === 0) {
+            e.preventDefault();
+            toggleHalo();
+            isTouched = false;
+        }
+    });
+
+    // Dismiss active halo on tap outside
+    document.addEventListener("pointerdown", (e) => {
+        if (frame.classList.contains("is-halo-active") && !frame.contains(e.target)) {
+            toggleHalo(false);
+        }
+    }, { passive: true });
+
+    // Focus / blur handlers
+    frame.addEventListener("focus", () => {
+        frame.setAttribute("aria-pressed", frame.classList.contains("is-halo-active") ? "true" : "false");
+    });
+
+    frame.addEventListener("blur", () => {
+        toggleHalo(false);
+    });
+};
