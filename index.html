@@ -129,17 +129,40 @@
                         <div class="hero-visual-glow hero-visual-glow-secondary" aria-hidden="true"></div>
                         
                         <!-- Hero visual shown after the intro or when video playback is unavailable -->
-                        <div class="hero-portrait-frame hero-portrait-fallback" id="hero-portrait-fallback">
-                            <picture>
-                                <source srcset="images/hero-android.webp" type="image/webp">
-                                <img src="images/hero-android.png"
-                                     alt="Futuristic white android with electric-blue lighting"
-                                     class="hero-portrait-img"
-                                     width="768"
-                                     height="1152"
-                                     fetchpriority="high"
-                                     decoding="async">
-                            </picture>
+                        <div class="hero-portrait-frame hero-portrait-fallback"
+                             id="hero-portrait-fallback"
+                             role="button"
+                             tabindex="0"
+                             aria-label="Portrait of Sarah Nabil with interactive halo effect"
+                             aria-pressed="false">
+                            <div class="hero-portrait-interactive" id="hero-portrait-interactive">
+                                <!-- Default State: Original Natural Monochrome Portrait -->
+                                <picture class="hero-portrait-layer hero-portrait-layer-default">
+                                    <source srcset="images/hero-portrait-default.webp" type="image/webp">
+                                    <img src="images/hero-portrait-default.png"
+                                         alt="Sarah Nabil - Machine Learning &amp; AI Specialist"
+                                         class="hero-portrait-img hero-img-default"
+                                         width="828"
+                                         height="1024"
+                                         fetchpriority="high"
+                                         decoding="async">
+                                </picture>
+
+                                <!-- Hover State: Dramatic Monochrome Portrait with Glowing White Halo -->
+                                <picture class="hero-portrait-layer hero-portrait-layer-halo" aria-hidden="true">
+                                    <source srcset="images/hero-portrait-halo.webp" type="image/webp">
+                                    <img src="images/hero-portrait-halo.png"
+                                         alt=""
+                                         class="hero-portrait-img hero-img-halo"
+                                         width="828"
+                                         height="1024"
+                                         loading="eager"
+                                         decoding="async">
+                                </picture>
+
+                                <!-- Soft Ambient Halo Aura Illumination -->
+                                <div class="hero-portrait-halo-aura" aria-hidden="true"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -196,7 +219,7 @@
             <div class="section-shell skills-shell">
                 <div class="skills-headline">
                     <div class="skills-title-wrap">
-                        <h2 id="skills-title"></h2>
+                        <h2 id="skills-title">My Skills</h2>
                     </div>
                 </div>
 
@@ -205,16 +228,39 @@
                     <div class="skills-arch-canvas" aria-hidden="true">
                         <svg class="skills-arch-svg" viewBox="0 0 1000 480" preserveAspectRatio="xMidYMid meet">
                             <defs>
-                                <linearGradient id="skillsArchBandGrad" x1="0%" y1="100%" x2="100%" y2="100%">
-                                    <stop offset="0%" stop-color="rgba(56, 189, 248, 0.04)"/>
-                                    <stop offset="25%" stop-color="rgba(56, 189, 248, 0.18)"/>
-                                    <stop offset="50%" stop-color="rgba(139, 92, 246, 0.32)"/>
-                                    <stop offset="75%" stop-color="rgba(56, 189, 248, 0.18)"/>
-                                    <stop offset="100%" stop-color="rgba(56, 189, 248, 0.04)"/>
+                                <filter id="skillsArchGlowBlur" x="-20%" y="-20%" width="140%" height="140%">
+                                    <feGaussianBlur stdDeviation="8" result="blur"/>
+                                </filter>
+
+                                <linearGradient id="skillsArchBandGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#0284c7" stop-opacity="0.02"/>
+                                    <stop offset="20%" stop-color="#0284c7" stop-opacity="0.14"/>
+                                    <stop offset="50%" stop-color="#8b5cf6" stop-opacity="0.26"/>
+                                    <stop offset="80%" stop-color="#06b6d4" stop-opacity="0.14"/>
+                                    <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.02"/>
+                                </linearGradient>
+
+                                <linearGradient id="skillsArchCoreGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#38bdf8" stop-opacity="0"/>
+                                    <stop offset="25%" stop-color="#38bdf8" stop-opacity="0.45"/>
+                                    <stop offset="50%" stop-color="#c4b5fd" stop-opacity="0.85"/>
+                                    <stop offset="75%" stop-color="#22d3ee" stop-opacity="0.45"/>
+                                    <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
                                 </linearGradient>
                             </defs>
-                            <path d="M 73 348 A 460 460 0 0 1 927 348" stroke="url(#skillsArchBandGrad)" stroke-width="84" fill="none" stroke-linecap="round"/>
-                            <path class="skills-arch-glow-line" d="M 73 348 A 460 460 0 0 1 927 348" stroke="rgba(56, 189, 248, 0.35)" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-dasharray="6 8"/>
+
+                            <!-- Soft Atmospheric Glow Underlay -->
+                            <path class="skills-arch-ambient-glow" d="M 73 348 A 460 460 0 0 1 927 348" stroke="url(#skillsArchBandGrad)" stroke-width="44" fill="none" stroke-linecap="round" filter="url(#skillsArchGlowBlur)" opacity="0.65"/>
+
+                            <!-- Refined Slim Glass Ribbon Track (Slim 22px instead of chunky 84px) -->
+                            <path class="skills-arch-track-band" d="M 73 348 A 460 460 0 0 1 927 348" stroke="url(#skillsArchBandGrad)" stroke-width="22" fill="none" stroke-linecap="round"/>
+
+                            <!-- Concentric Holographic Precision Rails -->
+                            <path class="skills-arch-rail outer-rail" d="M 60 348 A 472 472 0 0 1 940 348" stroke="rgba(139, 92, 246, 0.2)" stroke-width="1" fill="none" stroke-linecap="round"/>
+                            <path class="skills-arch-rail inner-rail" d="M 86 348 A 448 448 0 0 1 914 348" stroke="rgba(56, 189, 248, 0.2)" stroke-width="1" fill="none" stroke-linecap="round"/>
+
+                            <!-- Dynamic Glowing Pulse Centerline -->
+                            <path class="skills-arch-glow-line" d="M 73 348 A 460 460 0 0 1 927 348" stroke="url(#skillsArchCoreGrad)" stroke-width="2" fill="none" stroke-linecap="round"/>
                         </svg>
                     </div>
 
@@ -466,8 +512,8 @@
     <footer class="portfolio-footer">
         <div class="portfolio-footer-inner">
             <div class="portfolio-footer-brand">
-                <h4></h4>
-                <p></p>
+                <h4>Sarah Nabil Abu Al-Magd Ahmad</h4>
+                <p>AI Engineer · Computer Vision · Machine Learning</p>
             </div>
             <div class="portfolio-footer-socials">
                 <a href="https://github.com/sarahnabil" target="_blank" rel="noopener noreferrer"
@@ -480,7 +526,7 @@
                     <i class="devicon-linkedin-plain"></i>
                 </a>
             </div>
-            <p class="portfolio-footer-copy"></p>
+            <p class="portfolio-footer-copy">© 2026 Sarah Nabil Abu Al-Magd Ahmad. All rights reserved.</p>
         </div>
     </footer>
 
