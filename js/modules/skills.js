@@ -113,15 +113,16 @@ export const resumeAutoPlay = () => {
  * Computes exact circular ribbon arc geometry based on responsive stage width
  */
 const getArcGeometry = () => {
-    const stageWidth = stageEl ? stageEl.clientWidth : 960;
+    const stageWidth = stageEl ? stageEl.clientWidth : (window.innerWidth || 960);
     const isMobile = stageWidth < 640;
     const canvasEl = document.querySelector(".skills-arch-canvas");
-    const canvasWidth = canvasEl ? canvasEl.clientWidth : Math.min(stageWidth, 1000);
-    const scale = Math.min(canvasWidth, 1000) / 1000;
+    const rawCanvasWidth = canvasEl ? canvasEl.clientWidth : stageWidth;
+    const canvasWidth = Math.min(rawCanvasWidth, stageWidth, 1000);
+    const scale = Math.max(0.3, Math.min(canvasWidth, 1000) / 1000);
     const r = 460 * scale;
     const cy = 519.0877 * scale;
-    const stepAngle = isMobile ? 0.401 : 0.358;
-    const maxOffset = isMobile ? 2.5 : 3.5;
+    const stepAngle = isMobile ? 0.46 : 0.358;
+    const maxOffset = isMobile ? 1.4 : 3.0;
 
     return { isMobile, scale, r, cy, stepAngle, maxOffset };
 };
@@ -144,25 +145,29 @@ const updateArcBadges = (vIndex) => {
 
         const absDiff = Math.abs(diff);
 
-        if (absDiff > maxOffset + 0.5) {
+        if (absDiff > maxOffset) {
             itemEl.style.transform = `translate(calc(-50% + ${diff < 0 ? -r * 1.15 : r * 1.15}px), calc(-50% + ${cy}px)) scale(0.4)`;
             itemEl.style.opacity = "0";
+            itemEl.style.visibility = "hidden";
             itemEl.style.pointerEvents = "none";
             itemEl.setAttribute("aria-hidden", "true");
             continue;
         }
 
+        itemEl.style.visibility = "visible";
+
         const theta = diff * stepAngle;
         const x = r * Math.sin(theta);
         const y = cy - r * Math.cos(theta);
 
-        // Smooth opacity handoff near apex spotlight
+        // Smooth opacity handoff near apex spotlight and tapering at arc ends
         let opacity = 0;
         if (absDiff >= 0.45) {
             if (absDiff <= 1.0) {
                 opacity = 0.35 + (absDiff - 0.45) * (0.6 / 0.55);
             } else {
-                opacity = Math.max(0.3, 0.95 - (absDiff - 1.0) * 0.22);
+                const remaining = (maxOffset - absDiff) / (maxOffset - 1.0);
+                opacity = Math.max(0, remaining * 0.95);
             }
         } else {
             opacity = Math.max(0, (absDiff / 0.45) * 0.35);
@@ -560,8 +565,8 @@ export const initSkillsArcCarousel = (rawItems) => {
             if (assemblyTimeline && assemblyTimeline.isActive()) {
                 assemblyTimeline.progress(1);
             }
-            // Ignore interaction when clicking controls or spotlight buttons
-            if (e.target.closest(".skills-controls") || e.target.closest(".skills-spotlight")) return;
+            // Ignore interaction only when clicking navigation buttons so they can be clicked
+            if (e.target.closest(".skills-nav-btn")) return;
             isPointerDown = true;
             isUserDragging = true;
             pauseAutoPlay();
