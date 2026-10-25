@@ -347,19 +347,31 @@ export const initHeroIntro = () => {
     isMuted = true;
     updateSoundUI(true);
 
+    // Mobile Failsafe: Ensure portfolio is never trapped on frozen intro
+    const isMobile = window.innerWidth <= 768;
+    const autoAssembleTimeout = setTimeout(() => {
+        if (!isAssembled && (video.paused || video.currentTime === 0 || isMobile)) {
+            assembleHero();
+        }
+    }, isMobile ? 2200 : 4500);
+
     // Autoplay start
     const playPromise = video.play();
     if (playPromise !== undefined) {
         playPromise.catch((err) => {
             console.info("Autoplay restricted or deferred by browser:", err);
-            // On first user interaction, resume video seamlessly
-            const unlockPlay = () => {
-                video.play().catch(() => {});
-                window.removeEventListener("pointerdown", unlockPlay);
-                window.removeEventListener("keydown", unlockPlay);
-            };
-            window.addEventListener("pointerdown", unlockPlay, { once: true });
-            window.addEventListener("keydown", unlockPlay, { once: true });
+            // On mobile or blocked autoplay, assemble hero immediately or on first touch
+            if (isMobile) {
+                assembleHero();
+            } else {
+                const unlockPlay = () => {
+                    video.play().catch(() => {});
+                    window.removeEventListener("pointerdown", unlockPlay);
+                    window.removeEventListener("keydown", unlockPlay);
+                };
+                window.addEventListener("pointerdown", unlockPlay, { once: true });
+                window.addEventListener("keydown", unlockPlay, { once: true });
+            }
         });
     }
 };
