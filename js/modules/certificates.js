@@ -230,7 +230,6 @@ export const initStickyCertificateStack = () => {
     const gsap = window.gsap;
     const ScrollTrigger = window.ScrollTrigger;
 
-    const isDesktop = window.matchMedia("(min-width: 900px)").matches;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     // Clean up any existing certificate card stack ScrollTriggers
@@ -242,8 +241,8 @@ export const initStickyCertificateStack = () => {
 
     const cardWrappers = Array.from(document.querySelectorAll(".certificate-card-wrapper:not(.is-hidden)"));
 
-    if (!isDesktop || reducedMotion) {
-        // Mobile or Reduced Motion: Reset to standard stacked flow
+    if (reducedMotion) {
+        // Reduced Motion: Reset to standard stacked flow
         cardWrappers.forEach((wrapper) => {
             const card = wrapper.querySelector(".certificate-card");
             if (card) {
@@ -255,7 +254,15 @@ export const initStickyCertificateStack = () => {
 
     if (cardWrappers.length <= 1) return;
 
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    const targetScale = isMobile ? 0.94 : 0.92;
+    const targetOpacity = isMobile ? 0.5 : 0.45;
+    const targetBlur = isMobile ? "blur(3px)" : "blur(4px)";
+    const startTrigger = isMobile ? "top 85%" : "top 80%";
+    const endTrigger = isMobile ? "top 16%" : "top 18%";
+
     cardWrappers.forEach((wrapper, i) => {
+        wrapper.style.zIndex = String(i + 1);
         const card = wrapper.querySelector(".certificate-card");
         if (!card) return;
 
@@ -264,16 +271,16 @@ export const initStickyCertificateStack = () => {
             const nextWrapper = cardWrappers[i + 1];
 
             gsap.to(card, {
-                scale: 0.92,
-                opacity: 0.45,
-                filter: "blur(4px)",
+                scale: targetScale,
+                opacity: targetOpacity,
+                filter: targetBlur,
                 transformOrigin: "center top",
                 ease: "none",
                 scrollTrigger: {
                     id: `cert-card-stack-${i}`,
                     trigger: nextWrapper,
-                    start: "top 80%",
-                    end: "top 18%",
+                    start: startTrigger,
+                    end: endTrigger,
                     scrub: true,
                     invalidateOnRefresh: true
                 }
