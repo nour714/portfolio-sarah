@@ -41,10 +41,10 @@ export const portfolioData = {
     },
 
     about: {
-        status: "Seeking ML & Computer Vision Internship",
+        status: "AI Student & ML Practitioner",
         location: "Egypt · Kafrelsheikh University",
         title: "Third-year AI student building practical Machine Learning & Computer Vision solutions.",
-        copy: "I am Sarah Nabil Abu Al-Magd Ahmad, a third-year Artificial Intelligence student at the Faculty of Artificial Intelligence, Kafrelsheikh University (Expected Graduation: 2028 | Cumulative GPA: 3.27 / 4.00). I have hands-on project experience in classification, regression, artificial neural networks (ANN), and computer vision using Python and OpenCV. Familiar with supervised and unsupervised learning approaches, I completed an intensive 120-hour Machine Learning Training at the National Telecommunication Institute (NTI) with a 95% score, the Sprints × Microsoft AI Summer Camp, and the CIB Programming Internship. I am actively seeking a Machine Learning or Computer Vision internship to gain industry experience and contribute to real-world AI projects.",
+        copy: "I’m Sarah Nabil, a third-year Artificial Intelligence student at Kafrelsheikh University, passionate about Machine Learning and Computer Vision. I enjoy building practical projects with Python and OpenCV and turning technical concepts into useful applications.",
         signature: "",
         metrics: [
             { label: "Cumulative GPA", value: "3.27 / 4.00" },

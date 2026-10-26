@@ -122,7 +122,7 @@ const getArcGeometry = () => {
     const r = 460 * scale;
     const cy = 519.0877 * scale;
     const stepAngle = isMobile ? 0.46 : 0.358;
-    const maxOffset = isMobile ? 1.4 : 3.0;
+    const maxOffset = isMobile ? 1.4 : 3.5;
 
     return { isMobile, scale, r, cy, stepAngle, maxOffset };
 };
@@ -133,7 +133,7 @@ const getArcGeometry = () => {
 const updateArcBadges = (vIndex) => {
     if (!trackEl || !skillList.length) return;
     const count = skillList.length;
-    const { r, cy, stepAngle, maxOffset } = getArcGeometry();
+    const { isMobile, r, cy, stepAngle, maxOffset } = getArcGeometry();
 
     for (let i = 0; i < count; i++) {
         const itemEl = trackEl.querySelector(`[data-index="${i}"]`);
@@ -162,15 +162,18 @@ const updateArcBadges = (vIndex) => {
 
         // Smooth opacity handoff near apex spotlight and tapering at arc ends
         let opacity = 0;
-        if (absDiff >= 0.45) {
-            if (absDiff <= 1.0) {
-                opacity = 0.35 + (absDiff - 0.45) * (0.6 / 0.55);
-            } else {
-                const remaining = (maxOffset - absDiff) / (maxOffset - 1.0);
-                opacity = Math.max(0, remaining * 0.95);
-            }
-        } else {
+        if (absDiff < 0.45) {
             opacity = Math.max(0, (absDiff / 0.45) * 0.35);
+        } else if (absDiff <= 1.0) {
+            opacity = 0.35 + (absDiff - 0.45) * (0.6 / 0.55);
+        } else if (isMobile) {
+            const remaining = Math.max(0, (maxOffset - absDiff) / (maxOffset - 1.0));
+            opacity = remaining * 0.95;
+        } else if (absDiff <= 3.0) {
+            opacity = 0.95 - (absDiff - 1.0) * 0.22;
+        } else {
+            const remaining = Math.max(0, (maxOffset - absDiff) / (maxOffset - 3.0));
+            opacity = remaining * 0.51;
         }
 
         const badgeScale = Math.max(0.72, 1.0 - Math.min(absDiff, 3) * 0.08);

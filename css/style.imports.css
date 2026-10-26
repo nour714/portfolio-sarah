@@ -1,0 +1,30 @@
+/**
+ * Portfolio Stylesheet - Clean Architecture Master
+ * 
+ * Architecture Layers:
+ * 1. Base: CSS Custom Properties, Global Reset, Typography
+ * 2. Components: Modular UI component stylesheets
+ * 3. Features: Dynamic canvas, custom cursor, scroll effects & intro splash
+ * 4. Admin: Studio & CMS dashboard styles
+ */
+
+/* 1. Base Layer */
+@import url("css/vendor/lenis.min.css");
+@import url("css/base/variables.css?v=2.0");
+@import url("css/base/reset.css?v=2.0");
+
+/* 2. Components Layer */
+@import url("css/components/header.css?v=2.0");
+@import url("css/components/hero.css?v=2.0");
+@import url("css/components/hero-video.css?v=2.0");
+@import url("css/components/about.css?v=2.0");
+@import url("css/components/skills.css?v=2.0");
+@import url("css/components/projects.css?v=2.0");
+@import url("css/components/certificates.css?v=2.0");
+@import url("css/components/experience.css?v=2.0");
+@import url("css/components/contact.css?v=2.0");
+@import url("css/components/modal.css?v=2.0");
+@import url("css/components/toast.css?v=2.0");
+
+/* 3. Features & Animations Layer */
+@import url("css/features/animations.css?v=2.0");

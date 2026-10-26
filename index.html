@@ -29,12 +29,23 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="image" href="images/hero-portrait-default.webp" type="image/webp" fetchpriority="high">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 
-    <link rel="stylesheet" href="style.css?v=2.0">
+    <link rel="stylesheet" href="style.css?v=2.1">
+
+    <script type="speculationrules">
+    {
+        "prerender": [
+            {
+                "where": { "href_matches": "/*cv.html*" },
+                "eagerness": "moderate"
+            }
+        ]
+    }
+    </script>
 </head>
 
 <body>
@@ -43,7 +54,10 @@
         <nav class="nav-shell" aria-label="Primary">
             <a href="#hero" class="brand">
                 <span class="brand-badge" aria-hidden="true">
-                    <img src="images/logo-sn-cyan.png" alt="Sarah Nabil Logo" class="brand-badge-logo" width="29" height="29">
+                    <picture>
+                        <source srcset="images/logo-sn-cyan.webp" type="image/webp">
+                        <img src="images/logo-sn-cyan.png" alt="Sarah Nabil Logo" class="brand-badge-logo" width="29" height="29" decoding="async">
+                    </picture>
                 </span>
                 <span class="brand-title">SARAH NABIL</span>
             </a>
@@ -77,7 +91,7 @@
         <section class="hero" id="hero">
             <!-- Cinematic Video Backdrop & Stage -->
             <div class="hero-video-stage" id="hero-video-stage" aria-hidden="true">
-                <video id="hero-intro-video" class="hero-intro-video" playsinline preload="auto" muted poster="images/hero-video-poster.webp">
+                <video id="hero-intro-video" class="hero-intro-video" playsinline preload="metadata" muted poster="images/hero-video-poster.webp">
                     <source src="gemini_generated_video_8cc9ee73.mp4" type="video/mp4">
                 </video>
                 <div class="hero-video-scrim" id="hero-video-scrim"></div>
@@ -102,12 +116,16 @@
                             <div class="hero-socials" aria-label="Social links">
                                 <a href="https://github.com/sarahnabil" class="hero-social-link" target="_blank"
                                     rel="noopener noreferrer" aria-label="GitHub Profile">
-                                    <i class="devicon-github-original" aria-hidden="true"></i>
+                                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                                    </svg>
                                 </a>
                                 <a href="https://www.linkedin.com/in/sarahnabil"
                                     class="hero-social-link" target="_blank" rel="noopener noreferrer"
                                     aria-label="LinkedIn Profile">
-                                    <i class="devicon-linkedin-plain" aria-hidden="true"></i>
+                                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+                                        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v7.6h2.8v-7.6h-2.8M7.86 6.3a1.64 1.64 0 0 0-1.66 1.64 1.64 1.64 0 0 0 1.66 1.64 1.64 1.64 0 0 0 1.66-1.64A1.64 1.64 0 0 0 7.86 6.3z"/>
+                                    </svg>
                                 </a>
                                 <a href="https://wa.me/201099478701" class="hero-social-link" target="_blank"
                                     rel="noopener noreferrer" aria-label="WhatsApp">
@@ -156,7 +174,7 @@
                                          class="hero-portrait-img hero-img-halo"
                                          width="828"
                                          height="1024"
-                                         loading="eager"
+                                         loading="lazy"
                                          decoding="async">
                                 </picture>
 
@@ -202,13 +220,90 @@
 
                     <div class="about-content">
                         <div class="about-topline">
-                            <span class="about-status"></span>
-                            <span class="about-location"></span>
+                            <span class="about-status">AI Student &amp; ML Practitioner</span>
+                            <span class="about-location">Egypt · Kafrelsheikh University</span>
                         </div>
 
-                        <h2 id="about-title"></h2>
+                        <h2 id="about-title">Third-year AI student building practical Machine Learning &amp; Computer Vision solutions.</h2>
 
-                        <p class="about-copy"></p>
+                        <p class="about-copy">I’m Sarah Nabil, a third-year Artificial Intelligence student at Kafrelsheikh University, passionate about Machine Learning and Computer Vision. I enjoy building practical projects with Python and OpenCV and turning technical concepts into useful applications.</p>
+
+                        <!-- Three Information Groups: Education, Training & Programs, Career Goal -->
+                        <div class="about-groups" aria-label="Key background highlights">
+                            <!-- Group 1: Education -->
+                            <article class="about-group-card">
+                                <div class="about-group-header">
+                                    <span class="about-group-icon about-group-icon--edu" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                                            <path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/>
+                                        </svg>
+                                    </span>
+                                    <h3 class="about-group-title">Education</h3>
+                                </div>
+                                <div class="about-group-body">
+                                    <p class="about-group-primary">Faculty of Artificial Intelligence</p>
+                                    <p class="about-group-sub">Kafrelsheikh University</p>
+                                    <div class="about-group-tags">
+                                        <span class="about-pill">Expected Grad: 2028</span>
+                                        <span class="about-pill about-pill--accent">GPA: 3.27 / 4.00</span>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- Group 2: Training & Programs -->
+                            <article class="about-group-card">
+                                <div class="about-group-header">
+                                    <span class="about-group-icon about-group-icon--training" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="12" cy="8" r="6"/>
+                                            <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
+                                        </svg>
+                                    </span>
+                                    <h3 class="about-group-title">Training &amp; Programs</h3>
+                                </div>
+                                <div class="about-group-body">
+                                    <ul class="about-group-list">
+                                        <li>
+                                            <strong>NTI Machine Learning Training</strong>
+                                            <span class="about-list-meta">120 hrs · Score: 95%</span>
+                                        </li>
+                                        <li>
+                                            <strong>Sprints × Microsoft</strong>
+                                            <span class="about-list-meta">AI Summer Camp</span>
+                                        </li>
+                                        <li>
+                                            <strong>CIB Summer Program</strong>
+                                            <span class="about-list-meta">“The Green Leap”</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </article>
+
+                            <!-- Group 3: Career Goal -->
+                            <article class="about-group-card">
+                                <div class="about-group-header">
+                                    <span class="about-group-icon about-group-icon--goal" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="12" cy="12" r="10"/>
+                                            <circle cx="12" cy="12" r="6"/>
+                                            <circle cx="12" cy="12" r="2"/>
+                                        </svg>
+                                    </span>
+                                    <h3 class="about-group-title">Career Goal</h3>
+                                </div>
+                                <div class="about-group-body">
+                                    <p class="about-group-primary">Seeking Machine Learning or Computer Vision Internship</p>
+                                    <p class="about-group-desc">Focused on hands-on practical experience, predictive modeling, and applied AI pipelines in professional environments.</p>
+                                    <div class="about-group-tags">
+                                        <span class="about-pill about-pill--goal">
+                                            <span class="about-pill-dot" aria-hidden="true"></span>
+                                            Open to Opportunities
+                                        </span>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -420,7 +515,7 @@
 
                             <div class="contact-item">
                                 <span class="contact-icon" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                         <path d="M12 21s6-5.2 6-10a6 6 0 1 0-12 0c0 4.8 6 10 6 10z"></path>
                                         <circle cx="12" cy="11" r="2.5"></circle>
                                     </svg>
@@ -518,12 +613,16 @@
             <div class="portfolio-footer-socials">
                 <a href="https://github.com/sarahnabil" target="_blank" rel="noopener noreferrer"
                     aria-label="GitHub" class="portfolio-footer-social-link">
-                    <i class="devicon-github-original"></i>
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                    </svg>
                 </a>
                 <a href="https://www.linkedin.com/in/sarahnabil"
                     target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
                     class="portfolio-footer-social-link">
-                    <i class="devicon-linkedin-plain"></i>
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+                        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v7.6h2.8v-7.6h-2.8M7.86 6.3a1.64 1.64 0 0 0-1.66 1.64 1.64 1.64 0 0 0 1.66 1.64 1.64 1.64 0 0 0 1.66-1.64A1.64 1.64 0 0 0 7.86 6.3z"/>
+                    </svg>
                 </a>
             </div>
             <p class="portfolio-footer-copy">© 2026 Sarah Nabil Abu Al-Magd Ahmad. All rights reserved.</p>
@@ -531,9 +630,9 @@
     </footer>
 
     <!-- GSAP, ScrollTrigger & Lenis Motion Engines -->
-    <script src="js/vendor/gsap.min.js"></script>
-    <script src="js/vendor/ScrollTrigger.min.js"></script>
-    <script src="js/vendor/lenis.min.js"></script>
+    <script defer src="js/vendor/gsap.min.js"></script>
+    <script defer src="js/vendor/ScrollTrigger.min.js"></script>
+    <script defer src="js/vendor/lenis.min.js"></script>
 
     <!-- Application Bootstrap (Clean Architecture Dynamic Hydration) -->
     <script type="module" src="js/main.js"></script>

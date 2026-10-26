@@ -50,9 +50,9 @@ const ANN_SVG = `<svg viewBox="0 0 24 24" fill="none" class="skill-svg" width="2
 </svg>`;
 
 const CPP_SVG = `<svg viewBox="0 0 24 24" fill="none" class="skill-svg" width="28" height="28" aria-hidden="true">
-    <path d="M12 2l9 5.2v10.4l-9 5.2-9-5.2V7.2L12 2z" stroke="#0ea5e9" stroke-width="1.8" fill="rgba(14,165,233,0.18)"/>
-    <path d="M11 9a3.5 3.5 0 1 0 0 6" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
-    <path d="M14 12h2.5M15.2 10.7v2.5M18 12h2.5M19.2 10.7v2.5" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M12 2l9 5.2v10.4l-9 5.2-9-5.2V7.2L12 2z" stroke="#0ea5e9" stroke-width="2" fill="rgba(14,165,233,0.3)"/>
+    <path d="M11 8.5a3.5 3.5 0 1 0 0 7" stroke="#38bdf8" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M14 12h2.8M15.4 10.6v2.8M18.2 12h2.8M19.6 10.6v2.8" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
 </svg>`;
 
 const QT_SVG = `<svg viewBox="0 0 24 24" fill="none" class="skill-svg" width="28" height="28" aria-hidden="true">

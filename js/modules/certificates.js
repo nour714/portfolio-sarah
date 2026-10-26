@@ -73,7 +73,8 @@ export const createCertificateCard = (cert, index = 0) => {
     const badgeWrap = document.createElement("div");
     badgeWrap.className = "certificate-header-badges";
 
-    if (cert.badge) {
+    // Only render badge if present and distinct from date to prevent redundant date display
+    if (cert.badge && cert.badge.trim().toLowerCase() !== (cert.date || "").trim().toLowerCase()) {
         const badge = document.createElement("span");
         badge.className = "certificate-badge";
         badge.textContent = cert.badge;
@@ -131,16 +132,37 @@ export const createCertificateCard = (cert, index = 0) => {
     const parallaxMedia = document.createElement("div");
     parallaxMedia.className = "certificate-preview-media";
 
-    const img = document.createElement("img");
-    img.className = "certificate-image cert-img";
-    img.loading = "lazy";
-    img.decoding = "async";
-    img.src = cert.image || "";
-    img.alt = cert.title || "Certificate Preview";
+    const webpSrc = cert.imageWebp || (cert.image && cert.image.endsWith('.png') ? cert.image.replace(/\.png$/, '.webp') : cert.imageFallback);
+    let mediaEl;
 
-    img.addEventListener("error", () => {
-        parallaxMedia.classList.add("has-fallback");
-    });
+    if (webpSrc) {
+        const picture = document.createElement("picture");
+        const source = document.createElement("source");
+        source.srcset = webpSrc;
+        source.type = "image/webp";
+        const img = document.createElement("img");
+        img.className = "certificate-image cert-img";
+        img.loading = "lazy";
+        img.decoding = "async";
+        img.src = cert.image || webpSrc;
+        img.alt = cert.title || "Certificate Preview";
+        img.addEventListener("error", () => {
+            parallaxMedia.classList.add("has-fallback");
+        });
+        picture.append(source, img);
+        mediaEl = picture;
+    } else {
+        const img = document.createElement("img");
+        img.className = "certificate-image cert-img";
+        img.loading = "lazy";
+        img.decoding = "async";
+        img.src = cert.image || "";
+        img.alt = cert.title || "Certificate Preview";
+        img.addEventListener("error", () => {
+            parallaxMedia.classList.add("has-fallback");
+        });
+        mediaEl = img;
+    }
 
     // Hover overlay with prominent zoom button
     const overlay = document.createElement("div");
@@ -158,7 +180,7 @@ export const createCertificateCard = (cert, index = 0) => {
         </span>
     `;
 
-    parallaxMedia.append(img, overlay);
+    parallaxMedia.append(mediaEl, overlay);
     browserViewport.appendChild(parallaxMedia);
     browserFrame.append(browserBar, browserViewport);
     card.appendChild(browserFrame);
@@ -459,7 +481,8 @@ export const openCertificateModal = (cert) => {
     if (modalIssuer) setText(modalIssuer, cert.issuer || "");
     if (modalDesc) setText(modalDesc, cert.description || cert.summary || "");
     if (modalBadge) {
-        modalBadge.textContent = cert.badge || "Verified Credential";
+        const isDuplicateDate = cert.badge && cert.badge.trim().toLowerCase() === (cert.date || "").trim().toLowerCase();
+        modalBadge.textContent = (cert.badge && !isDuplicateDate) ? cert.badge : "Verified Credential";
     }
     if (modalOpenBtn) {
         modalOpenBtn.setAttribute("href", cert.image || "#");

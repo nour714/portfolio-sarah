@@ -170,7 +170,7 @@ export const initProjectModal = () => {
 
         // Preview Image
         if (imgEl) {
-            const imgSrc = project.image?.src || project.previewUrl || "";
+            const imgSrc = project.image?.srcWebp || project.image?.src || project.previewUrl || "";
             if (imgSrc) {
                 imgEl.src = imgSrc;
                 imgEl.alt = project.image?.alt || project.title || "Project Preview";

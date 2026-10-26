@@ -188,6 +188,186 @@
     margin: 0;
 }
 
+/* =============================================
+   ABOUT GROUPS (Education, Training, Career Goal)
+   ============================================= */
+.about-groups {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    align-items: stretch;
+}
+
+.about-group-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(56, 189, 248, 0.22);
+    border-radius: 18px;
+    padding: 16px 14px;
+    background: linear-gradient(145deg, rgba(16, 18, 34, 0.72), rgba(9, 10, 22, 0.88));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 8px 24px rgba(0, 0, 0, 0.4);
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    overflow: hidden;
+}
+
+.about-group-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(56, 189, 248, 0.45);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 14px 28px rgba(0, 0, 0, 0.55), 0 0 20px rgba(56, 189, 248, 0.12);
+}
+
+.about-group-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.about-group-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    background: rgba(14, 165, 233, 0.12);
+    color: #38bdf8;
+    flex-shrink: 0;
+}
+
+.about-group-icon--edu {
+    border-color: rgba(56, 189, 248, 0.35);
+    background: rgba(14, 165, 233, 0.14);
+    color: #38bdf8;
+}
+
+.about-group-icon--training {
+    border-color: rgba(139, 92, 246, 0.35);
+    background: rgba(139, 92, 246, 0.14);
+    color: #c084fc;
+}
+
+.about-group-icon--goal {
+    border-color: rgba(34, 211, 238, 0.35);
+    background: rgba(34, 211, 238, 0.14);
+    color: #22d3ee;
+}
+
+.about-group-title {
+    font-size: 0.92rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--text-main);
+    margin: 0;
+}
+
+.about-group-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.about-group-primary {
+    font-size: 0.88rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--text-main);
+    margin: 0;
+}
+
+.about-group-sub {
+    font-size: 0.78rem;
+    color: var(--text-soft);
+    margin: 2px 0 0 0;
+    line-height: 1.4;
+}
+
+.about-group-desc {
+    font-size: 0.78rem;
+    color: var(--text-soft);
+    line-height: 1.45;
+    margin: 4px 0 0 0;
+}
+
+.about-group-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: auto;
+    padding-top: 10px;
+}
+
+.about-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text-soft);
+}
+
+.about-pill--accent {
+    border-color: rgba(56, 189, 248, 0.32);
+    background: rgba(14, 165, 233, 0.12);
+    color: #e0f2fe;
+}
+
+.about-pill--goal {
+    border-color: rgba(34, 211, 238, 0.32);
+    background: rgba(34, 211, 238, 0.1);
+    color: #67e8f9;
+}
+
+.about-pill-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #22d3ee;
+    box-shadow: 0 0 8px #22d3ee;
+}
+
+.about-group-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.about-group-list li {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    padding-bottom: 6px;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+}
+
+.about-group-list li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.about-group-list strong {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-main);
+    line-height: 1.35;
+}
+
+.about-list-meta {
+    font-size: 0.74rem;
+    color: var(--text-soft);
+    line-height: 1.3;
+}
+
 .about-visual {
     position: relative;
     display: flex;
@@ -345,6 +525,51 @@ body.light-mode .about-location {
     color: #64748b;
 }
 
+body.light-mode .about-group-card {
+    border-color: rgba(226, 232, 240, 0.9);
+    background: #ffffff;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+}
+
+body.light-mode .about-group-card:hover {
+    border-color: rgba(56, 189, 248, 0.45);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.1);
+}
+
+body.light-mode .about-group-title,
+body.light-mode .about-group-primary,
+body.light-mode .about-group-list strong {
+    color: #0f172a;
+}
+
+body.light-mode .about-group-sub,
+body.light-mode .about-group-desc,
+body.light-mode .about-list-meta {
+    color: #64748b;
+}
+
+body.light-mode .about-pill {
+    border-color: rgba(226, 232, 240, 0.9);
+    background: #f8fafc;
+    color: #475569;
+}
+
+body.light-mode .about-pill--accent {
+    border-color: rgba(56, 189, 248, 0.4);
+    background: rgba(2, 132, 199, 0.08);
+    color: #0284c7;
+}
+
+body.light-mode .about-pill--goal {
+    border-color: rgba(6, 182, 212, 0.4);
+    background: rgba(6, 182, 212, 0.08);
+    color: #0891b2;
+}
+
+body.light-mode .about-group-list li {
+    border-bottom-color: rgba(226, 232, 240, 0.9);
+}
+
 
 /* =============================================
    STATS / NUMBERS SECTION
@@ -467,6 +692,13 @@ body.light-mode .stat-suffix {
     }
 }
 
+@media (max-width: 860px) {
+    .about-groups {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 12px;
+    }
+}
+
 @media (max-width: 640px) {
     .about {
         padding: 40px 10px 60px;
@@ -496,6 +728,40 @@ body.light-mode .stat-suffix {
     .about-copy {
         font-size: 0.92rem;
         line-height: 1.65;
+    }
+
+    .about-groups {
+        margin-top: 18px;
+        gap: 10px;
+    }
+
+    .about-group-card {
+        padding: 13px 12px;
+        border-radius: 14px;
+    }
+
+    .about-group-title {
+        font-size: 0.88rem;
+    }
+
+    .about-group-primary {
+        font-size: 0.84rem;
+    }
+
+    .about-group-sub {
+        font-size: 0.75rem;
+    }
+
+    .about-group-list strong {
+        font-size: 0.8rem;
+    }
+
+    .about-list-meta {
+        font-size: 0.72rem;
+    }
+
+    .about-group-desc {
+        font-size: 0.75rem;
     }
 
     .stats-section {

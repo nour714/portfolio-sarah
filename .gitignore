@@ -47,6 +47,8 @@ ui-debug.log*
 
 # Temporary & Log Files
 *.log
+*raw.mp4
+*.mp4.bak
 
 # Test Artifacts & Browser Profiles
 .tmp_chrome_profile*

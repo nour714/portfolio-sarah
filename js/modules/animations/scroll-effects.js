@@ -206,7 +206,7 @@ export const initCard3DTilt = () => {
     // 2. Standard 3D Cards across the rest of the site
     if (isCoarsePointer) return;
 
-    const CARD_SELECTOR = ".experience-card, .skill-card, .stat-card, .skills-metric, .about-node";
+    const CARD_SELECTOR = ".experience-card, .skill-card, .stat-card, .skills-metric, .about-node, .about-group-card";
     const cards = Array.from(document.querySelectorAll(CARD_SELECTOR));
 
     cards.forEach((card) => {

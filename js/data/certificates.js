@@ -80,7 +80,6 @@ export const certificates = [
         title: "CIB Summer Program – “The Green Leap”",
         issuer: "Commercial International Bank (CIB)",
         category: "internship",
-        badge: "July 2025",
         date: "July 2025",
         credentialId: "CIB-INTERN-2025",
         image: "images/certificates/cert-cib-internship.png",

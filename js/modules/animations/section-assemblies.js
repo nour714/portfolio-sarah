@@ -149,6 +149,7 @@ export const initAboutAssembly = () => {
     const aboutSarah = document.querySelector(".about-layer-sarah");
     const aboutTopline = document.querySelectorAll(".about-status, .about-location");
     const aboutCopy = document.querySelector(".about-copy");
+    const aboutGroupCards = document.querySelectorAll(".about-group-card");
 
     const resetAssembly = () => {
         if (assemblyTimeline) {
@@ -196,6 +197,9 @@ export const initAboutAssembly = () => {
         if (aboutCopy) {
             gsap.set(aboutCopy, { y: 35 * factor, opacity: 0, filter: "blur(6px)" });
         }
+        if (aboutGroupCards.length) {
+            gsap.set(aboutGroupCards, { y: 24 * factor, opacity: 0, filter: "blur(5px)" });
+        }
     };
 
     const playAssembly = () => {
@@ -213,6 +217,7 @@ export const initAboutAssembly = () => {
                 }
                 if (aboutTopline.length) gsap.set(aboutTopline, { clearProps: "transform,filter,opacity" });
                 if (aboutCopy) gsap.set(aboutCopy, { clearProps: "transform,filter,opacity" });
+                if (aboutGroupCards.length) gsap.set(aboutGroupCards, { clearProps: "transform,filter,opacity" });
             }
         });
 
@@ -304,6 +309,21 @@ export const initAboutAssembly = () => {
                     ease: "power3.out"
                 },
                 0.35
+            );
+        }
+
+        if (aboutGroupCards.length) {
+            assemblyTimeline.to(
+                aboutGroupCards,
+                {
+                    y: 0,
+                    opacity: 1,
+                    filter: "blur(0px)",
+                    duration: 0.8,
+                    stagger: 0.08,
+                    ease: "power3.out"
+                },
+                0.45
             );
         }
     };
