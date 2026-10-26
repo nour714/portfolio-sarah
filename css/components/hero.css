@@ -38,17 +38,17 @@
     gap: 8px;
     padding: 6px 14px;
     border-radius: 999px;
-    background: rgba(14, 165, 233, 0.1);
+    background: rgba(167, 139, 250, 0.12);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(56, 189, 248, 0.28);
+    border: 1px solid rgba(167, 139, 250, 0.35);
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
     font-family: var(--font-mono, "JetBrains Mono", monospace);
     font-size: clamp(0.74rem, 1.1vw, 0.82rem);
     font-weight: 600;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: #67e8f9;
+    color: #c4b5fd;
     margin-bottom: 18px;
     width: fit-content;
 }
@@ -57,8 +57,8 @@
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background: #22d3ee;
-    box-shadow: 0 0 10px #22d3ee, 0 0 20px rgba(34, 211, 238, 0.6);
+    background: #a78bfa;
+    box-shadow: 0 0 10px #a78bfa, 0 0 20px rgba(167, 139, 250, 0.6);
     animation: heroPulseGlow 2s ease-in-out infinite;
 }
 
@@ -90,10 +90,10 @@
 
 .hero-name-highlight {
     display: inline-block;
-    background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+    background: linear-gradient(135deg, #a78bfa 0%, #c4b5fd 50%, #ddd6fe 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 24px rgba(56, 189, 248, 0.45));
+    filter: drop-shadow(0 0 24px rgba(167, 139, 250, 0.5));
     letter-spacing: -0.02em;
 }
 
@@ -107,7 +107,7 @@
     background: rgba(12, 14, 26, 0.72);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(139, 92, 246, 0.32);
+    border: 1px solid rgba(167, 139, 250, 0.35);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.1);
     font-family: var(--font-mono, "JetBrains Mono", monospace);
     font-size: clamp(0.96rem, 1.7vw, 1.3rem);
@@ -122,8 +122,8 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: #22d3ee;
-    box-shadow: 0 0 10px #22d3ee, 0 0 20px rgba(139, 92, 246, 0.6);
+    background: #a78bfa;
+    box-shadow: 0 0 10px #a78bfa, 0 0 20px rgba(167, 139, 250, 0.6);
     flex-shrink: 0;
     animation: heroPulseGlow 2s ease-in-out infinite;
 }
@@ -136,8 +136,8 @@
 .role-cursor {
     width: 2.5px;
     height: 1.15em;
-    background: #22d3ee;
-    box-shadow: 0 0 10px #22d3ee, 0 0 18px rgba(139, 92, 246, 0.6);
+    background: #a78bfa;
+    box-shadow: 0 0 10px #a78bfa, 0 0 18px rgba(167, 139, 250, 0.6);
     border-radius: 2px;
     animation: cursorBlink 0.92s steps(1, end) infinite;
 }
@@ -201,7 +201,7 @@ body.light-mode .hero-btn:hover {
     background: var(--btn-secondary-hover-bg);
     border-color: var(--btn-secondary-hover-border);
     color: var(--btn-secondary-hover-text);
-    box-shadow: 0 8px 22px rgba(14, 165, 233, 0.25);
+    box-shadow: 0 8px 22px rgba(167, 139, 250, 0.3);
     transform: translateY(-2px);
 }
 
@@ -216,7 +216,7 @@ body.light-mode .hero-btn-secondary:hover {
     border-color: var(--btn-secondary-hover-border);
     background: var(--btn-secondary-hover-bg);
     color: var(--btn-secondary-hover-text);
-    box-shadow: 0 6px 16px rgba(2, 132, 199, 0.15);
+    box-shadow: 0 6px 16px rgba(124, 58, 237, 0.15);
 }
 
 .hero-actions {
@@ -241,7 +241,7 @@ body.light-mode .hero-btn-secondary:hover {
     text-decoration: none;
     color: #edf3ff;
     border-radius: 50%;
-    border: 1px solid rgba(56, 189, 248, 0.45);
+    border: 1px solid rgba(167, 139, 250, 0.45);
     background: linear-gradient(145deg, rgba(14, 18, 38, 0.88), rgba(7, 8, 18, 0.94));
     box-shadow:
         0 8px 20px rgba(0, 0, 0, 0.5),
@@ -256,15 +256,15 @@ body.light-mode .hero-btn-secondary:hover {
 
 .hero-social-link:hover {
     transform: translateY(-3px);
-    border-color: rgba(125, 211, 252, 0.9);
+    border-color: rgba(196, 181, 253, 0.9);
     color: #ffffff;
     box-shadow:
-        0 12px 26px rgba(14, 165, 233, 0.42),
+        0 12px 26px rgba(167, 139, 250, 0.45),
         inset 0 1px 0 rgba(255, 255, 255, 0.28);
 }
 
 body.light-mode .hero-social-link {
-    color: #0284c7;
+    color: #7c3aed;
     border-color: rgba(203, 213, 225, 0.8);
     background: #ffffff;
     box-shadow:
@@ -273,10 +273,10 @@ body.light-mode .hero-social-link {
 }
 
 body.light-mode .hero-social-link:hover {
-    color: #4338ca;
-    border-color: rgba(99, 102, 241, 0.6);
+    color: #5b21b6;
+    border-color: rgba(124, 58, 237, 0.6);
     box-shadow:
-        0 8px 18px rgba(99, 102, 241, 0.15),
+        0 8px 18px rgba(124, 58, 237, 0.2),
         inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
@@ -313,13 +313,13 @@ body.light-mode .role-typed {
     top: 15%;
     left: 50%;
     transform: translate(-50%, -10%);
-    width: clamp(260px, 34vw, 460px);
-    height: clamp(260px, 34vw, 460px);
+    width: clamp(260px, 34vw, 440px);
+    height: clamp(260px, 34vw, 440px);
     background: radial-gradient(
         circle,
-        rgba(56, 189, 248, 0.42) 0%,
-        rgba(129, 140, 248, 0.22) 42%,
-        rgba(192, 132, 252, 0.08) 64%,
+        rgba(167, 139, 250, 0.32) 0%,
+        rgba(139, 92, 246, 0.16) 42%,
+        rgba(124, 58, 237, 0.05) 64%,
         transparent 75%
     );
     filter: blur(52px);
@@ -334,8 +334,8 @@ body.light-mode .role-typed {
     height: clamp(180px, 24vw, 300px);
     background: radial-gradient(
         ellipse at center,
-        rgba(14, 165, 233, 0.26) 0%,
-        rgba(99, 102, 241, 0.12) 50%,
+        rgba(167, 139, 250, 0.22) 0%,
+        rgba(124, 58, 237, 0.1) 50%,
         transparent 72%
     );
     filter: blur(48px);
@@ -363,28 +363,14 @@ body.light-mode .role-typed {
     align-items: flex-end;
     will-change: transform, opacity, filter;
     cursor: pointer;
-    border-radius: 16px;
+    border-radius: 0;
     outline: none;
+    overflow: visible;
     -webkit-tap-highlight-color: transparent;
-    /* Fade only the lower edge to blend seamlessly into dark background */
-    -webkit-mask-image: linear-gradient(
-        to bottom,
-        #000000 0%,
-        #000000 84%,
-        rgba(0, 0, 0, 0.72) 94%,
-        transparent 100%
-    );
-    mask-image: linear-gradient(
-        to bottom,
-        #000000 0%,
-        #000000 84%,
-        rgba(0, 0, 0, 0.72) 94%,
-        transparent 100%
-    );
 }
 
 .hero-portrait-frame:focus-visible {
-    outline: 2px solid rgba(56, 189, 248, 0.75);
+    outline: 2px solid rgba(167, 139, 250, 0.75);
     outline-offset: 6px;
 }
 
@@ -427,6 +413,25 @@ body.light-mode .role-typed {
     pointer-events: none;
     user-select: none;
     -webkit-user-select: none;
+    /* Softly fade the bottom of the sweater into 100% transparency - zero sharp cuts */
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        #000000 0%,
+        #000000 58%,
+        rgba(0, 0, 0, 0.75) 72%,
+        rgba(0, 0, 0, 0.4) 84%,
+        rgba(0, 0, 0, 0.12) 93%,
+        transparent 100%
+    );
+    mask-image: linear-gradient(
+        to bottom,
+        #000000 0%,
+        #000000 58%,
+        rgba(0, 0, 0, 0.75) 72%,
+        rgba(0, 0, 0, 0.4) 84%,
+        rgba(0, 0, 0, 0.12) 93%,
+        transparent 100%
+    );
 }
 
 /* 1. Default State: Clean Natural Monochrome Portrait */
@@ -437,7 +442,7 @@ body.light-mode .role-typed {
 }
 
 .hero-portrait-layer-default .hero-portrait-img {
-    filter: drop-shadow(0 20px 38px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 24px rgba(56, 189, 248, 0.18));
+    filter: drop-shadow(0 20px 38px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 24px rgba(167, 139, 250, 0.2));
     will-change: filter;
     transition: filter 0.56s cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -452,12 +457,9 @@ body.light-mode .role-typed {
 }
 
 .hero-portrait-layer-halo .hero-portrait-img {
-    filter: drop-shadow(0 24px 44px rgba(0, 0, 0, 0.85))
-            drop-shadow(0 0 25px rgba(255, 255, 255, 0.45))
-            drop-shadow(0 0 55px rgba(255, 255, 255, 0.2))
-            drop-shadow(0 0 35px rgba(56, 189, 248, 0.3))
-            contrast(1.02)
-            brightness(1.02);
+    filter: drop-shadow(0 18px 36px rgba(0, 0, 0, 0.8))
+            drop-shadow(0 0 20px rgba(255, 255, 255, 0.45))
+            drop-shadow(0 0 32px rgba(167, 139, 250, 0.35));
     will-change: filter;
     transition: filter 0.56s cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -472,20 +474,20 @@ body.light-mode .role-typed {
 /* 3. Soft Ambient Halo Aura Illumination */
 .hero-portrait-halo-aura {
     position: absolute;
-    top: 0;
+    top: 4%;
     left: 50%;
     transform: translate(-50%, -10%) scale(0.85);
-    width: clamp(160px, 50%, 280px);
+    width: clamp(140px, 42%, 220px);
     aspect-ratio: 1;
     border-radius: 50%;
     background: radial-gradient(
-        circle at 50% 45%,
-        rgba(255, 255, 255, 0.28) 0%,
-        rgba(224, 242, 254, 0.14) 38%,
-        rgba(56, 189, 248, 0.06) 62%,
-        transparent 75%
+        circle at 50% 50%,
+        rgba(255, 255, 255, 0.22) 0%,
+        rgba(237, 233, 254, 0.12) 35%,
+        rgba(167, 139, 250, 0.06) 55%,
+        transparent 70%
     );
-    filter: blur(32px);
+    filter: blur(24px);
     opacity: 0;
     pointer-events: none;
     z-index: 0;
@@ -647,8 +649,8 @@ body.light-mode .role-typed {
 body.light-mode .hero-visual-glow-primary {
     background: radial-gradient(
         circle,
-        rgba(56, 189, 248, 0.28) 0%,
-        rgba(99, 102, 241, 0.16) 45%,
+        rgba(167, 139, 250, 0.3) 0%,
+        rgba(124, 58, 237, 0.16) 45%,
         transparent 72%
     );
     filter: blur(44px);
@@ -657,28 +659,26 @@ body.light-mode .hero-visual-glow-primary {
 body.light-mode .hero-visual-glow-secondary {
     background: radial-gradient(
         ellipse at center,
-        rgba(14, 165, 233, 0.14) 0%,
+        rgba(167, 139, 250, 0.18) 0%,
         transparent 68%
     );
 }
 
 body.light-mode .hero-portrait-layer-default .hero-portrait-img {
-    filter: drop-shadow(0 14px 28px rgba(15, 23, 42, 0.12)) drop-shadow(0 0 22px rgba(56, 189, 248, 0.2));
+    filter: drop-shadow(0 14px 28px rgba(15, 23, 42, 0.12)) drop-shadow(0 0 22px rgba(167, 139, 250, 0.25));
 }
 
 body.light-mode .hero-portrait-layer-halo .hero-portrait-img {
-    filter: drop-shadow(0 18px 32px rgba(15, 23, 42, 0.16))
-            drop-shadow(0 0 28px rgba(255, 255, 255, 0.9))
-            drop-shadow(0 0 42px rgba(56, 189, 248, 0.35))
-            contrast(1.02)
-            brightness(1.02);
+    filter: drop-shadow(0 14px 28px rgba(15, 23, 42, 0.14))
+            drop-shadow(0 0 20px rgba(255, 255, 255, 0.9))
+            drop-shadow(0 0 32px rgba(167, 139, 250, 0.35));
 }
 
 body.light-mode .hero-portrait-halo-aura {
     background: radial-gradient(
         circle at 50% 45%,
         rgba(255, 255, 255, 0.5) 0%,
-        rgba(56, 189, 248, 0.18) 45%,
+        rgba(167, 139, 250, 0.2) 45%,
         transparent 72%
     );
 }
@@ -686,14 +686,14 @@ body.light-mode .hero-portrait-halo-aura {
 /* Light Mode Overrides */
 body.light-mode .hero-status-pill {
     background: rgba(255, 255, 255, 0.9);
-    border-color: rgba(56, 189, 248, 0.4);
-    color: #0284c7;
+    border-color: rgba(167, 139, 250, 0.4);
+    color: #6d28d9;
     box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
 }
 
 body.light-mode .status-pulse-dot {
-    background: #0284c7;
-    box-shadow: 0 0 8px rgba(2, 132, 199, 0.6);
+    background: #7c3aed;
+    box-shadow: 0 0 8px rgba(124, 58, 237, 0.6);
 }
 
 body.light-mode .hero-greeting {
@@ -704,21 +704,21 @@ body.light-mode .hero-greeting {
 }
 
 body.light-mode .hero-name-highlight {
-    background: linear-gradient(135deg, #0284c7 0%, #6366f1 100%);
+    background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 18px rgba(2, 132, 199, 0.3));
+    filter: drop-shadow(0 0 18px rgba(124, 58, 237, 0.3));
 }
 
 body.light-mode .hero-role {
     background: rgba(255, 255, 255, 0.9);
-    border-color: rgba(99, 102, 241, 0.3);
+    border-color: rgba(124, 58, 237, 0.3);
     box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
 }
 
 body.light-mode .hero-role-pulse {
-    background: #4f46e5;
-    box-shadow: 0 0 8px rgba(79, 70, 229, 0.5);
+    background: #7c3aed;
+    box-shadow: 0 0 8px rgba(124, 58, 237, 0.5);
 }
 
 body.light-mode .role-typed {
@@ -727,7 +727,7 @@ body.light-mode .role-typed {
 }
 
 body.light-mode .role-cursor {
-    background: #0284c7;
-    box-shadow: 0 0 8px rgba(2, 132, 199, 0.5);
+    background: #7c3aed;
+    box-shadow: 0 0 8px rgba(124, 58, 237, 0.5);
 }
 

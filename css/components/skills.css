@@ -163,7 +163,7 @@
     position: absolute;
     inset: -24px;
     border-radius: 50%;
-    background: radial-gradient(circle, var(--spotlight-glow, rgba(56, 189, 248, 0.45)) 0%, rgba(56, 189, 248, 0.12) 45%, transparent 72%);
+    background: radial-gradient(circle, var(--spotlight-glow, rgba(167, 139, 250, 0.45)) 0%, rgba(167, 139, 250, 0.12) 45%, transparent 72%);
     filter: blur(18px);
     opacity: 0.88;
     pointer-events: none;
@@ -178,10 +178,10 @@
     height: 82px;
     border-radius: 50%;
     background: radial-gradient(circle at 50% 25%, rgba(28, 34, 52, 0.92), rgba(10, 13, 22, 0.98));
-    border: 2px solid var(--spotlight-border, rgba(56, 189, 248, 0.6));
+    border: 2px solid var(--spotlight-border, rgba(167, 139, 250, 0.6));
     box-shadow:
         0 14px 34px rgba(0, 0, 0, 0.65),
-        0 0 26px var(--spotlight-glow, rgba(56, 189, 248, 0.3)),
+        0 0 26px var(--spotlight-glow, rgba(167, 139, 250, 0.35)),
         inset 0 1px 1.5px rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
@@ -307,11 +307,11 @@
 @keyframes skillsArchGlowPulse {
     0% {
         opacity: 0.45;
-        filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.4));
+        filter: drop-shadow(0 0 6px rgba(167, 139, 250, 0.45));
     }
     100% {
         opacity: 0.95;
-        filter: drop-shadow(0 0 14px rgba(139, 92, 246, 0.7)) drop-shadow(0 0 24px rgba(56, 189, 248, 0.4));
+        filter: drop-shadow(0 0 14px rgba(139, 92, 246, 0.7)) drop-shadow(0 0 24px rgba(167, 139, 250, 0.45));
     }
 }
 
@@ -459,10 +459,10 @@
 .skills-nav-btn:hover,
 .skills-nav-btn:focus-visible {
     transform: scale(1.08);
-    border-color: rgba(56, 189, 248, 0.65);
+    border-color: rgba(167, 139, 250, 0.65);
     background: rgba(14, 18, 38, 0.95);
-    color: #38bdf8;
-    box-shadow: 0 0 16px rgba(56, 189, 248, 0.35);
+    color: #a78bfa;
+    box-shadow: 0 0 16px rgba(167, 139, 250, 0.35);
 }
 
 .skills-nav-btn:active {
@@ -675,7 +675,7 @@ body.light-mode .skills-title-wrap h2 {
 }
 
 body.light-mode .skills-title-wrap h2 .motion-word {
-    background: linear-gradient(135deg, #0f172a 20%, #4338ca 65%, #0284c7 100%);
+    background: linear-gradient(135deg, #0f172a 20%, #7c3aed 65%, #a78bfa 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -685,7 +685,7 @@ body.light-mode .skills-copy {
 }
 
 body.light-mode .skills-spotlight-halo {
-    background: radial-gradient(circle, var(--spotlight-glow, rgba(2, 132, 199, 0.22)) 0%, rgba(99, 102, 241, 0.08) 45%, transparent 70%);
+    background: radial-gradient(circle, var(--spotlight-glow, rgba(124, 58, 237, 0.22)) 0%, rgba(167, 139, 250, 0.1) 45%, transparent 70%);
 }
 
 body.light-mode .skills-spotlight-title {
@@ -701,7 +701,7 @@ body.light-mode .skills-spotlight-desc {
 }
 
 body.light-mode .skills-spotlight-counter {
-    color: #6366f1;
+    color: #7c3aed;
     text-shadow: none;
     font-weight: 700;
 }
@@ -713,7 +713,7 @@ body.light-mode .skills-spotlight-meta {
 }
 
 body.light-mode .skills-spotlight-level {
-    color: #0284c7;
+    color: #7c3aed;
     font-weight: 700;
 }
 
@@ -723,8 +723,8 @@ body.light-mode .skills-spotlight-bar-track {
 
 body.light-mode .skills-spotlight-icon {
     background: radial-gradient(circle at 50% 30%, #ffffff, #f8fafc);
-    border-color: var(--spotlight-border, rgba(2, 132, 199, 0.5));
-    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08), 0 0 20px var(--spotlight-glow, rgba(2, 132, 199, 0.15));
+    border-color: var(--spotlight-border, rgba(124, 58, 237, 0.5));
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08), 0 0 20px var(--spotlight-glow, rgba(124, 58, 237, 0.15));
 }
 
 body.light-mode .skills-arch-ambient-glow {

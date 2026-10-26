@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=3.0">
     <link rel="stylesheet" href="css/admin/admin.css">
 </head>
 <body class="admin-only">
@@ -149,9 +149,10 @@
         </section>
         <div class="section-divider"></div>
 
-        <section class="about" id="about" aria-labelledby="about-title">
+        <section class="about" id="about" aria-label="About Sarah Nabil">
             <div class="section-shell about-shell">
                 <div class="about-panel">
+                    <div class="card-spotlight" aria-hidden="true"></div>
                     <div class="about-visual" aria-hidden="true">
                         <div class="about-visual-backdrop"></div>
                         <div class="about-visual-glow"></div>
@@ -185,17 +186,16 @@
                             <span class="about-location">Egypt · Kafrelsheikh University</span>
                         </div>
 
-                        <h2 id="about-title">Third-year AI student building practical Machine Learning &amp; Computer Vision solutions.</h2>
-
                         <p class="about-copy">I’m Sarah Nabil, a third-year Artificial Intelligence student at Kafrelsheikh University, passionate about Machine Learning and Computer Vision. I enjoy building practical projects with Python and OpenCV and turning technical concepts into useful applications.</p>
 
                         <!-- Three Information Groups: Education, Training & Programs, Career Goal -->
                         <div class="about-groups" aria-label="Key background highlights">
                             <!-- Group 1: Education -->
-                            <article class="about-group-card">
+                            <article class="about-group-card about-group-card--edu">
+                                <div class="card-spotlight" aria-hidden="true"></div>
                                 <div class="about-group-header">
                                     <span class="about-group-icon about-group-icon--edu" aria-hidden="true">
-                                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                             <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
                                             <path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/>
                                         </svg>
@@ -203,20 +203,23 @@
                                     <h3 class="about-group-title">Education</h3>
                                 </div>
                                 <div class="about-group-body">
-                                    <p class="about-group-primary">Faculty of Artificial Intelligence</p>
-                                    <p class="about-group-sub">Kafrelsheikh University</p>
+                                    <div class="about-group-info">
+                                        <p class="about-group-primary">Faculty of Artificial Intelligence</p>
+                                        <p class="about-group-sub">Kafrelsheikh University</p>
+                                    </div>
                                     <div class="about-group-tags">
-                                        <span class="about-pill">Expected Grad: 2028</span>
+                                        <span class="about-pill">Grad: 2028</span>
                                         <span class="about-pill about-pill--accent">GPA: 3.27 / 4.00</span>
                                     </div>
                                 </div>
                             </article>
 
                             <!-- Group 2: Training & Programs -->
-                            <article class="about-group-card">
+                            <article class="about-group-card about-group-card--training">
+                                <div class="card-spotlight" aria-hidden="true"></div>
                                 <div class="about-group-header">
                                     <span class="about-group-icon about-group-icon--training" aria-hidden="true">
-                                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                             <circle cx="12" cy="8" r="6"/>
                                             <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
                                         </svg>
@@ -226,7 +229,7 @@
                                 <div class="about-group-body">
                                     <ul class="about-group-list">
                                         <li>
-                                            <strong>NTI Machine Learning Training</strong>
+                                            <strong>NTI ML Training</strong>
                                             <span class="about-list-meta">120 hrs · Score: 95%</span>
                                         </li>
                                         <li>
@@ -242,10 +245,11 @@
                             </article>
 
                             <!-- Group 3: Career Goal -->
-                            <article class="about-group-card">
+                            <article class="about-group-card about-group-card--goal">
+                                <div class="card-spotlight" aria-hidden="true"></div>
                                 <div class="about-group-header">
                                     <span class="about-group-icon about-group-icon--goal" aria-hidden="true">
-                                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                             <circle cx="12" cy="12" r="10"/>
                                             <circle cx="12" cy="12" r="6"/>
                                             <circle cx="12" cy="12" r="2"/>
@@ -254,8 +258,10 @@
                                     <h3 class="about-group-title">Career Goal</h3>
                                 </div>
                                 <div class="about-group-body">
-                                    <p class="about-group-primary">Seeking Machine Learning or Computer Vision Internship</p>
-                                    <p class="about-group-desc">Focused on hands-on practical experience, predictive modeling, and applied AI pipelines in professional environments.</p>
+                                    <div class="about-group-info">
+                                        <p class="about-group-primary">ML &amp; Computer Vision Internship</p>
+                                        <p class="about-group-sub">Seeking hands-on AI &amp; CV roles</p>
+                                    </div>
                                     <div class="about-group-tags">
                                         <span class="about-pill about-pill--goal">
                                             <span class="about-pill-dot" aria-hidden="true"></span>

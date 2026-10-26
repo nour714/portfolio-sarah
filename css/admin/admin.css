@@ -12,7 +12,7 @@
     font-weight: 600;
     letter-spacing: 0.01em;
     color: var(--btn-primary-text, #ffffff);
-    background: var(--btn-primary-bg, linear-gradient(135deg, #0ea5e9, #6366f1));
+    background: var(--btn-primary-bg, linear-gradient(135deg, #a78bfa, #7c3aed));
     box-shadow: var(--btn-primary-shadow);
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
@@ -45,7 +45,7 @@ body.admin-open .admin-launch {
     --admin-card: rgba(18, 21, 40, 0.85);
     --admin-text: #f8fafc;
     --admin-muted: #94a3b8;
-    --admin-accent: #38bdf8;
+    --admin-accent: #a78bfa;
     --admin-accent-2: #818cf8;
     --admin-border: rgba(139, 92, 246, 0.22);
     --admin-shadow: 0 18px 45px rgba(2, 6, 23, 0.65);
@@ -58,7 +58,7 @@ body.admin-open .admin-launch {
     --admin-card: rgba(255, 255, 255, 0.95);
     --admin-text: #0f172a;
     --admin-muted: #64748b;
-    --admin-accent: #0284c7;
+    --admin-accent: #7c3aed;
     --admin-accent-2: #6366f1;
     --admin-border: rgba(203, 213, 225, 0.75);
     --admin-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
@@ -334,10 +334,10 @@ body.admin-open .admin-shell {
 }
 
 .admin-btn-primary {
-    background: var(--btn-primary-bg, linear-gradient(135deg, #0ea5e9, #6366f1));
+    background: var(--btn-primary-bg, linear-gradient(135deg, #a78bfa, #7c3aed));
     color: #ffffff;
     border: 1px solid rgba(255, 255, 255, 0.22);
-    box-shadow: 0 8px 22px rgba(14, 165, 233, 0.35);
+    box-shadow: 0 8px 22px rgba(167, 139, 250, 0.4);
 }
 
 .admin-btn-ghost {
@@ -408,8 +408,8 @@ body.admin-open .admin-shell {
     font-size: 0.78rem;
     padding: 2px 8px;
     border-radius: 20px;
-    background: rgba(56, 189, 248, 0.15);
-    color: var(--admin-accent, #38bdf8);
+    background: rgba(167, 139, 250, 0.15);
+    color: var(--admin-accent, #a78bfa);
 }
 
 .admin-message-time {

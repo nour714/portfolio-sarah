@@ -84,7 +84,7 @@ export const initHeroCinematicEntrance = () => {
         .fromTo(
             ".hero-social-link",
             { y: 20, autoAlpha: 0, scale: 0.8 },
-            { y: 0, autoAlpha: 1, scale: 1, duration: 0.7, stagger: 0.08, ease: "back.out(1.7)" },
+            { y: 0, autoAlpha: 1, scale: 1, duration: 0.7, stagger: 0.08, ease: "back.out(1.7)", clearProps: "transform" },
             0.64
         )
         // 7. CTA Buttons

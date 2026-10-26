@@ -830,7 +830,7 @@ export const initSkillsAssemblyAnimation = () => {
                 {
                     opacity: 1,
                     strokeWidth: 3.5,
-                    filter: "drop-shadow(0 0 16px rgba(56, 189, 248, 0.95))",
+                    filter: "drop-shadow(0 0 16px rgba(167, 139, 250, 0.95))",
                     duration: 0.65,
                     ease: "power2.out",
                     yoyo: true,

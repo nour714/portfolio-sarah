@@ -231,7 +231,7 @@ export const initHeroIntro = () => {
         .fromTo(
             ".hero-social-link",
             { y: 20, autoAlpha: 0, scale: 0.75 },
-            { y: 0, autoAlpha: 1, scale: 1, duration: 0.68, stagger: 0.08, ease: "back.out(2)" },
+            { y: 0, autoAlpha: 1, scale: 1, duration: 0.68, stagger: 0.08, ease: "back.out(2)", clearProps: "transform" },
             0.56
         )
         // 8. CTA Action Buttons

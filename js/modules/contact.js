@@ -26,7 +26,7 @@ export const initContactFormFallback = () => {
 
         if (statusNote) {
             statusNote.textContent = "Redirecting to your email client to send your message...";
-            statusNote.style.color = "var(--accent, #38bdf8)";
+            statusNote.style.color = "var(--brand-light, #a78bfa)";
         }
         showToast("Opening email client to send message...");
     });

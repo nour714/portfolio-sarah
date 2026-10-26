@@ -8,24 +8,24 @@
     --text-main: #f3f8ff;
     --text-soft: #94a3b8;
     --text-muted: #64748b;
-    --brand-blue: #0ea5e9;
-    --brand-light: #38bdf8;
-    --accent-cyan: #22d3ee;
-    --accent-sky: #38bdf8;
+    --brand-blue: #8b5cf6;
+    --brand-light: #a78bfa;
+    --accent-cyan: #c4b5fd;
+    --accent-sky: #a78bfa;
     --accent-violet: #8b5cf6;
     --accent-purple: #a855f7;
     --accent-indigo: #818cf8;
     --nav-bg: rgba(7, 7, 16, 0.78);
-    --nav-border: rgba(56, 189, 248, 0.28);
+    --nav-border: rgba(167, 139, 250, 0.28);
     --nav-glass-streak: linear-gradient(115deg, rgba(255, 255, 255, 0.26) 0%, rgba(255, 255, 255, 0.08) 38%, rgba(255, 255, 255, 0.02) 62%, rgba(255, 255, 255, 0.16) 100%);
     --nav-shell-shadow: 0 14px 42px rgba(0, 0, 0, 0.55);
     --nav-shell-inner: inset 0 1px 0 rgba(255, 255, 255, 0.18), inset 0 -1px 0 rgba(0, 0, 0, 0.5);
-    --nav-link: #d9f0ff;
+    --nav-link: #ede9fe;
     --nav-link-hover: #ffffff;
-    --nav-pill-bg: linear-gradient(160deg, rgba(37, 99, 235, 0.66), rgba(8, 20, 48, 0.84));
-    --nav-pill-border: rgba(56, 189, 248, 0.38);
+    --nav-pill-bg: linear-gradient(160deg, rgba(124, 58, 237, 0.66), rgba(22, 10, 48, 0.84));
+    --nav-pill-border: rgba(167, 139, 250, 0.42);
     --nav-pill-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
-    --nav-pill-glow: rgba(56, 189, 248, 0.42);
+    --nav-pill-glow: rgba(167, 139, 250, 0.45);
 
     /* Floating Capsule Navbar Design Tokens */
     --capsule-bg: rgba(14, 16, 32, 0.72);
@@ -34,58 +34,58 @@
     --capsule-link: rgba(241, 245, 249, 0.78);
     --capsule-link-hover: #ffffff;
     --capsule-link-hover-bg: rgba(255, 255, 255, 0.1);
-    --capsule-link-active-bg: rgba(139, 92, 246, 0.22);
+    --capsule-link-active-bg: rgba(167, 139, 250, 0.25);
     --capsule-link-active-text: #ffffff;
     --capsule-link-active-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    --capsule-cta-bg: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);
+    --capsule-cta-bg: linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%);
     --capsule-cta-text: #ffffff;
-    --capsule-cta-hover: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
-    --capsule-cta-shadow: 0 4px 18px rgba(14, 165, 233, 0.4), 0 2px 6px rgba(0, 0, 0, 0.3);
-    --capsule-circle-bg: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);
+    --capsule-cta-hover: linear-gradient(135deg, #c4b5fd 0%, #8b5cf6 100%);
+    --capsule-cta-shadow: 0 4px 18px rgba(167, 139, 250, 0.45), 0 2px 6px rgba(0, 0, 0, 0.3);
+    --capsule-circle-bg: linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%);
     --capsule-circle-text: #ffffff;
     --capsule-badge-bg: #0b0d1a;
-    --capsule-badge-border: rgba(56, 189, 248, 0.28);
-    --capsule-badge-color: #38bdf8;
+    --capsule-badge-border: rgba(167, 139, 250, 0.35);
+    --capsule-badge-color: #a78bfa;
 
     /* Unified Button Tokens (Primary & Secondary across the entire site) */
-    --btn-primary-bg: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);
+    --btn-primary-bg: linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%);
     --btn-primary-text: #ffffff;
     --btn-primary-border: rgba(255, 255, 255, 0.25);
-    --btn-primary-shadow: 0 4px 20px rgba(14, 165, 233, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.28);
-    --btn-primary-hover-shadow: 0 8px 28px rgba(99, 102, 241, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    --btn-primary-shadow: 0 4px 20px rgba(167, 139, 250, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.28);
+    --btn-primary-hover-shadow: 0 8px 28px rgba(124, 58, 237, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.4);
 
     --btn-secondary-bg: rgba(255, 255, 255, 0.05);
     --btn-secondary-text: #f1f5f9;
     --btn-secondary-border: rgba(255, 255, 255, 0.16);
     --btn-secondary-hover-bg: rgba(255, 255, 255, 0.12);
-    --btn-secondary-hover-border: rgba(56, 189, 248, 0.5);
+    --btn-secondary-hover-border: rgba(167, 139, 250, 0.55);
     --btn-secondary-hover-text: #ffffff;
 
     --theme-btn-bg: rgba(14, 18, 38, 0.75);
-    --theme-btn-border: rgba(56, 189, 248, 0.42);
-    --theme-btn-text: #e0f2fe;
-    --menu-line: #dbeafe;
+    --theme-btn-border: rgba(167, 139, 250, 0.42);
+    --theme-btn-text: #ede9fe;
+    --menu-line: #ede9fe;
     --mobile-menu-bg: rgba(7, 7, 16, 0.96);
-    --mobile-menu-border: rgba(56, 189, 248, 0.38);
+    --mobile-menu-border: rgba(167, 139, 250, 0.38);
     --mobile-menu-shadow: rgba(0, 0, 0, 0.7);
-    --button-a: #0ea5e9;
-    --button-b: #6366f1;
-    --bg-radial-a: rgba(14, 165, 233, 0.2);
+    --button-a: #a78bfa;
+    --button-b: #7c3aed;
+    --bg-radial-a: rgba(167, 139, 250, 0.2);
     --bg-radial-b: rgba(139, 92, 246, 0.15);
-    --hero-role-shadow: rgba(14, 165, 233, 0.42);
-    --cursor-color: #38bdf8;
+    --hero-role-shadow: rgba(167, 139, 250, 0.42);
+    --cursor-color: #a78bfa;
     --cursor-mac-arrow: url("../../images/cursors/mac-arrow.svg") 2 2, default;
     --cursor-mac-pointer: url("../../images/cursors/mac-pointer.svg") 8 2, pointer;
     --cursor-mac-text: url("../../images/cursors/mac-text.svg") 11 10, text;
     --hero-surface: linear-gradient(90deg, rgba(7, 7, 16, 0.82) 0%, rgba(7, 7, 16, 0.58) 56%, rgba(7, 7, 16, 0.16) 100%);
-    --hero-avatar-glow: rgba(56, 189, 248, 0.38);
+    --hero-avatar-glow: rgba(167, 139, 250, 0.38);
     --hero-avatar-ring: rgba(139, 92, 246, 0.55);
-    --hero-avatar-orbit: rgba(34, 211, 238, 0.7);
-    --hero-avatar-core-border: rgba(129, 140, 248, 0.8);
-    --hero-avatar-core-shadow: rgba(99, 102, 241, 0.5);
-    --canvas-line: 56, 189, 248;
-    --canvas-pointer: 139, 92, 246;
-    --canvas-node: 224, 242, 254;
+    --hero-avatar-orbit: rgba(196, 181, 253, 0.7);
+    --hero-avatar-core-border: rgba(167, 139, 250, 0.8);
+    --hero-avatar-core-shadow: rgba(124, 58, 237, 0.5);
+    --canvas-line: 167, 139, 250;
+    --canvas-pointer: 196, 181, 253;
+    --canvas-node: 243, 232, 255;
     --canvas-node-alpha: 0.75;
     --fs-brand: clamp(1rem, 2.2vw, 1.35rem);
     --fs-nav: clamp(0.88rem, 1.2vw, 1rem);
@@ -140,11 +140,11 @@ body.light-mode {
     --text-main: #0f172a;
     --text-soft: #475569;
     --text-muted: #64748b;
-    --brand-blue: #0284c7;
-    --brand-light: #0369a1;
-    --accent-cyan: #0891b2;
-    --accent-sky: #0284c7;
-    --accent-violet: #6366f1;
+    --brand-blue: #7c3aed;
+    --brand-light: #8b5cf6;
+    --accent-cyan: #a78bfa;
+    --accent-sky: #7c3aed;
+    --accent-violet: #6d28d9;
     --nav-bg: rgba(255, 255, 255, 0.88);
     --nav-border: rgba(226, 232, 240, 0.9);
     --nav-glass-streak: linear-gradient(115deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.25) 42%, rgba(255, 255, 255, 0.08) 68%, rgba(255, 255, 255, 0.35) 100%);
@@ -152,10 +152,10 @@ body.light-mode {
     --nav-shell-inner: inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 -1px 0 rgba(226, 232, 240, 0.5);
     --nav-link: #475569;
     --nav-link-hover: #0f172a;
-    --nav-pill-bg: linear-gradient(160deg, rgba(224, 231, 255, 0.9), rgba(199, 210, 254, 0.85));
-    --nav-pill-border: rgba(165, 180, 252, 0.6);
-    --nav-pill-shadow: 0 6px 14px rgba(99, 102, 241, 0.12);
-    --nav-pill-glow: rgba(99, 102, 241, 0.15);
+    --nav-pill-bg: linear-gradient(160deg, rgba(237, 233, 254, 0.95), rgba(221, 214, 254, 0.9));
+    --nav-pill-border: rgba(167, 139, 250, 0.6);
+    --nav-pill-shadow: 0 6px 14px rgba(124, 58, 237, 0.12);
+    --nav-pill-glow: rgba(124, 58, 237, 0.15);
 
     /* Floating Capsule Navbar Tokens (Light Mode) */
     --capsule-bg: rgba(255, 255, 255, 0.85);
@@ -164,32 +164,32 @@ body.light-mode {
     --capsule-link: #475569;
     --capsule-link-hover: #0f172a;
     --capsule-link-hover-bg: rgba(15, 23, 42, 0.05);
-    --capsule-link-active-bg: rgba(99, 102, 241, 0.12);
-    --capsule-link-active-text: #4338ca;
-    --capsule-link-active-shadow: 0 1px 3px rgba(99, 102, 241, 0.12);
-    --capsule-cta-bg: linear-gradient(135deg, #0284c7 0%, #4f46e5 100%);
+    --capsule-link-active-bg: rgba(124, 58, 237, 0.12);
+    --capsule-link-active-text: #6d28d9;
+    --capsule-link-active-shadow: 0 1px 3px rgba(124, 58, 237, 0.12);
+    --capsule-cta-bg: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
     --capsule-cta-text: #ffffff;
-    --capsule-cta-hover: linear-gradient(135deg, #0369a1 0%, #4338ca 100%);
-    --capsule-cta-shadow: 0 4px 16px rgba(2, 132, 199, 0.28), 0 2px 6px rgba(15, 23, 42, 0.08);
-    --capsule-circle-bg: linear-gradient(135deg, #0284c7 0%, #4f46e5 100%);
+    --capsule-cta-hover: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
+    --capsule-cta-shadow: 0 4px 16px rgba(124, 58, 237, 0.28), 0 2px 6px rgba(15, 23, 42, 0.08);
+    --capsule-circle-bg: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
     --capsule-circle-text: #ffffff;
-    --capsule-badge-bg: linear-gradient(135deg, rgba(2, 132, 199, 0.1) 0%, rgba(99, 102, 241, 0.08) 100%);
-    --capsule-badge-border: rgba(2, 132, 199, 0.28);
-    --capsule-badge-color: #0284c7;
+    --capsule-badge-bg: linear-gradient(135deg, rgba(167, 139, 250, 0.15) 0%, rgba(124, 58, 237, 0.08) 100%);
+    --capsule-badge-border: rgba(124, 58, 237, 0.28);
+    --capsule-badge-color: #6d28d9;
 
     /* Unified Button Tokens (Light Mode) */
-    --btn-primary-bg: linear-gradient(135deg, #0284c7 0%, #4f46e5 100%);
+    --btn-primary-bg: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
     --btn-primary-text: #ffffff;
     --btn-primary-border: rgba(255, 255, 255, 0.28);
-    --btn-primary-shadow: 0 4px 16px rgba(2, 132, 199, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.28);
-    --btn-primary-hover-shadow: 0 8px 24px rgba(79, 70, 229, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.34);
+    --btn-primary-shadow: 0 4px 16px rgba(124, 58, 237, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.28);
+    --btn-primary-hover-shadow: 0 8px 24px rgba(109, 40, 217, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.34);
 
     --btn-secondary-bg: #ffffff;
     --btn-secondary-text: #0f172a;
     --btn-secondary-border: rgba(203, 213, 225, 0.85);
     --btn-secondary-hover-bg: #f8fafc;
-    --btn-secondary-hover-border: #0284c7;
-    --btn-secondary-hover-text: #0284c7;
+    --btn-secondary-hover-border: #7c3aed;
+    --btn-secondary-hover-text: #7c3aed;
 
     --theme-btn-bg: rgba(255, 255, 255, 0.95);
     --theme-btn-border: rgba(203, 213, 225, 0.9);
@@ -197,10 +197,10 @@ body.light-mode {
     --menu-line: #0f172a;
     --mobile-menu-bg: rgba(255, 255, 255, 0.98);
     --mobile-menu-border: rgba(226, 232, 240, 0.85);
-    --button-a: #0284c7;
-    --button-b: #6366f1;
-    --bg-radial-a: rgba(2, 132, 199, 0.08);
-    --bg-radial-b: rgba(99, 102, 241, 0.06);
+    --button-a: #8b5cf6;
+    --button-b: #6d28d9;
+    --bg-radial-a: rgba(167, 139, 250, 0.12);
+    --bg-radial-b: rgba(124, 58, 237, 0.08);
 }
 
 body.light-mode::before {

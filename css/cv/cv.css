@@ -4,9 +4,9 @@
     --panel: rgba(16, 18, 34, 0.88);
     --text: #f8fafc;
     --muted: #94a3b8;
-    --accent-grad: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);
-    --border: rgba(139, 92, 246, 0.22);
-    --shadow: 0 24px 60px rgba(0, 0, 0, 0.65), 0 0 40px rgba(139, 92, 246, 0.12);
+    --accent-grad: linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%);
+    --border: rgba(167, 139, 250, 0.25);
+    --shadow: 0 24px 60px rgba(0, 0, 0, 0.65), 0 0 40px rgba(167, 139, 250, 0.15);
 }
 
 body.light-mode {
@@ -15,9 +15,9 @@ body.light-mode {
     --panel: #ffffff;
     --text: #0f172a;
     --muted: #64748b;
-    --accent: #0284c7;
-    --accent-hover: #0369a1;
-    --accent-grad: linear-gradient(135deg, #0284c7, #4f46e5);
+    --accent: #7c3aed;
+    --accent-hover: #6d28d9;
+    --accent-grad: linear-gradient(135deg, #8b5cf6, #6d28d9);
     --border: rgba(226, 232, 240, 0.9);
     --shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
 }
@@ -31,7 +31,7 @@ body {
     min-height: 100vh;
     font-family: "Poppins", system-ui, -apple-system, Segoe UI, sans-serif;
     background:
-        radial-gradient(circle at top right, rgba(56, 189, 248, 0.12), transparent 54%),
+        radial-gradient(circle at top right, rgba(167, 139, 250, 0.14), transparent 54%),
         radial-gradient(circle at bottom left, rgba(139, 92, 246, 0.15), transparent 48%),
         var(--bg);
     color: var(--text);
@@ -44,8 +44,8 @@ body {
 
 body.light-mode {
     background:
-        radial-gradient(circle at top right, rgba(2, 132, 199, 0.08), transparent 54%),
-        radial-gradient(circle at bottom left, rgba(99, 102, 241, 0.08), transparent 48%),
+        radial-gradient(circle at top right, rgba(124, 58, 237, 0.08), transparent 54%),
+        radial-gradient(circle at bottom left, rgba(167, 139, 250, 0.08), transparent 48%),
         var(--bg);
 }
 
@@ -106,11 +106,11 @@ h1 {
     background: var(--accent-grad);
     color: #ffffff;
     border: 1px solid rgba(255, 255, 255, 0.25);
-    box-shadow: 0 4px 20px rgba(14, 165, 233, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.28);
+    box-shadow: 0 4px 20px rgba(167, 139, 250, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.28);
 }
 
 .btn-primary:hover {
-    box-shadow: 0 8px 28px rgba(99, 102, 241, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    box-shadow: 0 8px 28px rgba(124, 58, 237, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
 .btn-secondary {

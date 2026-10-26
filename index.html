@@ -34,7 +34,7 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css?v=2.1">
+    <link rel="stylesheet" href="style.css?v=3.0">
 
     <script type="speculationrules">
     {
@@ -182,15 +182,18 @@
                                 <div class="hero-portrait-halo-aura" aria-hidden="true"></div>
                             </div>
                         </div>
+
+
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- 2. ABOUT SECTION -->
-        <section class="about" id="about" aria-labelledby="about-title">
+        <section class="about" id="about" aria-label="About Sarah Nabil">
             <div class="section-shell about-shell">
                 <div class="about-panel">
+                    <div class="card-spotlight" aria-hidden="true"></div>
                     <div class="about-visual" aria-hidden="true">
                         <div class="about-visual-backdrop"></div>
                         <div class="about-visual-glow"></div>
@@ -224,17 +227,16 @@
                             <span class="about-location">Egypt · Kafrelsheikh University</span>
                         </div>
 
-                        <h2 id="about-title">Third-year AI student building practical Machine Learning &amp; Computer Vision solutions.</h2>
-
                         <p class="about-copy">I’m Sarah Nabil, a third-year Artificial Intelligence student at Kafrelsheikh University, passionate about Machine Learning and Computer Vision. I enjoy building practical projects with Python and OpenCV and turning technical concepts into useful applications.</p>
 
                         <!-- Three Information Groups: Education, Training & Programs, Career Goal -->
                         <div class="about-groups" aria-label="Key background highlights">
                             <!-- Group 1: Education -->
-                            <article class="about-group-card">
+                            <article class="about-group-card about-group-card--edu">
+                                <div class="card-spotlight" aria-hidden="true"></div>
                                 <div class="about-group-header">
                                     <span class="about-group-icon about-group-icon--edu" aria-hidden="true">
-                                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                             <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
                                             <path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/>
                                         </svg>
@@ -242,20 +244,23 @@
                                     <h3 class="about-group-title">Education</h3>
                                 </div>
                                 <div class="about-group-body">
-                                    <p class="about-group-primary">Faculty of Artificial Intelligence</p>
-                                    <p class="about-group-sub">Kafrelsheikh University</p>
+                                    <div class="about-group-info">
+                                        <p class="about-group-primary">Faculty of Artificial Intelligence</p>
+                                        <p class="about-group-sub">Kafrelsheikh University</p>
+                                    </div>
                                     <div class="about-group-tags">
-                                        <span class="about-pill">Expected Grad: 2028</span>
+                                        <span class="about-pill">Grad: 2028</span>
                                         <span class="about-pill about-pill--accent">GPA: 3.27 / 4.00</span>
                                     </div>
                                 </div>
                             </article>
 
                             <!-- Group 2: Training & Programs -->
-                            <article class="about-group-card">
+                            <article class="about-group-card about-group-card--training">
+                                <div class="card-spotlight" aria-hidden="true"></div>
                                 <div class="about-group-header">
                                     <span class="about-group-icon about-group-icon--training" aria-hidden="true">
-                                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                             <circle cx="12" cy="8" r="6"/>
                                             <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
                                         </svg>
@@ -265,7 +270,7 @@
                                 <div class="about-group-body">
                                     <ul class="about-group-list">
                                         <li>
-                                            <strong>NTI Machine Learning Training</strong>
+                                            <strong>NTI ML Training</strong>
                                             <span class="about-list-meta">120 hrs · Score: 95%</span>
                                         </li>
                                         <li>
@@ -281,10 +286,11 @@
                             </article>
 
                             <!-- Group 3: Career Goal -->
-                            <article class="about-group-card">
+                            <article class="about-group-card about-group-card--goal">
+                                <div class="card-spotlight" aria-hidden="true"></div>
                                 <div class="about-group-header">
                                     <span class="about-group-icon about-group-icon--goal" aria-hidden="true">
-                                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                             <circle cx="12" cy="12" r="10"/>
                                             <circle cx="12" cy="12" r="6"/>
                                             <circle cx="12" cy="12" r="2"/>
@@ -293,8 +299,10 @@
                                     <h3 class="about-group-title">Career Goal</h3>
                                 </div>
                                 <div class="about-group-body">
-                                    <p class="about-group-primary">Seeking Machine Learning or Computer Vision Internship</p>
-                                    <p class="about-group-desc">Focused on hands-on practical experience, predictive modeling, and applied AI pipelines in professional environments.</p>
+                                    <div class="about-group-info">
+                                        <p class="about-group-primary">ML &amp; Computer Vision Internship</p>
+                                        <p class="about-group-sub">Seeking hands-on AI &amp; CV roles</p>
+                                    </div>
                                     <div class="about-group-tags">
                                         <span class="about-pill about-pill--goal">
                                             <span class="about-pill-dot" aria-hidden="true"></span>
@@ -328,19 +336,19 @@
                                 </filter>
 
                                 <linearGradient id="skillsArchBandGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" stop-color="#0284c7" stop-opacity="0.02"/>
-                                    <stop offset="20%" stop-color="#0284c7" stop-opacity="0.14"/>
-                                    <stop offset="50%" stop-color="#8b5cf6" stop-opacity="0.26"/>
-                                    <stop offset="80%" stop-color="#06b6d4" stop-opacity="0.14"/>
-                                    <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.02"/>
+                                    <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.02"/>
+                                    <stop offset="20%" stop-color="#8b5cf6" stop-opacity="0.14"/>
+                                    <stop offset="50%" stop-color="#a78bfa" stop-opacity="0.26"/>
+                                    <stop offset="80%" stop-color="#8b5cf6" stop-opacity="0.14"/>
+                                    <stop offset="100%" stop-color="#7c3aed" stop-opacity="0.02"/>
                                 </linearGradient>
 
                                 <linearGradient id="skillsArchCoreGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" stop-color="#38bdf8" stop-opacity="0"/>
-                                    <stop offset="25%" stop-color="#38bdf8" stop-opacity="0.45"/>
-                                    <stop offset="50%" stop-color="#c4b5fd" stop-opacity="0.85"/>
-                                    <stop offset="75%" stop-color="#22d3ee" stop-opacity="0.45"/>
-                                    <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
+                                    <stop offset="0%" stop-color="#a78bfa" stop-opacity="0"/>
+                                    <stop offset="25%" stop-color="#a78bfa" stop-opacity="0.45"/>
+                                    <stop offset="50%" stop-color="#ddd6fe" stop-opacity="0.95"/>
+                                    <stop offset="75%" stop-color="#c4b5fd" stop-opacity="0.45"/>
+                                    <stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/>
                                 </linearGradient>
                             </defs>
 
@@ -352,7 +360,7 @@
 
                             <!-- Concentric Holographic Precision Rails -->
                             <path class="skills-arch-rail outer-rail" d="M 60 348 A 472 472 0 0 1 940 348" stroke="rgba(139, 92, 246, 0.2)" stroke-width="1" fill="none" stroke-linecap="round"/>
-                            <path class="skills-arch-rail inner-rail" d="M 86 348 A 448 448 0 0 1 914 348" stroke="rgba(56, 189, 248, 0.2)" stroke-width="1" fill="none" stroke-linecap="round"/>
+                            <path class="skills-arch-rail inner-rail" d="M 86 348 A 448 448 0 0 1 914 348" stroke="rgba(167, 139, 250, 0.25)" stroke-width="1" fill="none" stroke-linecap="round"/>
 
                             <!-- Dynamic Glowing Pulse Centerline -->
                             <path class="skills-arch-glow-line" d="M 73 348 A 460 460 0 0 1 927 348" stroke="url(#skillsArchCoreGrad)" stroke-width="2" fill="none" stroke-linecap="round"/>

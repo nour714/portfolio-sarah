@@ -43,7 +43,7 @@ export const portfolioData = {
     about: {
         status: "AI Student & ML Practitioner",
         location: "Egypt · Kafrelsheikh University",
-        title: "Third-year AI student building practical Machine Learning & Computer Vision solutions.",
+        title: "",
         copy: "I’m Sarah Nabil, a third-year Artificial Intelligence student at Kafrelsheikh University, passionate about Machine Learning and Computer Vision. I enjoy building practical projects with Python and OpenCV and turning technical concepts into useful applications.",
         signature: "",
         metrics: [

@@ -162,50 +162,48 @@ export const initCard3DTilt = () => {
             });
         }
 
-        if (!isCoarsePointer) {
-            const rotateXTo = gsap.quickTo(card, "rotationX", { duration: 0.45, ease: "power2.out" });
-            const rotateYTo = gsap.quickTo(card, "rotationY", { duration: 0.45, ease: "power2.out" });
-            const yTo = gsap.quickTo(card, "y", { duration: 0.45, ease: "power2.out" });
+        const rotateXTo = gsap.quickTo(card, "rotationX", { duration: 0.45, ease: "power2.out" });
+        const rotateYTo = gsap.quickTo(card, "rotationY", { duration: 0.45, ease: "power2.out" });
+        const yTo = gsap.quickTo(card, "y", { duration: 0.45, ease: "power2.out" });
 
-            card.addEventListener("pointerenter", () => {
-                if (ambientFloat) ambientFloat.pause();
+        card.addEventListener("pointerenter", () => {
+            if (ambientFloat) ambientFloat.pause();
+        });
+
+        card.addEventListener("pointermove", (e) => {
+            if (e.pointerType === "touch") return;
+
+            const rect = card.getBoundingClientRect();
+            const relX = e.clientX - rect.left;
+            const relY = e.clientY - rect.top;
+
+            // Update spotlight coordinates in real-time
+            card.style.setProperty("--mouse-x", `${relX}px`);
+            card.style.setProperty("--mouse-y", `${relY}px`);
+
+            // Normalized offsets from center (-0.5 to +0.5)
+            const normX = relX / rect.width - 0.5;
+            const normY = relY / rect.height - 0.5;
+
+            // Max tilt angle: 6.5deg for tactile 3D perspective
+            const maxTilt = 6.5;
+
+            rotateYTo(normX * maxTilt * 2);
+            rotateXTo(-normY * maxTilt * 2);
+            yTo(-8);
+        });
+
+        card.addEventListener("pointerleave", () => {
+            rotateXTo(0);
+            rotateYTo(0);
+            yTo(0);
+            gsap.delayedCall(0.5, () => {
+                if (ambientFloat) ambientFloat.resume();
             });
-
-            card.addEventListener("pointermove", (e) => {
-                const rect = card.getBoundingClientRect();
-                const relX = e.clientX - rect.left;
-                const relY = e.clientY - rect.top;
-
-                // Update spotlight coordinates in real-time
-                card.style.setProperty("--mouse-x", `${relX}px`);
-                card.style.setProperty("--mouse-y", `${relY}px`);
-
-                // Normalized offsets from center (-0.5 to +0.5)
-                const normX = relX / rect.width - 0.5;
-                const normY = relY / rect.height - 0.5;
-
-                // Max tilt angle: 5.5deg for tactile 3D perspective
-                const maxTilt = 5.5;
-
-                rotateYTo(normX * maxTilt * 2);
-                rotateXTo(-normY * maxTilt * 2);
-                yTo(-8);
-            });
-
-            card.addEventListener("pointerleave", () => {
-                rotateXTo(0);
-                rotateYTo(0);
-                yTo(0);
-                gsap.delayedCall(0.5, () => {
-                    if (ambientFloat) ambientFloat.resume();
-                });
-            });
-        }
+        });
     });
 
     // 2. Standard 3D Cards across the rest of the site
-    if (isCoarsePointer) return;
-
     const CARD_SELECTOR = ".experience-card, .skill-card, .stat-card, .skills-metric, .about-node, .about-group-card";
     const cards = Array.from(document.querySelectorAll(CARD_SELECTOR));
 
@@ -221,11 +219,13 @@ export const initCard3DTilt = () => {
             card.prepend(spotlight);
         }
 
-        const rotateXTo = gsap.quickTo(card, "rotationX", { duration: 0.4, ease: "power3.out" });
-        const rotateYTo = gsap.quickTo(card, "rotationY", { duration: 0.4, ease: "power3.out" });
-        const yTo = gsap.quickTo(card, "y", { duration: 0.4, ease: "power3.out" });
+        const rotateXTo = gsap.quickTo(card, "rotationX", { duration: 0.35, ease: "power2.out" });
+        const rotateYTo = gsap.quickTo(card, "rotationY", { duration: 0.35, ease: "power2.out" });
+        const yTo = gsap.quickTo(card, "y", { duration: 0.35, ease: "power2.out" });
 
         card.addEventListener("pointermove", (e) => {
+            if (e.pointerType === "touch") return;
+
             const rect = card.getBoundingClientRect();
             const relX = e.clientX - rect.left;
             const relY = e.clientY - rect.top;
@@ -238,12 +238,12 @@ export const initCard3DTilt = () => {
             const normX = relX / rect.width - 0.5;
             const normY = relY / rect.height - 0.5;
 
-            // Maximum tilt angle: 4.8deg for small cards, 3.4deg for large cards
-            const maxTilt = rect.height > 320 ? 3.4 : 4.8;
+            // Dramatic tactile 3D tilt: 7.5deg for small cards, 5.5deg for large cards
+            const maxTilt = rect.height > 320 ? 5.5 : 7.5;
 
             rotateYTo(normX * maxTilt * 2);
             rotateXTo(-normY * maxTilt * 2);
-            yTo(-6);
+            yTo(-8);
         });
 
         card.addEventListener("pointerleave", () => {

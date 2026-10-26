@@ -7,10 +7,10 @@
 .certificates {
     --certificates-bg: #0a0a0f;
     --certificates-card-bg: rgba(12, 12, 22, 0.85);
-    --certificates-card-border: rgba(139, 92, 246, 0.28);
+    --certificates-card-border: rgba(167, 139, 250, 0.28);
     --certificates-accent-violet: #8b5cf6;
-    --certificates-accent-cyan: #22d3ee;
-    --certificates-accent-glow: rgba(139, 92, 246, 0.35);
+    --certificates-accent-cyan: #a78bfa;
+    --certificates-accent-glow: rgba(167, 139, 250, 0.35);
     --certificates-text-primary: #f8fafc;
     --certificates-text-secondary: #94a3b8;
     --certificates-text-muted: #64748b;
@@ -30,8 +30,8 @@
     left: 0;
     width: 100%;
     height: 3.5px;
-    background: linear-gradient(90deg, #8b5cf6, #a855f7, #22d3ee);
-    box-shadow: 0 0 16px rgba(139, 92, 246, 0.7), 0 0 8px rgba(34, 211, 238, 0.5);
+    background: linear-gradient(90deg, #7c3aed, #8b5cf6, #a78bfa);
+    box-shadow: 0 0 16px rgba(124, 58, 237, 0.7), 0 0 8px rgba(167, 139, 250, 0.5);
     transform-origin: left center;
     transform: scaleX(0);
     z-index: 99999;
@@ -127,7 +127,7 @@
 .certificates-title-reveal .title-word {
     display: inline-block;
     will-change: transform, opacity, filter;
-    background: linear-gradient(135deg, #ffffff 40%, #c4b5fd 80%, #67e8f9 100%);
+    background: linear-gradient(135deg, #ffffff 40%, #c4b5fd 80%, #a78bfa 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -137,8 +137,8 @@
     width: 104px;
     height: 3.5px;
     border-radius: 999px;
-    background: linear-gradient(90deg, rgba(139, 92, 246, 0.2), #8b5cf6 50%, rgba(34, 211, 238, 0.2));
-    box-shadow: 0 0 18px rgba(139, 92, 246, 0.8), 0 0 32px rgba(34, 211, 238, 0.4);
+    background: linear-gradient(90deg, rgba(139, 92, 246, 0.2), #8b5cf6 50%, rgba(167, 139, 250, 0.3));
+    box-shadow: 0 0 18px rgba(139, 92, 246, 0.8), 0 0 32px rgba(167, 139, 250, 0.5);
     overflow: hidden;
 }
 
@@ -393,15 +393,15 @@
 
 .certificate-card:focus-visible {
     border-color: var(--certificates-accent-cyan);
-    box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.4), 0 20px 50px rgba(0, 0, 0, 0.55);
+    box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.4), 0 20px 50px rgba(0, 0, 0, 0.55);
 }
 
 /* Desktop Hover Lift */
 @media (hover: hover) and (pointer: fine) {
     .certificate-card:hover {
         transform: translateY(-2px);
-        border-color: rgba(139, 92, 246, 0.55);
-        box-shadow: 0 22px 50px rgba(0, 0, 0, 0.65), 0 0 30px rgba(139, 92, 246, 0.2);
+        border-color: rgba(167, 139, 250, 0.55);
+        box-shadow: 0 22px 50px rgba(0, 0, 0, 0.65), 0 0 30px rgba(167, 139, 250, 0.2);
     }
 }
 
@@ -414,7 +414,7 @@
     z-index: 1;
     opacity: 0;
     transition: opacity 0.4s ease;
-    background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(139, 92, 246, 0.16), rgba(34, 211, 238, 0.07), transparent 60%);
+    background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(167, 139, 250, 0.16), rgba(124, 58, 237, 0.08), transparent 60%);
 }
 
 .certificate-card:hover .card-spotlight {
@@ -848,9 +848,9 @@ body.light-mode .certificates {
     --certificates-bg: #f8fafc;
     --certificates-card-bg: #ffffff;
     --certificates-card-border: rgba(226, 232, 240, 0.95);
-    --certificates-accent-violet: #6366f1;
-    --certificates-accent-cyan: #0284c7;
-    --certificates-accent-glow: rgba(99, 102, 241, 0.15);
+    --certificates-accent-violet: #7c3aed;
+    --certificates-accent-cyan: #7c3aed;
+    --certificates-accent-glow: rgba(124, 58, 237, 0.15);
     --certificates-text-primary: #0f172a;
     --certificates-text-secondary: #475569;
     --certificates-text-muted: #64748b;
@@ -858,14 +858,14 @@ body.light-mode .certificates {
 }
 
 body.light-mode .certificates-title-reveal .title-word {
-    background: linear-gradient(135deg, #0f172a 40%, #4338ca 80%, #0284c7 100%);
+    background: linear-gradient(135deg, #0f172a 40%, #5b21b6 80%, #7c3aed 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 body.light-mode .certificates-underline {
-    background: linear-gradient(90deg, rgba(99, 102, 241, 0.2), #6366f1 50%, rgba(2, 132, 199, 0.2));
-    box-shadow: 0 0 14px rgba(99, 102, 241, 0.35);
+    background: linear-gradient(90deg, rgba(124, 58, 237, 0.2), #7c3aed 50%, rgba(167, 139, 250, 0.3));
+    box-shadow: 0 0 14px rgba(124, 58, 237, 0.35);
 }
 
 body.light-mode .certificates-copy {
