@@ -183,8 +183,8 @@ export const initCinematicScroll = () => {
     // -------------------------------------------------------------
     const visualImageTarget = aboutImageWrap || aboutImage;
     if (!isCoarsePointer && aboutVisual && visualImageTarget) {
-        const rotateXTo = gsap.quickTo(aboutVisual, "rotateX", { duration: 0.5, ease: "power2.out" });
-        const rotateYTo = gsap.quickTo(aboutVisual, "rotateY", { duration: 0.5, ease: "power2.out" });
+        const rotateXTo = gsap.quickTo(aboutVisual, "rotationX", { duration: 0.5, ease: "power2.out" });
+        const rotateYTo = gsap.quickTo(aboutVisual, "rotationY", { duration: 0.5, ease: "power2.out" });
         const imgXTo = gsap.quickTo(visualImageTarget, "x", { duration: 0.45, ease: "power3.out" });
         const imgYTo = gsap.quickTo(visualImageTarget, "y", { duration: 0.45, ease: "power3.out" });
         const glowXTo = aboutGlow ? gsap.quickTo(aboutGlow, "x", { duration: 0.6, ease: "power2.out" }) : null;

@@ -152,8 +152,8 @@ export const initCard3DTilt = () => {
         if (!getMediaMatch("(prefers-reduced-motion: reduce)")) {
             ambientFloat = gsap.to(card, {
                 y: -6,
-                rotateX: index === 0 ? 1.4 : -1.2,
-                rotateY: index === 0 ? -1.0 : 1.3,
+                rotationX: index === 0 ? 1.4 : -1.2,
+                rotationY: index === 0 ? -1.0 : 1.3,
                 duration: 3.6 + index * 0.4,
                 delay: index * 0.35,
                 ease: "sine.inOut",
@@ -163,8 +163,8 @@ export const initCard3DTilt = () => {
         }
 
         if (!isCoarsePointer) {
-            const rotateXTo = gsap.quickTo(card, "rotateX", { duration: 0.45, ease: "power2.out" });
-            const rotateYTo = gsap.quickTo(card, "rotateY", { duration: 0.45, ease: "power2.out" });
+            const rotateXTo = gsap.quickTo(card, "rotationX", { duration: 0.45, ease: "power2.out" });
+            const rotateYTo = gsap.quickTo(card, "rotationY", { duration: 0.45, ease: "power2.out" });
             const yTo = gsap.quickTo(card, "y", { duration: 0.45, ease: "power2.out" });
 
             card.addEventListener("pointerenter", () => {
@@ -221,8 +221,8 @@ export const initCard3DTilt = () => {
             card.prepend(spotlight);
         }
 
-        const rotateXTo = gsap.quickTo(card, "rotateX", { duration: 0.4, ease: "power3.out" });
-        const rotateYTo = gsap.quickTo(card, "rotateY", { duration: 0.4, ease: "power3.out" });
+        const rotateXTo = gsap.quickTo(card, "rotationX", { duration: 0.4, ease: "power3.out" });
+        const rotateYTo = gsap.quickTo(card, "rotationY", { duration: 0.4, ease: "power3.out" });
         const yTo = gsap.quickTo(card, "y", { duration: 0.4, ease: "power3.out" });
 
         card.addEventListener("pointermove", (e) => {
