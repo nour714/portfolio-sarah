@@ -2,23 +2,18 @@
 body.light-mode {
     --bg-radial-b: rgba(124, 58, 237, 0.08);
     --hero-role-shadow: rgba(124, 58, 237, 0.15);
-    --cursor-color: #7c3aed;
     --hero-surface: linear-gradient(90deg, rgba(248, 250, 252, 0.92) 0%, rgba(248, 250, 252, 0.72) 58%, rgba(248, 250, 252, 0.18) 100%);
     --hero-avatar-glow: rgba(124, 58, 237, 0.2);
     --hero-avatar-ring: rgba(167, 139, 250, 0.55);
     --hero-avatar-orbit: rgba(124, 58, 237, 0.5);
     --hero-avatar-core-border: rgba(167, 139, 250, 0.7);
     --hero-avatar-core-shadow: rgba(124, 58, 237, 0.2);
-    --canvas-line: 124, 58, 237;
-    --canvas-pointer: 167, 139, 250;
-    --canvas-node: 15, 23, 42;
-    --canvas-node-alpha: 0.45;
 }
 
-/* MacBook macOS Native Cursor Baseline */
+/* Native System Cursor Baseline */
 html,
 body {
-    cursor: var(--cursor-mac-arrow, default);
+    cursor: default;
 }
 
 a,
@@ -34,13 +29,13 @@ select,
 .filter-chip,
 .stat-card,
 [data-magnetic] {
-    cursor: var(--cursor-mac-pointer, pointer);
+    cursor: pointer;
 }
 
 input[type="text"],
 input[type="email"],
 textarea {
-    cursor: var(--cursor-mac-text, text);
+    cursor: text;
 }
 
 .section-divider {
