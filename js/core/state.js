@@ -554,6 +554,7 @@ export const applySocialState = (social) => {
         const label = String(link.getAttribute("aria-label") || "").toLowerCase();
         if (label.includes("github") && social?.github) link.setAttribute("href", social.github);
         if (label.includes("linkedin") && social?.linkedin) link.setAttribute("href", social.linkedin);
+        if (label.includes("whatsapp") && social?.whatsapp) link.setAttribute("href", social.whatsapp);
         if (label.includes("email") && social?.email) link.setAttribute("href", `mailto:${social.email}`);
     });
 };
