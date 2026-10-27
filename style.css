@@ -4,8 +4,8 @@
  * Architecture Layers:
  * 1. Base: CSS Custom Properties, Global Reset, Typography
  * 2. Components: Modular UI component stylesheets
- * 3. Features: Dynamic canvas, custom cursor, scroll effects & intro splash
- * 4. Admin: Studio & CMS dashboard styles
+ * 3. Features: Dynamic canvas, scroll effects & intro splash
+ * (Admin styles are loaded separately in admin.html)
  */
 
 /* 1. Base Layer */
