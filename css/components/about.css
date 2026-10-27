@@ -26,31 +26,29 @@
     grid-template-columns: minmax(300px, 0.72fr) minmax(0, 1.28fr);
     gap: clamp(24px, 4vw, 48px);
     align-items: stretch;
-    border: 1px solid rgba(167, 139, 250, 0.32);
+    border: 1px solid rgba(167, 139, 250, 0.28);
     border-radius: 28px;
     padding: clamp(24px, 3.5vw, 44px);
     background:
-        radial-gradient(circle at 16% 0%, rgba(167, 139, 250, 0.18), transparent 42%),
-        radial-gradient(circle at 92% 100%, rgba(139, 92, 246, 0.16), transparent 46%),
-        linear-gradient(145deg, rgba(16, 18, 34, 0.86), rgba(9, 10, 22, 0.96));
+        radial-gradient(circle at 85% 15%, rgba(167, 139, 250, 0.08), transparent 50%),
+        linear-gradient(152deg, rgba(14, 16, 32, 0.92), rgba(8, 9, 20, 0.97));
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.16),
-        inset 0 0 0 1px rgba(167, 139, 250, 0.18),
-        var(--tilt-shadow-x, 0px) var(--tilt-shadow-y, 30px) 70px -15px rgba(0, 0, 0, 0.8),
-        0 0 50px rgba(167, 139, 250, 0.16);
-    overflow: hidden;
-    isolation: isolate;
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        var(--tilt-shadow-x, 0px) var(--tilt-shadow-y, 25px) 60px -15px rgba(0, 0, 0, 0.8),
+        0 0 35px rgba(167, 139, 250, 0.12);
     transform-style: preserve-3d;
-    transition: border-color 0.35s ease;
+    will-change: transform;
+    transition: border-color 0.35s ease, box-shadow 0.35s ease;
 }
 
 .about-panel:hover {
-    border-color: rgba(167, 139, 250, 0.6);
+    border-color: rgba(167, 139, 250, 0.55);
     box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.24),
-        inset 0 0 0 1px rgba(167, 139, 250, 0.4),
-        var(--tilt-shadow-x, 0px) var(--tilt-shadow-y, 40px) 90px -18px rgba(0, 0, 0, 0.9),
-        0 0 75px rgba(167, 139, 250, 0.28);
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        var(--tilt-shadow-x, 0px) var(--tilt-shadow-y, 35px) 80px -15px rgba(0, 0, 0, 0.9),
+        0 0 45px rgba(167, 139, 250, 0.22);
 }
 
 .about-panel .card-spotlight {
@@ -58,13 +56,14 @@
     inset: 0;
     border-radius: inherit;
     pointer-events: none;
-    z-index: 2;
+    z-index: 1;
+    overflow: hidden;
     opacity: 0;
     transition: opacity 0.35s ease;
     background: radial-gradient(
         580px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-        rgba(167, 139, 250, 0.3),
-        rgba(139, 92, 246, 0.12) 40%,
+        rgba(167, 139, 250, 0.18),
+        rgba(139, 92, 246, 0.08) 40%,
         transparent 70%
     );
 }
@@ -79,25 +78,30 @@
     inset: -1px;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(132deg, rgba(167, 139, 250, 0.44), rgba(124, 58, 237, 0.2), rgba(139, 92, 246, 0.36));
+    background: linear-gradient(132deg, rgba(167, 139, 250, 0.35), rgba(124, 58, 237, 0.15), rgba(139, 92, 246, 0.25));
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask-composite: exclude;
-    opacity: 0.8;
+    opacity: 0.6;
     pointer-events: none;
+    transition: opacity 0.35s ease;
 }
 
-.about-panel::after {
+.about-panel:hover::before {
+    opacity: 1;
+}
+
+.about-panel .card-spotlight::after {
     content: "";
     position: absolute;
     top: 0;
     left: -45%;
     width: 44%;
     height: 100%;
-    background: linear-gradient(118deg, rgba(255, 255, 255, 0.36), rgba(255, 255, 255, 0.04) 48%, rgba(255, 255, 255, 0.28));
+    background: linear-gradient(118deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.02) 48%, rgba(255, 255, 255, 0.1));
     transform: skewX(-20deg);
-    animation: aboutSweep 8.2s ease-in-out infinite;
+    animation: aboutSweep 9.2s ease-in-out infinite;
     pointer-events: none;
 }
 
@@ -117,7 +121,9 @@
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 12px;
-    transform: translateZ(8px);
+    margin-bottom: 8px;
+    transform-style: preserve-3d;
+    transform: translateZ(10px);
 }
 
 .about-status {
@@ -162,13 +168,19 @@
     color: var(--text-main);
 }
 
+.about-panel h2:empty {
+    display: none;
+    margin: 0;
+}
+
 .about-copy {
-    margin-top: clamp(56px, 7.5vw, 98px);
+    margin-top: clamp(34px, 4.4vw, 54px);
     margin-bottom: clamp(16px, 2vw, 28px);
     font-size: clamp(0.98rem, 1.15vw, 1.08rem);
     line-height: 1.78;
     color: var(--text-soft);
     max-width: 66ch;
+    transform-style: preserve-3d;
     transform: translateZ(16px);
 }
 
@@ -224,13 +236,13 @@
    ============================================= */
 .about-groups {
     margin-top: auto;
-    padding-top: clamp(28px, 4vw, 48px);
+    padding-top: clamp(22px, 3.2vw, 38px);
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 12px;
     align-items: stretch;
     transform-style: preserve-3d;
-    transform: translateZ(28px);
+    transform: translateZ(24px);
 }
 
 .about-group-card {
@@ -238,17 +250,24 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border: 1px solid rgba(167, 139, 250, 0.24);
+    border: 1px solid rgba(167, 139, 250, 0.22);
     border-radius: 14px;
     padding: 13px 12px 11px;
-    background: linear-gradient(145deg, rgba(16, 18, 34, 0.82), rgba(9, 10, 22, 0.94));
+    background: rgba(14, 16, 32, 0.78);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 0.08),
         0 8px 22px -4px rgba(0, 0, 0, 0.5);
-    transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    transition:
+        transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.3s ease,
+        box-shadow 0.35s ease,
+        background 0.3s ease;
     overflow: hidden;
     transform-style: preserve-3d;
-    will-change: transform;
+    will-change: transform, box-shadow;
+    cursor: default;
 }
 
 .about-group-card::before {
@@ -259,7 +278,7 @@
     right: 0;
     height: 2px;
     opacity: 0.75;
-    transition: opacity 0.22s ease;
+    transition: opacity 0.3s ease, height 0.3s ease, box-shadow 0.3s ease;
 }
 
 .about-group-card--edu::before {
@@ -275,15 +294,43 @@
 }
 
 .about-group-card:hover {
-    border-color: rgba(167, 139, 250, 0.6);
+    transform: translateY(-6px) translateZ(16px) scale(1.02);
+    border-color: rgba(167, 139, 250, 0.65);
+    background: rgba(22, 26, 52, 0.92);
     box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.16),
-        0 16px 32px -4px rgba(0, 0, 0, 0.7),
-        0 0 24px rgba(167, 139, 250, 0.28);
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 18px 36px -4px rgba(0, 0, 0, 0.7),
+        0 0 24px rgba(167, 139, 250, 0.25);
 }
 
 .about-group-card:hover::before {
     opacity: 1;
+    height: 3px;
+    box-shadow: 0 0 12px currentColor;
+}
+
+.about-group-card .card-spotlight {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    background: radial-gradient(
+        220px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(167, 139, 250, 0.22),
+        transparent 70%
+    );
+}
+
+.about-group-card:hover .card-spotlight {
+    opacity: 1;
+}
+
+.about-group-card:hover .about-group-icon {
+    transform: scale(1.15) rotate(6deg);
+    box-shadow: 0 0 14px rgba(167, 139, 250, 0.45);
 }
 
 .about-group-header {
@@ -301,6 +348,7 @@
     height: 24px;
     border-radius: 7px;
     flex-shrink: 0;
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
 }
 
 .about-group-icon--edu {
@@ -406,6 +454,20 @@
     border-radius: 50%;
     background: #a78bfa;
     box-shadow: 0 0 6px #a78bfa;
+    animation: pillDotPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes pillDotPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.85;
+        box-shadow: 0 0 6px #a78bfa;
+    }
+    50% {
+        transform: scale(1.3);
+        opacity: 1;
+        box-shadow: 0 0 12px #a78bfa, 0 0 18px rgba(167, 139, 250, 0.6);
+    }
 }
 
 .about-group-list {
@@ -452,7 +514,6 @@
     align-self: stretch;
     min-height: 480px;
     padding-top: 24px;
-    isolation: isolate;
     perspective: 1100px;
     transform-style: preserve-3d;
     transform: translateZ(24px);
@@ -462,16 +523,21 @@
     position: absolute;
     inset: 8% 4% 0 4%;
     border-radius: 24px 24px 0 0;
-    background: radial-gradient(circle at 50% 30%, rgba(167, 139, 250, 0.18), rgba(139, 92, 246, 0.06) 64%, transparent 85%);
-    border: 1px solid rgba(167, 139, 250, 0.25);
+    background: radial-gradient(circle at 50% 30%, rgba(167, 139, 250, 0.12), rgba(12, 14, 28, 0.65) 64%, rgba(8, 9, 20, 0.85) 100%);
+    border: 1px solid rgba(167, 139, 250, 0.22);
     border-bottom: none;
     box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
         0 16px 36px rgba(0, 0, 0, 0.45);
     pointer-events: none;
     z-index: 0;
     will-change: transform;
-    transform: translateZ(-10px);
+    transform: translateZ(-12px);
+    transition: border-color 0.35s ease;
+}
+
+.about-panel:hover .about-visual-backdrop {
+    border-color: rgba(167, 139, 250, 0.4);
 }
 
 .about-visual-glow {
@@ -482,7 +548,7 @@
     left: 50%;
     transform: translate(-50%, -25%) translateZ(-18px);
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(167, 139, 250, 0.38) 0%, rgba(139, 92, 246, 0.2) 45%, transparent 70%);
+    background: radial-gradient(circle, rgba(167, 139, 250, 0.28) 0%, rgba(139, 92, 246, 0.12) 45%, transparent 70%);
     filter: blur(36px);
     z-index: 0;
     pointer-events: none;
@@ -505,7 +571,7 @@
     height: 100%;
     will-change: transform;
     transform-style: preserve-3d;
-    transform: translateZ(32px);
+    transform: translateZ(28px);
 }
 
 .about-layer {
@@ -521,12 +587,14 @@
 .about-layer-robot {
     position: relative;
     z-index: 1;
+    transform: translateZ(14px);
 }
 
 .about-layer-sarah {
     position: absolute;
     inset: 0;
     z-index: 2;
+    transform: translateZ(32px);
 }
 
 .about-image {
@@ -547,23 +615,19 @@
 }
 
 body.light-mode .about-panel {
-    border-color: rgba(226, 232, 240, 0.9);
-    background:
-        radial-gradient(circle at 16% 0%, rgba(167, 139, 250, 0.12), transparent 42%),
-        radial-gradient(circle at 92% 100%, rgba(124, 58, 237, 0.08), transparent 46%),
-        linear-gradient(145deg, #ffffff, rgba(248, 250, 252, 0.95));
+    border-color: rgba(226, 232, 240, 0.95);
+    background: #ffffff;
     box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 0.95),
-        0 20px 48px rgba(15, 23, 42, 0.08),
-        0 0 28px rgba(124, 58, 237, 0.06);
+        0 16px 40px rgba(15, 23, 42, 0.06);
 }
 
 body.light-mode .about-panel:hover {
     border-color: rgba(167, 139, 250, 0.5);
     box-shadow:
         inset 0 1px 0 #ffffff,
-        0 28px 60px rgba(15, 23, 42, 0.12),
-        0 0 36px rgba(124, 58, 237, 0.12);
+        0 24px 50px rgba(15, 23, 42, 0.1),
+        0 0 24px rgba(124, 58, 237, 0.1);
 }
 
 body.light-mode .about-panel .card-spotlight {
@@ -628,7 +692,8 @@ body.light-mode .about-group-card {
 
 body.light-mode .about-group-card:hover {
     border-color: rgba(167, 139, 250, 0.45);
-    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.1);
+    background: #faf5ff;
+    box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08), 0 0 20px rgba(124, 58, 237, 0.1);
 }
 
 body.light-mode .about-group-title,
