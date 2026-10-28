@@ -1,12 +1,13 @@
 /**
  * Contact Form Module
  * Clean Architecture - Presentation / UI Layer
- * Submits directly to Firestore REST API with automatic mailto fallback
  */
 
 import { showToast } from "../services/toast.service.js";
 
-const FIRESTORE_ENDPOINT = "https://firestore.googleapis.com/v1/projects/portfolio-9a88b/databases/default/documents/messages?key=AIzaSyA2Y3RuOABffeNJmWfg_uBGqF3chsaTwfQ";
+// Formspree or Web3Forms submission endpoint placeholder
+// Replace with your real endpoint (e.g. https://formspree.io/f/XXXXXXXX)
+export const FORM_ENDPOINT = "https://formspree.io/f/XXXXXXXX";
 
 export const initContactFormFallback = () => {
     const contactForm = document.getElementById("contact-form");
@@ -47,19 +48,18 @@ export const initContactFormFallback = () => {
         }
 
         try {
-            const response = await fetch(FIRESTORE_ENDPOINT, {
+            const response = await fetch(FORM_ENDPOINT, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
                 },
                 body: JSON.stringify({
-                    fields: {
-                        name: { stringValue: name },
-                        email: { stringValue: email },
-                        projectType: { stringValue: projectType || "General" },
-                        message: { stringValue: message },
-                        createdAt: { stringValue: new Date().toISOString() }
-                    }
+                    name,
+                    email,
+                    inquiryType: projectType || "General",
+                    project_type: projectType || "General",
+                    message
                 })
             });
 
@@ -82,12 +82,12 @@ export const initContactFormFallback = () => {
                 }
             }, 6000);
         } catch (_err) {
-            const fallbackMsg = "Redirecting to your email app with your message ready to send...";
+            const fallbackMsg = "Unable to send message via form service. Opening your email app as fallback...";
             if (statusNote) {
                 statusNote.textContent = fallbackMsg;
                 statusNote.style.color = "var(--brand-accent, #38bdf8)";
             }
-            showToast("Opening email app to send message...");
+            showToast("Opening email app as fallback...");
 
             const subject = encodeURIComponent(`Inquiry: ${projectType || "General"} - ${name}`);
             const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nInquiry Type: ${projectType}\n\nMessage:\n${message}`);

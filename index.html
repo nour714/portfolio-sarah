@@ -42,7 +42,9 @@
     <script>
         (function() {
             var isMobile = (window.innerWidth <= 768) || (window.matchMedia && window.matchMedia("(max-width: 768px)").matches) || (window.matchMedia && window.matchMedia("(max-height: 500px) and (orientation: landscape) and (pointer: coarse)").matches);
-            if (isMobile) {
+            var isSaveData = Boolean(navigator.connection && navigator.connection.saveData);
+            var prefersReducedMotion = Boolean(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+            if (isMobile || isSaveData || prefersReducedMotion) {
                 document.body.classList.remove("is-video-intro-active");
                 document.body.classList.add("is-hero-assembled", "video-fallback-active");
             }
@@ -95,8 +97,8 @@
         <section class="hero" id="hero">
             <!-- Cinematic Video Backdrop & Stage -->
             <div class="hero-video-stage" id="hero-video-stage" aria-hidden="true">
-                <video id="hero-intro-video" class="hero-intro-video" playsinline preload="auto" muted poster="images/hero-video-poster.webp">
-                    <source src="gemini_generated_video_8cc9ee73.mp4" type="video/mp4">
+                <video id="hero-intro-video" class="hero-intro-video" playsinline preload="metadata" muted poster="images/hero-video-poster.webp">
+
                 </video>
                 <div class="hero-video-scrim" id="hero-video-scrim"></div>
                 <div class="hero-video-vignette"></div>
@@ -120,6 +122,13 @@
                             <div class="hero-actions">
                                 <a href="/cv" class="hero-btn">View Resume</a>
                                 <a href="#projects" class="hero-btn hero-btn-secondary">View Projects</a>
+                                <button type="button" id="hero-replay-btn" class="hero-hud-btn hero-replay-btn" aria-label="Replay intro video" title="Replay intro video">
+                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <polyline points="1 4 1 10 7 10"></polyline>
+                                        <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                                    </svg>
+                                    <span>Replay intro</span>
+                                </button>
                             </div>
                         </div>
                     </div>
