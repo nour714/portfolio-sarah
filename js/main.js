@@ -28,6 +28,20 @@ import {
 import { initContactFormFallback } from "./modules/contact.js";
 
 const boot = () => {
+    // 0. Clean up legacy service workers if present
+    if (typeof window !== "undefined" && "serviceWorker" in navigator) {
+        try {
+            navigator.serviceWorker.getRegistrations()
+                .then((registrations) => {
+                    for (const registration of registrations) {
+                        registration.unregister().catch(() => {});
+                    }
+                })
+                .catch(() => {});
+        } catch {
+            // Guarded against sandboxed or restricted environment errors
+        }
+    }
     // 1. Data-Driven Hydration (Render from portfolioData)
     safelyInit(() => applyAdminState(portfolioData));
 

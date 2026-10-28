@@ -1,6 +1,10 @@
 /**
- * Service Worker Lifecycle & Cache Handler
- * Self-cleans old worker registrations and ensures fresh asset delivery
+ * Service Worker Lifecycle & Cleanup Handler
+ * -------------------------------------------------------------
+ * NOTE: This service worker is NOT actively registered by this application.
+ * It is preserved strictly as a cleanup worker for any legacy registrations
+ * previously installed in returning visitors' browsers, ensuring stale caches
+ * are evicted and clients are released.
  */
 self.addEventListener("install", () => {
     self.skipWaiting();
@@ -13,4 +17,3 @@ self.addEventListener("activate", (event) => {
         }).then(() => self.clients.claim())
     );
 });
-
