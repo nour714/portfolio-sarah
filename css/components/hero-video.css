@@ -80,21 +80,84 @@ body.is-hero-assembled .hero-video-scrim {
     z-index: 2;
 }
 
-/* 3. Initial Intro State Management */
-body.is-video-intro-active {
-    overflow: hidden !important;
+/* 3. Initial Intro State Management (Desktop Only) */
+@media (min-width: 769px) {
+    body.is-video-intro-active {
+        overflow: hidden !important;
+    }
+
+    body.is-video-intro-active .site-header {
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-30px);
+    }
+
+    body.is-video-intro-active .hero-content {
+        opacity: 0;
+        pointer-events: none;
+        visibility: hidden;
+    }
+
+    body.is-video-intro-active .hero-portrait-fallback {
+        display: none !important;
+    }
 }
 
-body.is-video-intro-active .site-header {
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(-30px);
-}
+/* Mobile Screen Protection: Keep the stunning background stage, but disable intro waiting & HUD */
+@media (max-width: 768px), (max-height: 500px) and (orientation: landscape) and (pointer: coarse) {
+    body.is-video-intro-active {
+        overflow: auto;
+    }
 
-body.is-video-intro-active .hero-content {
-    opacity: 0;
-    pointer-events: none;
-    visibility: hidden;
+    /* Keep background stage active and visible with crisp AI laboratory backdrop */
+    .hero-video-stage {
+        display: block !important;
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 0;
+        background: #080b12 url('../../images/hero-mobile-backdrop.webp') center 30% / cover no-repeat !important;
+    }
+
+    .hero-intro-video {
+        display: block !important;
+        object-fit: cover !important;
+        object-position: center 30% !important;
+    }
+
+    .hero-video-scrim {
+        opacity: 1 !important;
+        background:
+            radial-gradient(
+                circle at 50% 32%,
+                rgba(8, 11, 18, 0.28) 0%,
+                rgba(8, 11, 18, 0.65) 60%,
+                rgba(8, 11, 18, 0.94) 100%
+            ),
+            linear-gradient(
+                180deg,
+                rgba(8, 11, 18, 0.78) 0%,
+                rgba(8, 11, 18, 0.42) 25%,
+                rgba(8, 11, 18, 0.76) 72%,
+                rgba(8, 11, 18, 0.98) 100%
+            ) !important;
+    }
+
+    .hero-video-vignette {
+        display: block !important;
+    }
+
+    /* Only hide the intro HUD controls (Skip Intro / Sound On) on mobile */
+    .hero-intro-hud,
+    #hero-intro-hud {
+        display: none !important;
+    }
+
+    .hero-portrait-fallback {
+        display: flex !important;
+    }
 }
 
 /* 4. Cinematic Intro Controls HUD (Active while video plays) */
@@ -391,8 +454,10 @@ body.is-hero-assembled .hero-telemetry-cluster {
     display: flex;
 }
 
-body.is-video-intro-active .hero-portrait-fallback {
-    display: none !important;
+@media (min-width: 769px) {
+    body.is-video-intro-active .hero-portrait-fallback {
+        display: none !important;
+    }
 }
 
 body.is-hero-assembled .hero-portrait-fallback,
