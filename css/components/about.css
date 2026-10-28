@@ -38,6 +38,7 @@
         inset 0 1px 0 rgba(255, 255, 255, 0.12),
         var(--tilt-shadow-x, 0px) var(--tilt-shadow-y, 25px) 60px -15px rgba(0, 0, 0, 0.8),
         0 0 35px rgba(167, 139, 250, 0.12);
+    overflow: hidden;
     transform-style: preserve-3d;
     will-change: transform;
     transition: border-color 0.35s ease, box-shadow 0.35s ease;
@@ -294,13 +295,13 @@
 }
 
 .about-group-card:hover {
-    transform: translateY(-6px) translateZ(16px) scale(1.02);
+    transform: translateY(-4px) scale(1.02);
     border-color: rgba(167, 139, 250, 0.65);
     background: rgba(22, 26, 52, 0.92);
     box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 0.2),
-        0 18px 36px -4px rgba(0, 0, 0, 0.7),
-        0 0 24px rgba(167, 139, 250, 0.25);
+        0 14px 28px -4px rgba(0, 0, 0, 0.7),
+        0 0 20px rgba(167, 139, 250, 0.25);
 }
 
 .about-group-card:hover::before {
@@ -519,6 +520,18 @@
     transform: translateZ(24px);
 }
 
+.about-visual::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent 0%, rgba(10, 11, 24, 0.65) 50%, rgba(8, 9, 20, 0.98) 100%);
+    pointer-events: none;
+    z-index: 4;
+}
+
 .about-visual-backdrop {
     position: absolute;
     inset: 8% 4% 0 4%;
@@ -572,6 +585,8 @@
     will-change: transform;
     transform-style: preserve-3d;
     transform: translateZ(28px);
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 70%, rgba(0, 0, 0, 0.75) 82%, rgba(0, 0, 0, 0.15) 94%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 0%, #000 70%, rgba(0, 0, 0, 0.75) 82%, rgba(0, 0, 0, 0.15) 94%, transparent 100%);
 }
 
 .about-layer {
@@ -662,6 +677,10 @@ body.light-mode .about-visual-backdrop {
 
 body.light-mode .about-visual-glow {
     background: radial-gradient(circle, rgba(167, 139, 250, 0.22) 0%, rgba(124, 58, 237, 0.1) 45%, transparent 70%);
+}
+
+body.light-mode .about-visual::after {
+    background: linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.65) 50%, #ffffff 100%);
 }
 
 body.light-mode .about-image {
