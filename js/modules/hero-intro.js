@@ -6,16 +6,6 @@
 import { getMediaMatch } from "../core/utils.js";
 
 /**
- * Format raw seconds as MM:SS display string
- */
-const formatTime = (seconds) => {
-    if (isNaN(seconds) || seconds < 0) return "00:00";
-    const mins = Math.floor(seconds / 60);
-    const secs = Math.floor(seconds % 60);
-    return `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
-};
-
-/**
  * Initializes the Cinematic Video Intro and Hero Assembly Orchestration
  */
 export const initHeroIntro = () => {
@@ -227,21 +217,36 @@ export const initHeroIntro = () => {
             { y: 0, autoAlpha: 1, duration: 0.85, ease: "power3.out" },
             0.46
         )
-        // 7. Social Links staggered spring pop
-        .fromTo(
-            ".hero-social-link",
-            { y: 20, autoAlpha: 0, scale: 0.75 },
-            { y: 0, autoAlpha: 1, scale: 1, duration: 0.68, stagger: 0.08, ease: "back.out(2)", clearProps: "transform" },
-            0.56
-        )
-        // 8. CTA Action Buttons
+        // 7. CTA Action Buttons
         .fromTo(
             ".hero-actions .hero-btn",
             { y: 24, autoAlpha: 0, scale: 0.94 },
             { y: 0, autoAlpha: 1, scale: 1, duration: 0.78, stagger: 0.1, ease: "power3.out" },
-            0.64
+            0.56
         )
-        // 9. The android glides in from the side and resolves into focus
+        // 8. Cybernetic Orbit Rings Expansion
+        .fromTo(
+            ".hero-orbit-stage",
+            { scale: 0.8, autoAlpha: 0 },
+            { scale: 1, autoAlpha: 1, duration: 1.2, ease: "power3.out", clearProps: "transform" },
+            0.22
+        )
+        // 9. Floating Social Orbit Badges Bloom around Character
+        .fromTo(
+            ".hero-orbit-item",
+            { scale: 0, autoAlpha: 0, filter: "blur(12px)" },
+            {
+                scale: 1,
+                autoAlpha: 1,
+                filter: "blur(0px)",
+                duration: 0.88,
+                stagger: 0.14,
+                ease: "back.out(2)",
+                clearProps: "transform,filter"
+            },
+            0.38
+        )
+        // 10. The android glides in from the side and resolves into focus
         .fromTo(
             ".hero-portrait-frame",
             {
