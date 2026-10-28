@@ -7,7 +7,7 @@ import { THEME_STORAGE_KEY } from "./core/constants.js";
 
 const applyPreferredTheme = () => {
     try {
-        const savedTheme = localStorage.getItem(THEME_STORAGE_KEY) || localStorage.getItem("preferred-theme");
+        const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
         if (savedTheme === "light") {
             document.body.classList.add("light-mode");
         } else {
