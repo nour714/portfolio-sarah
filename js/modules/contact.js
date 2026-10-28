@@ -11,7 +11,6 @@ export const initContactFormFallback = () => {
     if (!contactForm) return;
 
     contactForm.addEventListener("submit", (e) => {
-        if (window.FirebaseAdminAPI) return; // If Firebase is ever active, let it handle
         e.preventDefault();
         const formData = new FormData(contactForm);
         const name = (formData.get("name") || "").toString().trim();
@@ -25,7 +24,7 @@ export const initContactFormFallback = () => {
         window.location.href = `mailto:sarahhnabil71@gmail.com?subject=${subject}&body=${body}`;
 
         if (statusNote) {
-            statusNote.textContent = "Redirecting to your email client to send your message...";
+            statusNote.textContent = "Opening your email app with your message ready to send...";
             statusNote.style.color = "var(--brand-light, #a78bfa)";
         }
         showToast("Opening email client to send message...");
