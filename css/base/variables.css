@@ -15,6 +15,7 @@
     --accent-violet: #8b5cf6;
     --accent-purple: #a855f7;
     --accent-indigo: #818cf8;
+    --border-soft: rgba(167, 139, 250, 0.18);
     --nav-bg: rgba(7, 7, 16, 0.78);
     --nav-border: rgba(167, 139, 250, 0.28);
     --nav-glass-streak: linear-gradient(115deg, rgba(255, 255, 255, 0.26) 0%, rgba(255, 255, 255, 0.08) 38%, rgba(255, 255, 255, 0.02) 62%, rgba(255, 255, 255, 0.16) 100%);
@@ -137,6 +138,7 @@ body.light-mode {
     --accent-cyan: #a78bfa;
     --accent-sky: #7c3aed;
     --accent-violet: #6d28d9;
+    --border-soft: rgba(226, 232, 240, 0.85);
     --nav-bg: rgba(255, 255, 255, 0.88);
     --nav-border: rgba(226, 232, 240, 0.9);
     --nav-glass-streak: linear-gradient(115deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.25) 42%, rgba(255, 255, 255, 0.08) 68%, rgba(255, 255, 255, 0.35) 100%);

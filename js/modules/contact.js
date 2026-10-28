@@ -1,13 +1,12 @@
 /**
  * Contact Form Module
  * Clean Architecture - Presentation / UI Layer
+ * Submits directly to Firestore REST API with automatic mailto fallback
  */
 
 import { showToast } from "../services/toast.service.js";
 
-// Placeholder for Formspree or Web3Forms submission endpoint
-// Replace with your real endpoint (e.g., https://formspree.io/f/your_form_id)
-export const FORM_ENDPOINT = "https://formspree.io/f/XXXXXXXX";
+const FIRESTORE_ENDPOINT = "https://firestore.googleapis.com/v1/projects/portfolio-9a88b/databases/default/documents/messages?key=AIzaSyA2Y3RuOABffeNJmWfg_uBGqF3chsaTwfQ";
 
 export const initContactFormFallback = () => {
     const contactForm = document.getElementById("contact-form");
@@ -44,22 +43,23 @@ export const initContactFormFallback = () => {
 
         if (statusNote) {
             statusNote.textContent = "Sending your message...";
-            statusNote.style.color = "";
+            statusNote.style.color = "var(--brand-light, #a78bfa)";
         }
 
         try {
-            const response = await fetch(FORM_ENDPOINT, {
+            const response = await fetch(FIRESTORE_ENDPOINT, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
+                    "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    name,
-                    email,
-                    inquiryType: projectType,
-                    project_type: projectType,
-                    message
+                    fields: {
+                        name: { stringValue: name },
+                        email: { stringValue: email },
+                        projectType: { stringValue: projectType || "General" },
+                        message: { stringValue: message },
+                        createdAt: { stringValue: new Date().toISOString() }
+                    }
                 })
             });
 
@@ -74,13 +74,20 @@ export const initContactFormFallback = () => {
                 statusNote.style.color = "var(--brand-accent, #38bdf8)";
             }
             showToast("Message sent successfully!");
-        } catch (err) {
-            const fallbackMsg = "Unable to send message via form service. Opening your email app as fallback...";
+
+            setTimeout(() => {
+                if (statusNote && statusNote.textContent === successMsg) {
+                    statusNote.textContent = "Your message will be delivered to Sarah's inbox.";
+                    statusNote.style.color = "";
+                }
+            }, 6000);
+        } catch (_err) {
+            const fallbackMsg = "Redirecting to your email app with your message ready to send...";
             if (statusNote) {
                 statusNote.textContent = fallbackMsg;
                 statusNote.style.color = "var(--brand-accent, #38bdf8)";
             }
-            showToast("Opening email app as fallback...");
+            showToast("Opening email app to send message...");
 
             const subject = encodeURIComponent(`Inquiry: ${projectType || "General"} - ${name}`);
             const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nInquiry Type: ${projectType}\n\nMessage:\n${message}`);

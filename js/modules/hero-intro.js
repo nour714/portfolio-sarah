@@ -16,16 +16,59 @@ export const initHeroIntro = () => {
         return;
     }
 
-    // Completely disable Cinematic Video Intro sequence on mobile devices
+    // Conditions where video intro should be skipped entirely
     const isMobile =
         getMediaMatch("(max-width: 768px)") ||
         window.innerWidth <= 768 ||
         (getMediaMatch("(max-height: 500px) and (orientation: landscape)") && getMediaMatch("(pointer: coarse)"));
 
+    const isSaveData = Boolean(typeof navigator !== "undefined" && navigator.connection?.saveData);
     const reduceMotion = getMediaMatch("(prefers-reduced-motion: reduce)");
+    const shouldSkipVideo = isMobile || isSaveData || reduceMotion;
+
     let isAssembled = false;
     let isMuted = true;
     let autoAssembleTimeout = null;
+
+    /**
+     * User scroll intent listeners — any scroll wheel, touch, or navigation key
+     * counts as "skip intro" on desktop without locking page scroll.
+     */
+    const scrollKeys = new Set(["ArrowDown", "ArrowUp", "PageDown", "PageUp", "Space", " ", "Home", "End"]);
+
+    const onScrollIntent = (e) => {
+        if (isAssembled) return;
+        if (e.type === "keydown" && !scrollKeys.has(e.key)) {
+            return;
+        }
+        assembleHero();
+    };
+
+    const addScrollIntentListeners = () => {
+        window.addEventListener("wheel", onScrollIntent, { passive: true });
+        window.addEventListener("touchmove", onScrollIntent, { passive: true });
+        window.addEventListener("keydown", onScrollIntent, { passive: true });
+    };
+
+    const removeScrollIntentListeners = () => {
+        window.removeEventListener("wheel", onScrollIntent);
+        window.removeEventListener("touchmove", onScrollIntent);
+        window.removeEventListener("keydown", onScrollIntent);
+    };
+
+    /**
+     * Lazily attaches video source only when desktop intro actually starts
+     */
+    const ensureVideoSource = () => {
+        if (!video) return;
+        if (!video.src && !video.querySelector("source")) {
+            const source = document.createElement("source");
+            source.src = "gemini_generated_video_8cc9ee73.mp4";
+            source.type = "video/mp4";
+            video.appendChild(source);
+            video.load();
+        }
+    };
 
     /**
      * Assembles all Home Page data and components onto the video stage
@@ -34,7 +77,11 @@ export const initHeroIntro = () => {
     const assembleHero = ({ instant = false } = {}) => {
         if (isAssembled) return;
         isAssembled = true;
-        if (autoAssembleTimeout) clearTimeout(autoAssembleTimeout);
+        if (autoAssembleTimeout) {
+            clearTimeout(autoAssembleTimeout);
+            autoAssembleTimeout = null;
+        }
+        removeScrollIntentListeners();
 
         // Keep video settled at its final cinematic frame
         try {
@@ -51,7 +98,7 @@ export const initHeroIntro = () => {
         document.body.classList.add("is-hero-assembled");
         document.body.classList.add("is-hero-assembling");
 
-        // Unlock Lenis smooth scrolling and viewport scroll
+        // Ensure Lenis smooth scrolling and viewport scroll are active
         if (window.__lenis) {
             window.__lenis.start();
         }
@@ -194,32 +241,21 @@ export const initHeroIntro = () => {
         );
     };
 
-    // Mobile Execution: Assemble immediately without intro HUD, waiting delays, or scroll lock
-    if (isMobile) {
+    // Mobile / SaveData / Reduced Motion Execution:
+    // Do not download the video; use backdrop image/poster and assemble immediately
+    if (shouldSkipVideo) {
         document.body.classList.remove("is-video-intro-active");
         document.body.classList.add("video-fallback-active");
 
         if (video) {
             try {
                 video.pause();
+                video.removeAttribute("src");
                 video.poster = "images/hero-mobile-backdrop.webp";
-                if (video.duration) {
-                    video.currentTime = Math.max(0, video.duration - 0.05);
-                } else {
-                    video.addEventListener(
-                        "loadedmetadata",
-                        () => {
-                            try {
-                                video.currentTime = Math.max(0, video.duration - 0.05);
-                            } catch (_) {}
-                        },
-                        { once: true }
-                    );
-                }
             } catch (_) {}
         }
 
-        assembleHero();
+        assembleHero({ instant: true });
         return;
     }
 
@@ -239,6 +275,8 @@ export const initHeroIntro = () => {
         hud.id = "hero-intro-hud";
         hud.setAttribute("role", "region");
         hud.setAttribute("aria-label", "Intro Video Controls");
+        hud.style.opacity = "1";
+        hud.style.visibility = "visible";
         hud.innerHTML = `
             <div class="hero-intro-hud-top">
                 <div class="hero-intro-hud-actions">
@@ -270,6 +308,9 @@ export const initHeroIntro = () => {
             </div>
         `;
         hero.appendChild(hud);
+    } else {
+        hud.style.opacity = "1";
+        hud.style.visibility = "visible";
     }
 
     const soundBtn = document.getElementById("hero-hud-sound-btn");
@@ -340,20 +381,17 @@ export const initHeroIntro = () => {
      * Replay Cinematic Intro sequence from start
      */
     const replayIntro = (e) => {
-        if (getMediaMatch("(max-width: 768px)") || window.innerWidth <= 768) return;
+        if (getMediaMatch("(max-width: 768px)") || window.innerWidth <= 768 || shouldSkipVideo) return;
         e?.stopPropagation?.();
         isAssembled = false;
 
-        // Lock Lenis scroll and viewport
-        if (window.__lenis) {
-            window.__lenis.stop();
-            window.__lenis.scrollTo(0, { immediate: true });
-        }
         window.scrollTo({ top: 0, behavior: "smooth" });
-        document.documentElement.style.overflow = "hidden";
 
         document.body.classList.remove("is-hero-assembled");
         document.body.classList.add("is-video-intro-active");
+
+        addScrollIntentListeners();
+        ensureVideoSource();
 
         const gsap = window.gsap;
         if (gsap) {
@@ -365,7 +403,10 @@ export const initHeroIntro = () => {
                 onComplete: () => {
                     video.currentTime = 0;
                     video.play().catch(() => {});
-                    gsap.to(hud, { autoAlpha: 1, duration: 0.4 });
+                    if (hud) {
+                        hud.style.visibility = "visible";
+                        gsap.to(hud, { autoAlpha: 1, duration: 0.3 });
+                    }
                 }
             });
         } else {
@@ -391,29 +432,34 @@ export const initHeroIntro = () => {
     if (skipBtn) skipBtn.addEventListener("click", skipIntro);
     if (replayBtn) replayBtn.addEventListener("click", replayIntro);
 
-    // Reduced Motion Support
-    if (reduceMotion) {
-        assembleHero({ instant: true });
-        return;
-    }
-
-    // Initialize in Intro Mode for Desktop
+    // Initialize in Intro Mode for Desktop (do not lock page scroll; scroll intent skips)
     document.body.classList.add("is-video-intro-active");
-    if (window.__lenis) {
-        window.__lenis.stop();
-    }
-    document.documentElement.style.overflow = "hidden";
+    addScrollIntentListeners();
 
     video.muted = true;
     isMuted = true;
     updateSoundUI(true);
 
-    // Autoplay failsafe: Ensure hero is assembled if video playback is delayed
+    // Ensure video source is attached for desktop intro playback
+    ensureVideoSource();
+
+    // Autoplay failsafe: If the video has not actually started playing within ~1.5s, assemble immediately
     autoAssembleTimeout = setTimeout(() => {
         if (!isAssembled && (video.paused || video.currentTime === 0)) {
             assembleHero();
         }
-    }, 4500);
+    }, 1500);
+
+    video.addEventListener(
+        "playing",
+        () => {
+            if (autoAssembleTimeout) {
+                clearTimeout(autoAssembleTimeout);
+                autoAssembleTimeout = null;
+            }
+        },
+        { once: true }
+    );
 
     // Autoplay start
     const playPromise = video.play();

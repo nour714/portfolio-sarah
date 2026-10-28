@@ -83,7 +83,7 @@ body.is-hero-assembled .hero-video-scrim {
 /* 3. Initial Intro State Management (Desktop Only) */
 @media (min-width: 769px) {
     body.is-video-intro-active {
-        overflow: hidden !important;
+        /* Do not lock page scroll during intro; user scroll intent skips intro */
     }
 
     body.is-video-intro-active .site-header {
@@ -447,6 +447,23 @@ body.is-hero-assembled .hero-telemetry-cluster {
 .hero-replay-btn:focus-visible {
     outline: 2px solid #a78bfa;
     outline-offset: 2px;
+}
+
+#hero-replay-btn {
+    display: none;
+}
+
+@media (min-width: 769px) {
+    body.is-hero-assembled #hero-replay-btn {
+        display: inline-flex;
+    }
+}
+
+@media (max-width: 768px) {
+    #hero-replay-btn,
+    .hero-replay-btn {
+        display: none !important;
+    }
 }
 
 /* 7. Portrait Fallback Visibility */
