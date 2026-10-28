@@ -204,7 +204,7 @@ export const initCard3DTilt = () => {
     });
 
     // 2. Standard 3D Cards across the rest of the site
-    const CARD_SELECTOR = ".experience-card, .skill-card, .stat-card, .skills-metric, .about-node, .about-group-card";
+    const CARD_SELECTOR = ".experience-card, .skill-card, .stat-card, .skills-metric, .about-node";
     const cards = Array.from(document.querySelectorAll(CARD_SELECTOR));
 
     cards.forEach((card) => {
@@ -250,6 +250,24 @@ export const initCard3DTilt = () => {
             rotateXTo(0);
             rotateYTo(0);
             yTo(0);
+        });
+    });
+
+    // 3. Inner About Highlight Cards (Spotlight tracking & lift without interfering with parent tilt)
+    const aboutGroupCards = Array.from(document.querySelectorAll(".about-group-card"));
+    aboutGroupCards.forEach((card) => {
+        if (!card.querySelector(".card-spotlight")) {
+            const spotlight = document.createElement("div");
+            spotlight.className = "card-spotlight";
+            spotlight.setAttribute("aria-hidden", "true");
+            card.prepend(spotlight);
+        }
+
+        card.addEventListener("pointermove", (e) => {
+            if (e.pointerType === "touch") return;
+            const rect = card.getBoundingClientRect();
+            card.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`);
+            card.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
         });
     });
 
