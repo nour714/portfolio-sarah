@@ -171,6 +171,8 @@ export const initScrollReveal = () => {
         const titleSelectors = [
             "#about-title",
             "#skills-title",
+            "#projects-title",
+            "#certificates-title",
             "#contact-title"
         ];
 
@@ -209,7 +211,7 @@ export const initScrollReveal = () => {
         initContactAssembly();
         initFooterAssembly();
 
-        // Refresh on full load
+        // Refresh on full load, orientation change, or image loads
         const handleRefresh = () => {
             requestAnimationFrame(() => {
                 ScrollTrigger.refresh();
@@ -218,6 +220,15 @@ export const initScrollReveal = () => {
         };
 
         window.addEventListener("load", handleRefresh);
+        window.addEventListener("orientationchange", () => {
+            setTimeout(handleRefresh, 250);
+        });
+
+        document.querySelectorAll("img").forEach((img) => {
+            if (!img.complete) {
+                img.addEventListener("load", handleRefresh, { once: true });
+            }
+        });
     }
 };
 
