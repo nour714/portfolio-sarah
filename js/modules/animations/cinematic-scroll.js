@@ -132,12 +132,12 @@ export const initCinematicScroll = () => {
         aboutTl.fromTo(
             imageTarget,
             {
-                y: 40 * factor,
-                scale: 0.97
+                y: 16 * factor,
+                scale: 0.98
             },
             {
-                y: -35 * factor,
-                scale: 1.025,
+                y: -16 * factor,
+                scale: 1.015,
                 ease: "none"
             },
             0
@@ -148,12 +148,12 @@ export const initCinematicScroll = () => {
             aboutTl.fromTo(
                 aboutBackdrop,
                 {
-                    y: 18 * factor,
+                    y: 10 * factor,
                     scale: 0.98
                 },
                 {
-                    y: -14 * factor,
-                    scale: 1.015,
+                    y: -10 * factor,
+                    scale: 1.01,
                     ease: "none"
                 },
                 0
@@ -165,12 +165,12 @@ export const initCinematicScroll = () => {
             aboutTl.fromTo(
                 aboutGlow,
                 {
-                    scale: 0.82,
+                    scale: 0.85,
                     opacity: 0.4
                 },
                 {
-                    scale: 1.22,
-                    opacity: 0.95,
+                    scale: 1.15,
+                    opacity: 0.9,
                     ease: "sine.inOut"
                 },
                 0
@@ -182,15 +182,18 @@ export const initCinematicScroll = () => {
     // 3. ABOUT PANEL 3D INTERACTIVE TILT & MULTIPLANE PARALLAX
     // -------------------------------------------------------------
     if (aboutPanel) {
-        const panelRotateXTo = gsap.quickTo(aboutPanel, "rotationX", { duration: 0.4, ease: "power2.out" });
-        const panelRotateYTo = gsap.quickTo(aboutPanel, "rotationY", { duration: 0.4, ease: "power2.out" });
-        const panelYTo = gsap.quickTo(aboutPanel, "y", { duration: 0.4, ease: "power2.out" });
+        const aboutShell = document.querySelector(".about-shell") || aboutPanel;
+        const panelRotateXTo = gsap.quickTo(aboutPanel, "rotationX", { duration: 0.45, ease: "power2.out" });
+        const panelRotateYTo = gsap.quickTo(aboutPanel, "rotationY", { duration: 0.45, ease: "power2.out" });
 
-        const visualImageTarget = aboutImageWrap || aboutImage;
-        const imgXTo = visualImageTarget ? gsap.quickTo(visualImageTarget, "x", { duration: 0.45, ease: "power3.out" }) : null;
-        const imgYTo = visualImageTarget ? gsap.quickTo(visualImageTarget, "y", { duration: 0.45, ease: "power3.out" }) : null;
-        const glowXTo = aboutGlow ? gsap.quickTo(aboutGlow, "x", { duration: 0.55, ease: "power2.out" }) : null;
-        const glowYTo = aboutGlow ? gsap.quickTo(aboutGlow, "y", { duration: 0.55, ease: "power2.out" }) : null;
+        const aboutBackdrop = document.querySelector(".about-visual-backdrop");
+        const aboutGlow = document.querySelector(".about-visual-glow");
+        const imageTarget = aboutImageWrap || aboutImage;
+
+        // Animate the image as one unified portrait to prevent Sarah & Robot from detaching
+        const imageXTo = imageTarget ? gsap.quickTo(imageTarget, "x", { duration: 0.45, ease: "power2.out" }) : null;
+        const backdropXTo = aboutBackdrop ? gsap.quickTo(aboutBackdrop, "x", { duration: 0.55, ease: "power2.out" }) : null;
+        const glowXTo = aboutGlow ? gsap.quickTo(aboutGlow, "x", { duration: 0.6, ease: "power2.out" }) : null;
 
         // Auto-inject spotlight sheen if not already present
         if (!aboutPanel.querySelector(".card-spotlight")) {
@@ -203,56 +206,57 @@ export const initCinematicScroll = () => {
         const handlePointerMove = (e) => {
             if (e.pointerType === "touch") return; // Keep page scroll natural on touch drag
 
-            const rect = aboutPanel.getBoundingClientRect();
+            // Stable calculation relative to aboutShell to avoid transform feedback loop/jitter
+            const rect = aboutShell.getBoundingClientRect();
             const relX = e.clientX - rect.left;
             const relY = e.clientY - rect.top;
 
-            // Update dynamic spotlight sheen coordinates
+            // Update dynamic spotlight sheen coordinates inside aboutPanel
             aboutPanel.style.setProperty("--mouse-x", `${relX}px`);
             aboutPanel.style.setProperty("--mouse-y", `${relY}px`);
 
             // Normalized (-0.5 to +0.5)
-            const normX = Math.max(-0.6, Math.min(0.6, relX / rect.width - 0.5));
-            const normY = Math.max(-0.6, Math.min(0.6, relY / rect.height - 0.5));
+            const normX = Math.max(-0.5, Math.min(0.5, relX / rect.width - 0.5));
+            const normY = Math.max(-0.5, Math.min(0.5, relY / rect.height - 0.5));
 
-            // Dramatic luxury 3D tilt for the master panel
-            const maxTilt = 7.5;
+            // Refined stable 3D tilt for the master panel (2.5deg max, no Y translation to eliminate jitter)
+            const maxTilt = 2.5;
             panelRotateYTo(normX * maxTilt * 2);
             panelRotateXTo(-normY * maxTilt * 2);
-            panelYTo(-10);
 
             // Dynamic reactive 3D drop shadow moving opposite to light source
-            aboutPanel.style.setProperty("--tilt-shadow-x", `${-normX * 36}px`);
-            aboutPanel.style.setProperty("--tilt-shadow-y", `${-normY * 28 + 36}px`);
+            aboutPanel.style.setProperty("--tilt-shadow-x", `${-normX * 24}px`);
+            aboutPanel.style.setProperty("--tilt-shadow-y", `${-normY * 18 + 25}px`);
 
-            // Layered Parallax: Image shifts towards cursor, glow shifts opposite
-            if (imgXTo && imgYTo) {
-                imgXTo(normX * 20);
-                imgYTo(normY * 14);
+            // Cohesive Depth: Sarah & Robot move together cleanly, Backdrop arch counter-shifts
+            if (imageXTo) {
+                imageXTo(normX * 10);
             }
-            if (glowXTo && glowYTo) {
-                glowXTo(-normX * 32);
-                glowYTo(-normY * 24);
+            if (backdropXTo) {
+                backdropXTo(-normX * 8);
+            }
+            if (glowXTo) {
+                glowXTo(-normX * 16);
             }
         };
 
         const handlePointerLeave = () => {
             panelRotateXTo(0);
             panelRotateYTo(0);
-            panelYTo(0);
             aboutPanel.style.removeProperty("--tilt-shadow-x");
             aboutPanel.style.removeProperty("--tilt-shadow-y");
-            if (imgXTo && imgYTo) {
-                imgXTo(0);
-                imgYTo(0);
+            if (imageXTo) {
+                imageXTo(0);
             }
-            if (glowXTo && glowYTo) {
+            if (backdropXTo) {
+                backdropXTo(0);
+            }
+            if (glowXTo) {
                 glowXTo(0);
-                glowYTo(0);
             }
         };
 
-        aboutPanel.addEventListener("pointermove", handlePointerMove);
-        aboutPanel.addEventListener("pointerleave", handlePointerLeave);
+        aboutShell.addEventListener("pointermove", handlePointerMove);
+        aboutShell.addEventListener("pointerleave", handlePointerLeave);
     }
 };
