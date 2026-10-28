@@ -38,6 +38,15 @@
 </head>
 
 <body class="is-video-intro-active">
+    <script>
+        (function() {
+            var isMobile = (window.innerWidth <= 768) || (window.matchMedia && window.matchMedia("(max-width: 768px)").matches) || (window.matchMedia && window.matchMedia("(max-height: 500px) and (orientation: landscape) and (pointer: coarse)").matches);
+            if (isMobile) {
+                document.body.classList.remove("is-video-intro-active");
+                document.body.classList.add("is-hero-assembled", "video-fallback-active");
+            }
+        })();
+    </script>
     <noscript>
         <style>
             body.is-video-intro-active .site-header { opacity: 1 !important; pointer-events: auto !important; transform: none !important; }
