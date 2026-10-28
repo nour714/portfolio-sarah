@@ -1029,11 +1029,12 @@ export const initSkillsAssemblyAnimation = () => {
         onEnterBack: () => {
             playAssembly();
         },
-        onLeave: () => {
-            resetAssembly();
-        },
         onLeaveBack: () => {
             resetAssembly();
         }
     });
+
+    if (ScrollTrigger.isInViewport(stageEl, 0.15)) {
+        playAssembly();
+    }
 };
