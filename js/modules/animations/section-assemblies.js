@@ -22,7 +22,12 @@ export const initHeroCinematicEntrance = () => {
     const hero = document.getElementById("hero");
     if (!hero) return;
 
-    // If cinematic video intro is present, entrance assembly is orchestrated by initHeroIntro
+    const isMobile =
+        getMediaMatch("(max-width: 768px)") ||
+        window.innerWidth <= 768 ||
+        (getMediaMatch("(max-height: 500px) and (orientation: landscape)") && getMediaMatch("(pointer: coarse)"));
+
+    // If hero intro video is present, assembly orchestration is managed by initHeroIntro
     if (document.getElementById("hero-intro-video")) {
         return;
     }
@@ -44,6 +49,9 @@ export const initHeroCinematicEntrance = () => {
     const playHeroEntrance = () => {
         const gsap = window.gsap;
         const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+
+        // Ensure containers are primed and visible
+        gsap.set(".hero-content", { visibility: "visible", autoAlpha: 1 });
 
         // 1. Luxury Navbar descent
         tl.fromTo(
@@ -337,9 +345,12 @@ export const initAboutAssembly = () => {
         end: "bottom 15%",
         onEnter: playAssembly,
         onEnterBack: playAssembly,
-        onLeave: resetAssembly,
         onLeaveBack: resetAssembly
     });
+
+    if (ScrollTrigger.isInViewport(aboutPanel, 0.15)) {
+        playAssembly();
+    }
 };
 
 /**
@@ -532,9 +543,12 @@ export const initProjectsAssembly = () => {
         end: "bottom 15%",
         onEnter: playAssembly,
         onEnterBack: playAssembly,
-        onLeave: resetAssembly,
         onLeaveBack: resetAssembly
     });
+
+    if (ScrollTrigger.isInViewport(projectsSection, 0.15)) {
+        playAssembly();
+    }
 };
 
 /**
@@ -717,9 +731,12 @@ export const initCertificatesAssembly = () => {
         end: "bottom 15%",
         onEnter: playAssembly,
         onEnterBack: playAssembly,
-        onLeave: resetAssembly,
         onLeaveBack: resetAssembly
     });
+
+    if (ScrollTrigger.isInViewport(certsSection, 0.15)) {
+        playAssembly();
+    }
 };
 
 /**
@@ -882,16 +899,20 @@ export const initContactAssembly = () => {
 
     resetAssembly();
 
+    const triggerEl = contactGrid || contactSection;
     ScrollTrigger.create({
         id: "cinematic-reveal-contact-assembly",
-        trigger: contactGrid || contactSection,
+        trigger: triggerEl,
         start: "top 82%",
         end: "bottom 18%",
         onEnter: playAssembly,
         onEnterBack: playAssembly,
-        onLeave: resetAssembly,
         onLeaveBack: resetAssembly
     });
+
+    if (ScrollTrigger.isInViewport(triggerEl, 0.15)) {
+        playAssembly();
+    }
 };
 
 /**
