@@ -240,7 +240,7 @@ export const portfolioData = {
         availabilityCopy: "Open to Machine Learning and Computer Vision internships, AI research opportunities, and collaborative technical projects.",
         formTitle: "Send a Message",
         formCopy: "Fill out the form below to reach out regarding internships, projects, or collaborations.",
-        formNote: "Your message will be sent directly to sarahhnabil71@gmail.com.",
+        formNote: "Submitting this form opens your email app with a message addressed to sarahhnabil71@gmail.com.",
         formSubmit: "Send Message"
     }
 };
