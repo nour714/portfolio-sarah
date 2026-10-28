@@ -26,7 +26,6 @@ import {
     initCard3DTilt
 } from "./modules/animations.js";
 import { initContactFormFallback } from "./modules/contact.js";
-import { initPublicPortfolio } from "./services/firebase.service.js";
 
 const boot = () => {
     // 1. Data-Driven Hydration (Render from portfolioData)
@@ -52,7 +51,6 @@ const boot = () => {
     safelyInit(refreshCertificateScrollInteractions);
     safelyInit(initCertificateModal);
     safelyInit(initScrollReveal);
-    safelyInit(() => initPublicPortfolio(refreshScrollReveal));
     safelyInit(initScrollProgressBar);
     safelyInit(initCustomCursor);
     safelyInit(initBackToTop);
