@@ -181,3 +181,67 @@ export const initHeroPortraitInteraction = () => {
         toggleHalo(false);
     });
 };
+
+
+/**
+ * Interactive 3D Cursor Parallax & Spatial Reactions for Orbiting Badges
+ */
+export const initHeroOrbitInteractions = () => {
+    const visual = document.querySelector(".hero-visual");
+    const orbit = document.querySelector(".hero-social-orbit");
+    if (!visual || !orbit) return;
+
+    const reducedMotion = getMediaMatch("(prefers-reduced-motion: reduce)");
+    if (reducedMotion) return;
+
+    const items = orbit.querySelectorAll(".hero-orbit-item");
+    if (!items.length) return;
+
+    let rafId = null;
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+
+    const updateParallax = () => {
+        currentX += (targetX - currentX) * 0.08;
+        currentY += (targetY - currentY) * 0.08;
+
+        items.forEach((item) => {
+            const depth = parseFloat(item.getAttribute("data-depth") || "1");
+            const shiftX = (currentX * depth).toFixed(2);
+            const shiftY = (currentY * depth).toFixed(2);
+            item.style.setProperty("--orbit-px", `${shiftX}px`);
+            item.style.setProperty("--orbit-py", `${shiftY}px`);
+        });
+
+        if (Math.abs(targetX - currentX) > 0.04 || Math.abs(targetY - currentY) > 0.04) {
+            rafId = requestAnimationFrame(updateParallax);
+        } else {
+            rafId = null;
+        }
+    };
+
+    visual.addEventListener("pointermove", (e) => {
+        if (e.pointerType === "touch") return;
+        const rect = visual.getBoundingClientRect();
+        if (!rect.width || !rect.height) return;
+        const normX = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+        const normY = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+
+        targetX = Math.max(-1, Math.min(1, normX)) * 14;
+        targetY = Math.max(-1, Math.min(1, normY)) * 14;
+
+        if (!rafId) {
+            rafId = requestAnimationFrame(updateParallax);
+        }
+    }, { passive: true });
+
+    visual.addEventListener("pointerleave", () => {
+        targetX = 0;
+        targetY = 0;
+        if (!rafId) {
+            rafId = requestAnimationFrame(updateParallax);
+        }
+    });
+};
