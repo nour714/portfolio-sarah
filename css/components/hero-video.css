@@ -388,6 +388,10 @@ body.is-hero-assembled .hero-telemetry-cluster {
 
 /* 7. Portrait Fallback Visibility */
 .hero-portrait-fallback {
+    display: flex;
+}
+
+body.is-video-intro-active .hero-portrait-fallback {
     display: none !important;
 }
 

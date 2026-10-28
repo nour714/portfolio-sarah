@@ -89,7 +89,7 @@ export const createHeroTypingController = (target, roles) => {
     };
 
     start();
-    return { updateRoles, stop: clearTimer };
+    return { start, updateRoles, stop: clearTimer };
 };
 
 export const initHeroRoleTyping = () => {

@@ -37,7 +37,15 @@
     <link rel="stylesheet" href="style.css?v=2.0">
 </head>
 
-<body>
+<body class="is-video-intro-active">
+    <noscript>
+        <style>
+            body.is-video-intro-active .site-header { opacity: 1 !important; pointer-events: auto !important; transform: none !important; }
+            body.is-video-intro-active .hero-content { opacity: 1 !important; pointer-events: auto !important; visibility: visible !important; }
+            .hero-portrait-fallback { display: flex !important; }
+            .hero-intro-hud { display: none !important; }
+        </style>
+    </noscript>
     <!-- Top Progress & Header Navigation Shell -->
     <header class="site-header">
         <nav class="nav-shell" aria-label="Primary">
@@ -91,13 +99,13 @@
                             <span class="status-pulse-dot" aria-hidden="true"></span>
                             <span>Open for ML &amp; Data Roles</span>
                         </div>
-                        <h1><span class="hero-greeting">Hi, I'm</span> <span class="hero-name-highlight"></span></h1>
+                        <h1><span class="hero-greeting">Hi, I'm</span> <span class="hero-name-highlight">Sarah</span></h1>
                         <p class="hero-role">
                             <span class="hero-role-pulse" aria-hidden="true"></span>
-                            <span class="role-typed" id="hero-role-typed" data-roles="Machine Learning | Computer Vision | Artificial Intelligence"></span>
+                            <span class="role-typed" id="hero-role-typed" data-roles="Machine Learning | Computer Vision | Artificial Intelligence">Machine Learning</span>
                             <span class="role-cursor" aria-hidden="true"></span>
                         </p>
-                        <p class="hero-copy"></p>
+                        <p class="hero-copy">Third-year Artificial Intelligence student at Kafrelsheikh University with a strong passion for Machine Learning, Computer Vision with OpenCV, Artificial Neural Networks (ANN), and predictive modeling.</p>
                         <div class="hero-cta-group">
                             <div class="hero-actions">
                                 <a href="cv.html" class="hero-btn">View Resume</a>
@@ -445,10 +453,10 @@
 
             <div class="section-shell projects-shell">
                 <div class="projects-headline">
-                    <h2 id="projects-title" class="projects-title-reveal"></h2>
+                    <h2 id="projects-title" class="projects-title-reveal">Featured Projects</h2>
                     <span class="projects-underline" aria-hidden="true"></span>
                 </div>
-                <p class="projects-copy"></p>
+                <p class="projects-copy">Machine learning pipelines, computer vision systems, neural network implementations, and analytical databases engineered with precision.</p>
 
                 <div class="projects-filters" role="group" aria-label="Project categories">
                     <button type="button" class="project-filter is-active" aria-pressed="true"
@@ -475,10 +483,10 @@
 
             <div class="section-shell certificates-shell">
                 <div class="certificates-headline">
-                    <h2 id="certificates-title" class="certificates-title-reveal"></h2>
+                    <h2 id="certificates-title" class="certificates-title-reveal">Verified Certifications</h2>
                     <span class="certificates-underline" aria-hidden="true"></span>
                 </div>
-                <p class="certificates-copy"></p>
+                <p class="certificates-copy">Accredited credentials and intensive training in Machine Learning, Deep Learning, and Artificial Intelligence.</p>
 
                 <div class="certificates-filters" role="group" aria-label="Certificate categories">
                     <button type="button" class="certificate-filter is-active" aria-pressed="true"
@@ -498,16 +506,16 @@
             <div class="section-shell contact-shell">
                 <div class="contact-header">
                     <div class="contact-title-wrap">
-                        <h2 id="contact-title"></h2>
-                        <p class="contact-copy"></p>
+                        <h2 id="contact-title">Let's Connect</h2>
+                        <p class="contact-copy">Have an inquiry, project, or research collaboration in mind? Reach out and let's build something intelligent.</p>
                     </div>
                 </div>
 
                 <div class="contact-grid">
                     <div class="contact-panel">
                         <div class="contact-panel-head">
-                            <h3></h3>
-                            <p></p>
+                            <h3>Contact Details</h3>
+                            <p>Reach out directly via email, WhatsApp, or professional networks.</p>
                         </div>
 
                         <div class="contact-list">
@@ -548,7 +556,7 @@
                                 </span>
                                 <span>
                                     <span class="contact-label">Location</span>
-                                    <span class="contact-value"></span>
+                                    <span class="contact-value">Egypt · Kafrelsheikh University</span>
                                 </span>
                             </div>
 
@@ -562,7 +570,7 @@
                                 </span>
                                 <span>
                                     <span class="contact-label">LinkedIn</span>
-                                    <span class="contact-value"></span>
+                                    <span class="contact-value">linkedin.com/in/sarahnabil</span>
                                 </span>
                             </a>
 
@@ -575,21 +583,21 @@
                                 </span>
                                 <span>
                                     <span class="contact-label">GitHub</span>
-                                    <span class="contact-value"></span>
+                                    <span class="contact-value">github.com/sarahnabil</span>
                                 </span>
                             </a>
                         </div>
 
                         <div class="contact-availability">
-                            <p class="contact-availability-title"></p>
-                            <p class="contact-availability-copy"></p>
+                            <p class="contact-availability-title">Current Availability</p>
+                            <p class="contact-availability-copy">Open for internships, Machine Learning roles, and AI research collaborations.</p>
                         </div>
                     </div>
 
                     <form id="contact-form" class="contact-form">
                         <div class="contact-form-head">
-                            <h3></h3>
-                            <p></p>
+                            <h3>Send a Message</h3>
+                            <p>Fill in the details below and I will get back to you promptly.</p>
                         </div>
 
                         <div class="contact-form-grid">
@@ -621,7 +629,7 @@
 
                         <div class="contact-form-footer">
                             <p class="contact-note" id="contact-status-note"></p>
-                            <button type="submit" class="contact-btn contact-btn-primary"></button>
+                            <button type="submit" class="contact-btn contact-btn-primary">Send Message</button>
                         </div>
                     </form>
                 </div>

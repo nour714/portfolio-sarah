@@ -66,6 +66,7 @@ export const initHeroIntro = () => {
     const reduceMotion = getMediaMatch("(prefers-reduced-motion: reduce)");
     let isAssembled = false;
     let isMuted = true;
+    let autoAssembleTimeout = null;
 
     /**
      * Updates Sound UI state (icons and labels)
@@ -122,6 +123,7 @@ export const initHeroIntro = () => {
     const assembleHero = ({ instant = false } = {}) => {
         if (isAssembled) return;
         isAssembled = true;
+        if (autoAssembleTimeout) clearTimeout(autoAssembleTimeout);
 
         // Keep video settled at its final cinematic frame
         try {
@@ -354,7 +356,7 @@ export const initHeroIntro = () => {
 
     // Mobile Failsafe: Ensure portfolio is never trapped on frozen intro
     const isMobile = window.innerWidth <= 768;
-    const autoAssembleTimeout = setTimeout(() => {
+    autoAssembleTimeout = setTimeout(() => {
         if (!isAssembled && (video.paused || video.currentTime === 0 || isMobile)) {
             assembleHero();
         }
@@ -365,18 +367,7 @@ export const initHeroIntro = () => {
     if (playPromise !== undefined) {
         playPromise.catch((err) => {
             console.info("Autoplay restricted or deferred by browser:", err);
-            // On mobile or blocked autoplay, assemble hero immediately or on first touch
-            if (isMobile) {
-                assembleHero();
-            } else {
-                const unlockPlay = () => {
-                    video.play().catch(() => {});
-                    window.removeEventListener("pointerdown", unlockPlay);
-                    window.removeEventListener("keydown", unlockPlay);
-                };
-                window.addEventListener("pointerdown", unlockPlay, { once: true });
-                window.addEventListener("keydown", unlockPlay, { once: true });
-            }
+            assembleHero();
         });
     }
 };
