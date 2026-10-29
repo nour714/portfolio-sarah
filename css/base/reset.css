@@ -143,6 +143,20 @@ main > section {
     border-width: 0;
 }
 
+.devicon-svg {
+    display: inline-block;
+    vertical-align: middle;
+    width: 1.25rem;
+    height: 1.25rem;
+    fill: currentColor;
+}
+
+.portfolio-footer-social-link .devicon-svg {
+    width: 1.15rem;
+    height: 1.15rem;
+    fill: currentColor;
+}
+
 .portfolio-footer-social-link i {
     font-size: 1.1rem;
 }

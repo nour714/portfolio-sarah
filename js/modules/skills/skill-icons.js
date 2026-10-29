@@ -411,30 +411,34 @@ export const getSkillIconElement = (item) => {
         return span;
     }
 
+    // Helper to create inline SVG referencing symbol sprite
+    const createSvgUseIcon = (symbolId, extraClass = "") => {
+        const span = document.createElement("span");
+        span.className = `skill-icon skill-icon-svg ${extraClass}`.trim();
+        span.setAttribute("aria-hidden", "true");
+        span.innerHTML = `<svg class="skill-svg" width="30" height="30" viewBox="0 0 128 128" aria-hidden="true"><use href="#${symbolId}"></use></svg>`;
+        return span;
+    };
+
     // 2. Devicon class
     if (itemIcon && itemIcon.startsWith("devicon-")) {
-        const i = document.createElement("i");
-        i.className = `skill-icon ${itemIcon}`;
-        i.setAttribute("aria-hidden", "true");
-        return i;
+        const cleanId = itemIcon.split(" ")[0].trim();
+        return createSvgUseIcon(cleanId, itemIcon);
     }
 
     // 3. Known devicons by name
     const deviconMap = {
-        python: "devicon-python-plain colored",
-        pandas: "devicon-pandas-plain colored",
-        numpy: "devicon-numpy-plain colored",
-        scikit: "devicon-scikitlearn-plain colored",
-        matplotlib: "devicon-matplotlib-plain colored",
-        git: "devicon-git-plain colored"
+        python: "devicon-python-plain",
+        pandas: "devicon-pandas-plain",
+        numpy: "devicon-numpy-plain",
+        scikit: "devicon-scikitlearn-plain",
+        matplotlib: "devicon-matplotlib-plain",
+        git: "devicon-git-plain"
     };
 
-    for (const [sub, cls] of Object.entries(deviconMap)) {
+    for (const [sub, symId] of Object.entries(deviconMap)) {
         if (key.includes(sub)) {
-            const i = document.createElement("i");
-            i.className = `skill-icon ${cls}`;
-            i.setAttribute("aria-hidden", "true");
-            return i;
+            return createSvgUseIcon(symId);
         }
     }
 
