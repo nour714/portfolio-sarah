@@ -253,6 +253,7 @@ export const initStickyCertificateStack = () => {
     const ScrollTrigger = window.ScrollTrigger;
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isTouchOrLite = Boolean(window.__perf && (window.__perf.isTouch || window.__perf.lite));
 
     // Clean up any existing certificate card stack ScrollTriggers
     ScrollTrigger.getAll().forEach((st) => {
@@ -263,8 +264,8 @@ export const initStickyCertificateStack = () => {
 
     const cardWrappers = Array.from(document.querySelectorAll(".certificate-card-wrapper:not(.is-hidden)"));
 
-    if (reducedMotion) {
-        // Reduced Motion: Reset to standard stacked flow
+    if (reducedMotion || isTouchOrLite) {
+        // Reduced Motion & Weak Devices: Standard stacked flow, no scrubbed scaling/dimming
         cardWrappers.forEach((wrapper) => {
             const card = wrapper.querySelector(".certificate-card");
             if (card) {

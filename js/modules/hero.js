@@ -192,7 +192,8 @@ export const initHeroOrbitInteractions = () => {
     if (!visual || !orbit) return;
 
     const reducedMotion = getMediaMatch("(prefers-reduced-motion: reduce)");
-    if (reducedMotion) return;
+    const isTouchOrLite = Boolean(window.__perf && (window.__perf.isTouch || window.__perf.lite));
+    if (reducedMotion || isTouchOrLite) return;
 
     const items = orbit.querySelectorAll(".hero-orbit-item");
     if (!items.length) return;
@@ -202,6 +203,13 @@ export const initHeroOrbitInteractions = () => {
     let targetY = 0;
     let currentX = 0;
     let currentY = 0;
+
+    const cancelLoop = () => {
+        if (rafId) {
+            cancelAnimationFrame(rafId);
+            rafId = null;
+        }
+    };
 
     const updateParallax = () => {
         currentX += (targetX - currentX) * 0.08;
@@ -244,4 +252,18 @@ export const initHeroOrbitInteractions = () => {
             rafId = requestAnimationFrame(updateParallax);
         }
     });
+
+    // Pause rAF loop when tab is hidden or hero is off-screen
+    document.addEventListener("visibilitychange", () => {
+        if (document.hidden) cancelLoop();
+    });
+
+    if ("IntersectionObserver" in window) {
+        const heroObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) cancelLoop();
+            });
+        }, { threshold: 0.1 });
+        heroObserver.observe(visual);
+    }
 };

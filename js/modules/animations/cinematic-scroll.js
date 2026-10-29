@@ -20,6 +20,7 @@ export const initCinematicScroll = () => {
 
     const factor = getSpreadFactor();
     const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
+    const isTouchOrLite = Boolean(window.__perf && (window.__perf.isTouch || window.__perf.lite)) || isCoarsePointer;
 
     // -------------------------------------------------------------
     // 1. HERO SECTION CINEMATIC SCROLL PARALLAX (Camera Pull & Depth)
@@ -32,72 +33,81 @@ export const initCinematicScroll = () => {
     const heroText = document.querySelector(".hero-text");
 
     if (heroSection && heroPortrait) {
-        // Multiplane scrubbed parallax as user scrolls down from hero
-        const heroTl = gsap.timeline({
-            scrollTrigger: {
-                id: "hero-cinematic-scroll",
-                trigger: heroSection,
-                start: "top top",
-                end: "bottom top",
-                scrub: 1.2,
-                invalidateOnRefresh: true
+        if (isTouchOrLite) {
+            // Touch & Lite Devices: Clean one-shot entrance without scrubbed scroll math or pinning
+            gsap.fromTo(
+                heroPortrait,
+                { opacity: 0, y: 15 },
+                { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
+            );
+        } else {
+            // Multiplane scrubbed parallax as user scrolls down from hero
+            const heroTl = gsap.timeline({
+                scrollTrigger: {
+                    id: "hero-cinematic-scroll",
+                    trigger: heroSection,
+                    start: "top top",
+                    end: "bottom top",
+                    scrub: 1.2,
+                    invalidateOnRefresh: true
+                }
+            });
+
+            // Foreground: The Android robot sinks smoothly with optical depth, tilts slightly, and dissolves
+            heroTl.to(
+                heroPortrait,
+                {
+                    y: 110 * factor,
+                    scale: 0.92,
+                    rotationZ: 1.2,
+                    opacity: 0.28,
+                    filter: "blur(8px)",
+                    ease: "power2.inOut"
+                },
+                0
+            );
+
+            // Halos: Drift upward in opposing optical plane and shrink
+            const glowTargets = [heroGlowPrimary, heroGlowSecondary].filter(Boolean);
+            if (glowTargets.length) {
+                heroTl.to(
+                    glowTargets,
+                    {
+                        y: -65 * factor,
+                        scale: 0.72,
+                        opacity: 0.15,
+                        ease: "power1.out"
+                    },
+                    0
+                );
             }
-        });
 
-        // Foreground: The Android robot sinks smoothly with optical depth, tilts slightly, and dissolves
-        heroTl.to(
-            heroPortrait,
-            {
-                y: 110 * factor,
-                scale: 0.92,
-                rotationZ: 1.2,
-                opacity: 0.28,
-                filter: "blur(8px)",
-                ease: "power2.inOut"
-            },
-            0
-        );
+            // Background Video/Poster Stage: Subtle cinematic camera push-in and darkness falloff
+            if (heroVideoStage) {
+                heroTl.to(
+                    heroVideoStage,
+                    {
+                        y: 50 * factor,
+                        scale: 1.08,
+                        opacity: 0.35,
+                        ease: "power1.out"
+                    },
+                    0
+                );
+            }
 
-        // Halos: Drift upward in opposing optical plane and shrink
-        const glowTargets = [heroGlowPrimary, heroGlowSecondary].filter(Boolean);
-        if (glowTargets.length) {
-            heroTl.to(
-                glowTargets,
-                {
-                    y: -65 * factor,
-                    scale: 0.72,
-                    opacity: 0.15,
-                    ease: "power1.out"
-                },
-                0
-            );
-        }
-
-        // Background Video/Poster Stage: Subtle cinematic camera push-in and darkness falloff
-        if (heroVideoStage) {
-            heroTl.to(
-                heroVideoStage,
-                {
-                    y: 50 * factor,
-                    scale: 1.08,
-                    opacity: 0.35,
-                    ease: "power1.out"
-                },
-                0
-            );
-        }
-
-        // Hero Typography: Subtle upward drift with gentle fade
-        if (heroText) {
-            heroTl.to(
-                heroText,
-                {
-                    y: -65 * factor,
-                    opacity: 0.25,
-                    ease: "power1.in"
-                },
-                0
-            );
+            // Hero Typography: Subtle upward drift with gentle fade
+            if (heroText) {
+                heroTl.to(
+                    heroText,
+                    {
+                        y: -65 * factor,
+                        opacity: 0.25,
+                        ease: "power1.in"
+                    },
+                    0
+                );
+            }
         }
     }
 
@@ -115,73 +125,91 @@ export const initCinematicScroll = () => {
     if (aboutSection && (aboutImageWrap || aboutImage)) {
         const imageTarget = aboutImageWrap || aboutImage;
 
-        // Continuous scrubbed parallax through the entire viewport passage
-        const aboutTl = gsap.timeline({
-            scrollTrigger: {
-                id: "about-cinematic-scroll",
-                trigger: aboutSection,
-                start: "top bottom",
-                end: "bottom top",
-                scrub: 1.2,
-                invalidateOnRefresh: true
-            }
-        });
-
-        // 1. Sarah & AI Robot: Optical elevator glide through the alcove
-        // Starts slightly lower, rises with smooth camera parallax, and settles gracefully
-        aboutTl.fromTo(
-            imageTarget,
-            {
-                y: 16 * factor,
-                scale: 0.98
-            },
-            {
-                y: -16 * factor,
-                scale: 1.015,
-                ease: "none"
-            },
-            0
-        );
-
-        // 2. Backdrop Arch: Moves at a slower rate (giving true layered depth behind Sarah & Robot)
-        if (aboutBackdrop) {
-            aboutTl.fromTo(
-                aboutBackdrop,
+        if (isTouchOrLite) {
+            // Touch & Lite: Natural one-shot reveal, zero scroll-linked position calculations
+            gsap.fromTo(
+                imageTarget,
+                { opacity: 0, y: 20 },
                 {
-                    y: 10 * factor,
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.75,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: aboutSection,
+                        start: "top 82%",
+                        once: true
+                    }
+                }
+            );
+        } else {
+            // Continuous scrubbed parallax through the entire viewport passage
+            const aboutTl = gsap.timeline({
+                scrollTrigger: {
+                    id: "about-cinematic-scroll",
+                    trigger: aboutSection,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: 1.2,
+                    invalidateOnRefresh: true
+                }
+            });
+
+            // 1. Sarah & AI Robot: Optical elevator glide through the alcove
+            aboutTl.fromTo(
+                imageTarget,
+                {
+                    y: 16 * factor,
                     scale: 0.98
                 },
                 {
-                    y: -10 * factor,
-                    scale: 1.01,
+                    y: -16 * factor,
+                    scale: 1.015,
                     ease: "none"
                 },
                 0
             );
-        }
 
-        // 3. Radial Glow Spotlight: Peaks in scale and luminescence when centered
-        if (aboutGlow) {
-            aboutTl.fromTo(
-                aboutGlow,
-                {
-                    scale: 0.85,
-                    opacity: 0.4
-                },
-                {
-                    scale: 1.15,
-                    opacity: 0.9,
-                    ease: "sine.inOut"
-                },
-                0
-            );
+            // 2. Backdrop Arch: Moves at a slower rate
+            if (aboutBackdrop) {
+                aboutTl.fromTo(
+                    aboutBackdrop,
+                    {
+                        y: 10 * factor,
+                        scale: 0.98
+                    },
+                    {
+                        y: -10 * factor,
+                        scale: 1.01,
+                        ease: "none"
+                    },
+                    0
+                );
+            }
+
+            // 3. Radial Glow Spotlight
+            if (aboutGlow) {
+                aboutTl.fromTo(
+                    aboutGlow,
+                    {
+                        scale: 0.85,
+                        opacity: 0.4
+                    },
+                    {
+                        scale: 1.15,
+                        opacity: 0.9,
+                        ease: "sine.inOut"
+                    },
+                    0
+                );
+            }
         }
     }
 
     // -------------------------------------------------------------
-    // 3. ABOUT PANEL 3D INTERACTIVE TILT & MULTIPLANE PARALLAX
+    // 3. ABOUT PANEL 3D INTERACTIVE TILT & MULTIPLANE PARALLAX (Desktop only)
     // -------------------------------------------------------------
-    if (aboutPanel) {
+    if (aboutPanel && !isTouchOrLite) {
         const aboutShell = document.querySelector(".about-shell") || aboutPanel;
         const panelRotateXTo = gsap.quickTo(aboutPanel, "rotationX", { duration: 0.45, ease: "power2.out" });
         const panelRotateYTo = gsap.quickTo(aboutPanel, "rotationY", { duration: 0.45, ease: "power2.out" });

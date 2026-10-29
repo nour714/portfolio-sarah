@@ -56,9 +56,14 @@ export const initBackToTop = () => {
     }
 
     const SHOW_THRESHOLD = 380;
+    let bttRaf = 0;
 
     const toggleVisibility = () => {
-        btn.classList.toggle("is-visible", window.scrollY > SHOW_THRESHOLD);
+        if (bttRaf) return;
+        bttRaf = requestAnimationFrame(() => {
+            bttRaf = 0;
+            btn.classList.toggle("is-visible", window.scrollY > SHOW_THRESHOLD);
+        });
     };
 
     window.addEventListener("scroll", toggleVisibility, { passive: true });
@@ -81,8 +86,9 @@ const boundMagnetic = new WeakSet();
  * Initializes Magnetic Pull Interaction for CTAs and buttons
  */
 export const initMagnetic = () => {
+    const isTouch = Boolean(window.__perf && window.__perf.isTouch) || window.matchMedia("(pointer: coarse)").matches;
     if (getMediaMatch("(prefers-reduced-motion: reduce)") ||
-        window.matchMedia("(pointer: coarse)").matches ||
+        isTouch ||
         !window.gsap) {
         return;
     }
@@ -119,7 +125,8 @@ const boundCards = new WeakSet();
  * Initializes Professional 3D Physics Tilt & Dynamic Spotlight Sheen for ALL Cards Across the Site
  */
 export const initCard3DTilt = () => {
-    if (getMediaMatch("(prefers-reduced-motion: reduce)")) {
+    const isTouch = Boolean(window.__perf && window.__perf.isTouch) || window.matchMedia("(pointer: coarse)").matches;
+    if (getMediaMatch("(prefers-reduced-motion: reduce)") || isTouch) {
         return;
     }
 

@@ -48,22 +48,32 @@ export const initMenu = () => {
 
     const siteHeader = document.querySelector(".site-header");
 
+    let cachedSectionOffsets = [];
+    const measureSectionOffsets = () => {
+        cachedSectionOffsets = sections.map((section) => ({
+            id: section.id,
+            top: section.offsetTop
+        }));
+    };
+    measureSectionOffsets();
+
     const updateActiveFromScroll = () => {
+        const scrollY = window.scrollY;
         if (siteHeader) {
-            siteHeader.classList.toggle("is-scrolled", window.scrollY > 30);
+            siteHeader.classList.toggle("is-scrolled", scrollY > 30);
         }
 
-        if (!sections.length) return;
-        const scrollPosition = window.scrollY + NAV_OFFSET;
-        let currentSection = sections[0];
+        if (!cachedSectionOffsets.length) return;
+        const scrollPosition = scrollY + NAV_OFFSET;
+        let currentSectionId = cachedSectionOffsets[0].id;
 
-        sections.forEach((section) => {
-            if (section.offsetTop <= scrollPosition) {
-                currentSection = section;
+        for (let i = 0; i < cachedSectionOffsets.length; i++) {
+            if (cachedSectionOffsets[i].top <= scrollPosition) {
+                currentSectionId = cachedSectionOffsets[i].id;
             }
-        });
+        }
 
-        const activeLink = sectionLinks.find((link) => link.getAttribute("href") === `#${currentSection.id}`);
+        const activeLink = sectionLinks.find((link) => link.getAttribute("href") === `#${currentSectionId}`);
         if (activeLink) setActiveLink(activeLink);
     };
 
@@ -126,6 +136,7 @@ export const initMenu = () => {
 
     window.addEventListener("resize", () => {
         if (window.innerWidth > MOBILE_NAV_BREAKPOINT) closeMenu();
+        measureSectionOffsets();
         scheduleActiveUpdate();
     });
 

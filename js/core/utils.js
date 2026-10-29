@@ -128,7 +128,8 @@ export const safelyInit = (initializer) => {
 };
 
 export const bindCardSpotlight = (selector) => {
-    if (getMediaMatch("(pointer: coarse)")) return;
+    const isTouch = Boolean(window.__perf && window.__perf.isTouch) || getMediaMatch("(pointer: coarse)");
+    if (isTouch || (window.__perf && window.__perf.lite)) return;
     const cards = Array.from(document.querySelectorAll(selector));
     cards.forEach((card) => {
         if (card.dataset.spotlightBound) return;

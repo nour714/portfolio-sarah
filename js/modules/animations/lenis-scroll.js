@@ -10,7 +10,28 @@ import { getMediaMatch } from "../../core/utils.js";
  */
 export const initLenis = () => {
     const reduceMotion = getMediaMatch("(prefers-reduced-motion: reduce)");
-    if (reduceMotion || typeof window.Lenis === "undefined") {
+    const isPerfLiteOrTouch = Boolean(window.__perf && (window.__perf.isTouch || window.__perf.lite));
+
+    // Native scrolling is far smoother and consumes much less battery/CPU on mobile and weak devices
+    if (reduceMotion || isPerfLiteOrTouch || typeof window.Lenis === "undefined") {
+        // Fallback smooth anchor scrolling using native standards
+        document.addEventListener("click", (e) => {
+            const anchor = e.target.closest("a[href^='#']");
+            if (!anchor) return;
+            const href = anchor.getAttribute("href");
+            if (!href || href === "#" || href.length < 2) return;
+
+            const target = document.querySelector(href);
+            if (!target) return;
+
+            e.preventDefault();
+            const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            target.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth" });
+
+            if (window.history?.pushState) {
+                window.history.pushState(null, "", href);
+            }
+        });
         return null;
     }
 
@@ -62,6 +83,15 @@ export const initLenis = () => {
         if (projectOverlay) modalObserver.observe(projectOverlay, { attributes: true, attributeFilter: ["class"] });
         if (certOverlay) modalObserver.observe(certOverlay, { attributes: true, attributeFilter: ["class"] });
         modalObserver.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+
+        // Pause Lenis rAF loop when tab is hidden to save battery & CPU
+        document.addEventListener("visibilitychange", () => {
+            if (document.hidden) {
+                lenis.stop();
+            } else {
+                lenis.start();
+            }
+        });
     } catch (_) {
         // Observer fallback
     }

@@ -86,6 +86,10 @@ const scheduleNextAutoPlay = () => {
         autoPlayTimer = null;
     }
 
+    if (Boolean(window.__perf && window.__perf.lite)) {
+        return;
+    }
+
     if (isAutoPlayPaused || isUserDragging || !isStageVisible || !skillList.length) {
         return;
     }
@@ -105,6 +109,7 @@ export const pauseAutoPlay = () => {
 };
 
 export const resumeAutoPlay = () => {
+    if (Boolean(window.__perf && window.__perf.lite)) return;
     isAutoPlayPaused = false;
     scheduleNextAutoPlay();
 };
@@ -192,6 +197,7 @@ const updateArcBadges = (vIndex) => {
  * Continuous Zero-Gravity Levitation for the Spotlight Apex Icon
  */
 const startIdleFloating = () => {
+    if (Boolean(window.__perf && window.__perf.lite)) return;
     if (!window.gsap || !iconEl) return;
     window.gsap.killTweensOf(iconEl);
     idleFloatTween = window.gsap.to(iconEl, {
@@ -208,6 +214,7 @@ const startIdleFloating = () => {
  * Continuous Pulsing Aura Breathing for the Spotlight Halo
  */
 const startIdleHalo = () => {
+    if (Boolean(window.__perf && window.__perf.lite)) return;
     if (!window.gsap || !haloEl) return;
     window.gsap.killTweensOf(haloEl);
     idleHaloTween = window.gsap.to(haloEl, {
@@ -613,31 +620,45 @@ export const initSkillsArcCarousel = (rawItems) => {
             resumeAutoPlay();
         });
 
-        // Tab Visibility Change handling
+        // Tab Visibility Change handling - cancel rAF and pauses loops when tab hidden
         document.addEventListener("visibilitychange", () => {
             if (document.hidden) {
                 pauseAutoPlay();
+                if (idleFloatTween) idleFloatTween.pause();
+                if (idleHaloTween) idleHaloTween.pause();
             } else {
-                resumeAutoPlay();
+                if (!Boolean(window.__perf && window.__perf.lite)) {
+                    resumeAutoPlay();
+                    if (idleFloatTween) idleFloatTween.resume();
+                    if (idleHaloTween) idleHaloTween.resume();
+                }
             }
         });
 
-        // IntersectionObserver: auto-play only when scrolled into view
+        // IntersectionObserver: auto-play and idle floats only when scrolled into view
         if ("IntersectionObserver" in window) {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
                     isStageVisible = entry.isIntersecting;
                     if (isStageVisible) {
-                        resumeAutoPlay();
+                        if (!Boolean(window.__perf && window.__perf.lite)) {
+                            resumeAutoPlay();
+                            if (idleFloatTween) idleFloatTween.resume();
+                            if (idleHaloTween) idleHaloTween.resume();
+                        }
                     } else {
                         pauseAutoPlay();
+                        if (idleFloatTween) idleFloatTween.pause();
+                        if (idleHaloTween) idleHaloTween.pause();
                     }
                 });
             }, { threshold: 0.2 });
             observer.observe(stageEl);
         } else {
             isStageVisible = true;
-            resumeAutoPlay();
+            if (!Boolean(window.__perf && window.__perf.lite)) {
+                resumeAutoPlay();
+            }
         }
 
         // Keyboard navigation
