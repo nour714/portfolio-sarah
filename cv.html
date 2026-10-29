@@ -8,6 +8,31 @@
     <title>Sarah Nabil | CV</title>
     <link rel="canonical" href="https://eng-sarah.vercel.app/cv">
     <link rel="icon" type="image/png" href="images/favicon.png">
+    <!-- Device & Performance Tier Synchronous Detection -->
+    <script>
+        (function() {
+            try {
+                var params = new URLSearchParams(window.location.search);
+                var override = params.get('perf');
+                var mq = function(q) { return Boolean(window.matchMedia && window.matchMedia(q).matches); };
+                var isTouch = mq('(hover: none) and (pointer: coarse)');
+                var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+                var isSaveData = Boolean(conn && conn.saveData);
+                var isSlowNet = Boolean(conn && /^(slow-2g|2g|3g)$/i.test(conn.effectiveType || ''));
+                var isLowMemory = Boolean(navigator.deviceMemory && navigator.deviceMemory <= 4);
+                var isLowCores = Boolean(navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4);
+                var isReducedMotion = mq('(prefers-reduced-motion: reduce)');
+                var lite = override === 'lite' ? true : (override === 'full' ? false : (isSaveData || isSlowNet || isLowMemory || isLowCores || isReducedMotion));
+                var doc = document.documentElement;
+                if (isTouch) doc.classList.add('is-touch');
+                if (lite) doc.classList.add('perf-lite');
+                window.__perf = { isTouch: isTouch, lite: lite };
+            } catch (e) {
+                window.__perf = { isTouch: false, lite: false };
+            }
+        })();
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
