@@ -4,14 +4,12 @@
  * 
  * Re-exports modular animation engines:
  * - lenis-scroll.js: Lenis smooth scroll engine
- * - custom-cursor.js: Native cursor cleanup module
  * - scroll-effects.js: Scroll progress bar, back-to-top, magnetic buttons, 3D card tilt
  * - reveals.js: Word-mask splitting, stats counter animations, ScrollTrigger reveals
  * - section-assemblies.js: Cinema-grade convergence assemblies ("تتجمع قدامي")
  */
 
 export { initLenis } from "./animations/lenis-scroll.js";
-export { initCustomCursor } from "./animations/custom-cursor.js";
 export {
     initScrollProgressBar,
     initBackToTop,

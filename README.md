@@ -1,10 +1,9 @@
 # Sarah Nabil — Machine Learning & AI Specialist Portfolio
 
 [![Architecture](https://img.shields.io/badge/Architecture-Clean%20%26%20Modular-cyan.svg)](#-architecture-overview)
-[![CSS](https://img.shields.io/badge/CSS-14%20Layer%20Modules-purple.svg)](#-css-modular-architecture)
-[![JS](https://img.shields.io/badge/JS-ES6%2B%20Modules-yellow.svg)](#-javascript-modular-architecture)
-[![Motion](https://img.shields.io/badge/Motion-GSAP%20%2B%20Lenis-green.svg)](#-cinematic-motion-system)
-[![Testing](https://img.shields.io/badge/Tests-100%25%20Passing-brightgreen.svg)](#-automated-testing--verification)
+[![CSS](https://img.shields.io/badge/CSS-Modular%20Layers-purple.svg)](#-performance-caching--css-build)
+[![JS](https://img.shields.io/badge/JS-ES6%2B%20Modules-yellow.svg)](#-architecture-overview)
+[![Motion](https://img.shields.io/badge/Motion-GSAP%20%2B%20Lenis-green.svg)](#-highlights--key-features)
 
 > **Modern, high-performance personal portfolio for Sarah Nabil (سارة نبيل)** — Machine Learning & Artificial Intelligence Specialist with hands-on expertise in data exploration, preprocessing, classification modeling, predictive analytics, and end-to-end ML pipelines.
 
@@ -12,35 +11,43 @@
 
 ## 🌟 Highlights & Key Features
 
-- **🍏 Interactive 3D Apple-Style Scroll Intro:** Pre-rendered dual-fidelity canvas sequence (192 WebP frames for desktop and mobile) with butter-smooth scroll synchronization, ambient telemetry HUD, dynamic vignette corrections, and seamless camera zoom transition into the main portfolio.
+- **🎬 Cinematic Video Hero Intro:** High-impact video-based intro for desktop with HUD telemetry controls, instant skip on scroll or keypress, replay toggle, and reduced-motion / battery-saving detection. Mobile devices and low-bandwidth connections automatically skip video downloads in favor of an optimized static visual backdrop.
 - **⚡ Clean Architecture & Modular Codebase:** Zero monolithic files. JavaScript and CSS are strictly split into domain-driven modules following Clean Architecture principles (Core, Data, Services, Modules, Vendor, Admin).
 - **📜 Cinematic Motion System (Lenis + GSAP + ScrollTrigger):** Hardware-accelerated smooth scrolling via Lenis, synchronized with GSAP ScrollTrigger for choreographed section reveals, staggered text reveals, magnetic controls, and 3D card tilt.
 - **🎯 3D Skills Arc Carousel:** Interactive 3D cylindrical depth carousel with touch, drag, and autoplay controls, category filtering, and live telemetry indicators.
 - **🏆 Stacked Certificates Showcase:** Interactive sticky card stack, category filter tabs, and modal deep-dive preview with verified credential IDs and direct validation links.
-- **📊 Single Source of Truth:** All projects, skills, certificates, metrics, and timeline items are managed centrally in [`js/data/`](js/data/) (`portfolio-data.js`, `projects.js`, `certificates.js`).
+- **📊 Centralized Portfolio Content:** Projects, skills, certificates, and timeline data are structured in [`js/data/`](js/data/) (`portfolio-data.js`, `projects.js`, `certificates.js`). For optimal search engine indexing (SEO), the hero and contact text are pre-rendered directly in `index.html` as well as defined in `portfolio-data.js`, and should be kept in sync.
 - **🎛️ Integrated Content Studio (`admin.html`):** Visual CMS dashboard to edit bio, projects, and skills with real-time responsive preview, JSON import/export, and optional Firebase real-time sync.
-- **💳 3D Holographic Contact Card:** Interactive 3D business card responding to live mouse/gyroscope coordinates, paired with an accessible, validated message form.
-- **📄 Dedicated Curriculum Vitae Page (`cv.html`):** Custom-styled CV previewer with dark/light mode toggle and one-click PDF download.
-- **🖱️ macOS-Style Custom Interactive Cursors:** Context-aware SVG cursors (arrow, pointer, text) with dynamic sheen and drop-shadow effects.
-- **📱 Mobile-First & Accessible:** WCAG 2.1 AA compliant, responsive layout down to 360px screens, keyboard navigable dialogs, and reduced-motion fallbacks.
-- **🔍 SEO & Social Ready:** Rich Open Graph (OG) and Twitter Card metadata for LinkedIn, WhatsApp, and Twitter link previews.
+- **💳 3D Holographic Contact Card:** Interactive 3D business card responding to live mouse coordinates, paired with an accessible, validated message form (supporting Formspree / Web3Forms with automatic mailto fallback).
+- **📄 Dedicated Curriculum Vitae Page (`cv.html`):** Custom-styled CV previewer with dark/light mode toggle, one-click PDF download, and responsive mobile-optimized access.
+- **📱 Mobile-First & Accessible:** Built with accessibility in mind, responsive layout down to 360px screens, visible `:focus-visible` focus rings, semantic heading hierarchy, keyboard-navigable dialogs, and reduced-motion fallbacks.
+- **🔍 SEO & Social Ready:** Rich Open Graph (OG), Twitter Card metadata, JSON-LD Person schema, canonical URLs, `robots.txt`, and XML sitemap for search engines and social platforms (LinkedIn, WhatsApp).
 
 ---
 
 ## 🏗️ Architecture Overview
 
 ```
-New Portfilo/
-├── index.html                     # Main public portfolio (dynamic hydration & cinematic hero)
+portfolio-sarah/
+├── index.html                     # Main public portfolio (dynamic hydration & pre-rendered SEO)
 ├── admin.html                     # Content Studio & CMS Dashboard
-├── cv.html                        # Dedicated CV previewer with PDF download
+├── cv.html                        # Dedicated CV previewer with theme toggle & PDF download
 ├── cv.pdf                         # Resume document
-├── style.css                      # Master CSS index importing all modular layers
+├── style.css                      # Master CSS index importing modular development layers
+├── vercel.json                    # Vercel deployment headers, security headers, clean URLs & caching
+├── service-worker.js              # Legacy service worker cleanup script
+├── robots.txt                     # Search engine crawler directives
+├── sitemap.xml                    # XML sitemap covering root and /cv
+├── LICENSE                        # MIT License
 ├── firestore.rules                # Cloud Firestore Security Rules
-├── gemini_generated_video_8cc9ee73.mp4 # Cinematic video backdrop for hero
+├── gemini_generated_video_8cc9ee73.mp4 # Cinematic video backdrop for desktop hero intro
+│
+├── scripts/
+│   └── build-css.js               # Zero-dependency Node script to bundle and cache-bust css/main.css
 │
 ├── js/
 │   ├── main.js                    # Public site bootstrap & module orchestrator
+│   ├── cv.js                      # CV page theme toggle & state manager
 │   ├── admin.js                   # Admin dashboard bootstrap & preview controller
 │   │
 │   ├── core/                      # Core foundations
@@ -48,7 +55,7 @@ New Portfilo/
 │   │   ├── utils.js               # DOM helpers, card spotlight, share utilities
 │   │   └── state.js               # Central state manager & DOM hydration engines
 │   │
-│   ├── data/                      # Content Data Store (Single Source of Truth)
+│   ├── data/                      # Content Data Store
 │   │   ├── portfolio-data.js      # Central portfolio data (hero, about, experience, contact)
 │   │   ├── projects.js            # Machine learning & data analysis project records
 │   │   └── certificates.js        # Professional certifications & credential metadata
@@ -67,8 +74,8 @@ New Portfilo/
 │   │   ├── skills.js              # 3D Arc Carousel & categorized skills board
 │   │   ├── projects.js            # Filter tabs, project modals, spotlight & share
 │   │   ├── certificates.js        # Sticky certificates stack, filters & detail modal
-│   │   ├── animations.js          # Cinematic motion, Lenis, GSAP, 3D tilt, custom cursor
-│   │   └── contact.js             # Interactive contact form & fallback handling
+│   │   ├── animations.js          # Cinematic motion, Lenis, GSAP, 3D tilt
+│   │   └── contact.js             # Interactive contact form & API submission
 │   │
 │   ├── vendor/                    # Local production vendor libraries
 │   │   ├── gsap.min.js            # GreenSock Animation Platform
@@ -80,6 +87,7 @@ New Portfilo/
 │       └── admin-dashboard.js     # CRUD forms, schema validator, file uploaders
 │
 ├── css/
+│   ├── main.css                   # Concatenated production stylesheet (generated by build-css.js)
 │   ├── base/
 │   │   ├── variables.css          # Design tokens, color palette, typography
 │   │   └── reset.css              # Modern CSS reset & base accessibility rules
@@ -97,6 +105,9 @@ New Portfilo/
 │   │   ├── modal.css              # Project & certificate detail dialogs
 │   │   └── toast.css              # Toast notification alerts
 │   │
+│   ├── cv/
+│   │   └── cv.css                 # Dedicated styles for CV previewer & mobile action
+│   │
 │   ├── features/
 │   │   └── animations.css         # Keyframes, glow effects, scroll reveals
 │   │
@@ -106,31 +117,55 @@ New Portfilo/
 │   └── admin/
 │       └── admin.css              # Content Studio panel, split view, forms
 │
-├── images/                        # Optimized web assets (WebP & PNG)
-│   ├── certificates/              # Certificate preview images
-│   ├── cursors/                   # Custom macOS SVG cursor graphics
-│   └── ...                        # Project screenshots, logos, and icons
-│
-└── tests/
-    └── test_architecture.mjs      # Automated module integrity & architecture test suite
+└── images/                        # Optimized web assets (WebP, PNG, JPG, SVG)
+    ├── certificates/              # Certificate preview images & compressed PDFs
+    └── ...                        # Project screenshots, logos, and icons
 ```
+
+---
+
+## ⚡ Performance, Caching & CSS Build
+
+### 1. Rebuilding `css/main.css`
+The project maintains modular CSS files in development for clean organization and concatenates them for production to eliminate `@import` chaining waterfall delays:
+
+```bash
+node scripts/build-css.js
+```
+
+What `scripts/build-css.js` does:
+- Concatenates the 15 CSS layers in their exact architectural order into `css/main.css`.
+- Automatically rewrites relative asset paths (e.g. `../images/...` to `images/...`).
+- Computes the SHA-256 content hash of `css/main.css`.
+- Updates the stylesheet tag in `index.html` to `<link rel="stylesheet" href="/css/main.css?v=<hash>">` to guarantee instant cache-busting upon deployment.
+
+### 2. Caching Strategy (`vercel.json`)
+The Vercel deployment configuration enforces distinct caching tiers:
+- **Code Assets & HTML (`/js/(.*)`, `/css/(.*)`, `style.css`, HTML routes):**
+  `Cache-Control: public, max-age=0, must-revalidate`
+  Ensures returning visitors never get stuck on stale JavaScript or CSS files.
+- **Media & Fonts (`/images/(.*)`, `.webp`, `.png`, `.jpg`, `.svg`, `.mp4`, `.pdf`, `.woff2`):**
+  `Cache-Control: public, max-age=604800, stale-while-revalidate=86400`
+  Cached in browser for 7 days with a 1-day stale-while-revalidate window for smooth instant rendering.
+- **Security Headers:**
+  Includes a strict `Content-Security-Policy`, `X-Content-Type-Options: nosniff`, `X-Frame-Options: SAMEORIGIN`, and `Referrer-Policy: strict-origin-when-cross-origin`.
 
 ---
 
 ## 🚀 Getting Started
 
-### 1. Run Locally
-Because this project uses modern ES Modules (`type="module"`), it should be served via an HTTP server (to prevent browser CORS restrictions on `file://` module imports):
+### Run Locally
+Because this project uses modern ES Modules (`type="module"`), serve it via an HTTP server (to avoid CORS restrictions on local file imports):
 
 ```bash
-# Option A: Using VS Code Live Server extension:
-# Right-click index.html -> "Open with Live Server"
-
-# Option B: Using Python:
+# Option A: Using Python 3
 python -m http.server 8080
 
-# Option C: Using Node.js / npx:
+# Option B: Using Node.js / npx
 npx serve .
+
+# Option C: Using VS Code Live Server extension
+# Right-click index.html -> "Open with Live Server"
 ```
 
 Open `http://localhost:8080` in your modern browser.
@@ -144,10 +179,10 @@ There are **two ways** to update the portfolio:
 ### Method A: Direct Code Update (Recommended)
 Edit the structured data files inside [`js/data/`](js/data/):
 - **[`js/data/portfolio-data.js`](js/data/portfolio-data.js)**:
-  - `hero`: Name, roles, intro copy, CTA buttons.
+  - `hero`: Name, roles, intro copy, CTA buttons. (*Note: hero copy is also pre-rendered in `index.html` for SEO; please update both.*)
   - `about`: Professional summary, location, status, metrics.
   - `experience`: Training, roles, organizations, periods, accomplishments, skill tags.
-  - `contact`: Email, WhatsApp, social links, location.
+  - `contact`: Email, WhatsApp, social links, location. (*Note: contact headers and status notes are also in `index.html`.*)
 - **[`js/data/projects.js`](js/data/projects.js)**: Title, category (`ai`, `ml`, `analysis`), live link, GitHub repository, problem statement, key results, architecture pipeline diagrams, and metrics.
 - **[`js/data/certificates.js`](js/data/certificates.js)**: Certificate name, issuer, issue date, credential ID, verification URL, skills acquired, and preview image.
 
@@ -156,59 +191,6 @@ Edit the structured data files inside [`js/data/`](js/data/):
 2. Edit any field in real-time in the left panel.
 3. Observe instant live updates inside the preview window.
 4. Click **"Save Changes"** (saves to `localStorage`) or **"Export JSON"** to backup your changes.
-
----
-
-## 🧪 Automated Testing & Verification
-
-A dedicated verification test suite checks that all JavaScript modules, CSS layers, DOM mount points, and exports are present and structurally sound.
-
-Run the test suite using Node.js:
-
-```bash
-node tests/test_architecture.mjs
-```
-
-### Verification Output:
-```
-✅ Constants loaded: [ 'ADMIN_THEME_KEY', 'HERO_ROLES', 'MOBILE_NAV_BREAKPOINT', 'SVG_NS', 'THEME_STORAGE_KEY' ]
-✅ Portfolio Data loaded: [ 'hero', 'social', 'about', 'skills', 'projectsSection', 'projects', 'certificatesSection', 'certificates', 'experience', 'contact' ]
-✅ Utils loaded: [ 'createShareIcon', 'createSvgElement', 'emitThemeChange', ... ]
-✅ State loaded: [ 'applyAboutState', 'applyAdminState', ... ]
-✅ Storage loaded: [ 'storageService' ]
-✅ Toast loaded: [ 'showToast' ]
-✅ Firebase loaded: [ 'firebaseService', 'initPublicPortfolio' ]
-✅ Theme loaded: [ 'applyTheme', 'initThemeToggle' ]
-✅ Navigation loaded: [ 'initMenu' ]
-✅ Hero loaded: [ 'createHeroTypingController', 'initHeroAvatarFallback', ... ]
-✅ Skills loaded: [ 'SKILL_METADATA', 'createSkillCard', 'initSkillsArcCarousel', ... ]
-✅ Projects loaded: [ 'animateModalArchitecture', 'createProjectCard', 'initStickyCardStack', ... ]
-✅ Certificates loaded: [ 'openCertificateModal', 'initStickyCertificateStack', ... ]
-✅ Animations loaded: [ 'initLenis', 'initScrollReveal', 'initCard3DTilt', ... ]
-✅ Contact loaded: [ 'initContactFormFallback' ]
-✅ Admin Preview loaded: [ 'renderPreview', 'updatePreviewScale' ]
-✅ Admin Dashboard loaded: [ 'initAdminDashboard' ]
-
-🎉 ALL ACTIVE JS MODULES RESOLVED AND IMPORTED WITHOUT ERRORS!
-
---- Checking Modular CSS Files ---
-✅ CSS Module: css/vendor/lenis.min.css (511 bytes)
-✅ CSS Module: css/base/variables.css (8453 bytes)
-✅ CSS Module: css/base/reset.css (3360 bytes)
-✅ CSS Module: css/components/header.css (17709 bytes)
-✅ CSS Module: css/components/hero.css (12685 bytes)
-✅ CSS Module: css/components/about.css (11457 bytes)
-✅ CSS Module: css/components/skills.css (14548 bytes)
-✅ CSS Module: css/components/projects.css (24414 bytes)
-✅ CSS Module: css/components/certificates.css (19804 bytes)
-✅ CSS Module: css/components/experience.css (6293 bytes)
-✅ CSS Module: css/components/contact.css (13780 bytes)
-✅ CSS Module: css/components/modal.css (9247 bytes)
-✅ CSS Module: css/components/toast.css (1141 bytes)
-✅ CSS Module: css/features/animations.css (10179 bytes)
-
-🎉 ALL CSS MODULES EXIST AND ARE LINKED IN STYLE.CSS!
-```
 
 ---
 

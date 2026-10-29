@@ -19,7 +19,7 @@ import {
     initScrollReveal,
     refreshScrollReveal,
     initScrollProgressBar,
-    initCustomCursor,
+
     initBackToTop,
     initCounterAnimation,
     initMagnetic,
@@ -66,7 +66,7 @@ const boot = () => {
     safelyInit(initCertificateModal);
     safelyInit(initScrollReveal);
     safelyInit(initScrollProgressBar);
-    safelyInit(initCustomCursor);
+
     safelyInit(initBackToTop);
     safelyInit(initCounterAnimation);
     safelyInit(initMagnetic);
