@@ -38,6 +38,7 @@ out/
 .cache/
 .temp/
 .tmp/
+docs/*.json
 
 # Firebase & Deployment Logs
 .firebase/
