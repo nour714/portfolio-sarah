@@ -73,6 +73,18 @@ const boot = () => {
     safelyInit(initCard3DTilt);
     safelyInit(initProjectModal);
     safelyInit(initContactFormFallback);
+
+    // Refresh ScrollTrigger and layout measurements once fonts and images settle
+    if (typeof document !== "undefined" && document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => {
+            if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+        }).catch(() => {});
+    }
+    window.addEventListener("load", () => {
+        setTimeout(() => {
+            if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+        }, 150);
+    });
 };
 
 if (document.readyState === "loading") {

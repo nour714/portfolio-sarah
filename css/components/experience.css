@@ -1,6 +1,8 @@
 /* Experience Timeline & Metrics */
 .experience {
     padding: 12px clamp(18px, 6vw, 60px) 120px;
+    content-visibility: auto;
+    contain-intrinsic-size: auto 1400px;
 }
 
 .experience-shell {

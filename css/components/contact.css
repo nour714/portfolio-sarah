@@ -3,6 +3,8 @@
     padding: clamp(48px, 7vw, 96px) clamp(18px, 6vw, 60px) clamp(80px, 10vw, 130px);
     background: transparent;
     overflow: clip;
+    content-visibility: auto;
+    contain-intrinsic-size: auto 950px;
 }
 
 .contact-shell {
