@@ -60,7 +60,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css">
 
-    <link rel="stylesheet" href="/css/main.css?v=ff93a46b">
+    <link rel="stylesheet" href="/css/main.css?v=9aa6f40a">
 </head>
 
 <body class="is-video-intro-active">
@@ -177,7 +177,7 @@
                              id="hero-portrait-fallback"
                              role="button"
                              tabindex="0"
-                             aria-label="Portrait of Sarah Nabil with interactive halo effect"
+                             aria-label="Sarah Nabil portrait — toggle halo lighting effect"
                              aria-pressed="false">
                             <div class="hero-portrait-interactive" id="hero-portrait-interactive">
                                 <!-- Default State: Original Natural Monochrome Portrait -->
@@ -263,7 +263,7 @@
         </section>
 
         <!-- 2. ABOUT SECTION -->
-        <section class="about" id="about" aria-label="About Sarah Nabil">
+        <section class="about" id="about" aria-labelledby="about-title">
             <div class="section-shell about-shell">
                 <div class="about-panel">
                     <div class="card-spotlight" aria-hidden="true"></div>
@@ -295,6 +295,7 @@
                     </div>
 
                     <div class="about-content">
+                        <h2 id="about-title" class="sr-only">About Sarah Nabil</h2>
                         <div class="about-topline">
                             <span class="about-status">AI Student &amp; ML Practitioner</span>
                             <span class="about-location">Egypt · Kafrelsheikh University</span>
@@ -691,7 +692,7 @@
     <footer class="portfolio-footer">
         <div class="portfolio-footer-inner">
             <div class="portfolio-footer-brand">
-                <h4>Sarah Nabil Abu Al-Magd Ahmad</h4>
+                <p class="portfolio-footer-title">Sarah Nabil Abu Al-Magd Ahmad</p>
                 <p>AI Engineer · Computer Vision · Machine Learning</p>
             </div>
             <div class="portfolio-footer-socials">

@@ -423,6 +423,13 @@
     background: rgba(14, 18, 38, 0.9);
 }
 
+.contact-field input:focus-visible,
+.contact-field textarea:focus-visible,
+.contact-field select:focus-visible {
+    outline: 2px solid var(--accent-cyan, #a78bfa);
+    outline-offset: 1px;
+}
+
 .contact-form-footer {
     display: flex;
     align-items: center;

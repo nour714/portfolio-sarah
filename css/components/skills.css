@@ -93,6 +93,11 @@
     cursor: grabbing;
 }
 
+.skills-arc-stage:focus-visible {
+    outline: 2px solid var(--accent-cyan, #a78bfa);
+    outline-offset: 4px;
+}
+
 /* Zero-Latency GSAP Assembly Choreography */
 .skills-arc-stage.is-assembling .skills-arc-badge,
 .skills-arc-stage.is-assembling .skills-spotlight-icon,
@@ -380,6 +385,11 @@
     justify-content: center;
 }
 
+.skills-arc-item:focus-visible .skills-arc-badge {
+    outline: 2px solid var(--accent-cyan, #a78bfa);
+    outline-offset: 3px;
+}
+
 .skills-arc-item:hover .skills-arc-badge,
 .skills-arc-item:focus-visible .skills-arc-badge {
     transform: scale(1.1);
@@ -454,6 +464,11 @@
         box-shadow 0.2s ease;
     outline: none;
     -webkit-tap-highlight-color: transparent;
+}
+
+.skills-nav-btn:focus-visible {
+    outline: 2px solid var(--accent-cyan, #a78bfa);
+    outline-offset: 2px;
 }
 
 .skills-nav-btn:hover,

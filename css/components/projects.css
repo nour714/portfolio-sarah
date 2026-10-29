@@ -368,6 +368,8 @@
 }
 
 .project-card:focus-visible {
+    outline: 2px solid var(--projects-accent-cyan, #a78bfa);
+    outline-offset: 2px;
     border-color: var(--projects-accent-cyan);
     box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.4), 0 20px 50px rgba(0, 0, 0, 0.55);
 }

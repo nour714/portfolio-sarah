@@ -79,7 +79,8 @@ main > section {
     gap: 20px;
 }
 
-.portfolio-footer-brand h4 {
+.portfolio-footer-brand h4,
+.portfolio-footer-brand .portfolio-footer-title {
     font-size: 1.05rem;
     font-weight: 700;
     color: var(--text-main);
@@ -117,6 +118,27 @@ main > section {
     border-color: #a78bfa;
     background: rgba(167, 139, 250, 0.15);
     transform: translateY(-2px);
+}
+
+.portfolio-footer-social-link:focus-visible {
+    color: #a78bfa;
+    border-color: #a78bfa;
+    background: rgba(167, 139, 250, 0.15);
+    outline: 2px solid var(--brand-light, #a78bfa);
+    outline-offset: 2px;
+}
+
+/* Screen-reader only utility */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
 }
 
 .portfolio-footer-social-link i {
