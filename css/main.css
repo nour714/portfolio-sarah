@@ -8856,3 +8856,288 @@ body.light-mode #back-to-top:hover {
         filter: none !important;
     }
 }
+
+
+/* ========================================================= */
+/* Layer 16: css/features/perf-lite.css */
+/* ========================================================= */
+
+/**
+ * High-Performance Lite & Touch Stylesheet
+ * Applied synchronously under html.perf-lite and html.is-touch
+ * Optimizes low-end mobile phones, slow networks, and touch devices
+ * Leaves desktop (hover:hover, pointer:fine) completely unaffected.
+ */
+
+/* ==========================================================================
+   1. Touch-Specific Overrides (html.is-touch)
+   Disables mouse-only hover states, tilts, spotlights, and magnetic cursors
+   ========================================================================== */
+
+html.is-touch #cursor-glow,
+html.is-touch .cursor-glow {
+    display: none !important;
+}
+
+html.is-touch [data-magnetic],
+html.is-touch [data-tilt],
+html.is-touch [data-spotlight] {
+    transform: none !important;
+}
+
+html.is-touch .project-card:hover,
+html.is-touch .certificate-card:hover,
+html.is-touch .about-group-card:hover,
+html.is-touch .contact-item:hover,
+html.is-touch .experience-card:hover,
+html.is-touch .hero-orbit-link:hover,
+html.is-touch .hero-telemetry-card:hover,
+html.is-touch .skills-arc-item:hover,
+html.is-touch .stat-card:hover,
+html.is-touch .skills-metric:hover {
+    transform: none !important;
+}
+
+html.is-touch .certificate-card:hover .cert-image {
+    transform: none !important;
+}
+
+/* ==========================================================================
+   2. Performance Lite Mode (html.perf-lite)
+   Eliminates backdrop-filter, simplifies blurs, flattens shadows, pauses
+   infinite decorative keyframes, and frees stale GPU compositor memory.
+   ========================================================================== */
+
+/* 2.1 Release all stale will-change compositor layers */
+html.perf-lite *,
+html.perf-lite *::before,
+html.perf-lite *::after {
+    will-change: auto !important;
+}
+
+/* 2.2 Disable Backdrop-Filter & Substitute High-Contrast Backgrounds */
+html.perf-lite .site-header.is-scrolled .nav-shell,
+html.perf-lite .nav-list {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: #0b0f19 !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+body.light-mode html.perf-lite .site-header.is-scrolled .nav-shell,
+html.perf-lite body.light-mode .site-header.is-scrolled .nav-shell,
+html.perf-lite body.light-mode .nav-list {
+    background: #ffffff !important;
+    border-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+html.perf-lite .menu-toggle {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: #141a29 !important;
+}
+
+html.perf-lite body.light-mode .menu-toggle {
+    background: #f1f5f9 !important;
+}
+
+html.perf-lite .hero-status-pill,
+html.perf-lite .hero-role,
+html.perf-lite .hero-orbit-link,
+html.perf-lite .hero-orbit-tooltip,
+html.perf-lite .hero-hud-btn,
+html.perf-lite .hero-telemetry-card,
+html.perf-lite .hero-replay-btn {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: #0f172a !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+html.perf-lite body.light-mode .hero-status-pill,
+html.perf-lite body.light-mode .hero-role,
+html.perf-lite body.light-mode .hero-orbit-link,
+html.perf-lite body.light-mode .hero-orbit-tooltip,
+html.perf-lite body.light-mode .hero-hud-btn,
+html.perf-lite body.light-mode .hero-telemetry-card,
+html.perf-lite body.light-mode .hero-replay-btn {
+    background: #ffffff !important;
+    border-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+html.perf-lite .about-panel,
+html.perf-lite .about-group-card {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: #0d1322 !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+html.perf-lite body.light-mode .about-panel,
+html.perf-lite body.light-mode .about-group-card {
+    background: #ffffff !important;
+    border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+html.perf-lite .about-status {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: #111827 !important;
+}
+
+html.perf-lite body.light-mode .about-status {
+    background: #f3f4f6 !important;
+}
+
+html.perf-lite .skills-spotlight-icon,
+html.perf-lite .skills-spotlight-meta,
+html.perf-lite .skills-arc-badge,
+html.perf-lite .skills-controls,
+html.perf-lite .skills-nav-btn {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: #0f172a !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+html.perf-lite body.light-mode .skills-spotlight-icon,
+html.perf-lite body.light-mode .skills-spotlight-meta,
+html.perf-lite body.light-mode .skills-arc-badge,
+html.perf-lite body.light-mode .skills-controls,
+html.perf-lite body.light-mode .skills-nav-btn {
+    background: #ffffff !important;
+    border-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+html.perf-lite .projects-side-indicator,
+html.perf-lite .projects-filters,
+html.perf-lite .project-card,
+html.perf-lite .preview-live-overlay,
+html.perf-lite .certificates-side-indicator,
+html.perf-lite .certificates-filters,
+html.perf-lite .certificate-card,
+html.perf-lite .cert-overlay,
+html.perf-lite .cert-zoom-btn {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: #0e1424 !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+html.perf-lite body.light-mode .projects-side-indicator,
+html.perf-lite body.light-mode .projects-filters,
+html.perf-lite body.light-mode .project-card,
+html.perf-lite body.light-mode .preview-live-overlay,
+html.perf-lite body.light-mode .certificates-side-indicator,
+html.perf-lite body.light-mode .certificates-filters,
+html.perf-lite body.light-mode .certificate-card,
+html.perf-lite body.light-mode .cert-overlay,
+html.perf-lite body.light-mode .cert-zoom-btn {
+    background: #ffffff !important;
+    border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+html.perf-lite #project-modal-overlay,
+html.perf-lite #cert-modal-overlay {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(4, 7, 14, 0.94) !important;
+}
+
+html.perf-lite body.light-mode #project-modal-overlay,
+html.perf-lite body.light-mode #cert-modal-overlay {
+    background: rgba(248, 250, 252, 0.96) !important;
+}
+
+html.perf-lite .project-modal-close,
+html.perf-lite .cert-modal-close {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: #1e293b !important;
+}
+
+html.perf-lite body.light-mode .project-modal-close,
+html.perf-lite body.light-mode .cert-modal-close {
+    background: #e2e8f0 !important;
+}
+
+html.perf-lite #portfolio-toast,
+html.perf-lite #back-to-top {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: #0f172a !important;
+}
+
+html.perf-lite body.light-mode #portfolio-toast,
+html.perf-lite body.light-mode #back-to-top {
+    background: #ffffff !important;
+}
+
+/* 2.3 Remove or Heavily Reduce Blurs on Decorative Layers */
+html.perf-lite .hero-visual-glow-primary,
+html.perf-lite .hero-visual-glow-secondary,
+html.perf-lite .hero-visual-glow,
+html.perf-lite .hero-portrait-halo-aura,
+html.perf-lite .hero-orbit-glow,
+html.perf-lite .about-visual-glow,
+html.perf-lite .skills-spotlight-halo {
+    display: none !important;
+    filter: none !important;
+}
+
+html.perf-lite .hero-portrait-layer-halo,
+html.perf-lite .hero-portrait-layer-halo .hero-portrait-img,
+html.perf-lite .hero-portrait-frame,
+html.perf-lite .reveal {
+    filter: none !important;
+}
+
+/* 2.4 Simplify Multi-Layer Box Shadows to One Single Lightweight Shadow */
+html.perf-lite .project-card,
+html.perf-lite .certificate-card,
+html.perf-lite .about-panel,
+html.perf-lite .about-group-card,
+html.perf-lite .contact-panel,
+html.perf-lite .contact-form,
+html.perf-lite .contact-item,
+html.perf-lite .stat-card,
+html.perf-lite .skills-metric,
+html.perf-lite .about-node,
+html.perf-lite .experience-card,
+html.perf-lite .site-header.is-scrolled .nav-shell,
+html.perf-lite .hero-orbit-link,
+html.perf-lite .hero-telemetry-card,
+html.perf-lite .hero-hud-btn {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
+}
+
+html.perf-lite body.light-mode .project-card,
+html.perf-lite body.light-mode .certificate-card,
+html.perf-lite body.light-mode .about-panel,
+html.perf-lite body.light-mode .about-group-card,
+html.perf-lite body.light-mode .contact-panel,
+html.perf-lite body.light-mode .contact-form,
+html.perf-lite body.light-mode .contact-item,
+html.perf-lite body.light-mode .stat-card,
+html.perf-lite body.light-mode .skills-metric,
+html.perf-lite body.light-mode .about-node,
+html.perf-lite body.light-mode .experience-card,
+html.perf-lite body.light-mode .site-header.is-scrolled .nav-shell,
+html.perf-lite body.light-mode .hero-orbit-link,
+html.perf-lite body.light-mode .hero-telemetry-card,
+html.perf-lite body.light-mode .hero-hud-btn {
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08) !important;
+}
+
+/* 2.5 Pause Infinite Decorative Keyframes Animations */
+html.perf-lite .hero-portrait-interactive,
+html.perf-lite .hero-orbit-container,
+html.perf-lite .hero-orbit-item,
+html.perf-lite .skills-spotlight-halo,
+html.perf-lite .projects-header::after,
+html.perf-lite .certificates-header::after,
+html.perf-lite .about-visual-backdrop::after,
+html.perf-lite [data-glow-drift],
+html.perf-lite .avatar-orbit {
+    animation: none !important;
+}

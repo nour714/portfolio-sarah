@@ -28,3 +28,6 @@
 
 /* 3. Features & Animations Layer */
 @import url("css/features/animations.css?v=2.0");
+
+/* 4. High-Performance Lite & Touch Overrides */
+@import url("css/features/perf-lite.css?v=2.0");

@@ -255,3 +255,33 @@ body.light-mode .cv-mobile-action {
 .cv-foot a:hover {
     text-decoration: underline;
 }
+
+/* ==========================================================================
+   High-Performance Lite & Touch Overrides for CV Shell
+   ========================================================================== */
+html.is-touch .btn:hover {
+    transform: none !important;
+}
+
+html.perf-lite *,
+html.perf-lite *::before,
+html.perf-lite *::after {
+    will-change: auto !important;
+}
+
+html.perf-lite .cv-shell {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: #0e1222 !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+}
+
+html.perf-lite body.light-mode .cv-shell {
+    background: #ffffff !important;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08) !important;
+}
+
+html.perf-lite .btn-prominent {
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3) !important;
+}
+
