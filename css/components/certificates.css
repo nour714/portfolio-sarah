@@ -14,8 +14,8 @@
     --certificates-text-primary: #f8fafc;
     --certificates-text-secondary: #94a3b8;
     --certificates-text-muted: #64748b;
-    --font-mono: "JetBrains Mono", "Space Grotesk", monospace;
-    --font-sans: "Inter", "Poppins", sans-serif;
+    --font-mono: "Space Grotesk", monospace;
+    --font-sans: "Poppins", sans-serif;
 
     position: relative;
     padding: clamp(40px, 8vw, 100px) clamp(16px, 5vw, 60px) clamp(80px, 12vw, 140px);

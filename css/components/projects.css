@@ -14,8 +14,8 @@
     --projects-text-primary: #f8fafc;
     --projects-text-secondary: #94a3b8;
     --projects-text-muted: #64748b;
-    --font-mono: "JetBrains Mono", "Space Grotesk", monospace;
-    --font-sans: "Inter", "Poppins", sans-serif;
+    --font-mono: "Space Grotesk", monospace;
+    --font-sans: "Poppins", sans-serif;
 
     position: relative;
     padding: clamp(40px, 8vw, 100px) clamp(16px, 5vw, 60px) clamp(80px, 12vw, 140px);
