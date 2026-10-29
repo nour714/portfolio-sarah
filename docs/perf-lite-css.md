@@ -112,3 +112,4 @@ Deep multi-layer shadows (e.g. `0 24px 60px rgba(...), 0 0 40px rgba(...)`) simp
 ### Compositor Layers Freed:
 - `html.perf-lite *, html.perf-lite *::before, html.perf-lite *::after { will-change: auto !important; }`
 - Releases dozens of persistent GPU memory allocations across hero, about, projects, skills, and contact cards.
+

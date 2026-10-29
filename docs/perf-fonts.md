@@ -56,3 +56,4 @@ Declared local metric-compatible fallback `@font-face` rules using `size-adjust`
 Removed `fonts.googleapis.com` from `style-src` and `fonts.gstatic.com` from `font-src` in `vercel.json`:
 - `style-src 'self' 'unsafe-inline';`
 - `font-src 'self' data:;`
+

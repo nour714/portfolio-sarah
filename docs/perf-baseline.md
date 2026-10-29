@@ -48,3 +48,4 @@ Preset: Mobile (Device Emulation: Moto G Power / mobile viewport 412x823, Slow 4
 3. **Remote Google Fonts:** External Google Fonts domains (`fonts.googleapis.com`, `fonts.gstatic.com`) incur DNS, TLS, and roundtrip latency plus 720 KB font transfer. Self-hosting woff2 latin subset will cut size and avoid connection delays.
 4. **Oversized Images:** `about-me-polished.webp` (~505 KB) and portfolio screenshots lack mobile srcset variants (480w / 800w).
 5. **Expensive CSS Effects on Mobile:** Multiple `backdrop-filter: blur(...)`, deep box-shadows, continuous decorative animations, and Lenis smooth scrolling add thread pressure on low-tier mobile CPUs.
+

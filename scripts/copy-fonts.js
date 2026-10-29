@@ -32,3 +32,4 @@ for (const [srcName, destName] of Object.entries(fontMap)) {
 }
 
 console.log(`Total self-hosted fonts: ${(totalBytes / 1024).toFixed(1)} KB (${totalBytes} bytes)`);
+
