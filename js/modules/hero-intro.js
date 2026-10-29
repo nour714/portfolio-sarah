@@ -98,6 +98,27 @@ export const initHeroIntro = () => {
         document.body.classList.add("is-hero-assembled");
         document.body.classList.add("is-hero-assembling");
 
+        // Fade out and completely hide Intro HUD controls from Home Page
+        const hud = document.getElementById("hero-intro-hud");
+        if (hud) {
+            hud.style.pointerEvents = "none";
+            if (instant || reduceMotion || !window.gsap) {
+                hud.style.opacity = "0";
+                hud.style.visibility = "hidden";
+                hud.style.display = "none";
+            } else {
+                window.gsap.to(hud, {
+                    autoAlpha: 0,
+                    duration: 0.35,
+                    ease: "power2.out",
+                    onComplete: () => {
+                        hud.style.visibility = "hidden";
+                        hud.style.display = "none";
+                    }
+                });
+            }
+        }
+
         // Ensure Lenis smooth scrolling and viewport scroll are active
         if (window.__lenis) {
             window.__lenis.start();
@@ -275,8 +296,6 @@ export const initHeroIntro = () => {
         hud.id = "hero-intro-hud";
         hud.setAttribute("role", "region");
         hud.setAttribute("aria-label", "Intro Video Controls");
-        hud.style.opacity = "1";
-        hud.style.visibility = "visible";
         hud.innerHTML = `
             <div class="hero-intro-hud-top">
                 <div class="hero-intro-hud-actions">
@@ -309,13 +328,14 @@ export const initHeroIntro = () => {
         `;
         hero.appendChild(hud);
     } else {
-        hud.style.opacity = "1";
-        hud.style.visibility = "visible";
+        hud.style.display = "";
+        hud.style.opacity = "";
+        hud.style.visibility = "";
+        hud.style.pointerEvents = "";
     }
 
     const soundBtn = document.getElementById("hero-hud-sound-btn");
     const skipBtn = document.getElementById("hero-hud-skip-btn");
-    const replayBtn = document.getElementById("hero-replay-btn");
 
     /**
      * Updates Sound UI state (icons and labels)
@@ -353,20 +373,6 @@ export const initHeroIntro = () => {
     };
 
     /**
-     * Checks video timeline to trigger smooth assembly before ending
-     */
-    const onTimeUpdate = () => {
-        if (!video.duration || isAssembled) return;
-        const current = video.currentTime;
-        const total = video.duration;
-
-        // Trigger assembly slightly before absolute ending to ensure zero black frames
-        if (current >= total - 0.22) {
-            assembleHero();
-        }
-    };
-
-    /**
      * Skip Intro handler
      */
     const skipIntro = (e) => {
@@ -378,40 +384,16 @@ export const initHeroIntro = () => {
     };
 
     /**
-     * Replay Cinematic Intro sequence from start
+     * Checks video timeline to trigger smooth assembly before ending
      */
-    const replayIntro = (e) => {
-        if (getMediaMatch("(max-width: 768px)") || window.innerWidth <= 768 || shouldSkipVideo) return;
-        e?.stopPropagation?.();
-        isAssembled = false;
+    const onTimeUpdate = () => {
+        if (!video.duration || isAssembled) return;
+        const current = video.currentTime;
+        const total = video.duration;
 
-        window.scrollTo({ top: 0, behavior: "smooth" });
-
-        document.body.classList.remove("is-hero-assembled");
-        document.body.classList.add("is-video-intro-active");
-
-        addScrollIntentListeners();
-        ensureVideoSource();
-
-        const gsap = window.gsap;
-        if (gsap) {
-            gsap.to([".hero-text", ".site-header"], {
-                autoAlpha: 0,
-                y: -12,
-                duration: 0.35,
-                ease: "power2.in",
-                onComplete: () => {
-                    video.currentTime = 0;
-                    video.play().catch(() => {});
-                    if (hud) {
-                        hud.style.visibility = "visible";
-                        gsap.to(hud, { autoAlpha: 1, duration: 0.3 });
-                    }
-                }
-            });
-        } else {
-            video.currentTime = 0;
-            video.play().catch(() => {});
+        // Trigger assembly slightly before absolute ending to ensure zero black frames
+        if (current >= total - 0.22) {
+            assembleHero();
         }
     };
 
@@ -430,7 +412,6 @@ export const initHeroIntro = () => {
 
     if (soundBtn) soundBtn.addEventListener("click", toggleSound);
     if (skipBtn) skipBtn.addEventListener("click", skipIntro);
-    if (replayBtn) replayBtn.addEventListener("click", replayIntro);
 
     // Initialize in Intro Mode for Desktop (do not lock page scroll; scroll intent skips)
     document.body.classList.add("is-video-intro-active");

@@ -2550,7 +2550,7 @@ body.is-hero-assembled .hero-video-scrim {
     }
 }
 
-/* 4. Cinematic Intro Controls HUD (Active while video plays) */
+/* 4. Cinematic Intro Controls HUD (Active ONLY while video intro plays) */
 .hero-intro-hud {
     position: absolute;
     inset: 0;
@@ -2560,13 +2560,22 @@ body.is-hero-assembled .hero-video-scrim {
     padding: clamp(18px, 3.8vh, 36px) clamp(18px, 4.5vw, 56px);
     z-index: 25;
     pointer-events: none;
-    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s;
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s;
 }
 
-body.is-hero-assembled .hero-intro-hud {
-    opacity: 0;
-    pointer-events: none;
-    visibility: hidden;
+/* When the hero is assembled into the Home Page, HUD is completely hidden and non-interactive */
+body.is-hero-assembled .hero-intro-hud,
+body.is-hero-assembling .hero-intro-hud,
+body.video-fallback-active .hero-intro-hud {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+    display: none !important;
+}
+
+.hero-replay-btn,
+#hero-replay-btn {
+    display: none !important;
 }
 
 .hero-intro-hud * {
@@ -2839,21 +2848,9 @@ body.is-hero-assembled .hero-telemetry-cluster {
     outline-offset: 2px;
 }
 
-#hero-replay-btn {
-    display: none;
-}
-
-@media (min-width: 769px) {
-    body.is-hero-assembled #hero-replay-btn {
-        display: inline-flex;
-    }
-}
-
-@media (max-width: 768px) {
-    #hero-replay-btn,
-    .hero-replay-btn {
-        display: none !important;
-    }
+#hero-replay-btn,
+.hero-replay-btn {
+    display: none !important;
 }
 
 /* 7. Portrait Fallback Visibility */
