@@ -32,13 +32,15 @@ lerna-debug.log*
 *.env
 
 # Build & Cache Directories
-dist/
+/dist/
 build/
 out/
 .cache/
 .temp/
 .tmp/
 docs/*.json
+!/js/dist/
+!/css/dist/
 
 # Firebase & Deployment Logs
 .firebase/

@@ -38,6 +38,15 @@
       ]
     },
     {
+      "source": "/(js|css)/dist/(.*\\.[a-f0-9]{8}\\..*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
       "source": "/style.css",
       "headers": [
         {

@@ -85,7 +85,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css">
 
-    <link rel="stylesheet" href="/css/main.css?v=91f180a3">
+    <link rel="stylesheet" href="/css/dist/main.eba3550b.min.css">
 </head>
 
 <body class="is-video-intro-active">
@@ -729,13 +729,12 @@
         </div>
     </footer>
 
-    <!-- GSAP, ScrollTrigger & Lenis Motion Engines -->
-    <script src="js/vendor/gsap.min.js"></script>
-    <script src="js/vendor/ScrollTrigger.min.js"></script>
-    <script src="js/vendor/lenis.min.js"></script>
+    <!-- GSAP & ScrollTrigger Vendor Engines (deferred in order) -->
+    <script defer src="/js/vendor/gsap.min.js"></script>
+    <script defer src="/js/vendor/ScrollTrigger.min.js"></script>
 
-    <!-- Application Bootstrap (Clean Architecture Dynamic Hydration) -->
-    <script type="module" src="js/main.js"></script>
+    <!-- Application Bootstrap (Bundled & Minified ES Module) -->
+    <script type="module" src="/js/dist/main.4efc893f.min.js"></script>
 </body>
 
 </html>

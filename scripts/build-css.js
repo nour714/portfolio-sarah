@@ -96,4 +96,8 @@ function buildCss() {
     }
 }
 
-buildCss();
+if (require.main === module) {
+    buildCss();
+}
+
+module.exports = { buildCss };

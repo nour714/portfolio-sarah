@@ -152,6 +152,30 @@ The Vercel deployment configuration enforces distinct caching tiers:
 
 ---
 
+## 🛠️ Build System & Production Bundling
+
+The project includes an ultra-fast build workflow powered by `esbuild` that compiles, bundles, and minifies assets with immutable content hashing for Vercel deployment:
+
+```bash
+# 1. Install devDependencies
+npm install
+
+# 2. Build production assets (bundles JS, minifies CSS, generates hashes, updates HTML)
+npm run build
+
+# Or build individual targets:
+npm run build:css   # Bundle and minify CSS
+npm run build:js    # Bundle and minify JS modules
+```
+
+### Build Outputs
+- `js/dist/main.[hash].min.js` + `.map`: Minified bundle of the 26-module dependency graph (~141 KB).
+- `css/dist/main.[hash].min.css` + `.map`: Minified master stylesheet with dead space & redundant comments stripped (~155 KB).
+- `js/dist/cv.[hash].min.js` & `css/dist/cv.[hash].min.css`: Optimized bundles for the CV page.
+- Vercel automatically serves hashed files under `/js/dist/` and `/css/dist/` with `Cache-Control: public, max-age=31536000, immutable`.
+
+---
+
 ## 🚀 Getting Started
 
 ### Run Locally
