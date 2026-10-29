@@ -227,8 +227,12 @@
                             <div class="hero-portrait-interactive" id="hero-portrait-interactive">
                                 <!-- Default State: Original Natural Monochrome Portrait -->
                                 <picture class="hero-portrait-layer hero-portrait-layer-default">
-                                    <source srcset="images/hero-portrait-default.webp" type="image/webp">
+                                    <source srcset="images/hero-portrait-default-480.webp 480w, images/hero-portrait-default-800.webp 800w, images/hero-portrait-default.webp 828w"
+                                            sizes="(max-width: 600px) 480px, (max-width: 1024px) 800px, 828px"
+                                            type="image/webp">
                                     <img src="images/hero-portrait-default.png"
+                                         srcset="images/hero-portrait-default-480.webp 480w, images/hero-portrait-default-800.webp 800w, images/hero-portrait-default.png 828w"
+                                         sizes="(max-width: 600px) 480px, (max-width: 1024px) 800px, 828px"
                                          alt="Sarah Nabil - Machine Learning &amp; AI Specialist"
                                          class="hero-portrait-img hero-img-default"
                                          width="828"
@@ -239,8 +243,12 @@
 
                                 <!-- Hover State: Dramatic Monochrome Portrait with Glowing White Halo -->
                                 <picture class="hero-portrait-layer hero-portrait-layer-halo" aria-hidden="true">
-                                    <source srcset="images/hero-portrait-halo.webp" type="image/webp">
+                                    <source srcset="images/hero-portrait-halo-480.webp 480w, images/hero-portrait-halo-800.webp 800w, images/hero-portrait-halo.webp 828w"
+                                            sizes="(max-width: 600px) 480px, (max-width: 1024px) 800px, 828px"
+                                            type="image/webp">
                                     <img src="images/hero-portrait-halo.png"
+                                         srcset="images/hero-portrait-halo-480.webp 480w, images/hero-portrait-halo-800.webp 800w, images/hero-portrait-halo.png 828w"
+                                         sizes="(max-width: 600px) 480px, (max-width: 1024px) 800px, 828px"
                                          alt=""
                                          class="hero-portrait-img hero-img-halo"
                                          width="828"
@@ -317,8 +325,12 @@
                         <div class="about-visual-glow"></div>
                         <div class="about-image-wrap">
                             <picture class="about-layer about-layer-robot">
-                                <source srcset="images/about-robot.webp" type="image/webp">
+                                <source srcset="images/about-robot-480.webp 480w, images/about-robot-800.webp 800w, images/about-robot.webp 960w"
+                                        sizes="(max-width: 600px) 480px, (max-width: 1024px) 800px, 960px"
+                                        type="image/webp">
                                 <img src="images/about-robot.png"
+                                     srcset="images/about-robot-480.webp 480w, images/about-robot-800.webp 800w, images/about-robot.png 960w"
+                                     sizes="(max-width: 600px) 480px, (max-width: 1024px) 800px, 960px"
                                      alt="AI Assistant Robot"
                                      class="about-image about-img-robot"
                                      width="960"
@@ -327,8 +339,12 @@
                                      decoding="async">
                             </picture>
                             <picture class="about-layer about-layer-sarah">
-                                <source srcset="images/about-sarah.webp" type="image/webp">
+                                <source srcset="images/about-sarah-480.webp 480w, images/about-sarah-800.webp 800w, images/about-sarah.webp 960w"
+                                        sizes="(max-width: 600px) 480px, (max-width: 1024px) 800px, 960px"
+                                        type="image/webp">
                                 <img src="images/about-sarah.png"
+                                     srcset="images/about-sarah-480.webp 480w, images/about-sarah-800.webp 800w, images/about-sarah.png 960w"
+                                     sizes="(max-width: 600px) 480px, (max-width: 1024px) 800px, 960px"
                                      alt="Sarah Nabil - Machine Learning &amp; AI Specialist"
                                      class="about-image about-img-sarah"
                                      width="960"
@@ -760,7 +776,7 @@
     <script defer src="/js/vendor/ScrollTrigger.min.js"></script>
 
     <!-- Application Bootstrap (Bundled & Minified ES Module) -->
-    <script type="module" src="/js/dist/main.ef2305f8.min.js"></script>
+    <script type="module" src="/js/dist/main.4493297c.min.js"></script>
 </body>
 
 </html>

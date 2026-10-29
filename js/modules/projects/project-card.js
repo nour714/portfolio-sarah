@@ -210,17 +210,27 @@ export const createProjectCard = (project, index) => {
     parallaxMedia.className = "project-preview-media";
 
     let mediaEl;
-    if (project.image?.srcWebp) {
+    const rawWebp = project.image?.srcWebp || (project.image?.src && project.image.src.replace(/\.(png|jpe?g)$/i, '.webp'));
+    if (rawWebp) {
         const picture = document.createElement("picture");
         const source = document.createElement("source");
-        source.srcset = project.image.srcWebp;
+        const match = rawWebp.match(/^(.*)\.webp$/i);
+        if (match) {
+            const base = match[1];
+            source.srcset = `${base}-480.webp 480w, ${base}-800.webp 800w, ${rawWebp} 1200w`;
+            source.sizes = "(max-width: 600px) 480px, (max-width: 1024px) 800px, 1200px";
+        } else {
+            source.srcset = rawWebp;
+        }
         source.type = "image/webp";
         const img = document.createElement("img");
         img.className = "project-image";
         img.loading = "lazy";
         img.decoding = "async";
-        img.src = project.image.src || project.image.srcWebp;
-        img.alt = project.image.alt || project.title || "Project Preview";
+        img.width = 640;
+        img.height = 360;
+        img.src = project.image?.src || rawWebp;
+        img.alt = project.image?.alt || project.title || "Project Preview";
         picture.append(source, img);
         mediaEl = picture;
     } else {
@@ -228,6 +238,8 @@ export const createProjectCard = (project, index) => {
         img.className = "project-image";
         img.loading = "lazy";
         img.decoding = "async";
+        img.width = 640;
+        img.height = 360;
         img.src = project.image?.src || "";
         img.alt = project.image?.alt || project.title || "Project Preview";
         mediaEl = img;

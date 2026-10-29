@@ -121,6 +121,12 @@ body.is-hero-assembled .hero-video-scrim {
         background: #080b12 url('../../images/hero-mobile-backdrop.webp') center 30% / cover no-repeat !important;
     }
 
+    @media (max-width: 600px) {
+        .hero-video-stage {
+            background-image: url('../../images/hero-mobile-backdrop-480.webp') !important;
+        }
+    }
+
     .hero-intro-video {
         display: block !important;
         object-fit: cover !important;

@@ -138,12 +138,21 @@ export const createCertificateCard = (cert, index = 0) => {
     if (webpSrc) {
         const picture = document.createElement("picture");
         const source = document.createElement("source");
-        source.srcset = webpSrc;
+        const match = webpSrc.match(/^(.*)\.webp$/i);
+        if (match) {
+            const base = match[1];
+            source.srcset = `${base}-480.webp 480w, ${base}-800.webp 800w, ${webpSrc} 1200w`;
+            source.sizes = "(max-width: 600px) 480px, (max-width: 1024px) 800px, 1200px";
+        } else {
+            source.srcset = webpSrc;
+        }
         source.type = "image/webp";
         const img = document.createElement("img");
         img.className = "certificate-image cert-img";
         img.loading = "lazy";
         img.decoding = "async";
+        img.width = 640;
+        img.height = 450;
         img.src = cert.image || webpSrc;
         img.alt = cert.title || "Certificate Preview";
         img.addEventListener("error", () => {
@@ -156,6 +165,8 @@ export const createCertificateCard = (cert, index = 0) => {
         img.className = "certificate-image cert-img";
         img.loading = "lazy";
         img.decoding = "async";
+        img.width = 640;
+        img.height = 450;
         img.src = cert.image || "";
         img.alt = cert.title || "Certificate Preview";
         img.addEventListener("error", () => {
@@ -475,7 +486,23 @@ export const openCertificateModal = (cert) => {
     const modalOpenBtn = document.getElementById("cert-modal-open-link");
 
     if (modalImg) {
-        modalImg.src = cert.image || "";
+        const webpSrc = cert.imageWebp || (cert.image && cert.image.endsWith('.png') ? cert.image.replace(/\.png$/, '.webp') : cert.imageFallback);
+        if (webpSrc) {
+            const match = webpSrc.match(/^(.*)\.webp$/i);
+            if (match) {
+                const base = match[1];
+                modalImg.srcset = `${base}-480.webp 480w, ${base}-800.webp 800w, ${webpSrc} 1200w`;
+                modalImg.sizes = "(max-width: 600px) 100vw, 800px";
+            } else {
+                modalImg.removeAttribute("srcset");
+                modalImg.removeAttribute("sizes");
+            }
+            modalImg.src = webpSrc;
+        } else {
+            modalImg.removeAttribute("srcset");
+            modalImg.removeAttribute("sizes");
+            modalImg.src = cert.image || "";
+        }
         modalImg.alt = cert.title || "Certificate Image";
     }
     if (modalTitle) setText(modalTitle, cert.title || "");

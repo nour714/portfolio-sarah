@@ -170,9 +170,24 @@ export const initProjectModal = () => {
 
         // Preview Image
         if (imgEl) {
-            const imgSrc = project.image?.srcWebp || project.image?.src || project.previewUrl || "";
-            if (imgSrc) {
-                imgEl.src = imgSrc;
+            const rawWebp = project.image?.srcWebp || (project.image?.src && project.image.src.replace(/\.(png|jpe?g)$/i, '.webp'));
+            if (rawWebp) {
+                const match = rawWebp.match(/^(.*)\.webp$/i);
+                if (match) {
+                    const base = match[1];
+                    imgEl.srcset = `${base}-480.webp 480w, ${base}-800.webp 800w, ${rawWebp} 1200w`;
+                    imgEl.sizes = "(max-width: 600px) 100vw, 800px";
+                } else {
+                    imgEl.removeAttribute("srcset");
+                    imgEl.removeAttribute("sizes");
+                }
+                imgEl.src = rawWebp;
+                imgEl.alt = project.image?.alt || project.title || "Project Preview";
+                imgEl.style.display = "block";
+            } else if (project.image?.src || project.previewUrl) {
+                imgEl.removeAttribute("srcset");
+                imgEl.removeAttribute("sizes");
+                imgEl.src = project.image?.src || project.previewUrl || "";
                 imgEl.alt = project.image?.alt || project.title || "Project Preview";
                 imgEl.style.display = "block";
             } else {
