@@ -1,3 +1,5 @@
+@import "../base/fonts.css";
+
 :root {
     color-scheme: dark;
     --bg: #070710;
@@ -31,7 +33,7 @@ body.light-mode {
 body {
     margin: 0;
     min-height: 100vh;
-    font-family: "Poppins", system-ui, -apple-system, Segoe UI, sans-serif;
+    font-family: "Poppins", "Poppins Fallback", system-ui, -apple-system, Segoe UI, sans-serif;
     background:
         radial-gradient(circle at top right, rgba(167, 139, 250, 0.14), transparent 54%),
         radial-gradient(circle at bottom left, rgba(139, 92, 246, 0.15), transparent 48%),

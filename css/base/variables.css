@@ -86,9 +86,9 @@
     --fs-hero-role: clamp(1rem, 2.8vw, 1.55rem);
     --fs-hero-copy: clamp(0.92rem, 2.2vw, 1.08rem);
     --fs-hero-btn: clamp(0.88rem, 1.6vw, 1.02rem);
-    --font-sans: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    --font-display: "Space Grotesk", "Poppins", sans-serif;
-    --font-mono: "Space Grotesk", monospace;
+    --font-sans: "Poppins", "Poppins Fallback", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --font-display: "Space Grotesk", "Space Grotesk Fallback", "Poppins", sans-serif;
+    --font-mono: "Space Grotesk", "Space Grotesk Fallback", monospace;
 }
 
 * {

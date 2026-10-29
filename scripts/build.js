@@ -43,11 +43,16 @@ async function runBuild() {
 
     // 1. Build Master CSS via scripts/build-css.js first
     console.log('📦 [build] Step 1: Concatenating CSS layers into css/main.css...');
-    require('./build-css.js');
+    const { buildCss } = require('./build-css.js');
+    buildCss();
 
     const mainCssContent = fs.readFileSync(path.join(ROOT_DIR, 'css', 'main.css'), 'utf8');
     const cvCssPath = path.join(ROOT_DIR, 'css', 'cv', 'cv.css');
-    const cvCssContent = fs.existsSync(cvCssPath) ? fs.readFileSync(cvCssPath, 'utf8') : '';
+    let cvCssContent = fs.existsSync(cvCssPath) ? fs.readFileSync(cvCssPath, 'utf8') : '';
+    const fontsPath = path.join(ROOT_DIR, 'css', 'base', 'fonts.css');
+    if (cvCssContent.includes('@import "../base/fonts.css";') && fs.existsSync(fontsPath)) {
+        cvCssContent = cvCssContent.replace('@import "../base/fonts.css";', fs.readFileSync(fontsPath, 'utf8'));
+    }
 
     // 2. Minify CSS with esbuild
     console.log('⚡ [build] Step 2: Minifying CSS with esbuild...');

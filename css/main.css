@@ -6,7 +6,110 @@
 
 
 /* ========================================================= */
-/* Layer 1: css/vendor/lenis.min.css */
+/* Layer 1: css/base/fonts.css */
+/* ========================================================= */
+
+/* ==========================================================================
+   Self-Hosted Font Faces: Poppins & Space Grotesk (Latin woff2)
+   Zero external dependencies, font-display: swap with metric-compatible fallbacks
+   ========================================================================== */
+
+/* Metric-compatible local fallbacks to eliminate layout shift (CLS = 0) */
+@font-face {
+    font-family: "Poppins Fallback";
+    src: local("Arial");
+    ascent-override: 105%;
+    descent-override: 35%;
+    line-gap-override: 10%;
+    size-adjust: 105%;
+}
+
+@font-face {
+    font-family: "Space Grotesk Fallback";
+    src: local("Arial");
+    ascent-override: 95%;
+    descent-override: 25%;
+    line-gap-override: 0%;
+    size-adjust: 100%;
+}
+
+/* Poppins (Weights: 400, 500, 600, 700, 800) */
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/poppins-400.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url("/fonts/poppins-500.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url("/fonts/poppins-600.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("/fonts/poppins-700.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+    src: url("/fonts/poppins-800.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Space Grotesk (Weights: 500, 600, 700) */
+@font-face {
+    font-family: "Space Grotesk";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url("/fonts/space-grotesk-500.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: "Space Grotesk";
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url("/fonts/space-grotesk-600.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: "Space Grotesk";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("/fonts/space-grotesk-700.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+
+/* ========================================================= */
+/* Layer 2: css/vendor/lenis.min.css */
 /* ========================================================= */
 
 /**
@@ -19,7 +122,7 @@ html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!
 
 
 /* ========================================================= */
-/* Layer 2: css/base/variables.css */
+/* Layer 3: css/base/variables.css */
 /* ========================================================= */
 
 /* CSS Custom Properties & Design Tokens */
@@ -110,9 +213,9 @@ html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!
     --fs-hero-role: clamp(1rem, 2.8vw, 1.55rem);
     --fs-hero-copy: clamp(0.92rem, 2.2vw, 1.08rem);
     --fs-hero-btn: clamp(0.88rem, 1.6vw, 1.02rem);
-    --font-sans: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    --font-display: "Space Grotesk", "Poppins", sans-serif;
-    --font-mono: "Space Grotesk", monospace;
+    --font-sans: "Poppins", "Poppins Fallback", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --font-display: "Space Grotesk", "Space Grotesk Fallback", "Poppins", sans-serif;
+    --font-mono: "Space Grotesk", "Space Grotesk Fallback", monospace;
 }
 
 * {
@@ -230,7 +333,7 @@ body.light-mode::before {
 
 
 /* ========================================================= */
-/* Layer 3: css/base/reset.css */
+/* Layer 4: css/base/reset.css */
 /* ========================================================= */
 
 /* Base Global Reset & Typography */
@@ -378,6 +481,20 @@ main > section {
     border-width: 0;
 }
 
+.devicon-svg {
+    display: inline-block;
+    vertical-align: middle;
+    width: 1.25rem;
+    height: 1.25rem;
+    fill: currentColor;
+}
+
+.portfolio-footer-social-link .devicon-svg {
+    width: 1.15rem;
+    height: 1.15rem;
+    fill: currentColor;
+}
+
 .portfolio-footer-social-link i {
     font-size: 1.1rem;
 }
@@ -419,7 +536,7 @@ body.light-mode .portfolio-footer-copy {
 
 
 /* ========================================================= */
-/* Layer 4: css/components/header.css */
+/* Layer 5: css/components/header.css */
 /* ========================================================= */
 
 /* ==========================================================================
@@ -1154,7 +1271,7 @@ body.light-mode .menu-toggle {
 
 
 /* ========================================================= */
-/* Layer 5: css/components/hero.css */
+/* Layer 6: css/components/hero.css */
 /* ========================================================= */
 
 /* Hero Section, Role Typing & Avatar */
@@ -1408,9 +1525,13 @@ body.light-mode .hero-btn-secondary:hover {
     transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease, color 0.22s ease;
 }
 
-.hero-social-link i {
+.hero-social-link i,
+.hero-social-link .devicon-svg {
     font-size: 1.2rem;
     line-height: 1;
+    width: 1.25rem;
+    height: 1.25rem;
+    fill: currentColor;
 }
 
 .hero-social-link:hover {
@@ -2387,7 +2508,7 @@ body.light-mode .hero-orbit-ring-inner {
 
 
 /* ========================================================= */
-/* Layer 6: css/components/hero-video.css */
+/* Layer 7: css/components/hero-video.css */
 /* ========================================================= */
 
 /* ==========================================================================
@@ -2511,6 +2632,12 @@ body.is-hero-assembled .hero-video-scrim {
         overflow: hidden;
         z-index: 0;
         background: #080b12 url('../images/hero-mobile-backdrop.webp') center 30% / cover no-repeat !important;
+    }
+
+    @media (max-width: 600px) {
+        .hero-video-stage {
+            background-image: url('../images/hero-mobile-backdrop-480.webp') !important;
+        }
     }
 
     .hero-intro-video {
@@ -3040,7 +3167,7 @@ body.light-mode .hero-hud-btn:hover {
 
 
 /* ========================================================= */
-/* Layer 7: css/components/about.css */
+/* Layer 8: css/components/about.css */
 /* ========================================================= */
 
 .about {
@@ -4055,7 +4182,7 @@ body.light-mode .stat-suffix {
 
 
 /* ========================================================= */
-/* Layer 8: css/components/skills.css */
+/* Layer 9: css/components/skills.css */
 /* ========================================================= */
 
 /**
@@ -4879,7 +5006,7 @@ body.light-mode .skills-note strong {
 
 
 /* ========================================================= */
-/* Layer 9: css/components/projects.css */
+/* Layer 10: css/components/projects.css */
 /* ========================================================= */
 
 /* ==========================================================================
@@ -6118,7 +6245,7 @@ body.light-mode .project-btn-ghost:hover {
 
 
 /* ========================================================= */
-/* Layer 10: css/components/certificates.css */
+/* Layer 11: css/components/certificates.css */
 /* ========================================================= */
 
 /* ==========================================================================
@@ -7132,7 +7259,7 @@ body.light-mode .cert-modal-close:hover {
 
 
 /* ========================================================= */
-/* Layer 11: css/components/experience.css */
+/* Layer 12: css/components/experience.css */
 /* ========================================================= */
 
 /* Experience Timeline & Metrics */
@@ -7418,7 +7545,7 @@ body.light-mode .experience-tags span {
 
 
 /* ========================================================= */
-/* Layer 12: css/components/contact.css */
+/* Layer 13: css/components/contact.css */
 /* ========================================================= */
 
 .contact {
@@ -8053,7 +8180,7 @@ body.light-mode .contact-field select:focus {
 
 
 /* ========================================================= */
-/* Layer 13: css/components/modal.css */
+/* Layer 14: css/components/modal.css */
 /* ========================================================= */
 
 /* Project Detail Modal */
@@ -8441,7 +8568,7 @@ body.light-mode .project-modal-btn-secondary:hover {
 
 
 /* ========================================================= */
-/* Layer 14: css/components/toast.css */
+/* Layer 15: css/components/toast.css */
 /* ========================================================= */
 
 /* Toast Notifications */
@@ -8485,7 +8612,7 @@ body.light-mode #portfolio-toast {
 
 
 /* ========================================================= */
-/* Layer 15: css/features/animations.css */
+/* Layer 16: css/features/animations.css */
 /* ========================================================= */
 
 /* Scroll Progress, Back to Top & Keyframes */
@@ -8873,7 +9000,7 @@ body.light-mode #back-to-top:hover {
 
 
 /* ========================================================= */
-/* Layer 16: css/features/perf-lite.css */
+/* Layer 17: css/features/perf-lite.css */
 /* ========================================================= */
 
 /**

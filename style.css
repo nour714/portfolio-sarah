@@ -9,6 +9,7 @@
  */
 
 /* 1. Base Layer */
+@import url("css/base/fonts.css?v=2.0");
 @import url("css/vendor/lenis.min.css");
 @import url("css/base/variables.css?v=2.0");
 @import url("css/base/reset.css?v=2.0");
