@@ -108,7 +108,7 @@ export const initStickyCardStack = () => {
     const ScrollTrigger = window.ScrollTrigger;
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const isTouchOrLite = Boolean(window.__perf && (window.__perf.isTouch || window.__perf.lite));
+    const isLite = Boolean(window.__perf && window.__perf.lite);
 
     // Clean up any existing card stack ScrollTriggers
     ScrollTrigger.getAll().forEach((st) => {
@@ -119,7 +119,7 @@ export const initStickyCardStack = () => {
 
     const cardWrappers = Array.from(document.querySelectorAll(".project-card-wrapper:not(.is-hidden)"));
 
-    if (reducedMotion || isTouchOrLite) {
+    if (reducedMotion || isLite) {
         // Reduced Motion & Weak Devices: Standard stacked flow, no scrubbed scaling/blurring
         cardWrappers.forEach((wrapper) => {
             const card = wrapper.querySelector(".project-card");
@@ -174,8 +174,8 @@ export const initProjectParallax = () => {
     if (!window.gsap || !window.ScrollTrigger) return;
     const gsap = window.gsap;
     const ScrollTrigger = window.ScrollTrigger;
-    const isTouchOrLite = Boolean(window.__perf && (window.__perf.isTouch || window.__perf.lite));
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || isTouchOrLite) return;
+    const isLite = Boolean(window.__perf && window.__perf.lite);
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || isLite) return;
 
     ScrollTrigger.getAll().forEach((st) => {
         if (st.vars.id && String(st.vars.id).startsWith("card-parallax-")) {

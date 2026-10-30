@@ -33,10 +33,10 @@ const setupAnchorScrolling = () => {
  */
 export const initLenis = () => {
     const reduceMotion = getMediaMatch("(prefers-reduced-motion: reduce)");
-    const isPerfLiteOrTouch = Boolean(window.__perf && (window.__perf.isTouch || window.__perf.lite));
+    const isLite = Boolean(window.__perf && window.__perf.lite);
 
     // Native scrolling is far smoother and consumes much less battery/CPU on mobile and weak devices
-    if (reduceMotion || isPerfLiteOrTouch) {
+    if (reduceMotion || isLite) {
         setupAnchorScrolling();
         return null;
     }
@@ -140,6 +140,7 @@ export const initLenis = () => {
         s.onload = () => {
             startEngine();
         };
+        s.onerror = () => { setupAnchorScrolling(); };
         document.head.appendChild(s);
         return null;
     }

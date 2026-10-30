@@ -20,7 +20,8 @@ export const initCinematicScroll = () => {
 
     const factor = getSpreadFactor();
     const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
-    const isTouchOrLite = Boolean(window.__perf && (window.__perf.isTouch || window.__perf.lite)) || isCoarsePointer;
+    const isTouch = Boolean(window.__perf && window.__perf.isTouch) || isCoarsePointer;
+    const isLite = Boolean(window.__perf && window.__perf.lite);
 
     // -------------------------------------------------------------
     // 1. HERO SECTION CINEMATIC SCROLL PARALLAX (Camera Pull & Depth)
@@ -33,8 +34,8 @@ export const initCinematicScroll = () => {
     const heroText = document.querySelector(".hero-text");
 
     if (heroSection && heroPortrait) {
-        if (isTouchOrLite) {
-            // Touch & Lite Devices: Clean one-shot entrance without scrubbed scroll math or pinning
+        if (isLite) {
+            // Lite Devices: Clean one-shot entrance without scrubbed scroll math or pinning
             gsap.fromTo(
                 heroPortrait,
                 { opacity: 0, y: 15 },
@@ -125,8 +126,8 @@ export const initCinematicScroll = () => {
     if (aboutSection && (aboutImageWrap || aboutImage)) {
         const imageTarget = aboutImageWrap || aboutImage;
 
-        if (isTouchOrLite) {
-            // Touch & Lite: Natural one-shot reveal, zero scroll-linked position calculations
+        if (isLite) {
+            // Lite Devices: Natural one-shot reveal, zero scroll-linked position calculations
             gsap.fromTo(
                 imageTarget,
                 { opacity: 0, y: 20 },
@@ -209,7 +210,7 @@ export const initCinematicScroll = () => {
     // -------------------------------------------------------------
     // 3. ABOUT PANEL 3D INTERACTIVE TILT & MULTIPLANE PARALLAX (Desktop only)
     // -------------------------------------------------------------
-    if (aboutPanel && !isTouchOrLite) {
+    if (aboutPanel && !isTouch && !isLite) {
         const aboutShell = document.querySelector(".about-shell") || aboutPanel;
         const panelRotateXTo = gsap.quickTo(aboutPanel, "rotationX", { duration: 0.45, ease: "power2.out" });
         const panelRotateYTo = gsap.quickTo(aboutPanel, "rotationY", { duration: 0.45, ease: "power2.out" });

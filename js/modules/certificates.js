@@ -264,7 +264,7 @@ export const initStickyCertificateStack = () => {
     const ScrollTrigger = window.ScrollTrigger;
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const isTouchOrLite = Boolean(window.__perf && (window.__perf.isTouch || window.__perf.lite));
+    const isLite = Boolean(window.__perf && window.__perf.lite);
 
     // Clean up any existing certificate card stack ScrollTriggers
     ScrollTrigger.getAll().forEach((st) => {
@@ -275,7 +275,7 @@ export const initStickyCertificateStack = () => {
 
     const cardWrappers = Array.from(document.querySelectorAll(".certificate-card-wrapper:not(.is-hidden)"));
 
-    if (reducedMotion || isTouchOrLite) {
+    if (reducedMotion || isLite) {
         // Reduced Motion & Weak Devices: Standard stacked flow, no scrubbed scaling/dimming
         cardWrappers.forEach((wrapper) => {
             const card = wrapper.querySelector(".certificate-card");
@@ -519,6 +519,7 @@ export const openCertificateModal = (cert) => {
 
     overlay.classList.add("is-open");
     document.body.classList.add("modal-open");
+    document.body.style.overflow = "hidden";
 
     const closeBtn = document.getElementById("cert-modal-close");
     if (closeBtn) closeBtn.focus();
@@ -533,6 +534,7 @@ export const closeCertificateModal = () => {
 
     overlay.classList.remove("is-open");
     document.body.classList.remove("modal-open");
+    document.body.style.overflow = "";
 };
 
 /**

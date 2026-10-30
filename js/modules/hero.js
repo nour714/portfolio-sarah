@@ -192,8 +192,8 @@ export const initHeroOrbitInteractions = () => {
     if (!visual || !orbit) return;
 
     const reducedMotion = getMediaMatch("(prefers-reduced-motion: reduce)");
-    const isTouchOrLite = Boolean(window.__perf && (window.__perf.isTouch || window.__perf.lite));
-    if (reducedMotion || isTouchOrLite) return;
+    const isLite = Boolean(window.__perf && window.__perf.lite);
+    if (reducedMotion || isLite) return;
 
     const items = orbit.querySelectorAll(".hero-orbit-item");
     if (!items.length) return;
