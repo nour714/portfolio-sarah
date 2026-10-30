@@ -80,9 +80,11 @@
 
     <!-- Preload Critical Self-Hosted Fonts -->
     <link rel="preload" href="/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/fonts/poppins-600.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="/fonts/poppins-600.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" as="image" href="/images/hero-mobile-backdrop-480.webp" imagesrcset="/images/hero-mobile-backdrop-480.webp 480w, /images/hero-mobile-backdrop-800.webp 800w, /images/hero-mobile-backdrop.webp 1280w" imagesizes="100vw" fetchpriority="high">
+    <link rel="preload" as="image" href="/images/hero-portrait-default-480.webp" imagesrcset="/images/hero-portrait-default-480.webp 480w, /images/hero-portrait-default-800.webp 800w, /images/hero-portrait-default.webp 828w" imagesizes="(max-width: 600px) 210px, (max-width: 1024px) 440px, 828px" fetchpriority="high">
 
-    <link rel="stylesheet" href="/css/dist/main.51f12e51.min.css">
+    <link rel="stylesheet" href="/css/dist/main.b8004092.min.css">
 </head>
 
 <body class="is-video-intro-active">
@@ -175,7 +177,21 @@
         <section class="hero" id="hero">
             <!-- Cinematic Video Backdrop & Stage -->
             <div class="hero-video-stage" id="hero-video-stage" aria-hidden="true">
-                <video id="hero-intro-video" class="hero-intro-video" playsinline preload="metadata" muted poster="images/hero-video-poster.webp">
+                <picture class="hero-backdrop-picture">
+                    <source srcset="images/hero-mobile-backdrop-480.webp 480w, images/hero-mobile-backdrop-800.webp 800w, images/hero-mobile-backdrop.webp 1280w"
+                            sizes="100vw"
+                            type="image/webp">
+                    <img src="images/hero-mobile-backdrop.webp"
+                         srcset="images/hero-mobile-backdrop-480.webp 480w, images/hero-mobile-backdrop-800.webp 800w, images/hero-mobile-backdrop.webp 1280w"
+                         sizes="100vw"
+                         alt=""
+                         class="hero-backdrop-img"
+                         width="1280"
+                         height="720"
+                         fetchpriority="high"
+                         decoding="async">
+                </picture>
+                <video id="hero-intro-video" class="hero-intro-video" playsinline preload="metadata" muted>
 
                 </video>
                 <div class="hero-video-scrim" id="hero-video-scrim"></div>
@@ -226,11 +242,11 @@
                                 <!-- Default State: Original Natural Monochrome Portrait -->
                                 <picture class="hero-portrait-layer hero-portrait-layer-default">
                                     <source srcset="images/hero-portrait-default-480.webp 480w, images/hero-portrait-default-800.webp 800w, images/hero-portrait-default.webp 828w"
-                                            sizes="(max-width: 600px) 480px, (max-width: 1024px) 800px, 828px"
+                                            sizes="(max-width: 600px) 210px, (max-width: 1024px) 440px, 828px"
                                             type="image/webp">
                                     <img src="images/hero-portrait-default.png"
                                          srcset="images/hero-portrait-default-480.webp 480w, images/hero-portrait-default-800.webp 800w, images/hero-portrait-default.png 828w"
-                                         sizes="(max-width: 600px) 480px, (max-width: 1024px) 800px, 828px"
+                                         sizes="(max-width: 600px) 210px, (max-width: 1024px) 440px, 828px"
                                          alt="Sarah Nabil - Machine Learning &amp; AI Specialist"
                                          class="hero-portrait-img hero-img-default"
                                          width="828"
@@ -242,16 +258,16 @@
                                 <!-- Hover State: Dramatic Monochrome Portrait with Glowing White Halo -->
                                 <picture class="hero-portrait-layer hero-portrait-layer-halo" aria-hidden="true">
                                     <source srcset="images/hero-portrait-halo-480.webp 480w, images/hero-portrait-halo-800.webp 800w, images/hero-portrait-halo.webp 828w"
-                                            sizes="(max-width: 600px) 480px, (max-width: 1024px) 800px, 828px"
+                                            sizes="(max-width: 600px) 210px, (max-width: 1024px) 440px, 828px"
                                             type="image/webp">
                                     <img src="images/hero-portrait-halo.png"
                                          srcset="images/hero-portrait-halo-480.webp 480w, images/hero-portrait-halo-800.webp 800w, images/hero-portrait-halo.png 828w"
-                                         sizes="(max-width: 600px) 480px, (max-width: 1024px) 800px, 828px"
+                                         sizes="(max-width: 600px) 210px, (max-width: 1024px) 440px, 828px"
                                          alt=""
                                          class="hero-portrait-img hero-img-halo"
                                          width="828"
                                          height="1024"
-                                         loading="eager"
+                                         loading="lazy"
                                          decoding="async">
                                 </picture>
 
@@ -774,7 +790,7 @@
     <script defer src="/js/vendor/ScrollTrigger.min.js"></script>
 
     <!-- Application Bootstrap (Bundled & Minified ES Module) -->
-    <script type="module" src="/js/dist/main.4493297c.min.js"></script>
+    <script type="module" src="/js/dist/main.a183c697.min.js"></script>
 </body>
 
 </html>

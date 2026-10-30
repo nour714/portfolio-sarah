@@ -272,7 +272,6 @@ export const initHeroIntro = () => {
             try {
                 video.pause();
                 video.removeAttribute("src");
-                video.poster = "images/hero-mobile-backdrop.webp";
             } catch (_) {}
         }
 
