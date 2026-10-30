@@ -8,9 +8,6 @@ function evaluateVercelHeaders(vercelJsonPath, testPaths) {
     // Compile rules into regex
     const compiledRules = rules.map((r, index) => {
         let pattern = r.source;
-        // Escape special chars except capture groups, wildcards
-        // In vercel.json, patterns are like "/(.*)", "/fonts/(.*)", "/(js|css)/dist/(.*\\.[a-f0-9]{8}\\..*)"
-        // If pattern starts with /, anchor to start and end
         const regex = new RegExp(`^${pattern}$`);
         return {
             index: index + 1,
@@ -38,6 +35,13 @@ function evaluateVercelHeaders(vercelJsonPath, testPaths) {
         console.log(`Path: ${testPath}`);
         console.log(`  Matched Rules: ${matchedRules.map(r => `#${r.index} (${r.source})`).join(' -> ')}`);
         console.log(`  Effective Cache-Control: ${effectiveHeaders['Cache-Control'] || '(none)'}`);
+        if (effectiveHeaders['Content-Security-Policy']) {
+            const csp = effectiveHeaders['Content-Security-Policy'];
+            const objSrcMatch = csp.match(/object-src\s+([^;]+)/);
+            console.log(`  Effective CSP object-src: ${objSrcMatch ? objSrcMatch[1] : '(fallback to default-src)'}`);
+        } else {
+            console.log(`  Effective CSP: (none)`);
+        }
         console.log('');
     });
 }
@@ -46,10 +50,11 @@ const testPaths = [
     '/',
     '/cv',
     '/fonts/poppins-400.woff2',
-    '/js/dist/main.e7fcc50c.min.js',
-    '/css/dist/main.e2c874aa.min.css',
+    '/js/dist/main.653dc7a2.min.js',
+    '/css/dist/main.822c292f.min.css',
     '/images/og-cover.jpg',
-    '/cv.pdf'
+    '/cv.pdf',
+    '/images/certificates/deep-learning.pdf'
 ];
 
 evaluateVercelHeaders(path.resolve(__dirname, '..', 'vercel.json'), testPaths);

@@ -74,6 +74,15 @@
       ]
     },
     {
+      "source": "/(cv|images/certificates/.*)\\.pdf",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob: https:; media-src 'self' blob:; connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://*.googleapis.com https://*.firebaseio.com https://*.firebaseapp.com https://formspree.io https://api.web3forms.com; frame-src 'self' blob: data:; object-src 'self' blob: data:; base-uri 'self'; form-action 'self' https://formspree.io https://api.web3forms.com;"
+        }
+      ]
+    },
+    {
       "source": "/fonts/(.*)",
       "headers": [
         {
