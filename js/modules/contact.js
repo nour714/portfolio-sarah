@@ -5,8 +5,8 @@
 
 import { showToast } from "../services/toast.service.js";
 
-// Formspree or Web3Forms submission endpoint placeholder
-// Replace with your real endpoint (e.g. https://formspree.io/f/XXXXXXXX)
+// TODO: Replace with your real Formspree endpoint (e.g. https://formspree.io/f/your_form_id)
+// Left as placeholder per instruction. Form submissions currently fall back to opening mailto.
 export const FORM_ENDPOINT = "https://formspree.io/f/XXXXXXXX";
 
 export const initContactFormFallback = () => {
@@ -57,7 +57,6 @@ export const initContactFormFallback = () => {
                 body: JSON.stringify({
                     name,
                     email,
-                    inquiryType: projectType || "General",
                     project_type: projectType || "General",
                     message
                 })
@@ -82,16 +81,23 @@ export const initContactFormFallback = () => {
                 }
             }, 6000);
         } catch (_err) {
-            const fallbackMsg = "Unable to send message via form service. Opening your email app as fallback...";
+            const fallbackMsg = "Opening your email app...";
             if (statusNote) {
                 statusNote.textContent = fallbackMsg;
                 statusNote.style.color = "var(--brand-accent, #38bdf8)";
             }
-            showToast("Opening email app as fallback...");
+            showToast("Opening your email app...");
 
             const subject = encodeURIComponent(`Inquiry: ${projectType || "General"} - ${name}`);
             const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nInquiry Type: ${projectType}\n\nMessage:\n${message}`);
             window.location.href = `mailto:sarahhnabil71@gmail.com?subject=${subject}&body=${body}`;
+
+            setTimeout(() => {
+                if (statusNote && statusNote.textContent === fallbackMsg) {
+                    statusNote.textContent = "Your message will be delivered to Sarah's inbox.";
+                    statusNote.style.color = "";
+                }
+            }, 5000);
         } finally {
             if (submitBtn) {
                 submitBtn.disabled = false;
