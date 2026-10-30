@@ -63,12 +63,16 @@ async function runBuild() {
         sourcefile: 'main.css'
     });
 
-    const mainCssHash = getHash(mainCssResult.code);
+    let mainCssCode = mainCssResult.code.replace(/\/\*# sourceMappingURL=[^*]*\*\//g, '').trim();
+    const mainCssHash = getHash(mainCssCode);
     const mainCssHashedName = `main.${mainCssHash}.min.css`;
-    fs.writeFileSync(path.join(CSS_DIST, mainCssHashedName), mainCssResult.code, 'utf8');
-    fs.writeFileSync(path.join(CSS_DIST, 'main.min.css'), mainCssResult.code, 'utf8');
-    fs.writeFileSync(path.join(CSS_DIST, `${mainCssHashedName}.map`), mainCssResult.map, 'utf8');
-    console.log(`  ✓ css/dist/${mainCssHashedName} (${(Buffer.byteLength(mainCssResult.code) / 1024).toFixed(1)} KB)`);
+    const mainCssMapName = `${mainCssHashedName}.map`;
+    mainCssCode += `\n/*# sourceMappingURL=${mainCssMapName} */\n`;
+
+    fs.writeFileSync(path.join(CSS_DIST, mainCssHashedName), mainCssCode, 'utf8');
+    fs.writeFileSync(path.join(CSS_DIST, 'main.min.css'), mainCssCode, 'utf8');
+    fs.writeFileSync(path.join(CSS_DIST, mainCssMapName), mainCssResult.map, 'utf8');
+    console.log(`  ✓ css/dist/${mainCssHashedName} (${(Buffer.byteLength(mainCssCode) / 1024).toFixed(1)} KB)`);
 
     let cvCssHashedName = '';
     if (cvCssContent) {
@@ -78,12 +82,16 @@ async function runBuild() {
             sourcemap: true,
             sourcefile: 'cv.css'
         });
-        const cvCssHash = getHash(cvCssResult.code);
+        let cvCssCode = cvCssResult.code.replace(/\/\*# sourceMappingURL=[^*]*\*\//g, '').trim();
+        const cvCssHash = getHash(cvCssCode);
         cvCssHashedName = `cv.${cvCssHash}.min.css`;
-        fs.writeFileSync(path.join(CSS_DIST, cvCssHashedName), cvCssResult.code, 'utf8');
-        fs.writeFileSync(path.join(CSS_DIST, 'cv.min.css'), cvCssResult.code, 'utf8');
-        fs.writeFileSync(path.join(CSS_DIST, `${cvCssHashedName}.map`), cvCssResult.map, 'utf8');
-        console.log(`  ✓ css/dist/${cvCssHashedName} (${(Buffer.byteLength(cvCssResult.code) / 1024).toFixed(1)} KB)`);
+        const cvCssMapName = `${cvCssHashedName}.map`;
+        cvCssCode += `\n/*# sourceMappingURL=${cvCssMapName} */\n`;
+
+        fs.writeFileSync(path.join(CSS_DIST, cvCssHashedName), cvCssCode, 'utf8');
+        fs.writeFileSync(path.join(CSS_DIST, 'cv.min.css'), cvCssCode, 'utf8');
+        fs.writeFileSync(path.join(CSS_DIST, cvCssMapName), cvCssResult.map, 'utf8');
+        console.log(`  ✓ css/dist/${cvCssHashedName} (${(Buffer.byteLength(cvCssCode) / 1024).toFixed(1)} KB)`);
     }
 
     // 3. Bundle JS Modules with esbuild
@@ -99,15 +107,18 @@ async function runBuild() {
         write: false
     });
 
-    const jsCode = jsBundle.outputFiles.find((f) => f.path.endsWith('.js')).text;
+    const rawJsCode = jsBundle.outputFiles.find((f) => f.path.endsWith('.js')).text;
     const jsMap = jsBundle.outputFiles.find((f) => f.path.endsWith('.map')).text;
-    const jsHash = getHash(jsCode);
+    const baseJsCode = rawJsCode.replace(/\/\/# sourceMappingURL=[^\r\n]*/g, '').trim();
+    const jsHash = getHash(baseJsCode);
     const mainJsHashedName = `main.${jsHash}.min.js`;
+    const mainJsMapName = `${mainJsHashedName}.map`;
+    const finalJsCode = `${baseJsCode}\n//# sourceMappingURL=${mainJsMapName}\n`;
 
-    fs.writeFileSync(path.join(JS_DIST, mainJsHashedName), jsCode, 'utf8');
-    fs.writeFileSync(path.join(JS_DIST, 'main.min.js'), jsCode, 'utf8');
-    fs.writeFileSync(path.join(JS_DIST, `${mainJsHashedName}.map`), jsMap, 'utf8');
-    console.log(`  ✓ js/dist/${mainJsHashedName} (${(Buffer.byteLength(jsCode) / 1024).toFixed(1)} KB)`);
+    fs.writeFileSync(path.join(JS_DIST, mainJsHashedName), finalJsCode, 'utf8');
+    fs.writeFileSync(path.join(JS_DIST, 'main.min.js'), finalJsCode, 'utf8');
+    fs.writeFileSync(path.join(JS_DIST, mainJsMapName), jsMap, 'utf8');
+    console.log(`  ✓ js/dist/${mainJsHashedName} (${(Buffer.byteLength(finalJsCode) / 1024).toFixed(1)} KB)`);
 
     // Bundle cv.js
     const cvJsPath = path.join(ROOT_DIR, 'js', 'cv.js');
@@ -123,14 +134,18 @@ async function runBuild() {
             outfile: path.join(JS_DIST, 'cv.js'),
             write: false
         });
-        const cvJsCode = cvJsBundle.outputFiles.find((f) => f.path.endsWith('.js')).text;
+        const rawCvJsCode = cvJsBundle.outputFiles.find((f) => f.path.endsWith('.js')).text;
         const cvJsMap = cvJsBundle.outputFiles.find((f) => f.path.endsWith('.map')).text;
-        const cvJsHash = getHash(cvJsCode);
+        const baseCvJsCode = rawCvJsCode.replace(/\/\/# sourceMappingURL=[^\r\n]*/g, '').trim();
+        const cvJsHash = getHash(baseCvJsCode);
         cvJsHashedName = `cv.${cvJsHash}.min.js`;
-        fs.writeFileSync(path.join(JS_DIST, cvJsHashedName), cvJsCode, 'utf8');
-        fs.writeFileSync(path.join(JS_DIST, 'cv.min.js'), cvJsCode, 'utf8');
-        fs.writeFileSync(path.join(JS_DIST, `${cvJsHashedName}.map`), cvJsMap, 'utf8');
-        console.log(`  ✓ js/dist/${cvJsHashedName} (${(Buffer.byteLength(cvJsCode) / 1024).toFixed(1)} KB)`);
+        const cvJsMapName = `${cvJsHashedName}.map`;
+        const finalCvJsCode = `${baseCvJsCode}\n//# sourceMappingURL=${cvJsMapName}\n`;
+
+        fs.writeFileSync(path.join(JS_DIST, cvJsHashedName), finalCvJsCode, 'utf8');
+        fs.writeFileSync(path.join(JS_DIST, 'cv.min.js'), finalCvJsCode, 'utf8');
+        fs.writeFileSync(path.join(JS_DIST, cvJsMapName), cvJsMap, 'utf8');
+        console.log(`  ✓ js/dist/${cvJsHashedName} (${(Buffer.byteLength(finalCvJsCode) / 1024).toFixed(1)} KB)`);
     }
 
     // 4. Update index.html

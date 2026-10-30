@@ -183,6 +183,7 @@ npm run build:js    # Bundle and minify JS modules
 - `js/dist/main.[hash].min.js` + `.map`: Minified bundle of the 26-module dependency graph (~141 KB).
 - `css/dist/main.[hash].min.css` + `.map`: Minified master stylesheet with dead space & redundant comments stripped (~155 KB).
 - `js/dist/cv.[hash].min.js` & `css/dist/cv.[hash].min.css`: Optimized bundles for the CV page.
+- Source maps (`.map`) are intentionally public to facilitate transparency, open inspection, and live production debugging.
 - Vercel automatically serves hashed files under `/js/dist/` and `/css/dist/` with `Cache-Control: public, max-age=31536000, immutable`.
 
 ---
