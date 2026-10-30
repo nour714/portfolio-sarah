@@ -186,6 +186,9 @@ npm run build:js    # Bundle and minify JS modules
 - Source maps (`.map`) are intentionally public to facilitate transparency, open inspection, and live production debugging.
 - Vercel automatically serves hashed files under `/js/dist/` and `/css/dist/` with `Cache-Control: public, max-age=31536000, immutable`.
 
+### Deployment Workflow
+The site is deployed as pre-built static files directly from the repository root; Vercel does not execute an automated build. After making any source or style changes, run `npm run build` locally and commit the regenerated `js/dist/` and `css/dist/` assets along with the updated HTML references.
+
 ---
 
 ## 🚀 Getting Started
