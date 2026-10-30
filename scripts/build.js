@@ -7,6 +7,7 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+const os = require('os');
 const esbuild = require('esbuild');
 
 const ROOT_DIR = path.resolve(__dirname, '..');
@@ -41,7 +42,12 @@ async function runBuild() {
     console.log('🚀 [build] Starting production build...');
     prepareDistDirs();
 
-    // 1. Build Master CSS via scripts/build-css.js first
+    // Create temporary workspace for intermediate build outputs
+    const tmpDir = path.join(ROOT_DIR, 'js', '.tmp');
+    if (!fs.existsSync(tmpDir)) fs.mkdirSync(tmpDir, { recursive: true });
+
+    try {
+        // 1. Build Master CSS via scripts/build-css.js first
     console.log('📦 [build] Step 1: Concatenating CSS layers into css/main.css...');
     const { buildCss } = require('./build-css.js');
     buildCss();
@@ -70,7 +76,6 @@ async function runBuild() {
     mainCssCode += `\n/*# sourceMappingURL=${mainCssMapName} */\n`;
 
     fs.writeFileSync(path.join(CSS_DIST, mainCssHashedName), mainCssCode, 'utf8');
-    fs.writeFileSync(path.join(CSS_DIST, 'main.min.css'), mainCssCode, 'utf8');
     fs.writeFileSync(path.join(CSS_DIST, mainCssMapName), mainCssResult.map, 'utf8');
     console.log(`  ✓ css/dist/${mainCssHashedName} (${(Buffer.byteLength(mainCssCode) / 1024).toFixed(1)} KB)`);
 
@@ -89,26 +94,25 @@ async function runBuild() {
         cvCssCode += `\n/*# sourceMappingURL=${cvCssMapName} */\n`;
 
         fs.writeFileSync(path.join(CSS_DIST, cvCssHashedName), cvCssCode, 'utf8');
-        fs.writeFileSync(path.join(CSS_DIST, 'cv.min.css'), cvCssCode, 'utf8');
-        fs.writeFileSync(path.join(CSS_DIST, cvCssMapName), cvCssResult.map, 'utf8');
+            fs.writeFileSync(path.join(CSS_DIST, cvCssMapName), cvCssResult.map, 'utf8');
         console.log(`  ✓ css/dist/${cvCssHashedName} (${(Buffer.byteLength(cvCssCode) / 1024).toFixed(1)} KB)`);
     }
 
-    // 3. Bundle JS Modules with esbuild
+    // 3. Bundle JS Modules with esbuild (compiled into temp directory first)
     console.log('⚡ [build] Step 3: Bundling and minifying JS modules...');
-    const jsBundle = await esbuild.build({
+    const tmpMainJs = path.join(tmpDir, 'main.js');
+    await esbuild.build({
         entryPoints: [path.join(ROOT_DIR, 'js', 'main.js')],
         bundle: true,
         minify: true,
         sourcemap: true,
         format: 'esm',
         target: 'es2020',
-        outfile: path.join(JS_DIST, 'main.js'),
-        write: false
+        outfile: tmpMainJs
     });
 
-    const rawJsCode = jsBundle.outputFiles.find((f) => f.path.endsWith('.js')).text;
-    const jsMap = jsBundle.outputFiles.find((f) => f.path.endsWith('.map')).text;
+    const rawJsCode = fs.readFileSync(tmpMainJs, 'utf8');
+    const jsMap = fs.readFileSync(`${tmpMainJs}.map`, 'utf8');
     const baseJsCode = rawJsCode.replace(/\/\/# sourceMappingURL=[^\r\n]*/g, '').trim();
     const jsHash = getHash(baseJsCode);
     const mainJsHashedName = `main.${jsHash}.min.js`;
@@ -116,7 +120,6 @@ async function runBuild() {
     const finalJsCode = `${baseJsCode}\n//# sourceMappingURL=${mainJsMapName}\n`;
 
     fs.writeFileSync(path.join(JS_DIST, mainJsHashedName), finalJsCode, 'utf8');
-    fs.writeFileSync(path.join(JS_DIST, 'main.min.js'), finalJsCode, 'utf8');
     fs.writeFileSync(path.join(JS_DIST, mainJsMapName), jsMap, 'utf8');
     console.log(`  ✓ js/dist/${mainJsHashedName} (${(Buffer.byteLength(finalJsCode) / 1024).toFixed(1)} KB)`);
 
@@ -124,18 +127,18 @@ async function runBuild() {
     const cvJsPath = path.join(ROOT_DIR, 'js', 'cv.js');
     let cvJsHashedName = '';
     if (fs.existsSync(cvJsPath)) {
-        const cvJsBundle = await esbuild.build({
+        const tmpCvJs = path.join(tmpDir, 'cv.js');
+        await esbuild.build({
             entryPoints: [cvJsPath],
             bundle: true,
             minify: true,
             sourcemap: true,
             format: 'esm',
             target: 'es2020',
-            outfile: path.join(JS_DIST, 'cv.js'),
-            write: false
+            outfile: tmpCvJs
         });
-        const rawCvJsCode = cvJsBundle.outputFiles.find((f) => f.path.endsWith('.js')).text;
-        const cvJsMap = cvJsBundle.outputFiles.find((f) => f.path.endsWith('.map')).text;
+        const rawCvJsCode = fs.readFileSync(tmpCvJs, 'utf8');
+        const cvJsMap = fs.readFileSync(`${tmpCvJs}.map`, 'utf8');
         const baseCvJsCode = rawCvJsCode.replace(/\/\/# sourceMappingURL=[^\r\n]*/g, '').trim();
         const cvJsHash = getHash(baseCvJsCode);
         cvJsHashedName = `cv.${cvJsHash}.min.js`;
@@ -143,7 +146,6 @@ async function runBuild() {
         const finalCvJsCode = `${baseCvJsCode}\n//# sourceMappingURL=${cvJsMapName}\n`;
 
         fs.writeFileSync(path.join(JS_DIST, cvJsHashedName), finalCvJsCode, 'utf8');
-        fs.writeFileSync(path.join(JS_DIST, 'cv.min.js'), finalCvJsCode, 'utf8');
         fs.writeFileSync(path.join(JS_DIST, cvJsMapName), cvJsMap, 'utf8');
         console.log(`  ✓ js/dist/${cvJsHashedName} (${(Buffer.byteLength(finalCvJsCode) / 1024).toFixed(1)} KB)`);
     }
@@ -212,6 +214,11 @@ async function runBuild() {
     }
 
     console.log('✨ [build] Production build completed successfully!');
+    } finally {
+        try {
+            fs.rmSync(tmpDir, { recursive: true, force: true });
+        } catch (_) {}
+    }
 }
 
 if (require.main === module) {
