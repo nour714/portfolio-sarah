@@ -44,6 +44,10 @@
 
 ## 1.1 Homepage LCP Audit, Phase Breakdown & Top Network Payloads (Task 1)
 
+> [!NOTE]
+> **Lighthouse Emulation vs Hardware Detection:**
+> Lighthouse mobile emulation runs directly on the host development machine, which shares the host CPU cores (`navigator.hardwareConcurrency`) and host RAM (`navigator.deviceMemory`). As a result, Lighthouse's device emulation does not automatically trigger the hardware-based `perf-lite` tier (`hardwareConcurrency <= 4` or `deviceMemory <= 4`). Appending `?perf=lite` is how to simulate and audit the `perf-lite` experience under synthetic throttling.
+
 ### 1. Median LCP Measurements Across 3 Runs (Mobile Preset, Slow 4G, 4x CPU)
 Lighthouse was executed three times consecutively for each scenario on `http://localhost:8085/`:
 

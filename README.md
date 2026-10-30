@@ -152,6 +152,17 @@ The Vercel deployment configuration enforces distinct caching tiers:
 
 ---
 
+### 3. Device Tier & `perf-lite` Detection Thresholds
+A synchronous script executes in the `<head>` of `index.html` and `cv.html` before stylesheets render, assigning classes to `document.documentElement` (`is-touch` and `perf-lite`) and exporting `window.__perf = { isTouch, lite }`. Query overrides (`?perf=lite` and `?perf=full`) take precedence.
+
+| Device Tier | Criteria / Triggers for `lite` | Behavior when `lite` is Active |
+| :--- | :--- | :--- |
+| **Desktop-Class**<br>`(hover: hover)` and `(pointer: fine)` | • `navigator.connection.saveData === true`<br>• Network effectiveType is `slow-2g`, `2g`, or `3g`<br>• `prefers-reduced-motion: reduce`<br>• `navigator.deviceMemory <= 2` GB | Disables Lenis smooth scrolling, heavy backdrop blurs, ambient glow effects, and infinite keyframe loops while preserving desktop mouse interactions. |
+| **Touch / Mobile**<br>`(hover: none)` and `(pointer: coarse)` | • `navigator.connection.saveData === true`<br>• Network effectiveType is `slow-2g`, `2g`, or `3g`<br>• `prefers-reduced-motion: reduce`<br>• `navigator.deviceMemory <= 4` GB<br>• `navigator.hardwareConcurrency <= 4` cores | Bypasses 3D tilt, pointer spotlight, Lenis, and complex scrubbed animations; uses native momentum scrolling and simplified card shadows. |
+| **Manual Override** | • `?perf=lite` forces `lite = true`<br>• `?perf=full` forces `lite = false` | Allows instant deterministic testing and developer profiling across all device classes. |
+
+---
+
 ## 🛠️ Build System & Production Bundling
 
 The project includes an ultra-fast build workflow powered by `esbuild` that compiles, bundles, and minifies assets with immutable content hashing for Vercel deployment:
