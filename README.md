@@ -152,14 +152,29 @@ The Vercel deployment configuration enforces distinct caching tiers:
 
 ---
 
-### 3. Device Tier & `perf-lite` Detection Thresholds
-A synchronous script executes in the `<head>` of `index.html` and `cv.html` before stylesheets render, assigning classes to `document.documentElement` (`is-touch` and `perf-lite`) and exporting `window.__perf = { isTouch, lite }`. Query overrides (`?perf=lite` and `?perf=full`) take precedence.
+### 3. Device Tier & Performance Mode Detection
 
-| Device Tier | Criteria / Triggers for `lite` | Behavior when `lite` is Active |
+A synchronous inline script executes in the `<head>` of `index.html` and `cv.html` before stylesheets render, evaluating device capabilities and assigning classes to `document.documentElement` (`is-touch` and `perf-lite`) as well as exporting the `window.__perf = { isTouch, lite }` API.
+
+#### Detection Rule
+- **Touch device (`isTouch`):** Primary pointer matches `(hover: none) and (pointer: coarse)`.
+- **Weak hardware/network (`weak`):** `navigator.connection.saveData === true` OR slow network (`slow-2g`, `2g`, `3g`) OR `navigator.deviceMemory <= 2` GB OR `navigator.hardwareConcurrency <= 4` cores. Missing APIs default to strong (e.g. Safari defaults memory and cores to 8).
+- **Lite mode (`lite`):** `isTouch && weak`. **Laptops and desktops (mouse/trackpad primary pointer) are NEVER automatically lite**, regardless of CPU, RAM, Data Saver, or network conditions.
+- **prefers-reduced-motion:** Accessible reduced motion is strictly respected where requested, but is NOT a performance signal and does NOT force lite mode.
+
+| Device Category | Detection Criteria | Performance Mode | Look & Behavior |
+| :--- | :--- | :--- | :--- |
+| **Desktop / Laptop** | Mouse / trackpad primary pointer (`!isTouch`) | **Full (Always)** | 100% original baseline look and interactions: Lenis smooth scroll, scrubbed parallax, 3D card tilt, magnetic buttons, cursor spotlight glow, cinematic video intro, all blurs & glows. |
+| **Capable Touch Phone / Tablet** | Touch primary pointer + strong hardware/network | **Full** | Native high-performance look: Lenis smooth scrolling, scrubbed card stacks & parallax sequences, rich visual effects. |
+| **Weak Touch Phone / Tablet** | Touch primary pointer + (saveData \|\| 2g/3g \|\| RAM ≤ 2GB \|\| Cores ≤ 4) | **Lite (`html.perf-lite`)** | Lightweight mode: native momentum scroll, solid high-contrast backgrounds, simplified shadows, paused ambient keyframes, no video intro. |
+| **Testing Query Override** | URL contains `?perf=lite` or `?perf=full` | **Manual Override** | `?perf=lite` forces lite mode on any device (ideal for testing weak phone behavior on desktop).<br>`?perf=full` forces full fidelity even on weak devices. |
+
+#### Optimizations Applied to Everyone vs. Lite-Only
+
+| Scope | Optimization Features | Impact |
 | :--- | :--- | :--- |
-| **Desktop-Class**<br>`(hover: hover)` and `(pointer: fine)` | • `navigator.connection.saveData === true`<br>• Network effectiveType is `slow-2g`, `2g`, or `3g`<br>• `prefers-reduced-motion: reduce`<br>• `navigator.deviceMemory <= 2` GB | Disables Lenis smooth scrolling, heavy backdrop blurs, ambient glow effects, and infinite keyframe loops while preserving desktop mouse interactions. |
-| **Touch / Mobile**<br>`(hover: none)` and `(pointer: coarse)` | • `navigator.connection.saveData === true`<br>• Network effectiveType is `slow-2g`, `2g`, or `3g`<br>• `prefers-reduced-motion: reduce`<br>• `navigator.deviceMemory <= 4` GB<br>• `navigator.hardwareConcurrency <= 4` cores | Bypasses 3D tilt, pointer spotlight, Lenis, and complex scrubbed animations; uses native momentum scrolling and simplified card shadows. |
-| **Manual Override** | • `?perf=lite` forces `lite = true`<br>• `?perf=full` forces `lite = false` | Allows instant deterministic testing and developer profiling across all device classes. |
+| **Universal (Everyone)** | • Content-hashed JS/CSS bundles via `esbuild`<br>• Self-hosted WOFF2 fonts (Poppins & Space Grotesk) with preloads<br>• Responsive WebP image variants (`srcset` / `sizes`)<br>• Inline SVG symbol sprite (zero external icon CDN roundtrips)<br>• Immutable 1-year cache headers for static assets<br>• Deferred non-critical vendor libraries & dynamic Lenis loader | Maximum network efficiency, instant font rendering, zero CLS, and sub-second asset delivery for all visitors without altering any visual fidelity. |
+| **Lite-Only (`html.perf-lite`)** | • `content-visibility: auto` on below-the-fold sections (`.about`, `.skills`, `.projects`, `.certificates`, `.experience`, `.contact`, `.portfolio-footer`)<br>• CSS effects simplification (backdrop-filter blurs replaced with solid backgrounds, multi-layer shadows simplified, decorative glow orbs hidden)<br>• Paused infinite decorative keyframe animations<br>• Release of stale `will-change` GPU layers<br>• Simplified scroll reveals (one-shot entrance instead of scrubbed pinned parallax)<br>• Video intro bypassed (instant portrait fallback without downloading video) | Drastically reduces GPU compositor memory and main-thread CPU execution time on resource-constrained mobile hardware. |
 
 ---
 

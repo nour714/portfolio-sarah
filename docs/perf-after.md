@@ -205,7 +205,8 @@ Total Transfer Size: **985.5 KB** (reduced from 1,248.3 KB, breaking under 1.0 M
 ## 5. Desktop Visual & Behavioral Parity Audit
 
 The site was designed to ensure desktop visitors experience zero degradation:
-- **Screen Widths > 1024px with Mouse Pointer (`hover: hover` and `pointer: fine`):**
+- **Desktop & Laptop Devices (`!(hover: none and pointer: coarse)`):**
+  - Desktop browsers are **NEVER automatically placed into lite mode**, regardless of RAM, CPU cores, network speed, or Data Saver settings.
   - Lenis smooth inertial scrolling remains fully active on capable desktop hardware.
   - Interactive 3D card tilt and magnetic button cursor attraction remain active.
   - Cursor spotlight halo (`#cursor-glow`) follows the mouse cursor with smooth interpolation.
@@ -214,6 +215,10 @@ The site was designed to ensure desktop visitors experience zero degradation:
   - Visual hierarchy, typography (Poppins & Space Grotesk), colors, and layout are identical.
 
 ---
+
+> [!NOTE]
+> **Desktop Tier Detection & Lighthouse Emulation Notice:**
+> Desktop and laptop browsers (primary pointer is mouse or trackpad, matching `!(hover: none and pointer: coarse)`) are **NEVER automatically placed in lite mode**, regardless of available RAM, CPU core count, network speed, or OS Data Saver settings. Because local Lighthouse and Chrome DevTools device mode run inside the host desktop browser (which reports the host machine's hardware specs), use `?perf=lite` (e.g. `https://eng-sarah.vercel.app/?perf=lite`) to simulate a weak mobile phone during Lighthouse audits or performance testing.
 
 ## 6. Manual Testing Checklist for Production Release
 
