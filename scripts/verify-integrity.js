@@ -152,6 +152,16 @@ htmlFiles.forEach((file) => {
     }
 });
 
+// Step 3: Performance Tier Detection Matrix Tests
+console.log('\n--- Step 3: Checking Performance Tier Detection Matrix ---');
+try {
+    const { runAll } = require('./test-perf-tier.js');
+    runAll();
+    logSuccess('All Performance Tier matrix assertions passed across index.html & cv.html');
+} catch (err) {
+    logError('Performance tier matrix test failed: ' + err.message);
+}
+
 console.log('\n--- Summary ---');
 console.log(`Total Errors: ${errors}`);
 console.log(`Total Warnings: ${warnings}`);

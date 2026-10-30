@@ -8,6 +8,7 @@
     "build:js": "node scripts/build-js.js",
     "build:fonts": "node scripts/copy-fonts.js",
     "build:images": "node scripts/build-images.js",
+    "test:perf-tier": "node scripts/test-perf-tier.js",
     "test:integrity": "node scripts/verify-integrity.js",
     "build": "node scripts/build.js"
   },
