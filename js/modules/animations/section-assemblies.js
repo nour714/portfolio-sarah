@@ -22,11 +22,6 @@ export const initHeroCinematicEntrance = () => {
     const hero = document.getElementById("hero");
     if (!hero) return;
 
-    const isMobile =
-        getMediaMatch("(max-width: 768px)") ||
-        window.innerWidth <= 768 ||
-        (getMediaMatch("(max-height: 500px) and (orientation: landscape)") && getMediaMatch("(pointer: coarse)"));
-
     // If hero intro video is present, assembly orchestration is managed by initHeroIntro
     if (document.getElementById("hero-intro-video")) {
         return;

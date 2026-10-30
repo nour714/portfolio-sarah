@@ -17,14 +17,16 @@ export const initHeroIntro = () => {
     }
 
     // Conditions where video intro should be skipped entirely
-    const isMobile =
+    const isTouch = Boolean(window.__perf && window.__perf.isTouch);
+    const isLite = Boolean(window.__perf && window.__perf.lite);
+    const isMobile = isTouch && (
         getMediaMatch("(max-width: 768px)") ||
         window.innerWidth <= 768 ||
-        (getMediaMatch("(max-height: 500px) and (orientation: landscape)") && getMediaMatch("(pointer: coarse)"));
+        getMediaMatch("(max-height: 500px) and (orientation: landscape)"));
 
-    const isSaveData = Boolean(typeof navigator !== "undefined" && navigator.connection?.saveData);
+    const isSaveData = Boolean(isTouch && typeof navigator !== "undefined" && navigator.connection?.saveData);
     const reduceMotion = getMediaMatch("(prefers-reduced-motion: reduce)");
-    const shouldSkipVideo = isMobile || isSaveData || reduceMotion;
+    const shouldSkipVideo = isLite || isMobile || isSaveData || reduceMotion;
 
     let isAssembled = false;
     let isMuted = true;
