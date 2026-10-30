@@ -11,7 +11,7 @@
 
 ## 🌟 Highlights & Key Features
 
-- **🎬 Cinematic Video Hero Intro:** High-impact video-based intro for desktop with HUD telemetry controls, instant skip on scroll or keypress, replay toggle, and reduced-motion / battery-saving detection. Mobile devices and low-bandwidth connections automatically skip video downloads in favor of an optimized static visual backdrop.
+- **🎬 Cinematic Video Hero Intro:** High-impact video-based intro for desktop with HUD telemetry controls, instant skip on scroll or keypress, and reduced-motion / battery-saving detection. Mobile devices and low-bandwidth connections automatically skip video downloads in favor of an optimized static visual backdrop.
 - **⚡ Clean Architecture & Modular Codebase:** Zero monolithic files. JavaScript and CSS are strictly split into domain-driven modules following Clean Architecture principles (Core, Data, Services, Modules, Vendor, Admin).
 - **📜 Cinematic Motion System (Lenis + GSAP + ScrollTrigger):** Hardware-accelerated smooth scrolling via Lenis, synchronized with GSAP ScrollTrigger for choreographed section reveals, staggered text reveals, magnetic controls, and 3D card tilt.
 - **🎯 3D Skills Arc Carousel:** Interactive 3D cylindrical depth carousel with touch, drag, and autoplay controls, category filtering, and live telemetry indicators.

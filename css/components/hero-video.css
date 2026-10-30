@@ -206,10 +206,6 @@ body.video-fallback-active .hero-intro-hud {
     display: none !important;
 }
 
-.hero-replay-btn,
-#hero-replay-btn {
-    display: none !important;
-}
 
 .hero-intro-hud * {
     pointer-events: auto;
@@ -437,54 +433,7 @@ body.is-hero-assembled .hero-telemetry-cluster {
     }
 }
 
-/* Interactive Replay Intro Button */
-.hero-replay-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 9px;
-    padding: 11px 22px;
-    border-radius: 999px;
-    background: rgba(167, 139, 250, 0.14);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(167, 139, 250, 0.4);
-    color: #c4b5fd;
-    font-family: var(--font-mono, "JetBrains Mono", monospace);
-    font-size: 0.82rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    cursor: pointer;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
-    transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
-    width: fit-content;
-}
 
-.hero-replay-btn svg {
-    transition: transform 0.4s ease;
-}
-
-.hero-replay-btn:hover {
-    transform: translateY(-2px);
-    background: rgba(167, 139, 250, 0.25);
-    border-color: #a78bfa;
-    color: #ffffff;
-    box-shadow: 0 8px 26px rgba(167, 139, 250, 0.45);
-}
-
-.hero-replay-btn:hover svg {
-    transform: rotate(-180deg);
-}
-
-.hero-replay-btn:focus-visible {
-    outline: 2px solid #a78bfa;
-    outline-offset: 2px;
-}
-
-#hero-replay-btn,
-.hero-replay-btn {
-    display: none !important;
-}
 
 /* 7. Portrait Fallback Visibility */
 .hero-portrait-fallback {
@@ -556,12 +505,7 @@ body.light-mode .telemetry-card-desc {
     color: #475569;
 }
 
-body.light-mode .hero-replay-btn {
-    background: rgba(255, 255, 255, 0.95);
-    border-color: rgba(203, 213, 225, 0.9);
-    color: #7c3aed;
-    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
-}
+
 
 body.light-mode .hero-intro-hud-badge {
     background: rgba(255, 255, 255, 0.92);

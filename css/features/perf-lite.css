@@ -82,8 +82,7 @@ html.perf-lite .hero-role,
 html.perf-lite .hero-orbit-link,
 html.perf-lite .hero-orbit-tooltip,
 html.perf-lite .hero-hud-btn,
-html.perf-lite .hero-telemetry-card,
-html.perf-lite .hero-replay-btn {
+html.perf-lite .hero-telemetry-card {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     background: #0f172a !important;
@@ -95,8 +94,7 @@ html.perf-lite body.light-mode .hero-role,
 html.perf-lite body.light-mode .hero-orbit-link,
 html.perf-lite body.light-mode .hero-orbit-tooltip,
 html.perf-lite body.light-mode .hero-hud-btn,
-html.perf-lite body.light-mode .hero-telemetry-card,
-html.perf-lite body.light-mode .hero-replay-btn {
+html.perf-lite body.light-mode .hero-telemetry-card {
     background: #ffffff !important;
     border-color: rgba(0, 0, 0, 0.12) !important;
 }
