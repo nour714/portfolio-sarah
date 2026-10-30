@@ -57,30 +57,30 @@
     <script>
         (function() {
             try {
-                var params = new URLSearchParams(window.location.search);
-                var override = params.get('perf');
-                var mq = function(q) { return Boolean(window.matchMedia && window.matchMedia(q).matches); };
+                var params = (typeof window !== 'undefined' && window.location && window.location.search) ? new URLSearchParams(window.location.search) : null;
+                var override = params ? params.get('perf') : null;
+                var mq = function(q) { return Boolean(typeof window !== 'undefined' && window.matchMedia && window.matchMedia(q).matches); };
                 var isTouch = mq('(hover: none) and (pointer: coarse)');
-                var isDesktopClass = mq('(hover: hover) and (pointer: fine)');
-                var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+                var nav = typeof navigator !== 'undefined' ? navigator : null;
+                var conn = nav ? (nav.connection || nav.mozConnection || nav.webkitConnection) : null;
                 var isSaveData = Boolean(conn && conn.saveData);
                 var isSlowNet = Boolean(conn && /^(slow-2g|2g|3g)$/i.test(conn.effectiveType || ''));
-                var isReducedMotion = mq('(prefers-reduced-motion: reduce)');
-                var devMem = navigator.deviceMemory || 8;
-                var cores = navigator.hardwareConcurrency || 8;
-                var liteAuto;
-                if (!isTouch && isDesktopClass) {
-                    liteAuto = isSaveData || isSlowNet || isReducedMotion || (devMem <= 2);
-                } else {
-                    liteAuto = isSaveData || isSlowNet || isReducedMotion || (devMem <= 4) || (cores <= 4);
+                var devMem = (nav && typeof nav.deviceMemory === 'number') ? nav.deviceMemory : 8;
+                var cores = (nav && typeof nav.hardwareConcurrency === 'number') ? nav.hardwareConcurrency : 8;
+                var weak = isSaveData || isSlowNet || (devMem <= 2) || (cores <= 4);
+                var lite = override === 'lite' ? true : (override === 'full' ? false : (isTouch && weak));
+                var doc = typeof document !== 'undefined' ? document.documentElement : null;
+                if (doc && doc.classList) {
+                    if (isTouch) doc.classList.add('is-touch');
+                    if (lite) doc.classList.add('perf-lite');
                 }
-                var lite = override === 'lite' ? true : (override === 'full' ? false : liteAuto);
-                var doc = document.documentElement;
-                if (isTouch) doc.classList.add('is-touch');
-                if (lite) doc.classList.add('perf-lite');
-                window.__perf = { isTouch: isTouch, lite: lite };
+                if (typeof window !== 'undefined') {
+                    window.__perf = { isTouch: isTouch, lite: lite };
+                }
             } catch (e) {
-                window.__perf = { isTouch: false, lite: false };
+                if (typeof window !== 'undefined') {
+                    window.__perf = { isTouch: false, lite: false };
+                }
             }
         })();
     </script>
