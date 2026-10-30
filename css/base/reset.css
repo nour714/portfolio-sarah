@@ -67,8 +67,6 @@ main > section {
     background: transparent;
     padding: 48px clamp(18px, 6vw, 60px) 32px;
     border-top: 1px solid var(--border-soft);
-    content-visibility: auto;
-    contain-intrinsic-size: auto 220px;
 }
 
 .portfolio-footer-inner {

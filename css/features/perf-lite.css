@@ -276,3 +276,38 @@ html.perf-lite .avatar-orbit {
     animation: none !important;
 }
 
+/* 2.6 Content Visibility Optimization for Below-the-Fold Sections (Lite Mode Only) */
+html.perf-lite .about {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 1200px;
+}
+
+html.perf-lite .skills {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 700px;
+}
+
+html.perf-lite .projects {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 2400px;
+}
+
+html.perf-lite .certificates {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 2200px;
+}
+
+html.perf-lite .experience {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 1400px;
+}
+
+html.perf-lite .contact {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 950px;
+}
+
+html.perf-lite .portfolio-footer {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 220px;
+}

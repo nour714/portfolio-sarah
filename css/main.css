@@ -406,8 +406,6 @@ main > section {
     background: transparent;
     padding: 48px clamp(18px, 6vw, 60px) 32px;
     border-top: 1px solid var(--border-soft);
-    content-visibility: auto;
-    contain-intrinsic-size: auto 220px;
 }
 
 .portfolio-footer-inner {
@@ -3137,8 +3135,6 @@ body.light-mode .hero-hud-btn:hover {
     padding: clamp(48px, 7vw, 96px) clamp(18px, 6vw, 60px) clamp(60px, 8vw, 110px);
     background: transparent;
     overflow: clip;
-    content-visibility: auto;
-    contain-intrinsic-size: auto 1200px;
 }
 
 .section-shell {
@@ -4158,8 +4154,6 @@ body.light-mode .stat-suffix {
     padding: clamp(60px, 7vw, 100px) clamp(16px, 4vw, 40px) clamp(70px, 8vw, 120px);
     background: transparent;
     overflow: clip;
-    content-visibility: auto;
-    contain-intrinsic-size: auto 700px;
 }
 
 .skills-shell {
@@ -4994,8 +4988,6 @@ body.light-mode .skills-note strong {
     padding: clamp(40px, 8vw, 100px) clamp(16px, 5vw, 60px) clamp(80px, 12vw, 140px);
     background: transparent;
     overflow: visible;
-    content-visibility: auto;
-    contain-intrinsic-size: auto 2400px;
 }
 
 /* Fixed Scroll Progress Bar (Top of Viewport) */
@@ -6233,8 +6225,6 @@ body.light-mode .project-btn-ghost:hover {
     padding: clamp(40px, 8vw, 100px) clamp(16px, 5vw, 60px) clamp(80px, 12vw, 140px);
     background: transparent;
     overflow: visible;
-    content-visibility: auto;
-    contain-intrinsic-size: auto 2200px;
 }
 
 /* Fixed Scroll Progress Bar (Top of Viewport) */
@@ -7227,8 +7217,6 @@ body.light-mode .cert-modal-close:hover {
 /* Experience Timeline & Metrics */
 .experience {
     padding: 12px clamp(18px, 6vw, 60px) 120px;
-    content-visibility: auto;
-    contain-intrinsic-size: auto 1400px;
 }
 
 .experience-shell {
@@ -7515,8 +7503,6 @@ body.light-mode .experience-tags span {
     padding: clamp(48px, 7vw, 96px) clamp(18px, 6vw, 60px) clamp(80px, 10vw, 130px);
     background: transparent;
     overflow: clip;
-    content-visibility: auto;
-    contain-intrinsic-size: auto 950px;
 }
 
 .contact-shell {
@@ -9243,3 +9229,38 @@ html.perf-lite .avatar-orbit {
     animation: none !important;
 }
 
+/* 2.6 Content Visibility Optimization for Below-the-Fold Sections (Lite Mode Only) */
+html.perf-lite .about {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 1200px;
+}
+
+html.perf-lite .skills {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 700px;
+}
+
+html.perf-lite .projects {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 2400px;
+}
+
+html.perf-lite .certificates {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 2200px;
+}
+
+html.perf-lite .experience {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 1400px;
+}
+
+html.perf-lite .contact {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 950px;
+}
+
+html.perf-lite .portfolio-footer {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 220px;
+}

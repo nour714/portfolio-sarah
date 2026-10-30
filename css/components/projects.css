@@ -21,8 +21,6 @@
     padding: clamp(40px, 8vw, 100px) clamp(16px, 5vw, 60px) clamp(80px, 12vw, 140px);
     background: transparent;
     overflow: visible;
-    content-visibility: auto;
-    contain-intrinsic-size: auto 2400px;
 }
 
 /* Fixed Scroll Progress Bar (Top of Viewport) */
