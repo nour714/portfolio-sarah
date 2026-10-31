@@ -1,5 +1,5 @@
 /**
- * Automated Performance Tier Matrix Test Suite (Task 5)
+ * Automated Performance Tier Matrix Test Suite (18 Matrix Cases)
  * Plain Node.js with vm module (no browser needed)
  * Tests the synchronous detection <script> embedded in index.html and cv.html
  */
@@ -41,8 +41,10 @@ function runDetection(code, opts = {}) {
         })
     };
     const nav = opts.omitNavigator ? undefined : {
+        userAgent: opts.userAgent || '',
         deviceMemory: opts.deviceMemory,
         hardwareConcurrency: opts.hardwareConcurrency,
+        maxTouchPoints: typeof opts.maxTouchPoints === 'number' ? opts.maxTouchPoints : (opts.isTouch ? 5 : 0),
         connection: (opts.omitConnection) ? undefined : {
             saveData: Boolean(opts.saveData),
             effectiveType: opts.effectiveType || '4g'
@@ -201,13 +203,137 @@ function runMatrixForFile(fileName) {
         assert.strictEqual(res.perf.lite, false, 'Missing APIs must have lite === false');
         console.log('  ✓ Case 11: Missing matchMedia/navigator -> no throw, window.__perf = { isTouch:false, lite:false }');
     }
+
+    // 12. iPhone Safari UA, touch, cores 2, no deviceMemory -> is-touch, NOT lite.
+    {
+        const res = runDetection(code, {
+            isTouch: true,
+            userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Mobile/15E148 Safari/604.1',
+            hardwareConcurrency: 2,
+            deviceMemory: undefined
+        });
+        assert.strictEqual(res.perf.isTouch, true, 'iPhone Safari must have isTouch === true');
+        assert.strictEqual(res.perf.lite, false, 'iPhone Safari is exempt from auto-lite even with 2 cores');
+        assert.strictEqual(res.isTouchClass, true, 'iPhone Safari must have is-touch class');
+        assert.strictEqual(res.perfLiteClass, false, 'iPhone Safari must NOT have perf-lite class');
+        console.log('  ✓ Case 12: iPhone Safari UA, touch, cores 2, no deviceMemory -> is-touch, NOT lite');
+    }
+
+    // 13. iPhone Safari UA, touch, saveData true and effectiveType "3g" mocked -> NOT lite.
+    {
+        const res = runDetection(code, {
+            isTouch: true,
+            userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Mobile/15E148 Safari/604.1',
+            saveData: true,
+            effectiveType: '3g'
+        });
+        assert.strictEqual(res.perf.isTouch, true, 'iPhone Safari must have isTouch === true');
+        assert.strictEqual(res.perf.lite, false, 'iPhone Safari with saveData & 3g is NOT lite');
+        assert.strictEqual(res.isTouchClass, true, 'iPhone Safari must have is-touch class');
+        assert.strictEqual(res.perfLiteClass, false, 'iPhone Safari must NOT have perf-lite class');
+        console.log('  ✓ Case 13: iPhone Safari UA, touch, saveData true and effectiveType "3g" mocked -> NOT lite');
+    }
+
+    // 14. iPhone Chrome iOS UA (contains "CriOS" and "iPhone"), touch, cores 2 -> NOT lite.
+    {
+        const res = runDetection(code, {
+            isTouch: true,
+            userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/123.0.6312.52 Mobile/15E148 Safari/604.1',
+            hardwareConcurrency: 2
+        });
+        assert.strictEqual(res.perf.isTouch, true, 'iPhone Chrome iOS must have isTouch === true');
+        assert.strictEqual(res.perf.lite, false, 'iPhone Chrome iOS is exempt from auto-lite even with 2 cores');
+        assert.strictEqual(res.isTouchClass, true, 'iPhone Chrome iOS must have is-touch class');
+        assert.strictEqual(res.perfLiteClass, false, 'iPhone Chrome iOS must NOT have perf-lite class');
+        console.log('  ✓ Case 14: iPhone Chrome iOS UA (contains "CriOS" and "iPhone"), touch, cores 2 -> NOT lite');
+    }
+
+    // 15. iPhone + ?perf=lite -> lite. iPhone + ?perf=full -> NOT lite.
+    {
+        const iphoneUA = 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Mobile/15E148 Safari/604.1';
+        const resLite = runDetection(code, { isTouch: true, userAgent: iphoneUA, search: '?perf=lite' });
+        assert.strictEqual(resLite.perf.lite, true, 'iPhone + ?perf=lite must have lite === true');
+        assert.strictEqual(resLite.perfLiteClass, true, 'iPhone + ?perf=lite must have perf-lite class');
+
+        const resFull = runDetection(code, { isTouch: true, userAgent: iphoneUA, hardwareConcurrency: 2, search: '?perf=full' });
+        assert.strictEqual(resFull.perf.lite, false, 'iPhone + ?perf=full must have lite === false');
+        assert.strictEqual(resFull.perfLiteClass, false, 'iPhone + ?perf=full must not have perf-lite class');
+        console.log('  ✓ Case 15: iPhone + ?perf=lite -> lite; iPhone + ?perf=full -> NOT lite');
+    }
+
+    // 16. Android weak phone UA (deviceMemory 2) -> still lite (regression guard). Android strong phone -> NOT lite.
+    {
+        const resWeak = runDetection(code, {
+            isTouch: true,
+            userAgent: 'Mozilla/5.0 (Linux; Android 13; SM-A135F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36',
+            deviceMemory: 2,
+            hardwareConcurrency: 8,
+            effectiveType: '4g'
+        });
+        assert.strictEqual(resWeak.perf.isTouch, true, 'Android weak phone must have isTouch === true');
+        assert.strictEqual(resWeak.perf.lite, true, 'Android weak phone must still be lite');
+        assert.strictEqual(resWeak.perfLiteClass, true, 'Android weak phone must have perf-lite class');
+
+        const resStrong = runDetection(code, {
+            isTouch: true,
+            userAgent: 'Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36',
+            deviceMemory: 8,
+            hardwareConcurrency: 8,
+            effectiveType: '4g'
+        });
+        assert.strictEqual(resStrong.perf.isTouch, true, 'Android strong phone must have isTouch === true');
+        assert.strictEqual(resStrong.perf.lite, false, 'Android strong phone must NOT be lite');
+        assert.strictEqual(resStrong.perfLiteClass, false, 'Android strong phone must not have perf-lite class');
+        console.log('  ✓ Case 16: Android weak phone UA -> still lite; Android strong phone -> NOT lite');
+    }
+
+    // 17. iPad UA, touch, cores 2 -> still lite (unchanged behavior). iPadOS reporting a Mac UA with maxTouchPoints 5, touch, cores 2 -> still lite.
+    {
+        const resIpad = runDetection(code, {
+            isTouch: true,
+            userAgent: 'Mozilla/5.0 (iPad; CPU OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1',
+            hardwareConcurrency: 2
+        });
+        assert.strictEqual(resIpad.perf.isTouch, true, 'iPad must have isTouch === true');
+        assert.strictEqual(resIpad.perf.lite, true, 'iPad with 2 cores must still be lite');
+        assert.strictEqual(resIpad.perfLiteClass, true, 'iPad with 2 cores must have perf-lite class');
+
+        const resIpadMac = runDetection(code, {
+            isTouch: true,
+            userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Safari/605.1.15',
+            maxTouchPoints: 5,
+            hardwareConcurrency: 2
+        });
+        assert.strictEqual(resIpadMac.perf.isTouch, true, 'iPadOS reporting Mac UA must have isTouch === true');
+        assert.strictEqual(resIpadMac.perf.lite, true, 'iPadOS reporting Mac UA with 2 cores must still be lite');
+        assert.strictEqual(resIpadMac.perfLiteClass, true, 'iPadOS reporting Mac UA with 2 cores must have perf-lite class');
+        console.log('  ✓ Case 17: iPad UA cores 2 -> still lite; iPadOS reporting Mac UA with touch cores 2 -> still lite');
+    }
+
+    // 18. Desktop UA (Macintosh, maxTouchPoints 0, mouse) with weak specs -> NOT lite (regression guard).
+    {
+        const resDesktop = runDetection(code, {
+            isTouch: false,
+            userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            maxTouchPoints: 0,
+            deviceMemory: 2,
+            hardwareConcurrency: 2,
+            saveData: true,
+            effectiveType: '2g'
+        });
+        assert.strictEqual(resDesktop.perf.isTouch, false, 'Desktop Macintosh must have isTouch === false');
+        assert.strictEqual(resDesktop.perf.lite, false, 'Desktop with weak specs is never lite automatically');
+        assert.strictEqual(resDesktop.isTouchClass, false, 'Desktop must not have is-touch class');
+        assert.strictEqual(resDesktop.perfLiteClass, false, 'Desktop must not have perf-lite class');
+        console.log('  ✓ Case 18: Desktop UA (Macintosh, mouse) with weak specs -> NOT lite');
+    }
 }
 
 function runAll() {
-    console.log('🚀 Running Performance Tier Test Suite (11 Matrix Cases)...');
+    console.log('🚀 Running Performance Tier Test Suite (18 Matrix Cases)...');
     runMatrixForFile('index.html');
     runMatrixForFile('cv.html');
-    console.log('\n✨ All 11 Performance Tier Matrix tests PASSED across index.html & cv.html!\n');
+    console.log('\n✨ All 18 Performance Tier Matrix tests PASSED across index.html & cv.html!\n');
 }
 
 if (require.main === module) {
