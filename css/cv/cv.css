@@ -146,10 +146,14 @@ body.light-mode .btn-secondary:hover {
 }
 
 /* Theme Toggle Button */
+.theme-toggle .theme-icon {
+    flex-shrink: 0;
+}
 .theme-toggle {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 6px;
     padding: 0.52rem 1.05rem;
     border-radius: 999px;
     background: rgba(14, 18, 38, 0.75);
@@ -227,17 +231,84 @@ body.light-mode .cv-mobile-action {
 .btn-prominent {
     font-size: 1.05rem;
     padding: 0.85rem 1.8rem;
+    min-height: 48px;
     border-radius: 14px;
     box-shadow: 0 8px 24px rgba(124, 58, 237, 0.45);
 }
 
 @media (max-width: 768px) {
+    body {
+        padding: 1.25rem 0.75rem;
+    }
+
+    .cv-shell {
+        border-radius: 16px;
+    }
+
+    .cv-head {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.9rem;
+        padding: 1.1rem 1rem;
+    }
+
+    .cv-head h1 {
+        font-size: clamp(1.2rem, 4.8vw, 1.45rem);
+        text-align: center;
+        line-height: 1.3;
+        overflow-wrap: break-word;
+        word-break: break-word;
+    }
+
+    .cv-actions {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        gap: 0.65rem;
+    }
+
+    /* Task 1: Hide header Download CV button on mobile */
+    .cv-actions .btn-primary {
+        display: none !important;
+    }
+
+    /* Task 2: Equal height, equal border radius, equal width (flex: 1) in one row */
+    .cv-actions .theme-toggle,
+    .cv-actions .btn-secondary {
+        flex: 1 1 0;
+        width: 50%;
+        min-height: 44px;
+        border-radius: 12px;
+        padding: 0.6rem 0.5rem;
+        font-size: 0.86rem;
+        box-sizing: border-box;
+        text-align: center;
+        white-space: nowrap;
+    }
+
     .cv-frame-wrap {
         display: none !important;
     }
 
     .cv-mobile-action {
         display: flex;
+        padding: 2.75rem 1.25rem;
+    }
+
+    .cv-mobile-note {
+        font-size: 0.92rem;
+        line-height: 1.5;
+        max-width: 34ch;
+    }
+
+    .btn-prominent {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    /* Task 4: Hide footer hint on mobile */
+    .cv-foot {
+        display: none !important;
     }
 }
 
@@ -261,7 +332,8 @@ body.light-mode .cv-mobile-action {
 /* ==========================================================================
    High-Performance Lite & Touch Overrides for CV Shell
    ========================================================================== */
-html.is-touch .btn:hover {
+html.is-touch .btn:hover,
+html.is-touch .theme-toggle:hover {
     transform: none !important;
 }
 
