@@ -46,7 +46,7 @@
 
 > [!NOTE]
 > **Lighthouse Emulation vs Hardware Detection:**
-> Lighthouse mobile emulation runs directly on the host development machine, which shares the host CPU cores (`navigator.hardwareConcurrency`) and host RAM (`navigator.deviceMemory`). As a result, Lighthouse's device emulation does not automatically trigger the hardware-based `perf-lite` tier (`hardwareConcurrency <= 4` or `deviceMemory <= 4`). Appending `?perf=lite` is how to simulate and audit the `perf-lite` experience under synthetic throttling.
+> Lighthouse mobile emulation runs directly on the host development machine, which shares the host CPU cores (`navigator.hardwareConcurrency`) and host RAM (`navigator.deviceMemory`). As a result, Lighthouse's device emulation does not automatically trigger the hardware-based `perf-lite` tier (`hardwareConcurrency <= 4` or `deviceMemory <= 4`). Appending `?perf=lite` is how to simulate and audit the `perf-lite` experience under synthetic throttling. In addition, iPhones are exempt from auto-lite and a weak iPhone can only be simulated with `?perf=lite`.
 
 ### 1. Median LCP Measurements Across 3 Runs (Mobile Preset, Slow 4G, 4x CPU)
 Lighthouse was executed three times consecutively for each scenario on `http://localhost:8085/`:
@@ -139,7 +139,7 @@ Total Transfer Size: **985.5 KB** (reduced from 1,248.3 KB, breaking under 1.0 M
 - Synchronous `<head>` script executes before stylesheets, detecting:
   - Touch devices: `(hover: none) and (pointer: coarse)` -> adds `html.is-touch`.
   - Lite hardware/network: `navigator.connection.saveData`, 2G/3G network, `deviceMemory <= 4`, `hardwareConcurrency <= 4`, or `prefers-reduced-motion: reduce` -> adds `html.perf-lite`.
-- Exposes `window.__perf = { isTouch, lite }` and supports `?perf=lite` / `?perf=full` URL query overrides.
+- Exposes `window.__perf = { isTouch, lite }` and supports `?perf=lite` / `?perf=full` URL query overrides (iPhones are exempt from auto-lite and a weak iPhone can only be simulated with `?perf=lite`).
 
 ### Task 2 — Lighter CSS on Weak Devices (`css/features/perf-lite.css`)
 - Replaced GPU-heavy `backdrop-filter: blur(...)` with solid / semi-opaque contrast-tested backgrounds across dark and light themes.

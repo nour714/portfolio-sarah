@@ -158,16 +158,18 @@ A synchronous inline script executes in the `<head>` of `index.html` and `cv.htm
 
 #### Detection Rule
 - **Touch device (`isTouch`):** Primary pointer matches `(hover: none) and (pointer: coarse)`.
+- **iPhone / iPod rule:** iPhones/iPods are never auto-lite (always the strong-phone version); iPad and Android follow the weak-device rule; ?perf=lite still forces lite for testing.
 - **Weak hardware/network (`weak`):** `navigator.connection.saveData === true` OR slow network (`slow-2g`, `2g`, `3g`) OR `navigator.deviceMemory <= 2` GB OR `navigator.hardwareConcurrency <= 4` cores. Missing APIs default to strong (e.g. Safari defaults memory and cores to 8).
-- **Lite mode (`lite`):** `isTouch && weak`. **Laptops and desktops (mouse/trackpad primary pointer) are NEVER automatically lite**, regardless of CPU, RAM, Data Saver, or network conditions.
+- **Lite mode (`lite`):** `isTouch && !isIPhone && weak`. **Laptops and desktops (mouse/trackpad primary pointer) are NEVER automatically lite**, regardless of CPU, RAM, Data Saver, or network conditions. iPhones and iPods are likewise never auto-lite.
 - **prefers-reduced-motion:** Accessible reduced motion is strictly respected where requested, but is NOT a performance signal and does NOT force lite mode.
 
 | Device Category | Detection Criteria | Performance Mode | Look & Behavior |
 | :--- | :--- | :--- | :--- |
 | **Desktop / Laptop** | Mouse / trackpad primary pointer (`!isTouch`) | **Full (Always)** | 100% original baseline look and interactions: Lenis smooth scroll, scrubbed parallax, 3D card tilt, magnetic buttons, cursor spotlight glow, cinematic video intro, all blurs & glows. |
-| **Capable Touch Phone / Tablet** | Touch primary pointer + strong hardware/network | **Full** | Native high-performance look: Lenis smooth scrolling, scrubbed card stacks & parallax sequences, rich visual effects. |
-| **Weak Touch Phone / Tablet** | Touch primary pointer + (saveData \|\| 2g/3g \|\| RAM ≤ 2GB \|\| Cores ≤ 4) | **Lite (`html.perf-lite`)** | Lightweight mode: native momentum scroll, solid high-contrast backgrounds, simplified shadows, paused ambient keyframes, no video intro. |
-| **Testing Query Override** | URL contains `?perf=lite` or `?perf=full` | **Manual Override** | `?perf=lite` forces lite mode on any device (ideal for testing weak phone behavior on desktop).<br>`?perf=full` forces full fidelity even on weak devices. |
+| **iPhone / iPod Touch** | Touch pointer + UA `/iPhone\|iPod/i` | **Full (Always)** | iPhones/iPods are never auto-lite (always the strong-phone version). Full fidelity motion and visuals. |
+| **Capable Touch Phone / Tablet (Android / iPad)** | Touch primary pointer + strong hardware/network | **Full** | Native high-performance look: Lenis smooth scrolling, scrubbed card stacks & parallax sequences, rich visual effects. |
+| **Weak Touch Phone / Tablet (Android / iPad)** | Touch primary pointer + (saveData \|\| 2g/3g \|\| RAM ≤ 2GB \|\| Cores ≤ 4) | **Lite (`html.perf-lite`)** | Lightweight mode: native momentum scroll, solid high-contrast backgrounds, simplified shadows, paused ambient keyframes, no video intro. |
+| **Testing Query Override** | URL contains `?perf=lite` or `?perf=full` | **Manual Override** | `?perf=lite` forces lite mode on any device, iPhone included (ideal for testing weak phone behavior on desktop or mobile).<br>`?perf=full` forces full fidelity even on weak devices. |
 
 #### Optimizations Applied to Everyone vs. Lite-Only
 
