@@ -17,13 +17,15 @@
                 var mq = function(q) { return Boolean(typeof window !== 'undefined' && window.matchMedia && window.matchMedia(q).matches); };
                 var isTouch = mq('(hover: none) and (pointer: coarse)');
                 var nav = typeof navigator !== 'undefined' ? navigator : null;
+                var ua = (nav && nav.userAgent) ? nav.userAgent : '';
+                var isIPhone = /iPhone|iPod/i.test(ua);
                 var conn = nav ? (nav.connection || nav.mozConnection || nav.webkitConnection) : null;
                 var isSaveData = Boolean(conn && conn.saveData);
                 var isSlowNet = Boolean(conn && /^(slow-2g|2g|3g)$/i.test(conn.effectiveType || ''));
                 var devMem = (nav && typeof nav.deviceMemory === 'number') ? nav.deviceMemory : 8;
                 var cores = (nav && typeof nav.hardwareConcurrency === 'number') ? nav.hardwareConcurrency : 8;
                 var weak = isSaveData || isSlowNet || (devMem <= 2) || (cores <= 4);
-                var lite = override === 'lite' ? true : (override === 'full' ? false : (isTouch && weak));
+                var lite = override === 'lite' ? true : (override === 'full' ? false : (isTouch && !isIPhone && weak));
                 var doc = typeof document !== 'undefined' ? document.documentElement : null;
                 if (doc && doc.classList) {
                     if (isTouch) doc.classList.add('is-touch');
